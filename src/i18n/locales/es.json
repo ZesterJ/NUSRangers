@@ -1,0 +1,52 @@
+{
+  "tabs": { "home": "Inicio", "chat": "Preguntar", "capture": "Registrar", "history": "Historial", "settings": "Ajustes" },
+  "common": { "online": "En línea", "offline": "Sin conexión", "save": "Guardar", "cancel": "Cancelar", "retry": "Reintentar" },
+  "offlineBanner": "Sin conexión. Las respuestas salen del teléfono; lo demás se envía al reconectar.",
+  "source": {
+    "offline": "Conocimiento en el teléfono",
+    "cache": "Respuesta guardada",
+    "on-device": "IA en el teléfono",
+    "cloud": "IA en la nube",
+    "fallback": "En cola"
+  },
+  "chat": {
+    "placeholder": "Escribe tu pregunta…",
+    "send": "Enviar",
+    "thinking": "Pensando…",
+    "speak": "Leer en voz alta",
+    "sms": "Enviar por SMS",
+    "smsFailed": "SMS no disponible en este dispositivo.",
+    "clear": "Borrar chat",
+    "fallback": "Aún no tengo respuesta en este teléfono. Guardé tu pregunta y responderé al reconectar — o envíala por SMS ahora."
+  },
+  "capture": {
+    "submit": "Enviar",
+    "pickPhoto": "Tomar foto",
+    "choosePhoto": "Elegir foto",
+    "getLocation": "Usar mi ubicación",
+    "required": "Completa: {{field}}",
+    "result": "Resultado",
+    "queued": "Guardado sin conexión. Se muestra la evaluación del teléfono; la de la nube se hará al reconectar.",
+    "risk": { "low": "Riesgo bajo", "med": "Riesgo medio", "high": "Riesgo alto" },
+    "newReport": "Nuevo registro"
+  },
+  "history": {
+    "reports": "Registros",
+    "pending": "{{count}} pendientes de sincronizar",
+    "syncNow": "Sincronizar",
+    "syncing": "Sincronizando…",
+    "empty": "Aún no hay registros.",
+    "noResult": "Esperando resultado"
+  },
+  "settings": {
+    "language": "Idioma",
+    "aiMode": "Modo de IA",
+    "aiModes": { "auto": "Auto", "offline": "Solo sin conexión", "cloud": "Solo nube" },
+    "forceOffline": "Simular sin señal",
+    "developer": "Desarrollador",
+    "pack": "Paquete de dominio",
+    "useMock": "Usar backend simulado",
+    "apiUrl": "URL del backend"
+  },
+  "onboarding": { "welcome": "Bienvenido", "chooseLanguage": "Elige tu idioma", "start": "Empezar" }
+}

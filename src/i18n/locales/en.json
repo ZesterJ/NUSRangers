@@ -1,0 +1,52 @@
+{
+  "tabs": { "home": "Home", "chat": "Ask", "capture": "Report", "history": "History", "settings": "Settings" },
+  "common": { "online": "Online", "offline": "Offline", "save": "Save", "cancel": "Cancel", "retry": "Retry" },
+  "offlineBanner": "You are offline. Answers come from the phone; anything else is sent when you reconnect.",
+  "source": {
+    "offline": "On-phone knowledge",
+    "cache": "Saved answer",
+    "on-device": "On-device AI",
+    "cloud": "Cloud AI",
+    "fallback": "Queued"
+  },
+  "chat": {
+    "placeholder": "Type your question…",
+    "send": "Send",
+    "thinking": "Thinking…",
+    "speak": "Read aloud",
+    "sms": "Send by SMS",
+    "smsFailed": "SMS is not available on this device.",
+    "clear": "Clear chat",
+    "fallback": "I don't have an answer on this phone yet. I saved your question and will answer when you're back online — or send it by SMS now."
+  },
+  "capture": {
+    "submit": "Submit",
+    "pickPhoto": "Take photo",
+    "choosePhoto": "Choose photo",
+    "getLocation": "Use my location",
+    "required": "Please fill in: {{field}}",
+    "result": "Result",
+    "queued": "Saved offline. Showing the on-phone assessment; the cloud check runs when you reconnect.",
+    "risk": { "low": "Low risk", "med": "Medium risk", "high": "High risk" },
+    "newReport": "New report"
+  },
+  "history": {
+    "reports": "Reports",
+    "pending": "{{count}} waiting to sync",
+    "syncNow": "Sync now",
+    "syncing": "Syncing…",
+    "empty": "No reports yet.",
+    "noResult": "Waiting for result"
+  },
+  "settings": {
+    "language": "Language",
+    "aiMode": "AI mode",
+    "aiModes": { "auto": "Auto", "offline": "Offline only", "cloud": "Cloud only" },
+    "forceOffline": "Simulate no signal",
+    "developer": "Developer",
+    "pack": "Domain pack",
+    "useMock": "Use mock backend",
+    "apiUrl": "Backend URL"
+  },
+  "onboarding": { "welcome": "Welcome", "chooseLanguage": "Choose your language", "start": "Start" }
+}

@@ -1,0 +1,32 @@
+import { getPack } from '@/packs';
+
+import type { AnalyzeRequest, AnalyzeResponse, ChatRequest, ChatResponse } from './types';
+
+const delay = (ms: number) => new Promise((r) => setTimeout(r, ms));
+
+/**
+ * Stand-in for the backend so the FE is never blocked. Replies are clearly labelled
+ * so nobody mistakes them for real model output during testing.
+ */
+export const mockApi = {
+  async chat(req: ChatRequest): Promise<ChatResponse> {
+    await delay(900);
+    const last = [...req.messages].reverse().find((m) => m.role === 'user')?.content ?? '';
+    const pack = getPack(req.packId);
+    return {
+      reply:
+        `[mock cloud · ${pack.appName}] You asked: "${last}". ` +
+        'Once the backend is connected this answer will come from the LLM using the pack system prompt.',
+    };
+  },
+
+  async analyze(req: AnalyzeRequest): Promise<AnalyzeResponse> {
+    await delay(1200);
+    const pack = getPack(req.packId);
+    const base = pack.offlineAssess?.(req.fields, req.locale) ?? {
+      summary: 'Report received.',
+      actions: ['Follow up'],
+    };
+    return { ...base, summary: `[mock cloud] ${base.summary}${req.imageBase64 ? ' (photo attached)' : ''}` };
+  },
+};
