@@ -44,3 +44,9 @@ example
 
 # local env
 .env
+
+# python (backend)
+__pycache__/
+.pytest_cache/
+.venv/
+venv/

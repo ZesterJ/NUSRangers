@@ -49,6 +49,7 @@ Pro tip: record this as a backup video before judging.
 | Hybrid AI order (offline → cloud → on-device → cache → queue/SMS) | `src/ai/AiRouter.ts` |
 | Offline matcher and thresholds | `src/ai/strategies/offlineMatcher.ts` |
 | Backend calls / mock | `src/api/client.ts`, `src/api/mock.ts`, contract in `docs/api.md` |
+| Backend (FastAPI + Claude) | `backend/`, deploy guide in `docs/BACKEND_DEPLOY.md` |
 | Offline storage and sync queue | `src/db/index.ts`, `src/ai/sync.ts` |
 | Screens | `src/app/(tabs)/*.tsx` |
 | UI strings | `src/i18n/locales/*.json` |

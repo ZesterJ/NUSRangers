@@ -7,8 +7,12 @@ Base URL: `EXPO_PUBLIC_API_URL` (or **Settings → Backend URL** at runtime — 
 
 All bodies are JSON. Keep responses small: users are on slow, expensive connections.
 
+A reference implementation lives in [`backend/`](../backend), and the deploy steps are in [`BACKEND_DEPLOY.md`](BACKEND_DEPLOY.md).
+
+**Errors:** `422` = the request doesn't match the schema, `503` = the model provider is busy or unreachable (retry later), `502` = the model provider rejected the request. On any error or timeout (30s), the app falls back to on-phone answers and queues the request.
+
 ## `GET /health`
-`200 {"ok": true}`
+`200 {"ok": true, "provider": "anthropic"}` (`"echo"` means the backend is running without a model)
 
 ## `POST /chat`
 The cloud half of the hybrid chatbot. Called only when the on-phone knowledge had no strong match.

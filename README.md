@@ -20,7 +20,7 @@ cp .env.example .env
 npx expo start     # open in Expo Go
 ```
 
-- Backend contract for the BE teammate: [`docs/api.md`](docs/api.md)
+- Backend (FastAPI + Claude) in [`backend/`](backend). Deploy guide: [`docs/BACKEND_DEPLOY.md`](docs/BACKEND_DEPLOY.md). Contract: [`docs/api.md`](docs/api.md)
 - Pivot steps, demo script and file map: [`HACKATHON.md`](HACKATHON.md)
 
 Checks: `npm run typecheck && npm run lint && npm run check:packs`
