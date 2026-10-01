@@ -1,0 +1,52 @@
+{
+  "tabs": { "home": "Nyumbani", "chat": "Uliza", "capture": "Ripoti", "history": "Historia", "settings": "Mipangilio" },
+  "common": { "online": "Mtandaoni", "offline": "Nje ya mtandao", "save": "Hifadhi", "cancel": "Ghairi", "retry": "Jaribu tena" },
+  "offlineBanner": "Uko nje ya mtandao. Majibu yanatoka kwenye simu; mengine yatatumwa ukiunganishwa.",
+  "source": {
+    "offline": "Maarifa ya simu",
+    "cache": "Jibu lililohifadhiwa",
+    "on-device": "AI ya simu",
+    "cloud": "AI ya mtandao",
+    "fallback": "Imewekwa foleni"
+  },
+  "chat": {
+    "placeholder": "Andika swali lako…",
+    "send": "Tuma",
+    "thinking": "Nafikiri…",
+    "speak": "Soma kwa sauti",
+    "sms": "Tuma kwa SMS",
+    "smsFailed": "SMS haipatikani kwenye kifaa hiki.",
+    "clear": "Futa mazungumzo",
+    "fallback": "Sina jibu kwenye simu bado. Nimehifadhi swali lako na nitajibu ukirudi mtandaoni — au litume kwa SMS sasa."
+  },
+  "capture": {
+    "submit": "Wasilisha",
+    "pickPhoto": "Piga picha",
+    "choosePhoto": "Chagua picha",
+    "getLocation": "Tumia mahali nilipo",
+    "required": "Tafadhali jaza: {{field}}",
+    "result": "Matokeo",
+    "queued": "Imehifadhiwa bila mtandao. Tathmini ya simu inaonyeshwa; ukaguzi wa mtandao utafanyika ukiunganishwa.",
+    "risk": { "low": "Hatari ndogo", "med": "Hatari ya kati", "high": "Hatari kubwa" },
+    "newReport": "Ripoti mpya"
+  },
+  "history": {
+    "reports": "Ripoti",
+    "pending": "{{count}} zinasubiri kutumwa",
+    "syncNow": "Tuma sasa",
+    "syncing": "Inatuma…",
+    "empty": "Hakuna ripoti bado.",
+    "noResult": "Inasubiri matokeo"
+  },
+  "settings": {
+    "language": "Lugha",
+    "aiMode": "Hali ya AI",
+    "aiModes": { "auto": "Otomatiki", "offline": "Bila mtandao tu", "cloud": "Mtandao tu" },
+    "forceOffline": "Iga kukosa mtandao",
+    "developer": "Msanidi",
+    "pack": "Kifurushi",
+    "useMock": "Tumia seva bandia",
+    "apiUrl": "Anwani ya seva"
+  },
+  "onboarding": { "welcome": "Karibu", "chooseLanguage": "Chagua lugha yako", "start": "Anza" }
+}
