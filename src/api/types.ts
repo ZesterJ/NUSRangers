@@ -29,3 +29,7 @@ export type AnalyzeRequest = {
 };
 
 export type AnalyzeResponse = Assessment;
+
+/** Initial numeric-vector contract for backend-local inference. */
+export type PredictRequest = { features: number[] };
+export type PredictResponse = { prediction: number | string; modelVersion: string };

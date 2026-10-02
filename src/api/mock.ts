@@ -1,6 +1,6 @@
 import { getPack } from '@/packs';
 
-import type { AnalyzeRequest, AnalyzeResponse, ChatRequest, ChatResponse } from './types';
+import type { AnalyzeRequest, AnalyzeResponse, ChatRequest, ChatResponse, PredictRequest, PredictResponse } from './types';
 
 const delay = (ms: number) => new Promise((r) => setTimeout(r, ms));
 
@@ -9,6 +9,10 @@ const delay = (ms: number) => new Promise((r) => setTimeout(r, ms));
  * so nobody mistakes them for real model output during testing.
  */
 export const mockApi = {
+  async predict(_req: PredictRequest): Promise<PredictResponse> {
+    // API-contract fixture only; this does not simulate a trained model.
+    return { prediction: '[mock prediction]', modelVersion: 'mock-v1' };
+  },
   async chat(req: ChatRequest): Promise<ChatResponse> {
     await delay(900);
     const last = [...req.messages].reverse().find((m) => m.role === 'user')?.content ?? '';

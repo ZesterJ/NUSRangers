@@ -2,7 +2,7 @@ import { config } from '@/config';
 import { getSettings } from '@/store/settings';
 
 import { mockApi } from './mock';
-import type { AnalyzeRequest, AnalyzeResponse, ChatRequest, ChatResponse } from './types';
+import type { AnalyzeRequest, AnalyzeResponse, ChatRequest, ChatResponse, PredictRequest, PredictResponse } from './types';
 
 async function post<T>(path: string, body: unknown): Promise<T> {
   const controller = new AbortController();
@@ -22,12 +22,14 @@ async function post<T>(path: string, body: unknown): Promise<T> {
 }
 
 const httpApi = {
+  predict: (req: PredictRequest) => post<PredictResponse>('/predict', req),
   chat: (req: ChatRequest) => post<ChatResponse>('/chat', req),
   analyze: (req: AnalyzeRequest) => post<AnalyzeResponse>('/analyze', req),
 };
 
 /** Picks the mock or the real backend at call time, so the Settings toggle applies immediately. */
 export const api = {
+  predict: (req: PredictRequest) => (getSettings().useMock ? mockApi : httpApi).predict(req),
   chat: (req: ChatRequest) => (getSettings().useMock ? mockApi : httpApi).chat(req),
   analyze: (req: AnalyzeRequest) => (getSettings().useMock ? mockApi : httpApi).analyze(req),
 };
