@@ -39,7 +39,7 @@ app = FastAPI(title="NUSRangers backend", version="0.1.0", lifespan=lifespan)
 app.add_middleware(CORSMiddleware, allow_origins=["*"], allow_methods=["*"], allow_headers=["*"])
 
 provider = make_provider()
-DEFAULT_PACK = os.getenv("DEFAULT_PACK", "agri")
+DEFAULT_PACK = os.getenv("DEFAULT_PACK", "health")
 
 
 def _raise(e: LLMError):
