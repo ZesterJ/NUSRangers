@@ -11,7 +11,7 @@ export const PACKS: Record<string, DomainPack> = {
 };
 
 export function getPack(id: string | undefined): DomainPack {
-  return (id && PACKS[id]) || agriPack;
+  return (id && PACKS[id]) || healthPack;
 }
 
 export * from './types';
