@@ -30,6 +30,7 @@ import {
   type Triage,
 } from '@/intake/types';
 import { tr } from '@/packs/types';
+import { useSettings } from '@/store/settings';
 import { radius, spacing, usePackContext } from '@/theme';
 
 type QuestionId = (typeof QUESTIONS)[number]['id'];
@@ -46,8 +47,10 @@ export default function Intake() {
 }
 
 function IntakeFlow({ onRestart }: { onRestart: () => void }) {
-  const { locale, theme } = usePackContext();
+  const { pack, locale, theme } = usePackContext();
   const { t } = useTranslation();
+  const role = useSettings((s) => s.role);
+  const setSettings = useSettings((s) => s.set);
 
   const [step, setStep] = useState<Step>('ask');
   const [qi, setQi] = useState(0);
@@ -118,6 +121,7 @@ function IntakeFlow({ onRestart }: { onRestart: () => void }) {
     if (!form || !result) return;
     const rec: IntakeRecord = {
       id: Crypto.randomUUID().slice(0, 8),
+      owner: role ?? 'patient',
       createdAt: Date.now(),
       locale,
       transcript: QUESTIONS.map((qq) => answers[qq.id] ?? '').filter(Boolean),
@@ -139,6 +143,13 @@ function IntakeFlow({ onRestart }: { onRestart: () => void }) {
   return (
     <View style={{ flex: 1, backgroundColor: theme.background }}>
       <KeyboardScrollView contentContainerStyle={styles.content}>
+        {/* Language switch, so a helper and the patient can swap at any point in the visit note. */}
+        <View style={styles.language}>
+          <Text style={{ color: theme.textMuted }}>🌐</Text>
+          {pack.locales.map((l) => (
+            <Chip key={l.code} label={l.label} selected={locale === l.code} onPress={() => setSettings({ locale: l.code })} />
+          ))}
+        </View>
         {step === 'ask' && (
           <>
             <Text style={[styles.step, { color: theme.textMuted }]}>
@@ -405,6 +416,7 @@ function ReviewForm({
 
 const styles = StyleSheet.create({
   content: { padding: spacing.lg, gap: spacing.md, paddingBottom: spacing.xl * 2 },
+  language: { flexDirection: 'row', justifyContent: 'flex-end', alignItems: 'center', gap: spacing.sm },
   step: { fontSize: 13, fontWeight: '700', textTransform: 'uppercase', letterSpacing: 0.5 },
   progress: { flexDirection: 'row', gap: spacing.xs },
   dot: { flex: 1, height: 4, borderRadius: 2 },

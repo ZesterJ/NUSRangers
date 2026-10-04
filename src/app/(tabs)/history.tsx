@@ -12,6 +12,7 @@ import { listIntakes, listReports, type StoredReport } from '@/db';
 import { encodeHandoff } from '@/intake/handoff';
 import type { IntakeRecord } from '@/intake/types';
 import { useIsOnline } from '@/store/connectivity';
+import { useSettings } from '@/store/settings';
 import { radius, spacing, usePackContext } from '@/theme';
 
 export default function History() {
@@ -20,7 +21,10 @@ export default function History() {
   const online = useIsOnline();
   const { pending, syncing, version } = useSyncStore();
   const [reports, setReports] = useState<StoredReport[]>([]);
-  const [intakes, setIntakes] = useState<IntakeRecord[]>([]);
+  const role = useSettings((s) => s.role);
+  const [allIntakes, setIntakes] = useState<IntakeRecord[]>([]);
+  // A shared phone must not show one view's patients to the other. Notes from before this rule count as the patient's.
+  const intakes = allIntakes.filter((rec) => (rec.owner ?? 'patient') === role);
   const [open, setOpen] = useState<{ id: string; qr: string } | null>(null);
 
   const load = useCallback(() => {
