@@ -7,7 +7,6 @@ import { ScrollView, StyleSheet, Text, View } from 'react-native';
 import { IntakeSummary } from '@/components/IntakeSummary';
 import { Button, Card } from '@/components/ui';
 import { markIntakeReceived } from '@/db';
-import { SAMPLE_FACILITIES } from '@/intake/facilities';
 import { decodeHandoff, type DecodedHandoff } from '@/intake/handoff';
 import type { DangerSign, Symptom } from '@/intake/types';
 import { radius, spacing, usePackContext } from '@/theme';
@@ -47,7 +46,7 @@ export default function Scan() {
 
   if (result?.ok) {
     const p = result.payload;
-    const facilityName = p.fn ?? SAMPLE_FACILITIES.find((f) => f.id === p.f)?.name;
+    const facilityName = p.fn;
     return (
       <ScrollView style={{ backgroundColor: theme.background }} contentContainerStyle={styles.content}>
         <Text style={[styles.title, { color: theme.success }]}>✓ {t('scan.verified')}</Text>

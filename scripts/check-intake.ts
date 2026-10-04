@@ -1,12 +1,11 @@
 /**
- * Runs the offline intake pipeline (rules extraction → triage → clinic ranking) on scripted
+ * Runs the offline intake pipeline (rules extraction → triage → care services and Kilifi facility routing) on scripted
  * patients and checks the outcomes. Run after changing keywords, rules or facility data:
  * `npm run check:intake`
  */
 import { extractWithRules } from '@/intake/extractRules';
 import { mergeExtractions } from '@/intake/mergeExtraction';
-import { SAMPLE_FACILITIES } from '@/intake/facilities';
-import { recommend } from '@/intake/recommend';
+import { assessCareOnPhone } from '@/intake/careRouting';
 import { triage } from '@/intake/triage';
 import type { ConfirmedIntake, Extraction, TriageLevel } from '@/intake/types';
 
@@ -75,13 +74,13 @@ for (const c of RUNS) {
     notes: ex.unmapped.join(' · '),
   };
   const t = triage(intake, ex);
-  const recs = recommend(SAMPLE_FACILITIES, t);
+  const care = assessCareOnPhone(intake);
   const ok = t.level === c.expect;
   if (!ok) failed++;
   console.log(`${ok ? '✓' : '✗'} ${c.name}`);
   console.log(`   extracted: ${intake.patientGroup} | ${intake.symptoms.join(',') || '-'} | ${intake.durationDays ?? '?'}d | danger: ${intake.dangerSigns.join(',') || 'none'}`);
   console.log(`   triage: ${t.level} (expected ${c.expect}) — ${t.reasons.join('; ')}`);
-  console.log(`   clinics: ${recs.map((r) => `${r.facility.name} [${r.score}${r.stale ? ', call ahead' : ''}]`).join(' > ') || 'none in range'}`);
+  console.log(`   care: ${care.requiredServices.join(',') || 'none'} (${care.assessmentStatus}) → ${care.candidates.map((c) => `${c.facilityName} [${c.distanceKm} km]`).join(' > ') || 'no facility'}`);
 }
 if (failed) {
   console.log(`\n${failed} case(s) failed`);

@@ -184,8 +184,9 @@ Response (`Extraction`). Only use the listed codes, and mark guesses `"low"`:
 ## `POST /assess` (visit note → care services + Kilifi facility candidates)
 Implemented in `backend/app/care.py`, which wraps the care policy and facility router in `ml/src`
 (`care_policy.py`, `verified_facility_demo.py`) and the Kilifi data in `ml/data/facilities`. No model file is
-needed. The app calls it after the patient confirms the visit note; on any non-200 it shows its on-phone
-sample clinic list instead.
+needed. **The app does not call this**: it runs the same rules on the phone so the result works offline
+(`src/intake/careRouting.ts`, over `src/intake/kilifiFacilities.json` exported by `scripts/export-facilities.py`).
+The endpoint is the reference implementation and serves other clients; keep the two in step.
 
 Request (the confirmed note, from taps and free text alike; the patient's name is not sent):
 ```json
@@ -216,7 +217,7 @@ Response:
 }
 ```
 - `coordinates` is optional. Without it, or when it lies outside the area the catalogue covers, distances are
-  measured from Kilifi District Hospital and `origin` is `demo_anchor`. The app does not send coordinates yet.
+  measured from Kilifi District Hospital and `origin` is `demo_anchor`.
 - `distanceKm` is straight-line distance, not travel time. Only facilities whose required services are
   documented are returned; an `unknown` capability is never treated as present.
 - `assessmentStatus: "unclear"`: the care policy abstains when danger signs are present. The adapter then

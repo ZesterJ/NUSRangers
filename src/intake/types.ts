@@ -68,30 +68,9 @@ export type Triage = { level: TriageLevel; reasons: string[]; needs: Capability[
 
 export type Capability = 'emergency' | 'maternity' | 'under5' | 'lab' | 'general';
 
-export type Facility = {
-  id: string;
-  name: string;
-  level: 'dispensary' | 'health_centre' | 'sub_county_hospital';
-  capabilities: Capability[];
-  /** Pre-computed travel time from the user's village (minutes, walking or boda). */
-  travelMinutes: number;
-  phone?: string;
-  /** Last synced capacity snapshot. `null` = never synced. */
-  capacity: { staffOnDuty: number; queue: 'short' | 'medium' | 'long'; updatedAt: string } | null;
-  /** Typical probability staff are present (e.g. from Service Delivery Indicators absence rates). */
-  typicalStaffPresence: number;
-};
-
-export type Recommendation = {
-  facility: Facility;
-  score: number;
-  reasons: string[];
-  /** True when capacity data is missing or older than the freshness limit → "call ahead". */
-  stale: boolean;
-};
-
 /**
- * Backend /assess result for a confirmed visit note: proposed care services and Kilifi facility candidates.
+ * Proposed care services and Kilifi facility candidates for a confirmed visit note. Computed on the phone
+ * (src/intake/careRouting.ts); the backend /assess endpoint returns the same shape.
  * Decision support only: not a diagnosis, and facility services come from a historical public-source snapshot.
  */
 export type CareRouting = {
@@ -112,8 +91,8 @@ export type CareRouting = {
   limitations: string[];
 };
 
-/** A clinic shown on the result screen, from backend routing or the on-phone sample list. */
-export type ClinicOption = { id: string; name: string; reasons: string[]; phone?: string };
+/** A clinic shown on the result screen. */
+export type ClinicOption = { id: string; name: string; reasons: string[] };
 
 export type IntakeRecord = {
   id: string;
@@ -122,7 +101,7 @@ export type IntakeRecord = {
   transcript: string[];
   intake: ConfirmedIntake;
   triage: Triage;
-  /** Care services proposed by the backend, when it was reachable. */
+  /** Care services proposed by the care policy. */
   services?: string[];
   facilityId: string | null;
   facilityName?: string;
