@@ -8,7 +8,6 @@ import QRCode from 'react-native-qrcode-svg';
 import { flushOutbox, refreshPending } from '@/ai/sync';
 import { BodyPicker } from '@/components/BodyPicker';
 import { IntakeSummary } from '@/components/IntakeSummary';
-import { OfflineBanner } from '@/components/OfflineBanner';
 import { DangerOptions, DurationOptions, WhoOptions } from '@/components/QuestionOptions';
 import { Button, Card, Chip, KeyboardScrollView, SectionTitle } from '@/components/ui';
 import { enqueue, saveIntake } from '@/db';
@@ -139,7 +138,6 @@ function IntakeFlow({ onRestart }: { onRestart: () => void }) {
 
   return (
     <View style={{ flex: 1, backgroundColor: theme.background }}>
-      <OfflineBanner />
       <KeyboardScrollView contentContainerStyle={styles.content}>
         {step === 'ask' && (
           <>

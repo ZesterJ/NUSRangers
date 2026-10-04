@@ -7,7 +7,6 @@ import QRCode from 'react-native-qrcode-svg';
 import { flushOutbox, useSyncStore } from '@/ai/sync';
 import { AssessmentCard } from '@/components/AssessmentCard';
 import { IntakeSummary, LEVEL_ICON } from '@/components/IntakeSummary';
-import { OfflineBanner } from '@/components/OfflineBanner';
 import { Button, Card, SectionTitle } from '@/components/ui';
 import { listIntakes, listReports, type StoredReport } from '@/db';
 import { encodeHandoff } from '@/intake/handoff';
@@ -40,7 +39,6 @@ export default function History() {
 
   return (
     <View style={{ flex: 1, backgroundColor: theme.background }}>
-      <OfflineBanner />
       <ScrollView contentContainerStyle={styles.content}>
         {pending > 0 && (
           <>
