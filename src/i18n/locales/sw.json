@@ -218,5 +218,53 @@
     "source": "Chanzo",
     "draft": "Rasimu: bado haijapitiwa na mtaalamu wa afya.",
     "footer": "Rejista toleo {{version}}, imesasishwa {{updated}}. Ni vikumbusho tu: fuata mwongozo wa kitaifa wa sasa."
+  },
+  "clinic": {
+    "queueTitle": "Foleni ya kliniki",
+    "scanButton": "Skani msimbo wa mgonjwa",
+    "empty": "Hakuna wagonjwa bado. Skani taarifa ya mgonjwa ili kumwongeza.",
+    "status": {
+      "waiting": "Anasubiri kupimwa",
+      "triaged": "Amepimwa",
+      "seen": "Ameonwa na daktari"
+    },
+    "addToQueue": "Ongeza kwenye foleni",
+    "nurseTitle": "Upimaji wa muuguzi",
+    "vitals": "Vipimo muhimu",
+    "v": {
+      "temperatureC": "Joto (°C)",
+      "pulse": "Mapigo ya moyo (kwa dakika)",
+      "respiratoryRate": "Pumzi kwa dakika",
+      "systolic": "Shinikizo la damu, juu (mmHg)",
+      "diastolic": "Shinikizo la damu, chini (mmHg)",
+      "spo2": "Oksijeni kwenye damu (%)",
+      "weightKg": "Uzito (kg)"
+    },
+    "flag": {
+      "fever": "Homa (38.0 °C au zaidi)",
+      "low_spo2": "Oksijeni ndogo kwenye damu (chini ya 90%)",
+      "fast_breathing_child": "Kupumua haraka kwa mtoto (40 au zaidi kwa dakika; 50 au zaidi chini ya miezi 12)",
+      "raised_bp_pregnancy": "Shinikizo la damu la juu wakati wa ujauzito (140/90 au zaidi)",
+      "severe_bp_pregnancy": "Shinikizo la damu la juu sana wakati wa ujauzito (160/110 au zaidi)"
+    },
+    "priority": "Kipaumbele",
+    "priorityOpt": {
+      "emergency": "Dharura",
+      "priority": "Kipaumbele",
+      "routine": "Kawaida"
+    },
+    "suggested": "Pendekezo kutokana na taarifa na vipimo: {{priority}}. Muuguzi ndiye anayeamua.",
+    "nurseNotes": "Maelezo ya muuguzi",
+    "saveReport": "Hifadhi ripoti ya upimaji",
+    "reportTitle": "Ripoti ya upimaji",
+    "triagedAt": "Amepimwa saa {{time}}",
+    "noVitals": "Hakuna vipimo vilivyorekodiwa.",
+    "flagsNote": "Alama ni za kiotomatiki na ni za kukagua tu. Viwango ni rasimu: bado havijapitiwa na mtaalamu.",
+    "patientReported": "Alichoripoti mgonjwa",
+    "showQr": "Onyesha msimbo kwa simu ya daktari",
+    "qrHint": "Daktari anaskani msimbo huu kwenye kichupo cha Kliniki ili kufungua ripoti ya upimaji.",
+    "markSeen": "Weka alama: ameonwa na daktari",
+    "editTriage": "Rekebisha upimaji",
+    "back": "Rudi kwenye foleni"
   }
 }

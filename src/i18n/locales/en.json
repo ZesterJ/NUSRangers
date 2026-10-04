@@ -218,5 +218,53 @@
     "source": "Source",
     "draft": "Draft: not yet clinically reviewed.",
     "footer": "Registry version {{version}}, updated {{updated}}. Reminders only: follow the current national guideline."
+  },
+  "clinic": {
+    "queueTitle": "Clinic queue",
+    "scanButton": "Scan a patient code",
+    "empty": "No patients yet. Scan a patient's visit note to add them.",
+    "status": {
+      "waiting": "Waiting for triage",
+      "triaged": "Triaged",
+      "seen": "Seen by doctor"
+    },
+    "addToQueue": "Add to clinic queue",
+    "nurseTitle": "Nurse triage",
+    "vitals": "Vital signs",
+    "v": {
+      "temperatureC": "Temperature (°C)",
+      "pulse": "Pulse (per minute)",
+      "respiratoryRate": "Breaths per minute",
+      "systolic": "Blood pressure, upper (mmHg)",
+      "diastolic": "Blood pressure, lower (mmHg)",
+      "spo2": "Oxygen saturation (%)",
+      "weightKg": "Weight (kg)"
+    },
+    "flag": {
+      "fever": "Fever (38.0 °C or higher)",
+      "low_spo2": "Low oxygen saturation (below 90%)",
+      "fast_breathing_child": "Fast breathing for a child (40 or more per minute; 50 or more if under 12 months)",
+      "raised_bp_pregnancy": "Raised blood pressure in pregnancy (140/90 or higher)",
+      "severe_bp_pregnancy": "Severely raised blood pressure in pregnancy (160/110 or higher)"
+    },
+    "priority": "Triage priority",
+    "priorityOpt": {
+      "emergency": "Emergency",
+      "priority": "Priority",
+      "routine": "Routine"
+    },
+    "suggested": "Suggested from the visit note and vital signs: {{priority}}. The nurse decides.",
+    "nurseNotes": "Nurse's notes",
+    "saveReport": "Save triage report",
+    "reportTitle": "Triage report",
+    "triagedAt": "Triaged at {{time}}",
+    "noVitals": "No vital signs recorded.",
+    "flagsNote": "Highlights are automatic and for checking only. Draft thresholds: not yet clinically reviewed.",
+    "patientReported": "Reported by the patient",
+    "showQr": "Show code for the doctor's phone",
+    "qrHint": "The doctor scans this code on the Clinic tab to open the triage report.",
+    "markSeen": "Mark as seen by doctor",
+    "editTriage": "Edit triage",
+    "back": "Back to queue"
   }
 }

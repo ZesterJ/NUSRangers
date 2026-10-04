@@ -1,6 +1,7 @@
 import * as Crypto from 'expo-crypto';
 
-import type { IntakeRecord } from './types';
+import type { ClinicVisit } from './clinic';
+import type { DangerSign, IntakeRecord, Symptom } from './types';
 
 /**
  * QR handoff payload. Short keys keep the QR small enough to scan from a cheap phone screen.
@@ -28,7 +29,7 @@ type Payload = {
 
 const PREFIX = 'NURX1:';
 
-async function checksum(body: Omit<Payload, 'c'>) {
+async function checksum(body: unknown) {
   const hex = await Crypto.digestStringAsync(Crypto.CryptoDigestAlgorithm.SHA256, JSON.stringify(body));
   return hex.slice(0, 12);
 }
@@ -67,4 +68,56 @@ export async function decodeHandoff(text: string): Promise<DecodedHandoff> {
   const { c, ...body } = payload;
   if ((await checksum(body)) !== c) return { ok: false, error: 'tampered' };
   return { ok: true, payload };
+}
+
+/** The visit note as the clinic stores it once reception has scanned the handoff. */
+export function visitFromHandoff(p: Payload): ClinicVisit {
+  return {
+    id: p.id,
+    receivedAt: Date.now(),
+    note: {
+      patientName: p.nm,
+      sex: p.sx,
+      patientGroup: p.g,
+      symptoms: p.s as Symptom[],
+      durationDays: p.d,
+      dangerSigns: p.ds as DangerSign[],
+      notes: p.n,
+    },
+    selfTriage: { level: p.tl, reasons: p.r },
+    services: p.sv,
+    status: 'waiting',
+  };
+}
+
+// ---------- Triage report: nurse → doctor's phone ----------
+
+const REPORT_PREFIX = 'NURT1:';
+
+/** Same integrity check as the handoff: detects damage or edits, does not authenticate the sender. */
+export async function encodeTriageReport(visit: ClinicVisit): Promise<string> {
+  const body = { v: 1 as const, visit };
+  return REPORT_PREFIX + JSON.stringify({ ...body, c: await checksum(body) });
+}
+
+export type DecodedClinicCode =
+  | { ok: true; kind: 'visit'; payload: Payload }
+  | { ok: true; kind: 'report'; visit: ClinicVisit }
+  | { ok: false; error: 'not_ours' | 'unreadable' | 'tampered' };
+
+/** Reads either code the Clinic tab can receive: a patient's visit note, or a nurse's triage report. */
+export async function decodeClinicCode(text: string): Promise<DecodedClinicCode> {
+  if (!text.startsWith(REPORT_PREFIX)) {
+    const handoff = await decodeHandoff(text);
+    return handoff.ok ? { ok: true, kind: 'visit', payload: handoff.payload } : handoff;
+  }
+  let parsed: { v: 1; visit: ClinicVisit; c: string };
+  try {
+    parsed = JSON.parse(text.slice(REPORT_PREFIX.length));
+  } catch {
+    return { ok: false, error: 'unreadable' };
+  }
+  const { c, ...body } = parsed;
+  if ((await checksum(body)) !== c) return { ok: false, error: 'tampered' };
+  return { ok: true, kind: 'report', visit: parsed.visit };
 }

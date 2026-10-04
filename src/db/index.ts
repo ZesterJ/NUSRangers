@@ -1,6 +1,7 @@
 import * as SQLite from 'expo-sqlite';
 
 import type { AiSource } from '@/ai/types';
+import type { ClinicVisit } from '@/intake/clinic';
 import type { IntakeRecord } from '@/intake/types';
 import type { Assessment, FormValues } from '@/packs/types';
 
@@ -42,6 +43,11 @@ export function getDb() {
           created_at INTEGER NOT NULL,
           record TEXT NOT NULL,
           status TEXT NOT NULL
+        );
+        CREATE TABLE IF NOT EXISTS clinic_visits (
+          id TEXT PRIMARY KEY,
+          received_at INTEGER NOT NULL,
+          record TEXT NOT NULL
         );
         CREATE TABLE IF NOT EXISTS outbox (
           id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -232,6 +238,24 @@ export async function markIntakeReceived(id: string) {
   const rec: IntakeRecord = { ...JSON.parse(row.record), status: 'received' };
   await saveIntake(rec);
   return true;
+}
+
+// ---------- clinic queue (patients received at this clinic) ----------
+
+export async function saveClinicVisit(visit: ClinicVisit) {
+  const db = await getDb();
+  await db.runAsync(
+    'INSERT OR REPLACE INTO clinic_visits (id, received_at, record) VALUES (?, ?, ?)',
+    visit.id,
+    visit.receivedAt,
+    JSON.stringify(visit),
+  );
+}
+
+export async function listClinicVisits(): Promise<ClinicVisit[]> {
+  const db = await getDb();
+  const rows = await db.getAllAsync<{ record: string }>('SELECT record FROM clinic_visits ORDER BY received_at ASC');
+  return rows.map((r) => JSON.parse(r.record));
 }
 
 // ---------- outbox (work to retry once back online) ----------
