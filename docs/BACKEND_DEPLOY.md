@@ -98,36 +98,43 @@ What to expect: `/chat` → `{"reply": "...", "sources": null}` in Swahili. `/an
 
 ## 4. Deploy to Render (recommended, about 10 minutes)
 
-Render's free tier builds from the Dockerfile and gives you HTTPS. (Dashboard labels change now and then; the steps below match the usual flow.)
+The image is built from the **repository root**, because the backend serves the extraction model, care
+routing data and guidance registry that live outside `backend/`. The build trains the extraction model
+itself (about 15 seconds), so no model file needs to be committed. The running service uses about 140 MB,
+within the free tier's 512 MB.
 
-1. Sign in at https://render.com with the GitHub account that can see `ZesterJ/NUSRangers`.
-2. **New + → Web Service** → connect the `ZesterJ/NUSRangers` repo.
-3. Settings:
-   - **Branch:** `main` (after the PR merges; use `feat/small-ai-app` to deploy before that)
-   - **Root Directory:** `backend`
-   - **Language / Runtime:** `Docker` (auto-detected from `backend/Dockerfile`)
-   - **Instance type:** Free is fine for testing. For the demo, consider the smallest paid plan so it doesn't sleep.
-4. **Environment variables:**
+Render must be able to see the GitHub repository. `ZesterJ/NUSRangers` is private, so either the repo owner
+does these steps, or they grant Render's GitHub app access to the repo for your Render account.
 
-   | Key | Value |
-   |---|---|
-   | `LLM_PROVIDER` | `anthropic` |
-   | `ANTHROPIC_API_KEY` | your key (keep it secret; never commit it) |
-   | `ANTHROPIC_MODEL` | `claude-opus-5-5` (optional) |
-   | `ANTHROPIC_EFFORT` | `low` (optional) |
-   | `DEFAULT_PACK` | the pack you pick at kickoff, e.g. `agri` |
+**With the Blueprint (`render.yaml`, simplest):**
+1. Sign in at https://render.com with GitHub.
+2. **New + → Blueprint** → pick `ZesterJ/NUSRangers` and the branch to deploy.
+3. Render reads `render.yaml` and creates `njia-ya-afya-backend`. Click **Apply**.
 
-   There's no need to set `PORT`: Render injects it and the Dockerfile uses it.
-5. **Advanced → Health Check Path:** `/health`
-6. **Create Web Service.** When the deploy log shows `Uvicorn running`, copy the URL (e.g. `https://nusrangers-backend.onrender.com`) and run the smoke tests against it.
+**By hand (if you prefer the form):** **New + → Web Service** → pick the repo, then:
+   - **Language / Runtime:** `Docker`
+   - **Root Directory:** leave empty
+   - **Dockerfile Path:** `./backend/Dockerfile`
+   - **Docker Build Context Directory:** `.`
+   - **Health Check Path:** `/health`
+   - **Environment variable:** `LLM_PROVIDER` = `echo` (no API key needed; the visit-note flow does not use the chat endpoints). Use `anthropic` plus `ANTHROPIC_API_KEY` only if you want the chat endpoints to answer.
 
-Every push to the branch redeploys automatically.
+When the deploy log shows `Uvicorn running`, copy the URL (e.g. `https://njia-ya-afya-backend.onrender.com`)
+and check `$URL/health`, then `$URL/guidance`.
 
-⚠️ **Free tier sleeps after about 15 minutes idle**, and the first request then takes 30–60s. The app gives up after 30s and answers from the phone instead. **Open `$URL/health` a minute before any demo or judging slot.**
+Every push to the deployed branch redeploys automatically.
+
+⚠️ **Free tier sleeps after about 15 minutes idle**, and the first request then takes 30–60s. The intake gives up on the backend after 8 seconds and uses the on-phone rules instead. **Open `$URL/health` a minute before any demo or judging slot.** Stored visit records are kept in memory only and are lost when the service sleeps or redeploys.
+
+To test the image locally first:
+```bash
+docker build -f backend/Dockerfile -t njia-ya-afya-backend .
+docker run --rm -p 8000:8000 -e LLM_PROVIDER=echo njia-ya-afya-backend
+```
 
 ### Alternative: Railway
 
-Go to **New Project → Deploy from GitHub repo** → pick the repo. Under **Settings**, set **Root Directory** to `backend` (the Dockerfile is detected). Add the same **Variables**, then **Networking → Generate Domain**. Railway doesn't sleep like Render's free tier, but it bills by usage after the trial credit.
+Go to **New Project → Deploy from GitHub repo** → pick the repo. Leave the root directory at the repository root and set the Dockerfile path to `backend/Dockerfile`. Add the same **Variables**, then **Networking → Generate Domain**. Railway doesn't sleep like Render's free tier, but it bills by usage after the trial credit.
 
 ### Alternative: your laptop on venue wifi (backup plan)
 
@@ -141,7 +148,7 @@ Choose either option:
 
 - **At build time:** in the app's `.env`:
   ```
-  EXPO_PUBLIC_API_URL=https://nusrangers-backend.onrender.com
+  EXPO_PUBLIC_API_URL=https://njia-ya-afya-backend.onrender.com
   EXPO_PUBLIC_USE_MOCK=0
   ```
   Then restart `npx expo start`.
