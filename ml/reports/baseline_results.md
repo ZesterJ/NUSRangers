@@ -101,7 +101,7 @@ Full scalar confusion matrices, sign FP/FN counts, and original-label disagreeme
 Compressed artifact: 94,552 bytes. Classifier coefficients + intercepts: 29,406.
 Serialized preprocessing: 77,668 bytes; vocabulary/IDF details: `{'single': {'vocabulary_entries': 2261, 'idf_bytes': 18088}}`.
 Rules source: 6552 bytes; no fitted parameters.
-First artifact deserialization in evaluation process: 37.874 ms (OS cache state uncontrolled; not cold-machine startup).
+First artifact deserialization in evaluation process: 35.043 ms (OS cache state uncontrolled; not cold-machine startup).
 Warm batch-size-one CPU benchmark, 1,000 iterations each, one numerical-library thread:
 
 ```json
@@ -114,14 +114,14 @@ Warm batch-size-one CPU benchmark, 1,000 iterations each, one numerical-library 
   "iterations": 1000,
   "scope": "local Python preprocessing+inference; no HTTP, ASR or application overhead; not a production benchmark",
   "rules": {
-    "p50_ms": 0.0603125,
-    "p95_ms": 0.115333
+    "p50_ms": 0.060021,
+    "p95_ms": 0.11537915
   },
   "symptom_pipeline": {
-    "p50_ms": 0.6159585000000001,
-    "p95_ms": 0.6637791499999999
+    "p50_ms": 0.600292,
+    "p95_ms": 0.6517329999999999
   },
-  "process_peak_rss_bytes": 134447104,
+  "process_peak_rss_bytes": 134332416,
   "rss_scope": "whole evaluation process including imports and metrics; not incremental model RAM"
 }
 ```

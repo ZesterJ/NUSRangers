@@ -14,7 +14,7 @@ from threadpoolctl import threadpool_limits
 
 from baseline_rules import extract_rules as old_rules
 from evaluate import SCALARS, SIGNS, rule_metrics
-from extraction_pipeline import Config, ExtractionPipeline, extract_rules as new_rules, VERSION
+from reference.extraction_v2 import Config, ExtractionPipeline, extract_rules as new_rules, VERSION
 from metrics import encode, multilabel_metrics
 from prepare_baseline_data import LABELS, ROOT, prepare
 

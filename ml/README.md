@@ -1,6 +1,6 @@
 # Patient-text information extraction workspace
 
-Status: first experimental rules and learned symptom baselines implemented and evaluated,
+Status: final experimental tuning and frozen acceptance gate completed,
 2026-10-04. No production model decision or backend/frontend integration.
 Scope: raw patient text → proposed structured fields → human verification.
 Speech recognition, diagnosis, triage decisions and facility routing are outside this workspace's remit.
@@ -192,3 +192,49 @@ Development note: after inspecting the expanded case “The child may have had a
 seizure”, subject extraction was scoped to uncertainty BEFORE the subject, rather
 than uncertainty about a later symptom. A regression test records this correction;
 no expected label changed. These suites remain development data, not fresh validation.
+
+## Final experimental tuning (v3)
+
+Read [final_tuning_report.md](reports/final_tuning_report.md) for changes, all paired
+metrics, per-label thresholds, failures, acceptance limitations and integration advice.
+The original classifier weights, raw data and existing diagnostic labels are unchanged.
+The manual CLI now loads `artifacts/experimental_health_ie_final.joblib`; this is a
+separate approximately 98 KB experimental bundle, still ignored by Git. Its saved
+thresholds are consumed by `ExtractionPipeline(bundle)` automatically. Do not pass an
+explicit global Config unless deliberately overriding the exported thresholds.
+
+Reproduction in the pinned environment:
+
+```sh
+python ml/src/tune_final.py
+python ml/src/evaluate_final_tuning.py
+python ml/src/report_final_tuning.py
+python -m pytest ml/tests -q
+python ml/src/predict_text.py "Mtoto ana homa kwa siku tatu na anatapika."
+python ml/src/predict_text.py --interactive
+python ml/src/predict_text.py --interactive --verbose
+```
+
+`tune_final.py` reads only derived-validation text/labels for the threshold search;
+no classifier fitting occurs. `evaluate_final_tuning.py` opens the hash-frozen 48-case
+acceptance set only after candidate creation and publishes the final bundle only if
+the documented conservative gate passes. It is assistant-authored fictional material,
+not a blinded or clinically/native-language-validated benchmark. Never retune on it.
+Existing diagnostic labels are retained, including their document-level multi-person
+expectations, so safe abstention can still score as a false negative.
+
+`src/lexical_config.py` is the explicit source-to-canonical mapping table. Model input
+gets bounded whole-token normalization; evidence always points into original text.
+The bundle includes that table, rule configuration, source hashes, frozen fitted
+preprocessing/classifiers, label vocabulary, per-label thresholds, versions, and
+validation provenance. Deploy the matching extraction code with it; the raw sklearn
+pipeline alone does not perform all normalization/evidence/subject checks.
+
+`src/reference/extraction_v2.py` is a frozen comparison fixture, not an alternative
+serving implementation. The earlier evaluate_improvements.py now imports that reference
+so its historical v2 comparison remains reproducible. The two old evaluation commands
+can still be run, but they do not evaluate the new final artifact.
+
+Ready only for a supervised hackathon integration experiment with human verification.
+The existing FastAPI numeric /predict adapter is not compatible with this text output;
+no backend/frontend integration was made during tuning. No clinical validity claimed.

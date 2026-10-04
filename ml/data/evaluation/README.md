@@ -61,3 +61,11 @@ there. Both OLD and NEW are evaluated against the SAME expectations within each 
 Neither suite is used for classifier fitting or threshold selection. The new rules
 were developed with these cases visible; do not describe the results as independent
 acceptance performance or evidence of clinical validity.
+
+
+`frozen_acceptance_v1.json` contains 48 additional fictional cases, hash-frozen before
+v3 rule changes/threshold selection; the adjacent manifest records its SHA-256 and the
+v2 comparison-source hash. It covers English, Swahili and mixed-language text. Only
+final accept/reject evaluation reads it; tune_final.py does not. This assistant-authored
+suite is not a substitute for the independent, reviewer-authored acceptance collection
+described above. It must remain frozen and excluded from future fitting/tuning.

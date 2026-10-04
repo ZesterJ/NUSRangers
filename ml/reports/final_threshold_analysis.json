@@ -1,0 +1,1241 @@
+{
+  "label": "synthetic-data validation tuning only",
+  "classifier_unchanged": true,
+  "oversampling": false,
+  "class_weight": "balanced (existing fitted weights)",
+  "thresholds": {
+    "abdominal_pain": 0.3,
+    "bleeding": 0.3,
+    "blurred_vision": 0.25,
+    "breathing_difficulty": 0.3,
+    "cough": 0.3,
+    "diarrhoea": 0.15,
+    "fatigue": 0.3,
+    "fever": 0.3,
+    "fluid_loss": 0.3,
+    "headache": 0.3,
+    "reduced_fetal_movement": 0.3,
+    "vomiting": 0.1,
+    "weakness": 0.3
+  },
+  "per_label": {
+    "abdominal_pain": {
+      "validation_support": 49,
+      "train_support": 28,
+      "chosen": {
+        "threshold": 0.3,
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "false_positives": 0,
+        "false_negatives": 0
+      },
+      "trials": [
+        {
+          "threshold": 0.1,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "false_positives": 0,
+          "false_negatives": 0
+        },
+        {
+          "threshold": 0.15,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "false_positives": 0,
+          "false_negatives": 0
+        },
+        {
+          "threshold": 0.2,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "false_positives": 0,
+          "false_negatives": 0
+        },
+        {
+          "threshold": 0.25,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "false_positives": 0,
+          "false_negatives": 0
+        },
+        {
+          "threshold": 0.3,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "false_positives": 0,
+          "false_negatives": 0
+        },
+        {
+          "threshold": 0.35,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "false_positives": 0,
+          "false_negatives": 0
+        },
+        {
+          "threshold": 0.4,
+          "precision": 1.0,
+          "recall": 0.8571428571428571,
+          "f1": 0.9230769230769231,
+          "false_positives": 0,
+          "false_negatives": 7
+        }
+      ],
+      "reason": "validation F1 subject to no extra FP and >=98% precision"
+    },
+    "bleeding": {
+      "validation_support": 0,
+      "train_support": 38,
+      "chosen": {
+        "threshold": 0.3,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "false_positives": 0,
+        "false_negatives": 0
+      },
+      "trials": [
+        {
+          "threshold": 0.1,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "false_positives": 0,
+          "false_negatives": 0
+        },
+        {
+          "threshold": 0.15,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "false_positives": 0,
+          "false_negatives": 0
+        },
+        {
+          "threshold": 0.2,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "false_positives": 0,
+          "false_negatives": 0
+        },
+        {
+          "threshold": 0.25,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "false_positives": 0,
+          "false_negatives": 0
+        },
+        {
+          "threshold": 0.3,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "false_positives": 0,
+          "false_negatives": 0
+        },
+        {
+          "threshold": 0.35,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "false_positives": 0,
+          "false_negatives": 0
+        },
+        {
+          "threshold": 0.4,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "false_positives": 0,
+          "false_negatives": 0
+        }
+      ],
+      "reason": "no validation positives; retain 0.3"
+    },
+    "blurred_vision": {
+      "validation_support": 39,
+      "train_support": 45,
+      "chosen": {
+        "threshold": 0.25,
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "false_positives": 0,
+        "false_negatives": 0
+      },
+      "trials": [
+        {
+          "threshold": 0.1,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "false_positives": 0,
+          "false_negatives": 0
+        },
+        {
+          "threshold": 0.15,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "false_positives": 0,
+          "false_negatives": 0
+        },
+        {
+          "threshold": 0.2,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "false_positives": 0,
+          "false_negatives": 0
+        },
+        {
+          "threshold": 0.25,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "false_positives": 0,
+          "false_negatives": 0
+        },
+        {
+          "threshold": 0.3,
+          "precision": 1.0,
+          "recall": 0.8461538461538461,
+          "f1": 0.9166666666666666,
+          "false_positives": 0,
+          "false_negatives": 6
+        },
+        {
+          "threshold": 0.35,
+          "precision": 1.0,
+          "recall": 0.717948717948718,
+          "f1": 0.835820895522388,
+          "false_positives": 0,
+          "false_negatives": 11
+        },
+        {
+          "threshold": 0.4,
+          "precision": 1.0,
+          "recall": 0.717948717948718,
+          "f1": 0.835820895522388,
+          "false_positives": 0,
+          "false_negatives": 11
+        }
+      ],
+      "reason": "validation F1 subject to no extra FP and >=98% precision"
+    },
+    "breathing_difficulty": {
+      "validation_support": 0,
+      "train_support": 90,
+      "chosen": {
+        "threshold": 0.3,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "false_positives": 0,
+        "false_negatives": 0
+      },
+      "trials": [
+        {
+          "threshold": 0.1,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "false_positives": 0,
+          "false_negatives": 0
+        },
+        {
+          "threshold": 0.15,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "false_positives": 0,
+          "false_negatives": 0
+        },
+        {
+          "threshold": 0.2,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "false_positives": 0,
+          "false_negatives": 0
+        },
+        {
+          "threshold": 0.25,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "false_positives": 0,
+          "false_negatives": 0
+        },
+        {
+          "threshold": 0.3,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "false_positives": 0,
+          "false_negatives": 0
+        },
+        {
+          "threshold": 0.35,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "false_positives": 0,
+          "false_negatives": 0
+        },
+        {
+          "threshold": 0.4,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "false_positives": 0,
+          "false_negatives": 0
+        }
+      ],
+      "reason": "no validation positives; retain 0.3"
+    },
+    "cough": {
+      "validation_support": 42,
+      "train_support": 169,
+      "chosen": {
+        "threshold": 0.3,
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "false_positives": 0,
+        "false_negatives": 0
+      },
+      "trials": [
+        {
+          "threshold": 0.1,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "false_positives": 0,
+          "false_negatives": 0
+        },
+        {
+          "threshold": 0.15,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "false_positives": 0,
+          "false_negatives": 0
+        },
+        {
+          "threshold": 0.2,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "false_positives": 0,
+          "false_negatives": 0
+        },
+        {
+          "threshold": 0.25,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "false_positives": 0,
+          "false_negatives": 0
+        },
+        {
+          "threshold": 0.3,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "false_positives": 0,
+          "false_negatives": 0
+        },
+        {
+          "threshold": 0.35,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "false_positives": 0,
+          "false_negatives": 0
+        },
+        {
+          "threshold": 0.4,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "false_positives": 0,
+          "false_negatives": 0
+        }
+      ],
+      "reason": "validation F1 subject to no extra FP and >=98% precision"
+    },
+    "diarrhoea": {
+      "validation_support": 39,
+      "train_support": 124,
+      "chosen": {
+        "threshold": 0.15,
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "false_positives": 0,
+        "false_negatives": 0
+      },
+      "trials": [
+        {
+          "threshold": 0.1,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "false_positives": 0,
+          "false_negatives": 0
+        },
+        {
+          "threshold": 0.15,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "false_positives": 0,
+          "false_negatives": 0
+        },
+        {
+          "threshold": 0.2,
+          "precision": 1.0,
+          "recall": 0.9743589743589743,
+          "f1": 0.987012987012987,
+          "false_positives": 0,
+          "false_negatives": 1
+        },
+        {
+          "threshold": 0.25,
+          "precision": 1.0,
+          "recall": 0.9230769230769231,
+          "f1": 0.96,
+          "false_positives": 0,
+          "false_negatives": 3
+        },
+        {
+          "threshold": 0.3,
+          "precision": 1.0,
+          "recall": 0.8717948717948718,
+          "f1": 0.9315068493150684,
+          "false_positives": 0,
+          "false_negatives": 5
+        },
+        {
+          "threshold": 0.35,
+          "precision": 1.0,
+          "recall": 0.8717948717948718,
+          "f1": 0.9315068493150684,
+          "false_positives": 0,
+          "false_negatives": 5
+        },
+        {
+          "threshold": 0.4,
+          "precision": 1.0,
+          "recall": 0.7435897435897436,
+          "f1": 0.8529411764705882,
+          "false_positives": 0,
+          "false_negatives": 10
+        }
+      ],
+      "reason": "validation F1 subject to no extra FP and >=98% precision"
+    },
+    "fatigue": {
+      "validation_support": 0,
+      "train_support": 38,
+      "chosen": {
+        "threshold": 0.3,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "false_positives": 0,
+        "false_negatives": 0
+      },
+      "trials": [
+        {
+          "threshold": 0.1,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "false_positives": 0,
+          "false_negatives": 0
+        },
+        {
+          "threshold": 0.15,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "false_positives": 0,
+          "false_negatives": 0
+        },
+        {
+          "threshold": 0.2,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "false_positives": 0,
+          "false_negatives": 0
+        },
+        {
+          "threshold": 0.25,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "false_positives": 0,
+          "false_negatives": 0
+        },
+        {
+          "threshold": 0.3,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "false_positives": 0,
+          "false_negatives": 0
+        },
+        {
+          "threshold": 0.35,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "false_positives": 0,
+          "false_negatives": 0
+        },
+        {
+          "threshold": 0.4,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "false_positives": 0,
+          "false_negatives": 0
+        }
+      ],
+      "reason": "no validation positives; retain 0.3"
+    },
+    "fever": {
+      "validation_support": 127,
+      "train_support": 263,
+      "chosen": {
+        "threshold": 0.3,
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "false_positives": 0,
+        "false_negatives": 0
+      },
+      "trials": [
+        {
+          "threshold": 0.1,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "false_positives": 0,
+          "false_negatives": 0
+        },
+        {
+          "threshold": 0.15,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "false_positives": 0,
+          "false_negatives": 0
+        },
+        {
+          "threshold": 0.2,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "false_positives": 0,
+          "false_negatives": 0
+        },
+        {
+          "threshold": 0.25,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "false_positives": 0,
+          "false_negatives": 0
+        },
+        {
+          "threshold": 0.3,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "false_positives": 0,
+          "false_negatives": 0
+        },
+        {
+          "threshold": 0.35,
+          "precision": 1.0,
+          "recall": 0.9606299212598425,
+          "f1": 0.9799196787148594,
+          "false_positives": 0,
+          "false_negatives": 5
+        },
+        {
+          "threshold": 0.4,
+          "precision": 1.0,
+          "recall": 0.8661417322834646,
+          "f1": 0.9282700421940928,
+          "false_positives": 0,
+          "false_negatives": 17
+        }
+      ],
+      "reason": "validation F1 subject to no extra FP and >=98% precision"
+    },
+    "fluid_loss": {
+      "validation_support": 0,
+      "train_support": 39,
+      "chosen": {
+        "threshold": 0.3,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "false_positives": 0,
+        "false_negatives": 0
+      },
+      "trials": [
+        {
+          "threshold": 0.1,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "false_positives": 0,
+          "false_negatives": 0
+        },
+        {
+          "threshold": 0.15,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "false_positives": 0,
+          "false_negatives": 0
+        },
+        {
+          "threshold": 0.2,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "false_positives": 0,
+          "false_negatives": 0
+        },
+        {
+          "threshold": 0.25,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "false_positives": 0,
+          "false_negatives": 0
+        },
+        {
+          "threshold": 0.3,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "false_positives": 0,
+          "false_negatives": 0
+        },
+        {
+          "threshold": 0.35,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "false_positives": 0,
+          "false_negatives": 0
+        },
+        {
+          "threshold": 0.4,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "false_positives": 0,
+          "false_negatives": 0
+        }
+      ],
+      "reason": "no validation positives; retain 0.3"
+    },
+    "headache": {
+      "validation_support": 39,
+      "train_support": 79,
+      "chosen": {
+        "threshold": 0.3,
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "false_positives": 0,
+        "false_negatives": 0
+      },
+      "trials": [
+        {
+          "threshold": 0.1,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "false_positives": 0,
+          "false_negatives": 0
+        },
+        {
+          "threshold": 0.15,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "false_positives": 0,
+          "false_negatives": 0
+        },
+        {
+          "threshold": 0.2,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "false_positives": 0,
+          "false_negatives": 0
+        },
+        {
+          "threshold": 0.25,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "false_positives": 0,
+          "false_negatives": 0
+        },
+        {
+          "threshold": 0.3,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "false_positives": 0,
+          "false_negatives": 0
+        },
+        {
+          "threshold": 0.35,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "false_positives": 0,
+          "false_negatives": 0
+        },
+        {
+          "threshold": 0.4,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "false_positives": 0,
+          "false_negatives": 0
+        }
+      ],
+      "reason": "validation F1 subject to no extra FP and >=98% precision"
+    },
+    "reduced_fetal_movement": {
+      "validation_support": 0,
+      "train_support": 39,
+      "chosen": {
+        "threshold": 0.3,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "false_positives": 0,
+        "false_negatives": 0
+      },
+      "trials": [
+        {
+          "threshold": 0.1,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "false_positives": 0,
+          "false_negatives": 0
+        },
+        {
+          "threshold": 0.15,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "false_positives": 0,
+          "false_negatives": 0
+        },
+        {
+          "threshold": 0.2,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "false_positives": 0,
+          "false_negatives": 0
+        },
+        {
+          "threshold": 0.25,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "false_positives": 0,
+          "false_negatives": 0
+        },
+        {
+          "threshold": 0.3,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "false_positives": 0,
+          "false_negatives": 0
+        },
+        {
+          "threshold": 0.35,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "false_positives": 0,
+          "false_negatives": 0
+        },
+        {
+          "threshold": 0.4,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "false_positives": 0,
+          "false_negatives": 0
+        }
+      ],
+      "reason": "no validation positives; retain 0.3"
+    },
+    "vomiting": {
+      "validation_support": 75,
+      "train_support": 34,
+      "chosen": {
+        "threshold": 0.1,
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "false_positives": 0,
+        "false_negatives": 0
+      },
+      "trials": [
+        {
+          "threshold": 0.1,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "false_positives": 0,
+          "false_negatives": 0
+        },
+        {
+          "threshold": 0.15,
+          "precision": 1.0,
+          "recall": 0.96,
+          "f1": 0.9795918367346939,
+          "false_positives": 0,
+          "false_negatives": 3
+        },
+        {
+          "threshold": 0.2,
+          "precision": 1.0,
+          "recall": 0.9333333333333333,
+          "f1": 0.9655172413793104,
+          "false_positives": 0,
+          "false_negatives": 5
+        },
+        {
+          "threshold": 0.25,
+          "precision": 1.0,
+          "recall": 0.8266666666666667,
+          "f1": 0.9051094890510949,
+          "false_positives": 0,
+          "false_negatives": 13
+        },
+        {
+          "threshold": 0.3,
+          "precision": 1.0,
+          "recall": 0.5866666666666667,
+          "f1": 0.7394957983193278,
+          "false_positives": 0,
+          "false_negatives": 31
+        },
+        {
+          "threshold": 0.35,
+          "precision": 1.0,
+          "recall": 0.4666666666666667,
+          "f1": 0.6363636363636364,
+          "false_positives": 0,
+          "false_negatives": 40
+        },
+        {
+          "threshold": 0.4,
+          "precision": 1.0,
+          "recall": 0.4666666666666667,
+          "f1": 0.6363636363636364,
+          "false_positives": 0,
+          "false_negatives": 40
+        }
+      ],
+      "reason": "validation F1 subject to no extra FP and >=98% precision"
+    },
+    "weakness": {
+      "validation_support": 36,
+      "train_support": 78,
+      "chosen": {
+        "threshold": 0.3,
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "false_positives": 0,
+        "false_negatives": 0
+      },
+      "trials": [
+        {
+          "threshold": 0.1,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "false_positives": 0,
+          "false_negatives": 0
+        },
+        {
+          "threshold": 0.15,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "false_positives": 0,
+          "false_negatives": 0
+        },
+        {
+          "threshold": 0.2,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "false_positives": 0,
+          "false_negatives": 0
+        },
+        {
+          "threshold": 0.25,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "false_positives": 0,
+          "false_negatives": 0
+        },
+        {
+          "threshold": 0.3,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "false_positives": 0,
+          "false_negatives": 0
+        },
+        {
+          "threshold": 0.35,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "false_positives": 0,
+          "false_negatives": 0
+        },
+        {
+          "threshold": 0.4,
+          "precision": 1.0,
+          "recall": 0.9722222222222222,
+          "f1": 0.9859154929577465,
+          "false_positives": 0,
+          "false_negatives": 1
+        }
+      ],
+      "reason": "validation F1 subject to no extra FP and >=98% precision"
+    }
+  },
+  "selection_ids": [
+    "health_ie_0008",
+    "health_ie_0011",
+    "health_ie_0014",
+    "health_ie_0016",
+    "health_ie_0019",
+    "health_ie_0027",
+    "health_ie_0048",
+    "health_ie_0054",
+    "health_ie_0058",
+    "health_ie_0068",
+    "health_ie_0069",
+    "health_ie_0070",
+    "health_ie_0078",
+    "health_ie_0080",
+    "health_ie_0081",
+    "health_ie_0089",
+    "health_ie_0090",
+    "health_ie_0091",
+    "health_ie_0108",
+    "health_ie_0128",
+    "health_ie_0141",
+    "health_ie_0143",
+    "health_ie_0146",
+    "health_ie_0149",
+    "health_ie_0161",
+    "health_ie_0170",
+    "health_ie_0174",
+    "health_ie_0176",
+    "health_ie_0177",
+    "health_ie_0180",
+    "health_ie_0183",
+    "health_ie_0186",
+    "health_ie_0198",
+    "health_ie_0199",
+    "health_ie_0201",
+    "health_ie_0209",
+    "health_ie_0214",
+    "health_ie_0215",
+    "health_ie_0230",
+    "health_ie_0238",
+    "health_ie_0239",
+    "health_ie_0241",
+    "health_ie_0246",
+    "health_ie_0253",
+    "health_ie_0254",
+    "health_ie_0256",
+    "health_ie_0260",
+    "health_ie_0261",
+    "health_ie_0273",
+    "health_ie_0291",
+    "health_ie_0300",
+    "health_ie_0303",
+    "health_ie_0305",
+    "health_ie_0310",
+    "health_ie_0311",
+    "health_ie_0327",
+    "health_ie_0329",
+    "health_ie_0332",
+    "health_ie_0348",
+    "health_ie_0349",
+    "health_ie_0362",
+    "health_ie_0363",
+    "health_ie_0364",
+    "health_ie_0368",
+    "health_ie_0370",
+    "health_ie_0372",
+    "health_ie_0378",
+    "health_ie_0381",
+    "health_ie_0387",
+    "health_ie_0403",
+    "health_ie_0420",
+    "health_ie_0422",
+    "health_ie_0424",
+    "health_ie_0430",
+    "health_ie_0436",
+    "health_ie_0439",
+    "health_ie_0445",
+    "health_ie_0451",
+    "health_ie_0455",
+    "health_ie_0466",
+    "health_ie_0468",
+    "health_ie_0481",
+    "health_ie_0492",
+    "health_ie_0493",
+    "health_ie_0496",
+    "health_ie_0497",
+    "health_ie_0504",
+    "health_ie_0508",
+    "health_ie_0521",
+    "health_ie_0525",
+    "health_ie_0528",
+    "health_ie_0529",
+    "health_ie_0535",
+    "health_ie_0537",
+    "health_ie_0542",
+    "health_ie_0550",
+    "health_ie_0554",
+    "health_ie_0555",
+    "health_ie_0557",
+    "health_ie_0561",
+    "health_ie_0569",
+    "health_ie_0570",
+    "health_ie_0579",
+    "health_ie_0593",
+    "health_ie_0595",
+    "health_ie_0600",
+    "health_ie_0602",
+    "health_ie_0607",
+    "health_ie_0609",
+    "health_ie_0618",
+    "health_ie_0628",
+    "health_ie_0633",
+    "health_ie_0635",
+    "health_ie_0650",
+    "health_ie_0659",
+    "health_ie_0660",
+    "health_ie_0664",
+    "health_ie_0665",
+    "health_ie_0670",
+    "health_ie_0687",
+    "health_ie_0688",
+    "health_ie_0694",
+    "health_ie_0698",
+    "health_ie_0700",
+    "health_ie_0707",
+    "health_ie_0711",
+    "health_ie_0715",
+    "health_ie_0719",
+    "health_ie_0724",
+    "health_ie_0747",
+    "health_ie_0750",
+    "health_ie_0756",
+    "health_ie_0767",
+    "health_ie_0777",
+    "health_ie_0781",
+    "health_ie_0783",
+    "health_ie_0790",
+    "health_ie_0819",
+    "health_ie_0824",
+    "health_ie_0827",
+    "health_ie_0828",
+    "health_ie_0834",
+    "health_ie_0840",
+    "health_ie_0841",
+    "health_ie_0842",
+    "health_ie_0857",
+    "health_ie_0860",
+    "health_ie_0866",
+    "health_ie_0877",
+    "health_ie_0881",
+    "health_ie_0883",
+    "health_ie_0887",
+    "health_ie_0890",
+    "health_ie_0896",
+    "health_ie_0897",
+    "health_ie_0900",
+    "health_ie_0906",
+    "health_ie_0909",
+    "health_ie_0910",
+    "health_ie_0911",
+    "health_ie_0915",
+    "health_ie_0920",
+    "health_ie_0921",
+    "health_ie_0925",
+    "health_ie_0932",
+    "health_ie_0944",
+    "health_ie_0946",
+    "health_ie_0959",
+    "health_ie_0963",
+    "health_ie_0967",
+    "health_ie_0968",
+    "health_ie_0981",
+    "health_ie_0994",
+    "health_ie_1000",
+    "health_ie_1016",
+    "health_ie_1021",
+    "health_ie_1026",
+    "health_ie_1028",
+    "health_ie_1030",
+    "health_ie_1036",
+    "health_ie_1040",
+    "health_ie_1045",
+    "health_ie_1055",
+    "health_ie_1060",
+    "health_ie_1065",
+    "health_ie_1077",
+    "health_ie_1078",
+    "health_ie_1087",
+    "health_ie_1089",
+    "health_ie_1092",
+    "health_ie_1094",
+    "health_ie_1098",
+    "health_ie_1101",
+    "health_ie_1109",
+    "health_ie_1111",
+    "health_ie_1115",
+    "health_ie_1122",
+    "health_ie_1144",
+    "health_ie_1146",
+    "health_ie_1153",
+    "health_ie_1156",
+    "health_ie_1164",
+    "health_ie_1170",
+    "health_ie_1186",
+    "health_ie_1197"
+  ],
+  "split_manifest_sha256": "5a9566b64839a6888d6a20d86ed56de80c965a7be4f03ae50819d5a91fdec79d",
+  "candidate_bytes": 97783,
+  "candidate_sha256": "c03967d0927d686eaddb09e8380994ec5eccd45a423bba94d31d8f0eb64c8e94",
+  "inference_config": {
+    "normalization": {
+      "stomach ache": "stomach pain",
+      "tummy ache": "belly pain",
+      "kutokwa na damu": "ninatokwa na damu",
+      "bleeds": "bleeding",
+      "blurry vision": "vision is blurred",
+      "vision is blurry": "vision is blurred",
+      "naona kwa ukungu": "naona ukungu",
+      "short of breath": "difficulty breathing",
+      "can't catch my breath": "difficulty breathing",
+      "napumua kwa shida": "ninapata shida ya kupumua",
+      "caugh": "cough",
+      "kikohzi": "kikohozi",
+      "diarrhea": "diarrhoea",
+      "diarhoea": "diarrhoea",
+      "feeling exhausted": "feeling very tired",
+      "nimechoka sana": "nimechoka sana",
+      "fevr": "fever",
+      "fevar": "fever",
+      "hma": "homa",
+      "my waters broke": "my water has broken",
+      "maji ya uzazi yanavuja": "maji ya uzazi yanavuja",
+      "head aches": "head hurts",
+      "kichwa kinauma": "kichwa changu kinauma",
+      "baby moving less": "baby is moving less",
+      "mtoto tumboni anacheza kidogo": "mtoto tumboni anacheza kidogo",
+      "vomitting": "vomiting",
+      "vomitingg": "vomiting",
+      "throwing up": "vomiting",
+      "feeling weak": "feel very weak",
+      "nahisi dhaifu": "ninahisi dhaifu sana"
+    },
+    "rule_additions": {
+      "hydration_true": [
+        "anakunywa maji kidogo",
+        "hanywi maji",
+        "hanywi vizuri"
+      ],
+      "hydration_false": [
+        "anakunywa maji kama kawaida",
+        "anakunywa kama kawaida"
+      ],
+      "cannot_drink": [
+        "hawezi kunywa kabisa"
+      ],
+      "convulsions": [
+        "ametapatwa na degedege"
+      ],
+      "negation": [
+        "sitapiki",
+        "hatapiki",
+        "sikohoi",
+        "hakohoi",
+        "siharishi",
+        "haharishi"
+      ]
+    },
+    "symptom_patterns": {
+      "abdominal_pain": "(?:\\b(?:(?:abdominal|stomach|belly|tummy) (?:pain|aches?|hurts?)|(?:my )?belly hurts|maumivu ya tumbo|tumbo (?:langu )?linauma|ninaumwa tumbo)\\b|\\b(?:stomach\\ ache|tummy\\ ache)\\b)",
+      "bleeding": "(?:\\b(?:bleed(?:ing)?|(?:nina|na|ana)tokwa (?:na )?damu|damu inayotoka|sitokwi damu)\\b|\\b(?:kutokwa\\ na\\ damu|bleeds)\\b)",
+      "blurred_vision": "(?:\\b(?:blurred vision|(?:vision|sight) (?:is )?blurred|seeing blurry|seeing blurred|naona ukungu|ninaona ukungu|kuona ukungu|macho[^.!?;]{0,35}ukungu)\\b|\\b(?:blurry\\ vision|vision\\ is\\ blurry|naona\\ kwa\\ ukungu)\\b)",
+      "breathing_difficulty": "(?:\\b(?:(?:difficulty|trouble) breathing|(?:struggling|hard|difficult) to breathe|breathing with difficulty|(?:anahangaika|ninahangaika) kupumua|(?:anapata|ninapata|anapumua|kupumua|anapumua) (?:kwa )?shida|shida ya kupumua|vigumu kwangu kupumua)\\b|\\b(?:short\\ of\\ breath|can't\\ catch\\ my\\ breath|napumua\\ kwa\\ shida)\\b)",
+      "cough": "(?:\\b(?:cough(?:s|ing|ed)?|kikohozi|(?:nina|ana|a?mekuwa a?ki|nimekuwa niki)kohoa|ninakohoa|anakohoa|sikohoi|hakohoi)\\b|\\b(?:caugh|kikohzi)\\b)",
+      "diarrhoea": "(?:\\b(?:diarrh[oe]+a|loose stools|watery stools|kuhara|kuharisha|(?:nina|ana|amekuwa aki|nimekuwa niki)harisha|ninaendesha|choo cha maji|siharishi|haharishi)\\b|\\b(?:diarrhea|diarhoea)\\b)",
+      "fatigue": "(?:\\b(?:fatigue|tired|tiredness|exhausted|mchovu|nimechoka|uchovu)\\b|\\b(?:feeling\\ exhausted|nimechoka\\ sana)\\b)",
+      "fever": "(?:\\b(?:fever(?:ish)?|homa|(?:feels?|feeling) hot|(?:child|baby) has been hot|ana joto)\\b|\\b(?:fevr|fevar|hma)\\b)",
+      "fluid_loss": "(?:\\b(?:water (?:is )?leaking|water (?:has |have )?broken(?: early)?|maji (?:ya uzazi )?(?:yanavuja|yanatoka))\\b|\\b(?:my\\ waters\\ broke|maji\\ ya\\ uzazi\\ yanavuja)\\b)",
+      "headache": "(?:\\b(?:headache|head hurts|kichwa (?:changu )?kinauma|maumivu (?:makali )?ya kichwa|ninaumwa kichwa)\\b|\\b(?:head\\ aches|kichwa\\ kinauma)\\b)",
+      "reduced_fetal_movement": "(?:\\b(?:baby (?:is )?moving less|mtoto (?:tumboni )?anacheza kidogo)\\b|\\b(?:baby\\ moving\\ less|mtoto\\ tumboni\\ anacheza\\ kidogo)\\b)",
+      "vomiting": "(?:\\b(?:vomit(?:ing|s|ed)?|throw(?:ing)? up|kutapika|(?:nina|ana|amekuwa aki|nimekuwa niki)tapika|nimetapika|sitapiki|hatapiki)\\b|\\b(?:vomitting|vomitingg|throwing\\ up)\\b)",
+      "weakness": "(?:\\b(?:weak(?:ness)?|dhaifu|udhaifu)\\b|\\b(?:feeling\\ weak|nahisi\\ dhaifu)\\b)"
+    },
+    "sign_patterns": {
+      "cannot_drink": "(?:\\b(?:(?:cannot|can't|unable to) drink|hawezi kunywa)\\b(?!\\s+(?:much|well|enough|vizuri))|\\b(?:hawezi kunywa kabisa)\\b)",
+      "convulsions": "(?:\\b(?:convulsions?|seizures?|degedege)\\b|\\b(?:ametapatwa na degedege)\\b)",
+      "bleeding": "(?:\\b(?:bleed(?:ing)?|(?:nina|na|ana)tokwa (?:na )?damu|damu inayotoka|sitokwi damu)\\b|\\b(?:kutokwa\\ na\\ damu|bleeds)\\b)"
+    },
+    "duration_normalization": "tree -> three only when directly followed by day(s)",
+    "source_sha256": {
+      "extraction_pipeline.py": "abe08e81823ddebf6a8b0462180fe31018ac602e19f6891223806920670b43d0",
+      "lexical_config.py": "4d46d3ad8159b00b159d29593162d200408eda8d92601e31d90d0bdebb1d4801",
+      "baseline_rules.py": "53378ea5490b665c24a68a33a89427db73de7c072b5cc38af8cc2f53c5468587"
+    }
+  }
+}

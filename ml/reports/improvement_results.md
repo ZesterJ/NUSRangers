@@ -149,24 +149,24 @@ Full per-sign precision/recall/F1, scalar confusion matrices and literal-evidenc
   "iterations": 1000,
   "scope": "warm local CPU; no network/HTTP; same corpus/order for each operation",
   "old_rules": {
-    "p50_ms": 0.060812,
-    "p95_ms": 0.11616815
+    "p50_ms": 0.0593545,
+    "p95_ms": 0.114208
   },
   "new_rules": {
-    "p50_ms": 0.059187000000000003,
-    "p95_ms": 0.1217101
+    "p50_ms": 0.0582705,
+    "p95_ms": 0.12092114999999999
   },
   "frozen_ml": {
-    "p50_ms": 0.6162084999999999,
-    "p95_ms": 0.66316665
+    "p50_ms": 0.6032915,
+    "p95_ms": 0.6423045
   },
   "old_full": {
-    "p50_ms": 0.689854,
-    "p95_ms": 0.77898925
+    "p50_ms": 0.6721455000000001,
+    "p95_ms": 0.7672791999999999
   },
   "new_full": {
-    "p50_ms": 0.760458,
-    "p95_ms": 0.9125166499999999
+    "p50_ms": 0.7429790000000001,
+    "p95_ms": 0.88929585
   }
 }
 ```

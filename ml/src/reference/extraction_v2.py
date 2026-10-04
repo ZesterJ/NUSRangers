@@ -8,13 +8,9 @@ import math
 import re
 from dataclasses import dataclass
 
-from baseline_rules import DURATION as BASE_DURATION, NUMBERS as BASE_NUMBERS
-from lexical_config import PHRASES, RULE_ADDITIONS, extend_patterns, normalize_model_text
+from baseline_rules import DURATION, NUMBERS
 
-NUMBERS = {**BASE_NUMBERS, 'tree': 3}
-DURATION = re.compile(BASE_DURATION.pattern.replace('one|two', 'tree|one|two'), re.I)
-
-VERSION = 'evidence-v3'
+VERSION = 'evidence-v2'
 # Deliberate phrase vocabulary, not fuzzy matching: arbitrary typo correction can
 # turn a denial or unrelated word into an asserted symptom. Missing phrases abstain.
 SYMPTOMS = {
@@ -32,21 +28,17 @@ SYMPTOMS = {
     'vomiting': r'\b(?:vomit(?:ing|s|ed)?|throw(?:ing)? up|kutapika|(?:nina|ana|amekuwa aki|nimekuwa niki)tapika|nimetapika|sitapiki|hatapiki)\b',
     'weakness': r'\b(?:weak(?:ness)?|dhaifu|udhaifu)\b',
 }
-SYMPTOMS = extend_patterns(SYMPTOMS)
 SIGNS = {
     'cannot_drink': r"\b(?:(?:cannot|can't|unable to) drink|hawezi kunywa)\b(?!\s+(?:much|well|enough|vizuri))",
     'convulsions': r'\b(?:convulsions?|seizures?|degedege)\b',
     'bleeding': SYMPTOMS['bleeding'],
 }
-for _sign in ('cannot_drink', 'convulsions'):
-    SIGNS[_sign] = '(?:' + SIGNS[_sign] + r'|\b(?:' + '|'.join(RULE_ADDITIONS[_sign]) + r')\b)'
-
 UNCERTAIN = re.compile(r'\b(?:maybe|perhaps|possibly|might|may|unsure|not sure|not certain|labda|huenda|sina uhakika|could be)\b', re.I)
 NEGATED = re.compile(r"\b(?:no|not|never|without|denies|denied|doesn't|don't|isn't|wasn't|hasn't|haven't|sina|hana|hakuna|si)\b", re.I)
 NEGATIVE_WORD = re.compile(r'\b(?:sikohoi|hakohoi|sitapiki|hatapiki|siharishi|haharishi|sitokwi)\b', re.I)
 HISTORICAL = re.compile(r'\b(?:used to|last year|previously|resolved|stopped|no longer|imeisha|zamani)\b', re.I)
 SUBJECT_PATTERNS = {
-    'child': r'\b(?:my child|the child|my baby|my little one|mtoto(?: wangu)?(?!\s+(?:tumboni|anacheza kidogo)))\b',
+    'child': r'\b(?:my child|the child|my baby|my little one|mtoto wangu)\b',
     'husband': r'\b(?:my husband|mume wangu)\b',
     'wife': r'\b(?:my wife|mke wangu)\b',
     'mother': r'\b(?:my mother|mama yangu)\b',
@@ -57,24 +49,16 @@ SUBJECT_PATTERNS = {
 }
 # Split explicit subject changes even without ASR punctuation. Other conjunctions
 # retain denial/uncertainty scope, e.g. "no fever or cough".
-BOUNDARY = re.compile(r'[.!?;\n](?!\d)|\b(?:but|however|lakini)\b|,\s*(?:only|just)\b|\b(?:and|na)\s+(?=(?:I\b|my\b|the child\b|mtoto wangu\b|mimi\b))', re.I)
+BOUNDARY = re.compile(r'[.!?;\n](?!\d)|\b(?:but|however|lakini)\b|\b(?:and|na)\s+(?=(?:I\b|my\b|the child\b|mtoto wangu\b|mimi\b))', re.I)
 
 
 @dataclass(frozen=True)
 class Config:
-    threshold: float = .3  # fallback for labels without validation support
-    thresholds: dict[str, float] | None = None
-
-    def for_label(self, label):
-        return (self.thresholds or {}).get(label, self.threshold)
+    threshold: float = .3  # frozen baseline threshold; configurable, not tuned on diagnostics
 
     def __post_init__(self):
         if not math.isfinite(self.threshold) or not 0 <= self.threshold <= 1:
             raise ValueError('threshold must be finite and between 0 and 1')
-        if self.thresholds is not None:
-            for label, value in self.thresholds.items():
-                if label not in SYMPTOMS or not math.isfinite(value) or not 0 <= value <= 1:
-                    raise ValueError('Invalid per-label threshold')
 
 
 def span(text, start, end):
@@ -139,7 +123,7 @@ def mentions(text, pattern, eligible):
                 state = 'negated'
             else:
                 state = 'affirmed'
-            result.append({'state': state, 'evidence': span(text, start+m.start(), start+m.end()) if state == 'affirmed' else span(text, start, end),
+            result.append({'state': state, 'evidence': span(text, start, end),
                            'mention': span(text, start+m.start(), start+m.end())})
     return result
 
@@ -187,7 +171,7 @@ def extract_rules(text, target_subject=None):
     result = {'patientType': None, 'durationDays': None, 'hydrationIssue': None,
               'reportedSigns': [], 'reportedSignStates': {}, 'subject': subject,
               'evidence': {}, 'abstentions': abstentions}
-    patterns = {'child': r'\b(?:my child|the child|my baby|my little one|mtoto(?: wangu)?(?!\s+(?:tumboni|anacheza kidogo)))\b',
+    patterns = {'child': r'\b(?:my child|the child|my baby|my little one|mtoto wangu)\b',
                 'pregnant': r'\b(?:pregnant|pregnancy|mjamzito|ujauzito)\b',
                 'adult': r'\b(?:adult|mtu mzima)\b'}
     candidates = {}
@@ -228,8 +212,6 @@ def extract_rules(text, target_subject=None):
     # lexical concept; negation before that whole phrase still blocks it.
     positive = r"\b(?:(?:not|isn't|aren't) (?:been )?drinking(?: much| well)?|(?:cannot|can't|unable to) drink|(?:difficulty|trouble) drinking|drinking (?:less|poorly)|hawezi kunywa(?: vizuri)?|hanywi(?: maji)?(?: vizuri)?|shida ya kunywa)\b"
     negative = r'\b(?:drinking (?:normally|well)|(?:no|without) (?:difficulty|trouble) drinking|anakunywa (?:maji )?vizuri)\b'
-    positive = '(?:' + positive + r'|\b(?:' + '|'.join(RULE_ADDITIONS['hydration_true']) + r')\b)'
-    negative = '(?:' + negative + r'|\b(?:' + '|'.join(RULE_ADDITIONS['hydration_false']) + r')\b)'
     yes = finding(text, positive, eligible)
     no = finding(text, negative, eligible)
     yes_ok, no_ok = yes['state'] == 'affirmed', no['state'] == 'affirmed'
@@ -252,29 +234,28 @@ def extract_rules(text, target_subject=None):
 class ExtractionPipeline:
     def __init__(self, bundle, config=None):
         self.bundle = bundle
-        self.config = config or Config(threshold=bundle['threshold'], thresholds=bundle.get('thresholds'))
+        self.config = config or Config(threshold=bundle['threshold'])
 
     def extract(self, text, target_subject=None, scores=None):
         result = extract_rules(text, target_subject)
         eligible, _, _ = scoped_clauses(text, target_subject)
         if scores is None:
-            scores = self.bundle['pipeline'].predict_proba([normalize_model_text(text)])[0]
+            scores = self.bundle['pipeline'].predict_proba([text])[0]
         if len(scores) != len(self.bundle['labels']) or any(not math.isfinite(float(s)) or not 0 <= s <= 1 for s in scores):
             raise ValueError('Expected one finite score between 0 and 1 per symptom label')
         result['symptoms'] = []
         result['symptomDecisions'] = {}
         for label, score in zip(self.bundle['labels'], scores):
-            threshold = self.config.for_label(label)
             status = finding(text, SYMPTOMS[label], eligible)
-            accepted = bool(score >= threshold and status['state'] == 'affirmed' and eligible)
+            accepted = bool(score >= self.config.threshold and status['state'] == 'affirmed' and eligible)
             reasons = []
             if not eligible:
                 reasons.append('unresolved_subject_or_empty_input')
             if status['state'] != 'affirmed':
                 reasons.append(status['state'])
-            if score < threshold:
+            if score < self.config.threshold:
                 reasons.append('below_threshold')
-            result['symptomDecisions'][label] = {'score': float(score), 'threshold': threshold,
+            result['symptomDecisions'][label] = {'score': float(score), 'threshold': self.config.threshold,
                                                'accepted': accepted, 'state': status['state'], 'reasons': reasons}
             if accepted:
                 result['symptoms'].append(label)

@@ -2,6 +2,7 @@
 
 python ml/src/predict_text.py "My child has a fever."
 python ml/src/predict_text.py --interactive
+Add --verbose to include evidence and diagnostics; otherwise only extraction is printed.
 Requires ml/requirements.txt and the existing trusted experimental artifact.
 """
 import argparse
@@ -12,9 +13,9 @@ import sys
 import joblib
 from threadpoolctl import threadpool_limits
 
-from extraction_pipeline import Config, ExtractionPipeline
+from extraction_pipeline import ExtractionPipeline
 
-ARTIFACT = Path(__file__).resolve().parents[1] / 'artifacts/experimental_symptom_baseline.joblib'
+ARTIFACT = Path(__file__).resolve().parents[1] / 'artifacts/experimental_health_ie_final.joblib'
 RULE_FIELDS = ('patientType', 'durationDays', 'hydrationIssue', 'reportedSigns')
 
 
@@ -45,6 +46,7 @@ def main(argv=None):
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('text', nargs='?', help='Patient text in English or Swahili (quote the whole input).')
     parser.add_argument('--interactive', action='store_true', help='Repeatedly prompt for patient text.')
+    parser.add_argument('--verbose', action='store_true', help='Include evidence, metadata and full diagnostics.')
     args = parser.parse_args(argv)
     if args.interactive and args.text is not None:
         parser.error('Use either text or --interactive, not both.')
@@ -56,12 +58,14 @@ def main(argv=None):
         # Exactly the evaluation loader: serialized preprocessing, classifiers, labels
         # and threshold come from the bundle. Never fit, retrain or call a remote API.
         bundle = joblib.load(ARTIFACT)
-        pipeline = ExtractionPipeline(bundle, Config(threshold=bundle['threshold']))
+        pipeline = ExtractionPipeline(bundle)
     except Exception as exc:
         parser.exit(1, f'Unable to load the experimental artifact: {exc}\nUse the environment specified in ml/requirements.txt.\n')
 
     def output(text):
-        print(json.dumps(predict(pipeline, text), indent=2, ensure_ascii=False, allow_nan=False))
+        result = predict(pipeline, text)
+        print(json.dumps(result if args.verbose else result['extraction'],
+                         indent=2, ensure_ascii=False, allow_nan=False))
 
     try:
         with threadpool_limits(limits=1):

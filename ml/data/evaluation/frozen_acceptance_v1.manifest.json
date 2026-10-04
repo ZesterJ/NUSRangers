@@ -1,0 +1,5 @@
+{
+  "acceptance_sha256": "b68e08737ae3ecbd5734972b8d234a1643e9e909bdcb19075c04ef68ef715eac",
+  "reference_source_sha256": "3a4b0cea3b88808edf130f6e6dd6313e1d1bf9b663c00982aff59af91c3e8b35",
+  "policy": "Freeze before tuning. Thresholds selected on derived validation only. Final acceptance is a veto, not a tuning source. Any failed candidate retained in report and reverted as a whole."
+}
