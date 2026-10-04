@@ -4,6 +4,7 @@ import { useTranslation } from 'react-i18next';
 import { StyleSheet, Text, TextInput, View } from 'react-native';
 
 import { HomeCardView } from '@/components/HomeCardView';
+import { LanguageSwitch } from '@/components/LanguageSwitch';
 import { Button, Card, KeyboardScrollView } from '@/components/ui';
 import { config } from '@/config';
 import { useIsOnline } from '@/store/connectivity';
@@ -32,6 +33,7 @@ export default function Home() {
   return (
     <View style={{ flex: 1, backgroundColor: theme.background }}>
       <KeyboardScrollView contentContainerStyle={styles.content}>
+        <LanguageSwitch />
         {/* The logo has a white background, so it sits on a white panel in dark mode too. */}
         <View style={styles.logoBox}>
           <Image

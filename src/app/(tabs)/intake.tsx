@@ -8,6 +8,7 @@ import QRCode from 'react-native-qrcode-svg';
 import { flushOutbox, refreshPending } from '@/ai/sync';
 import { BodyPicker } from '@/components/BodyPicker';
 import { IntakeSummary } from '@/components/IntakeSummary';
+import { LanguageSwitch } from '@/components/LanguageSwitch';
 import { DangerOptions, DurationOptions, WhoOptions } from '@/components/QuestionOptions';
 import { Button, Card, Chip, KeyboardScrollView, SectionTitle } from '@/components/ui';
 import { enqueue, saveIntake } from '@/db';
@@ -47,10 +48,11 @@ export default function Intake() {
 }
 
 function IntakeFlow({ onRestart }: { onRestart: () => void }) {
-  const { pack, locale, theme } = usePackContext();
+  const { locale, theme, scale } = usePackContext();
   const { t } = useTranslation();
   const role = useSettings((s) => s.role);
-  const setSettings = useSettings((s) => s.set);
+  const big = { fontSize: 22 * scale, lineHeight: 28 * scale };
+  const body = { fontSize: 15 * scale };
 
   const [step, setStep] = useState<Step>('ask');
   const [qi, setQi] = useState(0);
@@ -144,13 +146,8 @@ function IntakeFlow({ onRestart }: { onRestart: () => void }) {
   return (
     <View style={{ flex: 1, backgroundColor: theme.background }}>
       <KeyboardScrollView contentContainerStyle={styles.content}>
-        {/* Language switch, so a helper and the patient can swap at any point in the visit note. */}
-        <View style={styles.language}>
-          <Text style={{ color: theme.textMuted }}>🌐</Text>
-          {pack.locales.map((l) => (
-            <Chip key={l.code} label={l.label} selected={locale === l.code} onPress={() => setSettings({ locale: l.code })} />
-          ))}
-        </View>
+        {/* So a helper and the patient can swap language at any point in the visit note. */}
+        <LanguageSwitch />
         {step === 'ask' && (
           <>
             <Text style={[styles.step, { color: theme.textMuted }]}>
@@ -163,7 +160,7 @@ function IntakeFlow({ onRestart }: { onRestart: () => void }) {
             </View>
 
             <Pressable onPress={() => Speech.speak(tr(q.prompt, locale), { language: locale })}>
-              <Text style={[styles.question, { color: theme.text }]}>🔊 {tr(q.prompt, locale)}</Text>
+              <Text style={[styles.question, big, { color: theme.text }]}>🔊 {tr(q.prompt, locale)}</Text>
             </Pressable>
             {q.id !== 'complaint' && (
               <>
@@ -174,10 +171,10 @@ function IntakeFlow({ onRestart }: { onRestart: () => void }) {
                 <SectionTitle>{t('intake.orDescribe')}</SectionTitle>
               </>
             )}
-            <Text style={{ color: theme.textMuted }}>{tr(q.hint, locale)}</Text>
+            <Text style={[body, { color: theme.textMuted }]}>{tr(q.hint, locale)}</Text>
 
             <TextInput
-              style={[styles.input, { color: theme.text, borderColor: theme.border, backgroundColor: theme.card }]}
+              style={[styles.input, { color: theme.text, borderColor: theme.border, backgroundColor: theme.card, fontSize: 16 * scale }]}
               value={answer}
               onChangeText={setAnswer}
               placeholder={t('intake.typeHere')}
@@ -205,7 +202,7 @@ function IntakeFlow({ onRestart }: { onRestart: () => void }) {
           </>
         )}
 
-        {step === 'extracting' && <Text style={[styles.question, { color: theme.text }]}>{t('intake.extracting')}</Text>}
+        {step === 'extracting' && <Text style={[styles.question, big, { color: theme.text }]}>{t('intake.extracting')}</Text>}
 
         {step === 'review' && form && extraction && (
           <ReviewForm extraction={extraction} form={form} setForm={setForm} onConfirm={confirm} />
@@ -213,7 +210,7 @@ function IntakeFlow({ onRestart }: { onRestart: () => void }) {
 
         {step === 'result' && form && result && (
           <>
-            <Text style={[styles.question, { color: theme.text }]}>{t('intake.resultTitle')}</Text>
+            <Text style={[styles.question, big, { color: theme.text }]}>{t('intake.resultTitle')}</Text>
             <IntakeSummary intake={form} triage={result.triage} services={result.care.requiredServices} />
 
             {result.triage.level !== 'home_care' && (
@@ -221,7 +218,7 @@ function IntakeFlow({ onRestart }: { onRestart: () => void }) {
                 <SectionTitle>
                   {t('intake.clinics')} · {t('intake.kilifiData')}
                 </SectionTitle>
-                <Text style={{ color: theme.textMuted }}>
+                <Text style={[body, { color: theme.textMuted }]}>
                   {t('intake.routingNote')}
                   {result.care.origin === 'demo_anchor' ? ` ${t('intake.demoOrigin')}` : ''}
                 </Text>
@@ -232,13 +229,13 @@ function IntakeFlow({ onRestart }: { onRestart: () => void }) {
                     <Pressable key={c.id} onPress={() => setChosen(c.id)}>
                       <Card style={selected ? { borderColor: theme.primary, borderWidth: 2 } : undefined}>
                         <View style={styles.clinicHead}>
-                          <Text style={[styles.clinicName, { color: theme.text }]}>{c.name}</Text>
+                          <Text style={[styles.clinicName, { color: theme.text, fontSize: 17 * scale }]}>{c.name}</Text>
                           <Text style={{ color: theme.primary, fontWeight: '700' }}>
                             {selected ? `✓ ${t('intake.chosen')}` : t('intake.choose')}
                           </Text>
                         </View>
                         {c.reasons.map((x) => (
-                          <Text key={x} style={{ color: theme.textMuted }}>
+                          <Text key={x} style={[body, { color: theme.textMuted }]}>
                             • {x}
                           </Text>
                         ))}
@@ -272,12 +269,12 @@ function IntakeFlow({ onRestart }: { onRestart: () => void }) {
 
 /** A review field. `low` confidence = the extractor was unsure, so the patient is asked to check it. */
 function Section({ label, low, children }: { label: string; low: boolean; children: ReactNode }) {
-  const { theme } = usePackContext();
+  const { theme, scale } = usePackContext();
   const { t } = useTranslation();
   return (
     <View style={[styles.section, low && { borderColor: theme.warning, backgroundColor: theme.card }]}>
       <View style={styles.sectionHead}>
-        <Text style={[styles.sectionLabel, { color: theme.text }]}>{label}</Text>
+        <Text style={[styles.sectionLabel, { color: theme.text, fontSize: 16 * scale }]}>{label}</Text>
         {low && <Text style={[styles.check, { color: theme.warning }]}>⚠ {t('intake.pleaseCheck')}</Text>}
       </View>
       {children}
@@ -297,17 +294,21 @@ function ReviewForm({
   setForm: (f: ConfirmedIntake) => void;
   onConfirm: () => void;
 }) {
-  const { theme } = usePackContext();
+  const { theme, scale } = usePackContext();
   const { t } = useTranslation();
   // Starts as a read-only confirmation of what was understood; the controls appear only on request.
   const [editing, setEditing] = useState(false);
 
-  const read = (value: string) => <Text style={[styles.readValue, { color: theme.text }]}>{value || '—'}</Text>;
+  const read = (value: string) => (
+    <Text style={[styles.readValue, { color: theme.text, fontSize: 17 * scale }]}>{value || '—'}</Text>
+  );
 
   return (
     <>
-      <Text style={[styles.question, { color: theme.text }]}>{t('intake.reviewTitle')}</Text>
-      <Text style={{ color: theme.textMuted }}>{t('intake.reviewHint')}</Text>
+      <Text style={[styles.question, { color: theme.text, fontSize: 22 * scale, lineHeight: 28 * scale }]}>
+        {t('intake.reviewTitle')}
+      </Text>
+      <Text style={{ color: theme.textMuted, fontSize: 15 * scale }}>{t('intake.reviewHint')}</Text>
       <Text style={{ color: theme.textMuted, fontSize: 12 }}>
         {extraction.source === 'model' ? '☁️' : '📱'} {t(`intake.source.${extraction.source}`)}
       </Text>
@@ -417,7 +418,6 @@ function ReviewForm({
 
 const styles = StyleSheet.create({
   content: { padding: spacing.lg, gap: spacing.md, paddingBottom: spacing.xl * 2 },
-  language: { flexDirection: 'row', justifyContent: 'flex-end', alignItems: 'center', gap: spacing.sm },
   step: { fontSize: 13, fontWeight: '700', textTransform: 'uppercase', letterSpacing: 0.5 },
   progress: { flexDirection: 'row', gap: spacing.xs },
   dot: { flex: 1, height: 4, borderRadius: 2 },

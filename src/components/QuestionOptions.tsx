@@ -23,7 +23,7 @@ const PREGNANT: Pregnant[] = ['yes', 'no', 'unsure'];
 
 /** "Who is the patient?": relationship, name, sex, and pregnancy where it applies. */
 export function WhoOptions({ choices, onChange }: Props) {
-  const { theme } = usePackContext();
+  const { theme, scale } = usePackContext();
   const { t } = useTranslation();
   const bi = useBilingual();
   return (
@@ -35,7 +35,7 @@ export function WhoOptions({ choices, onChange }: Props) {
       </View>
 
       <SectionTitle>{bi('intake.name')} *</SectionTitle>
-      <Text style={{ color: theme.textMuted }}>{t('intake.nameHint')}</Text>
+      <Text style={{ color: theme.textMuted, fontSize: 14 * scale }}>{t('intake.nameHint')}</Text>
       <TextInput
         style={[styles.input, { color: theme.text, borderColor: theme.border, backgroundColor: theme.card }]}
         value={choices.name}

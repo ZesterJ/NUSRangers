@@ -47,7 +47,7 @@ export function Button({
   loading?: boolean;
   style?: ViewStyle;
 }) {
-  const { theme } = usePackContext();
+  const { theme, scale } = usePackContext();
   const primary = variant === 'primary';
   return (
     <Pressable
@@ -66,7 +66,9 @@ export function Button({
       {loading ? (
         <ActivityIndicator color={primary ? theme.primaryText : theme.primary} />
       ) : (
-        <Text style={[styles.buttonText, { color: primary ? theme.primaryText : theme.primary }]}>{label}</Text>
+        <Text style={[styles.buttonText, { color: primary ? theme.primaryText : theme.primary, fontSize: 16 * scale }]}>
+          {label}
+        </Text>
       )}
     </Pressable>
   );
@@ -80,7 +82,7 @@ export function Card({ children, style }: { children: ReactNode; style?: ViewSty
 }
 
 export function Chip({ label, selected, onPress }: { label: string; selected?: boolean; onPress: () => void }) {
-  const { theme } = usePackContext();
+  const { theme, scale } = usePackContext();
   return (
     <Pressable
       onPress={onPress}
@@ -88,14 +90,14 @@ export function Chip({ label, selected, onPress }: { label: string; selected?: b
         styles.chip,
         { borderColor: theme.primary, backgroundColor: selected ? theme.primary : theme.card },
       ]}>
-      <Text style={{ color: selected ? theme.primaryText : theme.primary, fontWeight: '600' }}>{label}</Text>
+      <Text style={{ color: selected ? theme.primaryText : theme.primary, fontWeight: '600', fontSize: 15 * scale }}>{label}</Text>
     </Pressable>
   );
 }
 
 export function SectionTitle({ children }: { children: ReactNode }) {
-  const { theme } = usePackContext();
-  return <Text style={[styles.section, { color: theme.textMuted }]}>{children}</Text>;
+  const { theme, scale } = usePackContext();
+  return <Text style={[styles.section, { color: theme.textMuted, fontSize: 13 * scale }]}>{children}</Text>;
 }
 
 const styles = StyleSheet.create({

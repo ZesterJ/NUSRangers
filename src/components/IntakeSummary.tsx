@@ -24,7 +24,7 @@ export function IntakeSummary({
   /** Care services proposed by the backend, if it ran. */
   services?: string[];
 }) {
-  const { theme } = usePackContext();
+  const { theme, scale } = usePackContext();
   const { t } = useTranslation();
   const color =
     triage.level === 'refer_now'
@@ -35,18 +35,18 @@ export function IntakeSummary({
 
   const row = (label: string, value: string) => (
     <View style={styles.row}>
-      <Text style={[styles.label, { color: theme.textMuted }]}>{label}</Text>
-      <Text style={[styles.value, { color: theme.text }]}>{value || '—'}</Text>
+      <Text style={[styles.label, { color: theme.textMuted, fontSize: 14 * scale }]}>{label}</Text>
+      <Text style={[styles.value, { color: theme.text, fontSize: 15 * scale }]}>{value || '—'}</Text>
     </View>
   );
 
   return (
     <Card style={{ borderColor: color, borderWidth: 2 }}>
-      <Text style={[styles.level, { color }]}>
+      <Text style={[styles.level, { color, fontSize: 20 * scale }]}>
         {LEVEL_ICON[triage.level]} {t(`intake.level.${triage.level}`)}
       </Text>
       {triage.reasons.map((r) => (
-        <Text key={r} style={{ color: theme.text }}>
+        <Text key={r} style={{ color: theme.text, fontSize: 15 * scale }}>
           • {r}
         </Text>
       ))}
