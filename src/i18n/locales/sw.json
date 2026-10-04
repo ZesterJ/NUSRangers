@@ -226,8 +226,8 @@
   },
   "clinic": {
     "queueTitle": "Foleni ya kliniki",
-    "scanButton": "Skani msimbo wa mgonjwa",
-    "empty": "Hakuna wagonjwa bado. Skani taarifa ya mgonjwa ili kumwongeza.",
+    "scanButton": "Mapokezi: skani taarifa ya mgonjwa",
+    "empty": "Hakuna wagonjwa kwenye foleni bado. Mapokezi huwaongeza kwa kuskani taarifa ya mgonjwa.",
     "status": {
       "waiting": "Anasubiri kupimwa",
       "triaged": "Amepimwa",
@@ -266,8 +266,6 @@
     "noVitals": "Hakuna vipimo vilivyorekodiwa.",
     "flagsNote": "Alama ni za kiotomatiki na ni za kukagua tu. Viwango ni rasimu: bado havijapitiwa na mtaalamu.",
     "patientReported": "Alichoripoti mgonjwa",
-    "showQr": "Onyesha msimbo kwa simu ya daktari",
-    "qrHint": "Daktari anaskani msimbo huu kwenye kichupo cha Kliniki ili kufungua ripoti ya upimaji.",
     "markSeen": "Weka alama: ameonwa na daktari",
     "editTriage": "Rekebisha upimaji",
     "back": "Rudi kwenye foleni",

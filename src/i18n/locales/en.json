@@ -226,8 +226,8 @@
   },
   "clinic": {
     "queueTitle": "Clinic queue",
-    "scanButton": "Scan a patient code",
-    "empty": "No patients yet. Scan a patient's visit note to add them.",
+    "scanButton": "Reception: scan a patient's visit note",
+    "empty": "No patients in the queue yet. Reception adds them by scanning the patient's visit note.",
     "status": {
       "waiting": "Waiting for triage",
       "triaged": "Triaged",
@@ -266,8 +266,6 @@
     "noVitals": "No vital signs recorded.",
     "flagsNote": "Highlights are automatic and for checking only. Draft thresholds: not yet clinically reviewed.",
     "patientReported": "Reported by the patient",
-    "showQr": "Show code for the doctor's phone",
-    "qrHint": "The doctor scans this code on the Clinic tab to open the triage report.",
     "markSeen": "Mark as seen by doctor",
     "editTriage": "Edit triage",
     "back": "Back to queue",

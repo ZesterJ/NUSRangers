@@ -89,35 +89,3 @@ export function visitFromHandoff(p: Payload): ClinicVisit {
     status: 'waiting',
   };
 }
-
-// ---------- Triage report: nurse → doctor's phone ----------
-
-const REPORT_PREFIX = 'NURT1:';
-
-/** Same integrity check as the handoff: detects damage or edits, does not authenticate the sender. */
-export async function encodeTriageReport(visit: ClinicVisit): Promise<string> {
-  const body = { v: 1 as const, visit };
-  return REPORT_PREFIX + JSON.stringify({ ...body, c: await checksum(body) });
-}
-
-export type DecodedClinicCode =
-  | { ok: true; kind: 'visit'; payload: Payload }
-  | { ok: true; kind: 'report'; visit: ClinicVisit }
-  | { ok: false; error: 'not_ours' | 'unreadable' | 'tampered' };
-
-/** Reads either code the Clinic tab can receive: a patient's visit note, or a nurse's triage report. */
-export async function decodeClinicCode(text: string): Promise<DecodedClinicCode> {
-  if (!text.startsWith(REPORT_PREFIX)) {
-    const handoff = await decodeHandoff(text);
-    return handoff.ok ? { ok: true, kind: 'visit', payload: handoff.payload } : handoff;
-  }
-  let parsed: { v: 1; visit: ClinicVisit; c: string };
-  try {
-    parsed = JSON.parse(text.slice(REPORT_PREFIX.length));
-  } catch {
-    return { ok: false, error: 'unreadable' };
-  }
-  const { c, ...body } = parsed;
-  if ((await checksum(body)) !== c) return { ok: false, error: 'tampered' };
-  return { ok: true, kind: 'report', visit: parsed.visit };
-}

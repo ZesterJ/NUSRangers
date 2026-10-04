@@ -1,19 +1,15 @@
-import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { StyleSheet, Text, View } from 'react-native';
-import QRCode from 'react-native-qrcode-svg';
 
 import { VITAL_KEYS, vitalFlags, type ClinicVisit, type NurseTriage } from '@/intake/clinic';
-import { encodeTriageReport } from '@/intake/handoff';
-import { radius, spacing, usePackContext } from '@/theme';
+import { spacing, usePackContext } from '@/theme';
 
-import { Button, Card } from '../ui';
+import { Card } from '../ui';
 
 /** What the doctor reads first: the nurse's priority, vital signs with highlights, and notes. */
 export function TriageReport({ visit, triage }: { visit: ClinicVisit; triage: NurseTriage }) {
   const { theme } = usePackContext();
   const { t } = useTranslation();
-  const [qr, setQr] = useState<string | null>(null);
 
   const color = triage.priority === 'emergency' ? theme.danger : triage.priority === 'priority' ? theme.warning : theme.success;
   const flags = vitalFlags(visit.note, triage.vitals);
@@ -53,21 +49,6 @@ export function TriageReport({ visit, triage }: { visit: ClinicVisit; triage: Nu
       </Text>
       <Text style={[styles.note, { color: theme.textMuted }]}>{t('clinic.flagsNote')}</Text>
 
-      {qr ? (
-        <View style={{ alignItems: 'center' }}>
-          {/* White quiet zone so the code scans in dark mode too. */}
-          <View style={styles.qrBox}>
-            <QRCode value={qr} size={260} ecl="M" />
-          </View>
-          <Text style={{ color: theme.textMuted, textAlign: 'center' }}>{t('clinic.qrHint')}</Text>
-        </View>
-      ) : (
-        <Button
-          label={`▦ ${t('clinic.showQr')}`}
-          variant="outline"
-          onPress={async () => setQr(await encodeTriageReport(visit))}
-        />
-      )}
     </Card>
   );
 }
@@ -79,6 +60,5 @@ const styles = StyleSheet.create({
   row: { flexDirection: 'row', gap: spacing.md },
   label: { flex: 1, fontSize: 14 },
   value: { fontSize: 15, fontWeight: '700' },
-  note: { fontSize: 13, fontStyle: 'italic', marginVertical: spacing.md },
-  qrBox: { backgroundColor: '#FFFFFF', padding: 16, borderRadius: radius.md, marginVertical: spacing.sm },
+  note: { fontSize: 13, fontStyle: 'italic', marginTop: spacing.md },
 });

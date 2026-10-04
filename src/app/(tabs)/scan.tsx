@@ -12,15 +12,15 @@ import { IntakeSummary } from '@/components/IntakeSummary';
 import { Button, Card, KeyboardScrollView, SectionTitle } from '@/components/ui';
 import { listClinicVisits, markIntakeReceived, saveClinicVisit } from '@/db';
 import { sortQueue, type ClinicVisit } from '@/intake/clinic';
-import { decodeClinicCode, visitFromHandoff, type DecodedClinicCode } from '@/intake/handoff';
+import { decodeHandoff, visitFromHandoff, type DecodedHandoff } from '@/intake/handoff';
 import { radius, spacing, usePackContext } from '@/theme';
 
 type View_ = { kind: 'queue'; reportsOnly?: boolean } | { kind: 'scan' } | { kind: 'visit'; id: string; editing?: boolean };
 
 /**
- * Clinic tab. Reception scans the patient's visit note into the queue (step 9), the nurse adds vital
- * signs and a priority to make the triage report, and the doctor opens that report: on this phone, or
- * on their own by scanning the report's code.
+ * Clinic tab. The only code scanned is the patient's: reception scans the visit note into the queue
+ * (step 9). The nurse then works from the queue, confirming the note and adding vital signs and a
+ * priority to make the triage report, and the doctor opens that report from the same queue.
  */
 export default function Clinic() {
   const { theme } = usePackContext();
@@ -29,7 +29,7 @@ export default function Clinic() {
   const [permission, requestPermission] = useCameraPermissions();
   const [view, setView] = useState<View_>({ kind: 'queue' });
   const [visits, setVisits] = useState<ClinicVisit[]>([]);
-  const [scanned, setScanned] = useState<DecodedClinicCode | null>(null);
+  const [scanned, setScanned] = useState<DecodedHandoff | null>(null);
   const busy = useRef(false);
 
   const reload = useCallback(() => {
@@ -47,12 +47,7 @@ export default function Clinic() {
   const onScan = async ({ data }: { data: string }) => {
     if (busy.current || scanned) return;
     busy.current = true;
-    const result = await decodeClinicCode(data);
-    if (result.ok && result.kind === 'report') {
-      // A nurse's triage report from another phone: store it here and open it for the doctor.
-      await save(result.visit);
-      setView({ kind: 'visit', id: result.visit.id });
-    } else setScanned(result);
+    setScanned(await decodeHandoff(data));
     busy.current = false;
   };
 
@@ -151,7 +146,7 @@ export default function Clinic() {
       );
     }
 
-    if (scanned?.ok && scanned.kind === 'visit') {
+    if (scanned?.ok) {
       const p = scanned.payload;
       const received = visitFromHandoff(p);
       return (
@@ -212,11 +207,7 @@ export default function Clinic() {
   return (
     <KeyboardScrollView style={{ backgroundColor: theme.background }} contentContainerStyle={styles.content}>
       <Text style={[styles.title, { color: theme.text }]}>{t(reportsOnly ? 'clinic.reportsTitle' : 'clinic.queueTitle')}</Text>
-      {reportsOnly ? (
-        <Button label={t('clinic.showAll')} variant="outline" onPress={() => setView({ kind: 'queue' })} />
-      ) : (
-        <Button label={`📷 ${t('clinic.scanButton')}`} onPress={openScanner} />
-      )}
+      {reportsOnly && <Button label={t('clinic.showAll')} variant="outline" onPress={() => setView({ kind: 'queue' })} />}
       {shown.length === 0 && <Text style={{ color: theme.textMuted }}>{t(reportsOnly ? 'clinic.noReports' : 'clinic.empty')}</Text>}
       {shown.map((v) => {
         const color =
@@ -242,6 +233,7 @@ export default function Clinic() {
           </Pressable>
         );
       })}
+      {!reportsOnly && <Button label={`📷 ${t('clinic.scanButton')}`} variant="outline" onPress={openScanner} />}
     </KeyboardScrollView>
   );
 }

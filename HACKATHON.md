@@ -50,7 +50,7 @@ Uses the default `health` pack. Nobody needs to speak Swahili: tap the **demo an
 3. **Check the answers:** the form is pre-filled from what was said. Point out the ⚠ "please check" items and the 📱 "read on this phone" label.
 4. **Confirm → result:** 🚨 "Go to a clinic now", the reasons, and "a health worker makes the final decision".
 5. **Recommended clinics:** real Kilifi facilities whose services are documented, nearest first (straight-line distance). Computed on the phone, so it works with no signal. Opening hours and staffing are not known.
-6. **Create clinic handoff → QR.** On a second phone, tap **Clinic staff** on Home and enter the clinic PIN (`1234` by default, set with `EXPO_PUBLIC_CLINIC_PIN`), then open the **Clinic** tab: reception scans it (✓ Verified) and adds the patient to the queue; the nurse records vital signs and a priority to make the **triage report**; the doctor opens it from the queue, or scans its code on their own phone, and sees the guidance reminders.
+6. **Create clinic handoff → QR.** On a second phone, tap **Clinic staff** on Home and enter the clinic PIN (`1234` by default, set with `EXPO_PUBLIC_CLINIC_PIN`), then open the **Clinic** tab: reception scans it (✓ Verified) and adds the patient to the queue; the nurse records vital signs and a priority to make the **triage report**; the doctor opens it from the same queue and sees the guidance reminders.
 7. **Records tab:** "1 waiting to sync". Turn the signal back on: it syncs.
 8. Run it once more with vague answers (e.g. "sijui") to show **"Not sure. Ask a health worker"**: the brief's pass/fail fail-safe.
 
