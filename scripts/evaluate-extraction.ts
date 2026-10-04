@@ -10,11 +10,16 @@
  * is given as the answer to every question, so this measures reading of free text, not the guided flow.
  * The data is synthetic and team-generated: these numbers say nothing about real patients.
  */
-import { readFileSync, writeFileSync } from 'node:fs';
-
 import { extractWithRules } from '@/intake/extractRules';
 import { mergeExtractions } from '@/intake/mergeExtraction';
 import type { Extraction } from '@/intake/types';
+
+// The app has no Node type definitions; these two functions are all the script needs from Node.
+// eslint-disable-next-line @typescript-eslint/no-require-imports
+const { readFileSync, writeFileSync } = require('node:fs') as {
+  readFileSync(path: string, encoding: 'utf8'): string;
+  writeFileSync(path: string, data: string): void;
+};
 
 type Row = {
   id: string;
@@ -41,15 +46,21 @@ const empty = (): Tally => ({ n: 0, patient: 0, duration: 0, tp: 0, fp: 0, fn: 0
 
 function score(t: Tally, row: Row, ex: Extraction) {
   const wantS = new Set(row.labels.symptoms.map((s) => SYMPTOM[s]).filter(Boolean));
-  const gotS = new Set(ex.symptoms.value.filter((s) => SYMPTOM_CODES.includes(s)));
+  const gotS = new Set<string>(ex.symptoms.value.filter((s) => SYMPTOM_CODES.includes(s)));
   const wantD = new Set(row.labels.danger_signs.map((s) => DANGER[s]).filter(Boolean));
-  const gotD = new Set(ex.dangerSigns.value.filter((s) => DANGER_CODES.includes(s)));
+  const gotD = new Set<string>(ex.dangerSigns.value.filter((s) => DANGER_CODES.includes(s)));
   t.n++;
   if (group(ex.patientGroup.value) === row.labels.patient_type) t.patient++;
   if (ex.durationDays.value === row.labels.duration_days) t.duration++;
-  for (const s of gotS) wantS.has(s) ? t.tp++ : t.fp++;
+  for (const s of gotS) {
+    if (wantS.has(s)) t.tp++;
+    else t.fp++;
+  }
   for (const s of wantS) if (!gotS.has(s)) t.fn++;
-  for (const s of gotD) wantD.has(s) ? t.dtp++ : t.dfp++;
+  for (const s of gotD) {
+    if (wantD.has(s)) t.dtp++;
+    else t.dfp++;
+  }
   for (const s of wantD) if (!gotD.has(s)) t.dfn++;
   if (gotS.size === wantS.size && [...gotS].every((s) => wantS.has(s))) t.exact++;
 }
@@ -60,7 +71,7 @@ const line = (name: string, t: Tally) =>
 
 async function main() {
   const backend = process.argv[2];
-  const rows: Row[] = readFileSync('ml/data/raw/health_triage_ie_synthetic_v1.jsonl', 'utf8').trim().split('\n').map((l) => JSON.parse(l));
+  const rows: Row[] = readFileSync('ml/data/raw/health_triage_ie_synthetic_v1.jsonl', 'utf8').trim().split('\n').map((l: string) => JSON.parse(l));
   // The model was fitted on part of this data; "held out" is the part it never saw (the ml/ derived test split).
   let heldOut = new Set<string>();
   try {
