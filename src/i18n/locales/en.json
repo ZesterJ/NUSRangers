@@ -321,5 +321,16 @@
     "legendOther": "Other facility",
     "legendYou": "You",
     "legendAnchor": "Kilifi town"
+  },
+  "consent": {
+    "title": "Privacy and consent notice",
+    "notDiagnosis": "This app does not diagnose illness and does not give medical advice.",
+    "guidance": "It only helps you get care: it prepares a visit note for the clinic and suggests where to go. A health worker makes every medical decision.",
+    "emergency": "In an emergency, go to the nearest clinic or hospital straight away. Do not wait for the app.",
+    "stored": "Your answers, including the patient's name, are saved on this phone. Anyone who uses the app on this phone can see them.",
+    "shared": "Your visit note is shared with the clinic when you show your code. When the phone has signal, a copy is also sent to the clinic's record system.",
+    "location": "Your location is used only on this phone, to show clinics near you, and only if you allow it.",
+    "agreeNote": "By continuing, you confirm that you have read this and agree to your information being used in this way.",
+    "agree": "I understand and agree"
   }
 }

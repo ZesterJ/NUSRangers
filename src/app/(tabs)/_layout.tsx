@@ -13,12 +13,14 @@ const icon = (emoji: string) =>
 
 export default function TabsLayout() {
   const onboarded = useSettings((s) => s.onboarded);
+  const consented = useSettings((s) => s.consented);
   const role = useSettings((s) => s.role);
   const pending = useSyncStore((s) => s.pending);
   const { pack, theme } = usePackContext();
   const { t } = useTranslation();
 
-  if (!onboarded) return <Redirect href="/onboarding" />;
+  // Nothing in the app is reachable until the notice has been agreed to, including on phones set up before it existed.
+  if (!onboarded || !consented) return <Redirect href="/onboarding" />;
 
   return (
     <Tabs

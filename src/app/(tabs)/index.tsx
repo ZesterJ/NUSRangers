@@ -1,7 +1,8 @@
 import { Image } from 'expo-image';
+import { router } from 'expo-router';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { StyleSheet, Text, TextInput, View } from 'react-native';
+import { Pressable, StyleSheet, Text, TextInput, View } from 'react-native';
 
 import { HomeCardView } from '@/components/HomeCardView';
 import { LanguageSwitch } from '@/components/LanguageSwitch';
@@ -72,6 +73,9 @@ export default function Home() {
                 <Button label={t('home.signIn')} disabled={!pin} onPress={unlock} />
               </Card>
             )}
+            <Pressable onPress={() => router.push('/onboarding')}>
+              <Text style={{ color: theme.primary, textAlign: 'center', fontWeight: '600' }}>🔒 {t('consent.title')}</Text>
+            </Pressable>
           </>
         ) : (
           // ---------- Signed in: choose what to do ----------
