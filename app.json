@@ -39,7 +39,7 @@
       [
         "expo-location",
         {
-          "locationWhenInUsePermission": "Used to tag reports with your location."
+          "locationWhenInUsePermission": "Used to show the clinics nearest to you."
         }
       ],
       [

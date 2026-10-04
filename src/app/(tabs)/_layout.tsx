@@ -31,7 +31,7 @@ export default function TabsLayout() {
         headerTitle: `${pack.emoji} ${pack.appName}`,
       }}>
       <Tabs.Screen name="index" options={{ title: t('tabs.home'), tabBarIcon: icon('🏠') }} />
-      {/* Until someone signs in on Home, only Home and Settings are reachable. The Intake tab is the
+      {/* Until someone signs in on Home, only Home is reachable. The Intake tab is the
           patient's; clinic staff reach the same screen from the walk-in card on Home. */}
       <Tabs.Screen
         name="intake"
@@ -41,6 +41,10 @@ export default function TabsLayout() {
       <Tabs.Screen
         name="scan"
         options={{ title: t('tabs.scan'), tabBarIcon: icon('🏥'), ...(role === 'clinic' ? {} : { href: null }) }}
+      />
+      <Tabs.Screen
+        name="clinics"
+        options={{ title: t('tabs.clinics'), tabBarIcon: icon('📍'), ...(role === 'patient' ? {} : { href: null }) }}
       />
       <Tabs.Screen
         name="guidance"
@@ -58,7 +62,11 @@ export default function TabsLayout() {
       {/* Kept from the generic template, hidden for the health intake flow. */}
       <Tabs.Screen name="chat" options={{ href: null, title: t('tabs.chat') }} />
       <Tabs.Screen name="capture" options={{ href: null, title: t('tabs.capture') }} />
-      <Tabs.Screen name="settings" options={{ title: t('tabs.settings'), tabBarIcon: icon('⚙️') }} />
+      {/* Settings hold the team's connection options; patients change language on Home instead. */}
+      <Tabs.Screen
+        name="settings"
+        options={{ title: t('tabs.settings'), tabBarIcon: icon('⚙️'), ...(role === 'clinic' ? {} : { href: null }) }}
+      />
     </Tabs>
   );
 }
