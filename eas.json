@@ -2,7 +2,21 @@
   "cli": { "appVersionSource": "remote" },
   "build": {
     "development": { "developmentClient": true, "distribution": "internal", "android": { "buildType": "apk" } },
-    "preview": { "distribution": "internal", "android": { "buildType": "apk" } },
-    "production": {}
+    "preview": {
+      "distribution": "internal",
+      "android": { "buildType": "apk" },
+      "env": {
+        "EXPO_PUBLIC_API_URL": "https://njia-ya-afya-nus-rangers.onrender.com",
+        "EXPO_PUBLIC_USE_MOCK": "0",
+        "EXPO_PUBLIC_PACK": "health"
+      }
+    },
+    "production": {
+      "env": {
+        "EXPO_PUBLIC_API_URL": "https://njia-ya-afya-nus-rangers.onrender.com",
+        "EXPO_PUBLIC_USE_MOCK": "0",
+        "EXPO_PUBLIC_PACK": "health"
+      }
+    }
   }
 }
