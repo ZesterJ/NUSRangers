@@ -1,17 +1,14 @@
-import { agriPack } from './agri';
 import { healthPack } from './health';
-import { tourismPack } from './tourism';
 import type { DomainPack } from './types';
 
-/** Register new packs here. */
+/** Register packs here. The app ships the health pack only. */
 export const PACKS: Record<string, DomainPack> = {
-  [agriPack.id]: agriPack,
   [healthPack.id]: healthPack,
-  [tourismPack.id]: tourismPack,
 };
 
+/** Unknown ids (e.g. a pack saved on the phone before it was removed) fall back to health. */
 export function getPack(id: string | undefined): DomainPack {
-  return (id && PACKS[id]) || agriPack;
+  return (id && PACKS[id]) || healthPack;
 }
 
 export * from './types';

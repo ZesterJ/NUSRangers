@@ -3,6 +3,7 @@ import { create } from 'zustand';
 import { api } from '@/api/client';
 import type { ChatMessage } from '@/api/types';
 import { addMessage, getReportImage, listOutbox, removeOutbox, setReportResult } from '@/db';
+import type { IntakeRecord } from '@/intake/types';
 import { getPack } from '@/packs';
 import type { FormValues } from '@/packs/types';
 import { isOnline } from '@/store/connectivity';
@@ -39,6 +40,8 @@ export async function flushOutbox() {
           const q = JSON.parse(item.payload) as QueuedChat;
           const reply = await askCloud(getPack(q.packId), q.locale, q.history, q.question);
           await addMessage(q.packId, { role: 'assistant', text: `↪ "${q.question}"\n\n${reply}`, source: 'cloud' });
+        } else if (item.kind === 'intake') {
+          await api.saveRecord(JSON.parse(item.payload) as IntakeRecord);
         } else {
           const r = JSON.parse(item.payload) as QueuedReport;
           const result = await api.analyze({

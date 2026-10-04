@@ -1,6 +1,8 @@
 import { getPack } from '@/packs';
 
-import type { AnalyzeRequest, AnalyzeResponse, ChatRequest, ChatResponse } from './types';
+import type { IntakeRecord } from '@/intake/types';
+
+import type { AnalyzeRequest, AnalyzeResponse, ChatRequest, ChatResponse, SaveRecordResponse } from './types';
 
 const delay = (ms: number) => new Promise((r) => setTimeout(r, ms));
 
@@ -28,5 +30,10 @@ export const mockApi = {
       actions: ['Follow up'],
     };
     return { ...base, summary: `[mock cloud] ${base.summary}${req.imageBase64 ? ' (photo attached)' : ''}` };
+  },
+
+  async saveRecord(_rec: IntakeRecord): Promise<SaveRecordResponse> {
+    await delay(500);
+    return { ok: true };
   },
 };
