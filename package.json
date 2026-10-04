@@ -57,7 +57,8 @@
     "lint": "eslint .",
     "typecheck": "tsc --noEmit",
     "check:packs": "tsx scripts/check-packs.ts",
-    "check:intake": "tsx scripts/check-intake.ts"
+    "check:intake": "tsx scripts/check-intake.ts",
+    "check:typed": "tsx scripts/check-typed-input.ts"
   },
   "private": true
 }
