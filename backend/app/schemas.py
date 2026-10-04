@@ -1,8 +1,8 @@
 """Request/response models. Mirror src/api/types.ts in the mobile app — field names are camelCase on the wire."""
 
-from typing import Any, Literal, Optional, Union
+from typing import Annotated, Any, Literal, Optional, Union
 
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, ConfigDict, Field
 
 RiskLevel = Literal["low", "med", "high"]
 
@@ -47,3 +47,18 @@ class Assessment(BaseModel):
     summary: str
     riskLevel: Optional[RiskLevel] = None
     actions: list[str]
+
+
+# Deliberately isolated initial contract: replace these types when the task is known.
+Feature = Annotated[float, Field(strict=True, allow_inf_nan=False)]
+PredictionValue = Union[Annotated[str, Field(strict=True)], Feature]
+
+
+class PredictRequest(BaseModel):
+    model_config = ConfigDict(extra="forbid")
+    features: list[Feature] = Field(min_length=1)
+
+
+class PredictResponse(BaseModel):
+    prediction: PredictionValue
+    modelVersion: str = Field(min_length=1, pattern=r"\S")

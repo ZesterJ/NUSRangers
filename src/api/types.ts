@@ -32,3 +32,7 @@ export type AnalyzeResponse = Assessment;
 
 /** Store-and-forward upload of a confirmed intake record (DHIS2-shaped on the server side). */
 export type SaveRecordResponse = { ok: true };
+
+/** Initial numeric-vector contract for backend-local inference. */
+export type PredictRequest = { features: number[] };
+export type PredictResponse = { prediction: number | string; modelVersion: string };

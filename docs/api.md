@@ -73,6 +73,70 @@ Parse the prefix to pick the pack, answer with the same logic as `/chat`, and ke
 ## `GET /packs/:id` (optional)
 Return a `DomainPack` as JSON (without the `offlineAssess` function) for remote config. It isn't wired in the app yet.
 
+## `POST /predict`
+
+Backend-local ML inference: the model runs inside FastAPI, **not on the phone**.
+The app still needs network access. This is separate from `/chat`, `/analyze`,
+Claude, and the offline AI router; none of those paths call `/predict`.
+
+Initial request (one sample):
+```json
+{ "features": [1.2, 3.4, 5.6] }
+```
+`features` is a required, non-empty array of finite numbers. Strings, booleans,
+nulls, NaN, infinity, and unknown request fields are rejected. Feature count must
+match the loaded pipeline's metadata when available. Order and units must match
+training; the eventual task must document them.
+
+Response:
+```json
+{ "prediction": 0.73, "modelVersion": "v1" }
+```
+`prediction` is initially a finite number or string scalar. `modelVersion` is a
+required non-blank version from the artifact. No confidence score is fabricated.
+This initial contract is intentionally isolated in `PredictRequest` /
+`PredictResponse` and mirrored in `src/api/types.ts`; revise both for images,
+sequences, vectors, or other task-specific inputs/outputs when the task is known.
+
+Errors: `422` for invalid inputs or feature count, `503` when no usable model is
+loaded, `500` for inference failures or unsupported model output. Missing/invalid
+artifacts leave existing endpoints available. `/health` describes the existing
+LLM service, not ML readiness. The app's mock backend returns the fixed API fixture
+`{ "prediction": "[mock prediction]", "modelVersion": "mock-v1" }`.
+
+### Supplying the trained model
+
+Train separately and export a **trusted joblib bundle** with:
+- `model`: a fitted pipeline implementing `predict(rows)`, including all fitted
+  preprocessing; one scalar result per input row.
+- `modelVersion`: non-blank string identifying the trained artifact.
+- `featureCount`: optional positive integer; otherwise use pipeline
+  `n_features_in_` when available. If both exist, they must agree.
+
+Set `ML_MODEL_PATH` to the artifact path inside the backend environment.
+FastAPI lifespan loads it once per worker at startup into application state;
+`/predict` obtains the service through dependency injection and runs synchronous
+inference in FastAPI's thread pool. Restart workers after replacing an artifact.
+Each worker holds its own model copy. Ensure the eventual runtime supports
+concurrent inference, or add serialization inside its adapter.
+
+`backend/app/ml.py` contains the `Predictor` interface and initial joblib adapter.
+To adopt another runtime, implement that interface and change the loader there;
+the route does not need runtime-specific logic. There is no training code or
+production placeholder model. Install the eventual model's matching runtime
+(e.g. the training-compatible scikit-learn version) in backend dependencies;
+joblib alone cannot deserialize every training pipeline. Load only trusted
+artifacts because joblib deserialization can execute code.
+
+For production, publish versioned artifacts separately from Git and mount a
+read-only artifact directory into the container, for example `/models`, with
+`ML_MODEL_PATH=/models/model.joblib`. Alternatively, deployment can download a
+verified artifact from controlled storage before starting Uvicorn. The existing
+Dockerfile needs no change for a runtime mount; it only copies application code.
+Do not commit large artifacts or training data. Supply the real trained pipeline,
+version, feature contract, runtime dependencies, and evaluation fixtures once the
+hackathon task is known.
+
 ---
 
 # Health intake endpoints (speech → structured record)
