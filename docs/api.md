@@ -153,6 +153,12 @@ Types: `src/intake/types.ts`. Run `npm run check:intake` to see the offline pipe
 Response: `{ "text": "Ana homa kali na anakohoa" }`. Return `{ "text": "" }` or a non-200 when unsure; the app then asks the user to type.
 
 ## `POST /extract` (text → JSON, jw's parser)
+Implemented in `backend/app/extract.py`, which wraps the extraction model in `ml/` (build the artifact
+first, see `ml/README.md`; override locations with `EXTRACT_MODEL_PATH` / `EXTRACT_CODE_PATH`). It returns
+`503` when the model is not loaded, and the app then uses its on-phone rules. When it does answer, the app
+combines the result with the on-phone rules (`src/intake/mergeExtraction.ts`): the model is preferred where
+it is confident, the rules fill gaps, and danger signs found by either are kept.
+
 Request:
 ```json
 {

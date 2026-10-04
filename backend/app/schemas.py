@@ -62,3 +62,35 @@ class PredictRequest(BaseModel):
 class PredictResponse(BaseModel):
     prediction: PredictionValue
     modelVersion: str = Field(min_length=1, pattern=r"\S")
+
+
+# ---- /extract: mirrors `Extraction` in src/intake/types.ts ----
+Confidence = Literal["high", "low"]
+AnswerText = Annotated[str, Field(max_length=2000)]
+
+
+class IntakeAnswers(BaseModel):
+    who: AnswerText = ""
+    complaint: AnswerText = ""
+    duration: AnswerText = ""
+    danger: AnswerText = ""
+
+
+class ExtractRequest(BaseModel):
+    locale: str = Field(default="sw", max_length=16)
+    answers: IntakeAnswers
+
+
+class ExtractionField(BaseModel):
+    value: Any
+    confidence: Confidence
+    evidence: Optional[str] = None
+
+
+class Extraction(BaseModel):
+    patientGroup: ExtractionField
+    symptoms: ExtractionField
+    durationDays: ExtractionField
+    dangerSigns: ExtractionField
+    unmapped: list[str]
+    source: Literal["rules", "model"]

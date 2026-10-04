@@ -3,6 +3,7 @@ import { isOnline } from '@/store/connectivity';
 import { getSettings } from '@/store/settings';
 
 import { extractWithRules } from './extractRules';
+import { mergeExtractions } from './mergeExtraction';
 import type { Extraction } from './types';
 
 type Answers = Parameters<typeof extractWithRules>[0];
@@ -31,7 +32,7 @@ export async function transcribe(uri: string, locale: string): Promise<string | 
   if (!canUseBackend()) return null;
   if (getSettings().useMock) {
     await new Promise((r) => setTimeout(r, 800));
-    return null; // mock has no speech model; use typing or the sample answers
+    return null; // mock has no speech model; use typing or the suggested answers
   }
   try {
     const form = new FormData();
@@ -50,7 +51,7 @@ export async function transcribe(uri: string, locale: string): Promise<string | 
 
 /**
  * Step 3: text → structured symptoms. Uses the trained parser (backend /extract) when reachable,
- * otherwise the on-phone rules. Both return the same `Extraction` shape.
+ * combined with the on-phone rules; otherwise the rules alone. Both return the same `Extraction` shape.
  */
 export async function extract(answers: Answers, locale: string): Promise<Extraction> {
   const rules = extractWithRules(answers);
@@ -66,7 +67,7 @@ export async function extract(answers: Answers, locale: string): Promise<Extract
     );
     if (!res.ok) return rules;
     const model = (await res.json()) as Extraction;
-    return { ...model, source: 'model' };
+    return mergeExtractions(model, rules);
   } catch (e) {
     console.warn('[intake] extract failed, using rules', e);
     return rules;
