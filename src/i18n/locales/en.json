@@ -156,7 +156,6 @@
     "noneOfThese": "None of these",
     "bodyTitle": "Or tap the affected area",
     "bodyOptions": "Common problems: {{part}}. Select all that apply",
-    "bodyRemove": "Remove {{part}}",
     "affectedArea": "Affected area",
     "part": {
       "head": "Head",

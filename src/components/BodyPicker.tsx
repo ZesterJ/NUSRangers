@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { Pressable, StyleSheet, View } from 'react-native';
 
 import { BODY_PART_OPTIONS, BODY_PARTS, type BodyPart, type BodyPicks } from '@/intake/bodyParts';
+import { useBilingual } from '@/i18n/bilingual';
 import { spacing, usePackContext } from '@/theme';
 
 import { Chip, SectionTitle } from './ui';
@@ -27,11 +28,27 @@ const SHAPES: { part: BodyPart; style: object }[] = [
 export function BodyPicker({ picks, onChange }: Props) {
   const { theme } = usePackContext();
   const { t } = useTranslation();
+  const bi = useBilingual();
   const [active, setActive] = useState<BodyPart | null>(null);
 
-  const selectPart = (part: BodyPart) => {
-    setActive(part);
-    if (!picks.parts.includes(part)) onChange({ ...picks, parts: [...picks.parts, part] });
+  // First tap selects a part and shows its common problems; tapping the part being shown again cancels it.
+  const tapPart = (part: BodyPart) => {
+    if (!picks.parts.includes(part)) {
+      setActive(part);
+      onChange({ ...picks, parts: [...picks.parts, part] });
+    } else if (active !== part) {
+      setActive(part);
+    } else {
+      const parts = picks.parts.filter((p) => p !== part);
+      // Drop this part's problems too, unless another selected part also offers them.
+      const kept = { symptoms: parts.flatMap((p) => BODY_PART_OPTIONS[p].symptoms), dangerSigns: parts.flatMap((p) => BODY_PART_OPTIONS[p].dangerSigns) };
+      setActive(null);
+      onChange({
+        parts,
+        symptoms: picks.symptoms.filter((x) => kept.symptoms.includes(x)),
+        dangerSigns: picks.dangerSigns.filter((x) => kept.dangerSigns.includes(x)),
+      });
+    }
   };
   const options = active ? BODY_PART_OPTIONS[active] : null;
 
@@ -46,7 +63,7 @@ export function BodyPicker({ picks, onChange }: Props) {
               key={i}
               accessibilityRole="button"
               accessibilityLabel={t(`intake.part.${shape.part}`)}
-              onPress={() => selectPart(shape.part)}
+              onPress={() => tapPart(shape.part)}
               style={[
                 styles.shape,
                 shape.style,
@@ -63,7 +80,7 @@ export function BodyPicker({ picks, onChange }: Props) {
       {/* The same parts as labelled buttons: clearer than the figure alone, and the only way to pick "skin". */}
       <View style={styles.chips}>
         {BODY_PARTS.map((part) => (
-          <Chip key={part} label={t(`intake.part.${part}`)} selected={picks.parts.includes(part)} onPress={() => selectPart(part)} />
+          <Chip key={part} label={bi(`intake.part.${part}`)} selected={picks.parts.includes(part)} onPress={() => tapPart(part)} />
         ))}
       </View>
 
@@ -74,7 +91,7 @@ export function BodyPicker({ picks, onChange }: Props) {
             {options.symptoms.map((s) => (
               <Chip
                 key={s}
-                label={t(`intake.sym.${s}`)}
+                label={bi(`intake.sym.${s}`)}
                 selected={picks.symptoms.includes(s)}
                 onPress={() => onChange({ ...picks, symptoms: toggle(picks.symptoms, s) })}
               />
@@ -82,19 +99,12 @@ export function BodyPicker({ picks, onChange }: Props) {
             {options.dangerSigns.map((d) => (
               <Chip
                 key={d}
-                label={`⚠ ${t(`intake.ds.${d}`)}`}
+                label={`⚠ ${bi(`intake.ds.${d}`)}`}
                 selected={picks.dangerSigns.includes(d)}
                 onPress={() => onChange({ ...picks, dangerSigns: toggle(picks.dangerSigns, d) })}
               />
             ))}
           </View>
-          <Chip
-            label={t('intake.bodyRemove', { part: t(`intake.part.${active}`) })}
-            onPress={() => {
-              onChange({ ...picks, parts: picks.parts.filter((p) => p !== active) });
-              setActive(null);
-            }}
-          />
         </>
       )}
     </View>

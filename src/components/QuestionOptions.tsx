@@ -11,6 +11,7 @@ import {
   type Pregnant,
 } from '@/intake/choices';
 import type { Sex } from '@/intake/types';
+import { useBilingual } from '@/i18n/bilingual';
 import { radius, spacing, usePackContext } from '@/theme';
 
 import { Chip, SectionTitle } from './ui';
@@ -24,15 +25,16 @@ const PREGNANT: Pregnant[] = ['yes', 'no', 'unsure'];
 export function WhoOptions({ choices, onChange }: Props) {
   const { theme } = usePackContext();
   const { t } = useTranslation();
+  const bi = useBilingual();
   return (
     <View style={styles.wrap}>
       <View style={styles.chips}>
         {WHO_OPTIONS.map((w) => (
-          <Chip key={w} label={t(`intake.whoOpt.${w}`)} selected={choices.who === w} onPress={() => onChange({ ...choices, who: w })} />
+          <Chip key={w} label={bi(`intake.whoOpt.${w}`)} selected={choices.who === w} onPress={() => onChange({ ...choices, who: w })} />
         ))}
       </View>
 
-      <SectionTitle>{t('intake.name')}</SectionTitle>
+      <SectionTitle>{bi('intake.name')}</SectionTitle>
       <TextInput
         style={[styles.input, { color: theme.text, borderColor: theme.border, backgroundColor: theme.card }]}
         value={choices.name}
@@ -42,21 +44,21 @@ export function WhoOptions({ choices, onChange }: Props) {
         autoCapitalize="words"
       />
 
-      <SectionTitle>{t('intake.sex')}</SectionTitle>
+      <SectionTitle>{bi('intake.sex')}</SectionTitle>
       <View style={styles.chips}>
         {SEXES.map((s) => (
-          <Chip key={s} label={t(`intake.sexOpt.${s}`)} selected={choices.sex === s} onPress={() => onChange({ ...choices, sex: s })} />
+          <Chip key={s} label={bi(`intake.sexOpt.${s}`)} selected={choices.sex === s} onPress={() => onChange({ ...choices, sex: s })} />
         ))}
       </View>
 
       {askPregnancy(choices) && (
         <>
-          <SectionTitle>{t('intake.pregnantQ')}</SectionTitle>
+          <SectionTitle>{bi('intake.pregnantQ')}</SectionTitle>
           <View style={styles.chips}>
             {PREGNANT.map((p) => (
               <Chip
                 key={p}
-                label={t(`intake.pregnantOpt.${p}`)}
+                label={bi(`intake.pregnantOpt.${p}`)}
                 selected={choices.pregnant === p}
                 onPress={() => onChange({ ...choices, pregnant: p })}
               />
@@ -72,6 +74,7 @@ export function WhoOptions({ choices, onChange }: Props) {
 export function DurationOptions({ choices, onChange }: Props) {
   const { theme } = usePackContext();
   const { t } = useTranslation();
+  const bi = useBilingual();
   const isPreset = choices.durationDays !== null && DURATION_OPTIONS.includes(choices.durationDays);
   const [other, setOther] = useState(choices.durationDays !== null && !isPreset);
   return (
@@ -80,7 +83,7 @@ export function DurationOptions({ choices, onChange }: Props) {
         {DURATION_OPTIONS.map((d) => (
           <Chip
             key={d}
-            label={t(`intake.dur.d${d}`)}
+            label={bi(`intake.dur.d${d}`)}
             selected={!other && choices.durationDays === d}
             onPress={() => {
               setOther(false);
@@ -89,7 +92,7 @@ export function DurationOptions({ choices, onChange }: Props) {
           />
         ))}
         <Chip
-          label={t('intake.dur.other')}
+          label={bi('intake.dur.other')}
           selected={other}
           onPress={() => {
             setOther(true);
@@ -116,7 +119,7 @@ export function DurationOptions({ choices, onChange }: Props) {
 
 /** Danger-sign checklist, with an explicit "None of these". */
 export function DangerOptions({ choices, onChange }: Props) {
-  const { t } = useTranslation();
+  const bi = useBilingual();
   return (
     <View style={styles.chips}>
       {dangerOptions(choices).map((d) => {
@@ -124,7 +127,7 @@ export function DangerOptions({ choices, onChange }: Props) {
         return (
           <Chip
             key={d}
-            label={t(`intake.ds.${d}`)}
+            label={bi(`intake.ds.${d}`)}
             selected={on}
             onPress={() =>
               onChange({
@@ -137,7 +140,7 @@ export function DangerOptions({ choices, onChange }: Props) {
         );
       })}
       <Chip
-        label={t('intake.noneOfThese')}
+        label={bi('intake.noneOfThese')}
         selected={choices.noDanger}
         onPress={() => onChange({ ...choices, noDanger: !choices.noDanger, dangerSigns: [] })}
       />

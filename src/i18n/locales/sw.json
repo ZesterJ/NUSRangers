@@ -156,7 +156,6 @@
     "noneOfThese": "Hakuna kati ya haya",
     "bodyTitle": "Au gusa sehemu yenye tatizo",
     "bodyOptions": "Matatizo ya kawaida: {{part}}. Chagua yote yanayohusika",
-    "bodyRemove": "Ondoa {{part}}",
     "affectedArea": "Sehemu yenye tatizo",
     "part": {
       "head": "Kichwa",
