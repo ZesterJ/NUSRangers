@@ -13,6 +13,7 @@ from pathlib import Path
 from typing import Any, Protocol
 
 from .schemas import ExtractRequest, Extraction, ExtractionField
+from .typed_input import inability_to_drink, near_miss, normalize_text, strip_leading_none
 
 REPO_ROOT = Path(__file__).resolve().parents[2]
 DEFAULT_MODEL_PATH = REPO_ROOT / "ml/artifacts/experimental_health_ie_final.joblib"
@@ -48,6 +49,13 @@ AGE_WORDS = {
     "one": 1, "two": 2, "three": 3, "four": 4, "five": 5, "six": 6, "seven": 7, "eight": 8, "nine": 9, "ten": 10,
 }  # fmt: skip
 _NUM = r"(\d{1,3}|" + "|".join(AGE_WORDS) + ")"
+_RANGE_UNIT = r"(?:days?|siku|weeks?|wiki|months?|miezi|hours?|masaa)"
+# "2-3 days", "3 or 4 days", "siku mbili au tatu": a range is not one number of days. Like "about 3 days", it stays unknown.
+DURATION_RANGE = re.compile(
+    rf"\b{_NUM}\s*(?:-|\u2013|\u2014|to|or|au|hadi)\s*{_NUM}\s*{_RANGE_UNIT}\b"
+    rf"|\b(?:siku|wiki|miezi)\s+{_NUM}\s*(?:-|\u2013|\u2014|to|or|au|hadi)\s*{_NUM}\b",
+    re.I,
+)
 AGE_YEARS = re.compile(rf"\b(?:miaka|mwaka)\s+{_NUM}\b|\b{_NUM}[\s-]+years?\b", re.I)
 AGE_MONTHS = re.compile(rf"\b(?:miezi|mwezi)\s+{_NUM}\b|\b{_NUM}[\s-]+months?\b", re.I)
 
@@ -79,18 +87,65 @@ def child_is_under_five(text: str) -> bool | None:
 
 
 class IntakeExtractor:
-    def __init__(self, pipeline: TextPipeline):
+    def __init__(self, pipeline: TextPipeline, known_words: frozenset[str] = frozenset()):
         self.pipeline = pipeline
+        # Words the model's own phrase table already recognises (including known misspellings): never flagged as typos.
+        self.known_words = known_words
 
     def _run(self, text: str) -> dict[str, Any] | None:
         return self.pipeline.extract(text) if text.strip() else None
 
+    def _suggestions(self, result: dict[str, Any], text: str, symptoms: list[str], signs: list[str]):
+        """
+        Findings the exact-wording gate rejected but that deserve a look. They are returned for LOW confidence display
+        and are never presented as sure:
+          - the wording matched and only the classifier vetoed it (that veto was wrong for every fever/cough/pain case
+            in the team's labelled data); and
+          - a word one typo away from a symptom word.
+        The classifier score alone is NOT used: on clean text it adds false symptoms ("my child has a cough" -> fever).
+        """
+        add_symptoms: list[str] = []
+        add_signs: list[str] = []
+        notes: list[str] = []
+        if result.get("abstentions"):  # the model declined to pick a subject: do not second-guess it
+            return add_symptoms, add_signs, notes
+        for label, decision in result.get("symptomDecisions", {}).items():
+            if decision.get("state") == "affirmed" and decision.get("reasons") == ["below_threshold"]:
+                if label in SYMPTOM_MAP:
+                    add_symptoms.append(SYMPTOM_MAP[label])
+                elif label in DANGER_MAP:
+                    add_signs.append(DANGER_MAP[label])
+        for word, kind, code in near_miss(text, self.known_words):
+            if code in symptoms or code in signs:  # already found from other wording: nothing to flag
+                continue
+            (add_symptoms if kind == "symptom" else add_signs).append(code)
+            notes.append(f'Unclear word: "{word}"')
+        # "cannot even drink" or a typo in "cannot drink": only when the model did not see the phrase at all
+        if result.get("reportedSignStates", {}).get("cannot_drink", {}).get("state") == "not_mentioned":
+            phrase = inability_to_drink(text)
+            if phrase:
+                add_signs.append("unable_to_drink")
+                notes.append(f'Unclear wording: "{phrase}"')
+        return (
+            [c for c in dict.fromkeys(add_symptoms) if c not in symptoms],
+            [c for c in dict.fromkeys(add_signs) if c not in signs],
+            notes,
+        )
+
     def extract(self, req: ExtractRequest) -> Extraction:
         answers = req.answers
-        who = self._run(answers.who)
-        complaint = self._run(answers.complaint)
-        duration = self._run(answers.duration)
-        danger = self._run(answers.danger)
+        # Clean what the model sees (Unicode, apostrophes, spacing, missing negation cues). The patient's own words stay
+        # untouched in `evidence` and `unmapped`.
+        who_text = normalize_text(answers.who)
+        complaint_text = normalize_text(answers.complaint)
+        duration_text = normalize_text(answers.duration)
+        danger_clean = normalize_text(answers.danger)
+        danger_text = strip_leading_none(danger_clean)  # "no, he cannot drink": judge the part after "no"
+
+        who = self._run(who_text)
+        complaint = self._run(complaint_text)
+        duration = self._run(duration_text)
+        danger = self._run(danger_text)
         clinical = [r for r in (complaint, danger) if r is not None]
 
         symptoms: list[str] = []
@@ -110,27 +165,50 @@ class IntakeExtractor:
             states = result.get("reportedSignStates", {})
             unsure = unsure or any(s.get("state") == "uncertain" for s in states.values())
 
-        said_none = bool(SAID_NONE.search(answers.danger))
+        said_none = bool(SAID_NONE.search(danger_clean))
         danger_sure = not unsure and not notes and (bool(signs) or said_none)
 
         if not symptoms and not signs:
-            notes.extend(a for a in (answers.complaint, answers.danger) if a.strip() and not SAID_NONE.search(a))
+            notes.extend(a for a in (answers.complaint, answers.danger) if a.strip() and not SAID_NONE.search(normalize_text(a)))
+        elif answers.danger.strip() and not signs and not said_none and answers.danger not in notes:
+            notes.append(answers.danger)  # a danger answer nothing could use is still the patient's word: show it
+
+        # Low-confidence suggestions (see _suggestions). Computed after the checks above so they never raise confidence.
+        extra_symptoms: list[str] = []
+        extra_signs: list[str] = []
+        for result, text in ((complaint, complaint_text), (danger, danger_text)):
+            if result is None:
+                continue
+            more_symptoms, more_signs, more_notes = self._suggestions(
+                result, text, symptoms + extra_symptoms, signs + extra_signs
+            )
+            extra_symptoms += more_symptoms
+            extra_signs += more_signs
+            notes.extend(n for n in more_notes if n not in notes)
+        symptoms += extra_symptoms
+        signs += extra_signs
 
         return Extraction(
-            patientGroup=self._patient_group(who, answers.who),
+            patientGroup=self._patient_group(who, answers.who, who_text),
             symptoms=ExtractionField(
-                value=symptoms, confidence="high" if symptoms and not unsure else "low", evidence=answers.complaint
+                value=symptoms,
+                confidence="high" if symptoms and not unsure and not extra_symptoms else "low",
+                evidence=answers.complaint,
             ),
-            durationDays=self._duration(duration, complaint, answers.duration),
+            durationDays=(
+                ExtractionField(value=None, confidence="low", evidence=answers.duration)
+                if DURATION_RANGE.search(duration_text) or DURATION_RANGE.search(complaint_text)
+                else self._duration(duration, complaint, answers.duration)
+            ),
             dangerSigns=ExtractionField(
-                value=signs, confidence="high" if danger_sure else "low", evidence=answers.danger
+                value=signs, confidence="high" if danger_sure and not extra_signs else "low", evidence=answers.danger
             ),
             unmapped=notes,
             source="model",
         )
 
     @staticmethod
-    def _patient_group(result: dict[str, Any] | None, text: str) -> ExtractionField:
+    def _patient_group(result: dict[str, Any] | None, text: str, clean: str) -> ExtractionField:
         kind = result.get("patientType") if result else None
         if kind == "pregnant":
             return ExtractionField(value="pregnant", confidence="high", evidence=text)
@@ -138,7 +216,7 @@ class IntakeExtractor:
             return ExtractionField(value="adult", confidence="high", evidence=text)
         if kind == "child":
             # The model says "child", the app's group is "under 5": only sure when an age is given.
-            under_five = child_is_under_five(text)
+            under_five = child_is_under_five(clean)
             if under_five is False:
                 return ExtractionField(value=None, confidence="low", evidence=text)
             return ExtractionField(value="child_u5", confidence="high" if under_five else "low", evidence=text)
@@ -167,7 +245,9 @@ def load_extractor(model_path: str | None = None, code_path: str | None = None) 
         if str(code) not in sys.path:
             sys.path.insert(0, str(code))
         module = importlib.import_module("extraction_pipeline")
-        return IntakeExtractor(module.ExtractionPipeline(joblib.load(artifact)))
+        lexical = importlib.import_module("lexical_config")
+        known = frozenset(word for phrase in lexical.PHRASES for word in phrase.lower().split())
+        return IntakeExtractor(module.ExtractionPipeline(joblib.load(artifact)), known)
     except Exception as exc:
         raise ExtractorUnavailableError(
             "Extraction model could not be loaded; check scikit-learn matches ml/requirements.txt"

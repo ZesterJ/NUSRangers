@@ -181,6 +181,19 @@ Response (`Extraction`). Only use the listed codes, and mark guesses `"low"`:
 - `dangerSigns` with an empty list must be `"low"` unless the patient clearly said there were none. The app treats low-confidence "no danger signs" as **unsure → ask a health worker**.
 - Anything you can't map goes in `unmapped` (shown to the clinician, never used for triage).
 
+Typed-input handling (`backend/app/typed_input.py`; the request and response shapes above are unchanged). The text is cleaned
+before the model reads it, and the patient's own words are still returned in `evidence` and `unmapped`:
+- Apostrophe look-alikes (`’ ´ ʼ`), missing apostrophes (`dont`, `cant`), odd or invisible whitespace and characters, and
+  full-width letters are repaired. Denial cues the model does not know (`didn't`, `neither/nor`, `none of`, Swahili `hamna`,
+  `haina`, `bila`, `sio`) are mapped onto ones it does, so a denied symptom is not asserted.
+- `no, he cannot drink`: the part after a leading "no" is judged on its own.
+- A **typo of a symptom word** (`cogh`), a symptom whose exact wording matched but the classifier vetoed, and `cannot even
+  drink` are returned as a **low-confidence** suggestion with a note such as `Unclear word: "cogh"`. They are never sure, so the
+  review screen asks the patient to check them. An answer with such a suggestion has `symptoms.confidence: "low"`.
+- A duration given as a range (`2-3 days`, `siku mbili au tatu`) is `null`/`low`, like "about 3 days".
+- A danger answer nothing could use is added to `unmapped` even when symptoms were found.
+- Known limits and the measurements: `ml/robustness/EDGE_CASES.md`. Run `npm run check:typed` for the phone side.
+
 ## `POST /classify` (visit note → see a doctor + diagnosis groups)
 Proposed contract; the route exists (`backend/app/classify.py`) but answers `503` until a classification
 model is plugged in. The app calls it after the patient confirms the visit note.
