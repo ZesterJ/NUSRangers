@@ -121,3 +121,74 @@ was modified.
 Implementation references: [TF-IDF](https://scikit-learn.org/stable/modules/generated/sklearn.feature_extraction.text.TfidfVectorizer.html),
 [one-vs-rest](https://scikit-learn.org/stable/modules/generated/sklearn.multiclass.OneVsRestClassifier.html),
 [logistic regression](https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.LogisticRegression.html).
+
+## Evidence-gated improvement (frozen classifier)
+
+`src/extraction_pipeline.py` wraps the existing character TF-IDF + balanced logistic
+regression artifact. It does not fit or replace a model. `baseline_rules.py` remains
+unchanged as the reproducible OLD implementation; the new module exposes both
+`extract_rules()` and `ExtractionPipeline.extract()`.
+
+```sh
+ml/.venv/bin/python ml/src/evaluate.py
+ml/.venv/bin/python ml/src/evaluate_improvements.py
+ml/.venv/bin/python -m pytest ml/tests -q
+```
+
+The paired evaluation reproduces the original metrics, verifies the artifact hash,
+and compares the original validation/test split, unchanged 48 diagnostics and 42 new
+fictional diagnostics. Reports: [comparison](reports/improvement_results.md) and
+[error analysis](reports/improvement_error_analysis.md). Full metrics include every
+label, language, scalar confusion matrix, report-sign errors, assertion counts and
+same-process CPU timings. Generated predictions go to ignored `data/processed/`.
+The new cases never enter training, vocabulary fitting or threshold selection.
+
+```python
+import sys
+import joblib
+sys.path.insert(0, "ml/src")
+from extraction_pipeline import Config, ExtractionPipeline
+bundle = joblib.load("ml/artifacts/experimental_symptom_baseline.joblib")
+extractor = ExtractionPipeline(bundle, Config(threshold=0.3))
+result = extractor.extract("My husband has fever but I feel fine.",
+                           target_subject="husband")
+```
+
+Output includes `patientType`, `durationDays`, `hydrationIssue`, `reportedSigns`,
+`symptoms`, `subject`, `evidence`, `reportedSignStates`, `durationMentions`, and
+`symptomDecisions`, plus source/version/verification metadata. Every asserted clinical
+field has a supporting exact substring with Python Unicode code-point start/end
+offsets (end exclusive). These are not JavaScript UTF-16 offsets. Classifier scores
+are uncalibrated model scores, not clinical confidence. Each symptom must pass BOTH
+the configurable threshold and an affirmed literal-mention/subject check. Rejected
+candidates retain reasons in `symptomDecisions`; no keyword-only positive rescue is
+used. Confidence thresholds were not retuned against this evaluation.
+
+Unknown hydration remains null. False requires explicit normal drinking/denial of
+difficulty. Reduced drinking is not inability to drink. Report signs expose four
+states: affirmed, negated, uncertain, not_mentioned; only affirmed signs populate the
+positive array. Historical, conflicting or unresolved-subject mentions abstain.
+
+Subject scope defaults to abstention when multiple explicit people are present.
+Supported explicit targets are speaker, child, husband, wife, mother, father, sister,
+brother. In multi-person text, only clauses explicitly naming the target are used;
+pronoun/coreference resolution is not guessed. Subject-free short statements retain
+an unspecified subject rather than silently being assigned to the speaker.
+
+Exact explicit day counts can populate durationDays. Approximate expressions,
+relative yesterday/weekday onsets and conflicting durations remain null with the
+source retained in durationMentions. There is no reference timestamp or elapsed-day
+convention, so “since Monday” is not converted into an invented interval. Negation
+in a later hydration clause no longer erases an earlier explicit duration.
+
+The phrase lexicon and clause rules are deliberately inspectable but incomplete.
+Negation lists, reported speech, complex temporal scope, misspellings and ASR errors
+can cause errors. Conservative evidence filtering can lose correct classifier
+predictions. A native Swahili reviewer and independently authored acceptance set are
+still needed. No diagnosis/urgency/treatment/referral fields are emitted, and no
+backend, /predict, frontend or speech implementation was changed.
+
+Development note: after inspecting the expanded case “The child may have had a
+seizure”, subject extraction was scoped to uncertainty BEFORE the subject, rather
+than uncertainty about a later symptom. A regression test records this correction;
+no expected label changed. These suites remain development data, not fresh validation.

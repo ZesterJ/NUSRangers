@@ -50,3 +50,14 @@ the independently authored acceptance suite described above, which does not exis
 Do not put these cases into a future acceptance set. Rules were corrected after
 inspecting these cases; see `../../reports/rule_revision_log.json`. No classifier
 fit, vocabulary fit, threshold selection or model selection used them.
+
+`expanded_diagnostics.json` adds 42 fictional development cases for the evidence-gated
+wrapper: English, Swahili, mixed-language, explicit denials, subject ambiguity, unknown
+fields, ambiguous duration, multiple symptoms, short text, misspellings and ASR-like
+repetition/punctuation loss. Its multi-person expectations require abstention unless
+a target subject is explicit. The original 48-case file is unchanged and retains its
+older document-level symptom targets, so subject abstention can score as a regression
+there. Both OLD and NEW are evaluated against the SAME expectations within each suite.
+Neither suite is used for classifier fitting or threshold selection. The new rules
+were developed with these cases visible; do not describe the results as independent
+acceptance performance or evidence of clinical validity.

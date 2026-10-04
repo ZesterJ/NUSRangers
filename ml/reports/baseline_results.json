@@ -4405,7 +4405,7 @@
     }
   },
   "rules_source_bytes": 6552,
-  "artifact_load_ms": 40.818959,
+  "artifact_load_ms": 37.873667,
   "benchmark": {
     "hardware": "arm64",
     "platform": "macOS-27.0-arm64-arm-64bit-Mach-O",
@@ -4415,14 +4415,14 @@
     "iterations": 1000,
     "scope": "local Python preprocessing+inference; no HTTP, ASR or application overhead; not a production benchmark",
     "rules": {
-      "p50_ms": 0.062313,
-      "p95_ms": 0.1204601
+      "p50_ms": 0.0603125,
+      "p95_ms": 0.115333
     },
     "symptom_pipeline": {
-      "p50_ms": 0.626771,
-      "p95_ms": 0.7166475999999999
+      "p50_ms": 0.6159585000000001,
+      "p95_ms": 0.6637791499999999
     },
-    "process_peak_rss_bytes": 134250496,
+    "process_peak_rss_bytes": 134447104,
     "rss_scope": "whole evaluation process including imports and metrics; not incremental model RAM"
   },
   "diagnostic_cases_sha256": "29dc8ea3485f2dad0a37356d4e539a1a252bbf1d4ca8797e0f164d47c3f8f57b"
