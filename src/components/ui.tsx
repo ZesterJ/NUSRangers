@@ -1,6 +1,8 @@
 import type { ReactNode } from 'react';
 import {
   ActivityIndicator,
+  KeyboardAvoidingView,
+  Platform,
   Pressable,
   ScrollView,
   StyleSheet,
@@ -13,18 +15,20 @@ import {
 import { radius, spacing, usePackContext } from '@/theme';
 
 /**
- * A scrolling screen whose text inputs stay visible when the keyboard opens: on iOS the scroll view
- * makes room for the keyboard and brings the focused input into view; on Android the window pans
- * (`softwareKeyboardLayoutMode` in app.json). Taps on buttons work while the keyboard is up.
+ * A scrolling screen that stays usable when the keyboard opens. On iOS the scroll area shrinks to
+ * end above the keyboard, so every input can be scrolled into view; on Android the window pans
+ * (`softwareKeyboardLayoutMode` in app.json). Taps on buttons work while the keyboard is up, and a tap
+ * on empty space closes it.
  */
-export function KeyboardScrollView(props: ScrollViewProps) {
+export function KeyboardScrollView({ style, ...props }: ScrollViewProps) {
   return (
-    <ScrollView
-      automaticallyAdjustKeyboardInsets
-      keyboardShouldPersistTaps="handled"
-      keyboardDismissMode="on-drag"
-      {...props}
-    />
+    <KeyboardAvoidingView
+      style={[styles.fill, style]}
+      behavior={Platform.OS === 'ios' ? 'padding' : undefined}
+      // Height of the tab header above the scroll area.
+      keyboardVerticalOffset={90}>
+      <ScrollView keyboardShouldPersistTaps="handled" {...props} />
+    </KeyboardAvoidingView>
   );
 }
 
@@ -95,6 +99,7 @@ export function SectionTitle({ children }: { children: ReactNode }) {
 }
 
 const styles = StyleSheet.create({
+  fill: { flex: 1 },
   button: {
     minHeight: 48,
     paddingHorizontal: spacing.lg,
