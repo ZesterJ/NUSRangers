@@ -32,15 +32,15 @@ export function triage(intake: ConfirmedIntake, extraction?: Extraction): Triage
   const d = intake.durationDays ?? 0;
   const feverChild = g === 'child_u5' && intake.symptoms.includes('fever');
   if (intake.symptoms.includes('difficulty_breathing')) reasons.push('Difficulty breathing');
-  if (feverChild) reasons.push('Child under 5 with fever: needs a malaria test');
-  if (g === 'pregnant') reasons.push('Pregnant: any illness should be checked');
-  if (d >= 3) reasons.push(`Sick for ${d} days`);
+  if (feverChild) reasons.push('Child under 5 with fever: malaria test recommended');
+  if (g === 'pregnant') reasons.push('Pregnancy: any illness should be assessed at a clinic');
+  if (d >= 3) reasons.push(`Symptoms for ${d} days`);
 
   if (reasons.length) {
     if (feverChild) needs.push('lab');
     return { level: 'refer_24h', reasons, needs: needs.length ? needs : ['general'] };
   }
 
-  reasons.push('No danger signs, mild and recent');
+  reasons.push('No danger signs; symptoms are mild and recent');
   return { level: 'home_care', reasons, needs: ['general'] };
 }
