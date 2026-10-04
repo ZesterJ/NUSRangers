@@ -181,35 +181,47 @@ Response (`Extraction`). Only use the listed codes, and mark guesses `"low"`:
 - `dangerSigns` with an empty list must be `"low"` unless the patient clearly said there were none. The app treats low-confidence "no danger signs" as **unsure → ask a health worker**.
 - Anything you can't map goes in `unmapped` (shown to the clinician, never used for triage).
 
-## `POST /classify` (visit note → see a doctor + diagnosis groups)
-Proposed contract; the route exists (`backend/app/classify.py`) but answers `503` until a classification
-model is plugged in. The app calls it after the patient confirms the visit note.
+## `POST /assess` (visit note → care services + Kilifi facility candidates)
+Implemented in `backend/app/care.py`, which wraps the care policy and facility router in `ml/src`
+(`care_policy.py`, `verified_facility_demo.py`) and the Kilifi data in `ml/data/facilities`. No model file is
+needed. The app calls it after the patient confirms the visit note; on any non-200 it shows its on-phone
+sample clinic list instead.
 
 Request (the confirmed note, from taps and free text alike; the patient's name is not sent):
 ```json
 {
   "locale": "sw",
   "note": {
-    "patientGroup": "adult",
-    "sex": "female",
-    "symptoms": ["headache", "abdominal_pain"],
+    "patientGroup": "child_u5",
+    "symptoms": ["fever", "cough"],
     "durationDays": 3,
-    "dangerSigns": ["vomits_everything"],
-    "notes": "Affected area: Head, Abdomen"
-  }
+    "dangerSigns": [],
+    "notes": ""
+  },
+  "coordinates": { "latitude": -3.63, "longitude": 39.85 }
 }
 ```
 Response:
 ```json
 {
-  "seeDoctor": true,
-  "diagnosisGroups": [{ "group": "gastrointestinal", "score": 0.62 }],
-  "modelVersion": "v1"
+  "requiredServices": ["generalOutpatient", "childHealth"],
+  "assessmentStatus": "proposed",
+  "routingStatus": "candidates_found",
+  "candidates": [
+    { "facilityId": "arcgis:…", "facilityName": "KILIFI DISTRICT HOSPITAL", "rank": 1, "distanceKm": 0.0, "matchedServices": ["childHealth", "generalOutpatient"] }
+  ],
+  "origin": "demo_anchor",
+  "limitations": ["Not current capability verification or clinical suitability"],
+  "requiresVerification": true
 }
 ```
-- `diagnosisGroups`: most likely first; the app shows at most three, labelled as a suggestion for the health worker.
-- The app never lets this lower the urgency from its on-phone rules: `seeDoctor: true` can turn "home care"
-  into "visit a clinic within 24 hours", but danger signs and "not sure, ask a health worker" always stand.
+- `coordinates` is optional. Without it, or when it lies outside the area the catalogue covers, distances are
+  measured from Kilifi District Hospital and `origin` is `demo_anchor`. The app does not send coordinates yet.
+- `distanceKm` is straight-line distance, not travel time. Only facilities whose required services are
+  documented are returned; an `unknown` capability is never treated as present.
+- `assessmentStatus: "unclear"`: the care policy abstains when danger signs are present. The adapter then
+  lists facilities by patient group (general outpatient, plus child health or maternal care).
+- Urgency ("go now", "within 24 hours", …) is not decided here; it stays with the app's on-phone triage rules.
 
 ## `POST /records` (store-and-forward)
 Body: the full `IntakeRecord` JSON. Response `{ "ok": true }`. Sent from the outbox when signal returns. Map it to DHIS2 on the server.

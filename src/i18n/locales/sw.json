@@ -120,8 +120,19 @@
     "saved": "Imehifadhiwa kwenye simu. Itatumwa kukiwa na mtandao.",
     "newIntake": "Anza mahojiano mapya",
     "transcript": "Kilichosemwa",
-    "groups": "Makundi ya magonjwa yanayowezekana",
-    "groupsNote": "Imependekezwa na modeli kwa ajili ya mhudumu wa afya. Si utambuzi.",
+    "services": "Huduma zinazohitajika",
+    "servicesNote": "Imependekezwa kutokana na majibu ili mhudumu wa afya athibitishe. Si utambuzi.",
+    "service": {
+      "generalOutpatient": "Huduma za wagonjwa wa nje",
+      "childHealth": "Afya ya mtoto",
+      "maternal": "Huduma ya uzazi"
+    },
+    "kilifiData": "Rekodi za vituo vya Kilifi",
+    "kmAway": "Kilomita {{km}} (umbali wa moja kwa moja)",
+    "documented": "Huduma zilizorekodiwa: {{services}}",
+    "availabilityUnknown": "Saa za kazi na wafanyakazi hazijathibitishwa. Piga simu kwanza ikiwezekana.",
+    "demoOrigin": "Umbali umepimwa kutoka Hospitali ya Wilaya ya Kilifi (eneo la mfano).",
+    "routingNote": "Huduma za vituo zinatokana na rekodi za zamani za umma na zinahitaji kuthibitishwa.",
     "optionsTitle": "Chagua jibu",
     "orDescribe": "Au jibu kwa maneno yako",
     "whoOpt": {

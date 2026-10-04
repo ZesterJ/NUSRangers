@@ -4,7 +4,7 @@ import { getSettings } from '@/store/settings';
 
 import { extractWithRules } from './extractRules';
 import { mergeExtractions } from './mergeExtraction';
-import type { Classification, ConfirmedIntake, Extraction } from './types';
+import type { CareRouting, ConfirmedIntake, Extraction } from './types';
 
 type Answers = Parameters<typeof extractWithRules>[0];
 
@@ -50,16 +50,16 @@ export async function extract(answers: Answers, locale: string): Promise<Extract
 }
 
 /**
- * Step 6: confirmed visit note → "see a doctor" + diagnosis groups, from the backend classification model.
- * Returns null when offline, on the mock, or when the backend has no model; triage then uses the on-phone rules alone.
- * The patient's name is not sent.
+ * Steps 6–7: confirmed visit note → proposed care services + Kilifi facility candidates, from the backend.
+ * Returns null when offline, on the mock, or when the backend cannot route; the result screen then
+ * uses the on-phone clinic list. The patient's name is not sent.
  */
-export async function classify(intake: ConfirmedIntake, locale: string): Promise<Classification | null> {
+export async function assessCare(intake: ConfirmedIntake, locale: string): Promise<CareRouting | null> {
   if (!canUseBackend() || getSettings().useMock) return null;
   const { patientName: _name, ...note } = intake;
   try {
     const res = await withTimeout((signal) =>
-      fetch(`${base()}/classify`, {
+      fetch(`${base()}/assess`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ locale, note }),
@@ -67,9 +67,9 @@ export async function classify(intake: ConfirmedIntake, locale: string): Promise
       }),
     );
     if (!res.ok) return null;
-    return (await res.json()) as Classification;
+    return (await res.json()) as CareRouting;
   } catch (e) {
-    console.warn('[intake] classify failed, using on-phone triage', e);
+    console.warn('[intake] assess failed, using the on-phone clinic list', e);
     return null;
   }
 }

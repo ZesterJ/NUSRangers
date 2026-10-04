@@ -120,8 +120,19 @@
     "saved": "Saved on this device. It will sync when a connection is available.",
     "newIntake": "Start a new visit note",
     "transcript": "Patient's answers",
-    "groups": "Possible condition groups",
-    "groupsNote": "Suggested by the assessment model for the health worker. Not a diagnosis.",
+    "services": "Services needed",
+    "servicesNote": "Proposed from the answers for the health worker to confirm. Not a diagnosis.",
+    "service": {
+      "generalOutpatient": "General outpatient",
+      "childHealth": "Child health",
+      "maternal": "Maternal care"
+    },
+    "kilifiData": "Kilifi facility records",
+    "kmAway": "{{km}} km away (straight line)",
+    "documented": "Documented services: {{services}}",
+    "availabilityUnknown": "Opening hours and staffing are not confirmed. Call ahead if possible.",
+    "demoOrigin": "Distances are measured from Kilifi District Hospital (demo location).",
+    "routingNote": "Facility services come from a historical public-source snapshot and need confirming.",
     "optionsTitle": "Select an option",
     "orDescribe": "Or answer in your own words",
     "whoOpt": {

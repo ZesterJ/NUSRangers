@@ -91,14 +91,29 @@ export type Recommendation = {
 };
 
 /**
- * Backend /classify result for a confirmed visit note. Decision support for the health worker:
- * diagnosis groups are suggestions from a model, not a diagnosis.
+ * Backend /assess result for a confirmed visit note: proposed care services and Kilifi facility candidates.
+ * Decision support only: not a diagnosis, and facility services come from a historical public-source snapshot.
  */
-export type Classification = {
-  seeDoctor: boolean;
-  diagnosisGroups: { group: string; score?: number }[];
-  modelVersion: string;
+export type CareRouting = {
+  requiredServices: string[];
+  /** "unclear": the care policy abstained (e.g. danger signs); services then follow the patient group only. */
+  assessmentStatus: 'proposed' | 'unclear';
+  routingStatus: string;
+  candidates: {
+    facilityId: string;
+    facilityName: string;
+    rank: number;
+    /** Straight-line distance, not travel time. */
+    distanceKm: number | null;
+    matchedServices: string[];
+  }[];
+  /** "demo_anchor": distances are measured from Kilifi District Hospital, not from the patient. */
+  origin: 'patient' | 'demo_anchor';
+  limitations: string[];
 };
+
+/** A clinic shown on the result screen, from backend routing or the on-phone sample list. */
+export type ClinicOption = { id: string; name: string; reasons: string[]; phone?: string };
 
 export type IntakeRecord = {
   id: string;
@@ -107,7 +122,9 @@ export type IntakeRecord = {
   transcript: string[];
   intake: ConfirmedIntake;
   triage: Triage;
-  classification?: Classification;
+  /** Care services proposed by the backend, when it was reachable. */
+  services?: string[];
   facilityId: string | null;
+  facilityName?: string;
   status: 'handed_off' | 'received';
 };

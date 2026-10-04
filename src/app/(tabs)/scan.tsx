@@ -47,13 +47,13 @@ export default function Scan() {
 
   if (result?.ok) {
     const p = result.payload;
-    const facility = SAMPLE_FACILITIES.find((f) => f.id === p.f);
+    const facilityName = p.fn ?? SAMPLE_FACILITIES.find((f) => f.id === p.f)?.name;
     return (
       <ScrollView style={{ backgroundColor: theme.background }} contentContainerStyle={styles.content}>
         <Text style={[styles.title, { color: theme.success }]}>✓ {t('scan.verified')}</Text>
         <Text style={{ color: theme.textMuted }}>
           #{p.id} · {new Date(p.t * 1000).toLocaleString()}
-          {facility ? ` · ${facility.name}` : ''}
+          {facilityName ? ` · ${facilityName}` : ''}
         </Text>
         <IntakeSummary
           intake={{
@@ -66,7 +66,7 @@ export default function Scan() {
             notes: p.n,
           }}
           triage={{ level: p.tl, reasons: p.r, needs: [] }}
-          groups={p.dg}
+          services={p.sv}
         />
         <Text style={{ color: theme.warning }}>{t('scan.checkInPerson')}</Text>
         {received ? (

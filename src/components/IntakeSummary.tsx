@@ -17,12 +17,12 @@ export const LEVEL_ICON: Record<Triage['level'], string> = {
 export function IntakeSummary({
   intake,
   triage,
-  groups = [],
+  services = [],
 }: {
   intake: ConfirmedIntake;
   triage: Triage;
-  /** Diagnosis groups suggested by the classification model, if it ran. */
-  groups?: string[];
+  /** Care services proposed by the backend, if it ran. */
+  services?: string[];
 }) {
   const { theme } = usePackContext();
   const { t } = useTranslation();
@@ -61,10 +61,10 @@ export function IntakeSummary({
         intake.dangerSigns.length ? intake.dangerSigns.map((d) => t(`intake.ds.${d}`)).join(', ') : t('intake.none'),
       )}
       {!!intake.notes && row(t('intake.notes'), intake.notes)}
-      {groups.length > 0 && (
+      {services.length > 0 && (
         <>
-          {row(t('intake.groups'), groups.map((g) => g.replace(/_/g, ' ')).join(', '))}
-          <Text style={[styles.disclaimer, { color: theme.textMuted }]}>{t('intake.groupsNote')}</Text>
+          {row(t('intake.services'), services.map((s) => t(`intake.service.${s}`, { defaultValue: s })).join(', '))}
+          <Text style={[styles.disclaimer, { color: theme.textMuted }]}>{t('intake.servicesNote')}</Text>
         </>
       )}
       <Text style={[styles.disclaimer, { color: theme.textMuted }]}>{t('intake.humanDecides')}</Text>
