@@ -55,9 +55,9 @@
     "pending": "{{count}} waiting to sync",
     "syncNow": "Sync now",
     "syncing": "Syncing…",
-    "empty": "No reports yet.",
+    "empty": "No visit notes yet.",
     "noResult": "Waiting for result",
-    "intakes": "Patient intakes"
+    "intakes": "Visit notes"
   },
   "settings": {
     "language": "Language",
@@ -216,7 +216,7 @@
     "not_ours": "This is not a handoff code issued by this app.",
     "unreadable": "The code could not be read. Please try again.",
     "markReceived": "Mark as received",
-    "received": "Received",
+    "received": "Registered at the clinic",
     "scanAgain": "Scan another",
     "checkInPerson": "Confirm the patient's identity in person."
   },

@@ -55,9 +55,9 @@
     "pending": "{{count}} zinasubiri kutumwa",
     "syncNow": "Tuma sasa",
     "syncing": "Inatuma…",
-    "empty": "Hakuna ripoti bado.",
+    "empty": "Hakuna taarifa bado.",
     "noResult": "Inasubiri matokeo",
-    "intakes": "Mahojiano ya wagonjwa"
+    "intakes": "Taarifa za wagonjwa"
   },
   "settings": {
     "language": "Lugha",
@@ -216,7 +216,7 @@
     "not_ours": "Huu si msimbo wa makabidhiano wa programu hii.",
     "unreadable": "Msimbo haukusomeka. Jaribu tena.",
     "markReceived": "Weka kama imepokelewa",
-    "received": "Imepokelewa",
+    "received": "Amesajiliwa kliniki",
     "scanAgain": "Skani mwingine",
     "checkInPerson": "Thibitisha utambulisho wa mgonjwa ana kwa ana."
   },
