@@ -14,7 +14,7 @@ function base() {
 
 async function withTimeout<T>(fn: (signal: AbortSignal) => Promise<T>): Promise<T> {
   const controller = new AbortController();
-  const timer = setTimeout(() => controller.abort(), config.requestTimeoutMs);
+  const timer = setTimeout(() => controller.abort(), config.extractTimeoutMs);
   try {
     return await fn(controller.signal);
   } finally {
