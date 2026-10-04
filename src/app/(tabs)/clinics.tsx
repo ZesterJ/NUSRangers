@@ -1,8 +1,9 @@
 import * as Location from 'expo-location';
 import { useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Linking, Platform, Pressable, StyleSheet, Text, TextInput, View } from 'react-native';
+import { Linking, Platform, Pressable, StyleSheet, Text, TextInput } from 'react-native';
 
+import { ClinicMap } from '@/components/ClinicMap';
 import { Button, Card, KeyboardScrollView } from '@/components/ui';
 import { distanceKm, origin, type Coordinates } from '@/intake/careRouting';
 import directory from '@/intake/kilifiDirectory.json';
@@ -11,18 +12,6 @@ import { radius, spacing, usePackContext } from '@/theme';
 type Facility = (typeof directory.facilities)[number];
 const FACILITIES = directory.facilities;
 const PAGE = 15;
-
-// The map is a plot of the facilities' own coordinates, so it needs no map download and works offline.
-const LAT = FACILITIES.map((f) => f.latitude);
-const LON = FACILITIES.map((f) => f.longitude);
-const PAD = 0.05;
-const BOX = {
-  south: Math.min(...LAT) - PAD,
-  north: Math.max(...LAT) + PAD,
-  west: Math.min(...LON) - PAD,
-  east: Math.max(...LON) + PAD,
-};
-const ASPECT = (BOX.north - BOX.south) / (BOX.east - BOX.west);
 
 function openInMaps(f: Facility) {
   const label = encodeURIComponent(f.name);
@@ -35,7 +24,7 @@ function openInMaps(f: Facility) {
   );
 }
 
-/** Patient view: every clinic and hospital in the facility records, nearest first, with a simple map. */
+/** Patient view: every clinic and hospital in the facility records, nearest first, with an offline map. */
 export default function Clinics() {
   const { theme, scale } = usePackContext();
   const { t } = useTranslation();
@@ -45,7 +34,6 @@ export default function Clinics() {
   const [query, setQuery] = useState('');
   const [selected, setSelected] = useState<string | null>(null);
   const [shown, setShown] = useState(PAGE);
-  const [mapWidth, setMapWidth] = useState(0);
 
   const from = origin(mine);
   const sorted = useMemo(
@@ -73,24 +61,6 @@ export default function Clinics() {
     } finally {
       setLocating(false);
     }
-  };
-
-  const mapHeight = mapWidth * ASPECT;
-  const x = (lon: number) => ((lon - BOX.west) / (BOX.east - BOX.west)) * mapWidth;
-  const y = (lat: number) => ((BOX.north - lat) / (BOX.north - BOX.south)) * mapHeight;
-
-  // A tap on the map selects the facility nearest to the finger.
-  const tapMap = (px: number, py: number) => {
-    let best: Facility | null = null;
-    let bestD = Infinity;
-    for (const f of FACILITIES) {
-      const d = (x(f.longitude) - px) ** 2 + (y(f.latitude) - py) ** 2;
-      if (d < bestD) {
-        bestD = d;
-        best = f;
-      }
-    }
-    if (best) setSelected(best.id);
   };
 
   const body = { fontSize: 15 * scale };
@@ -128,31 +98,7 @@ export default function Clinics() {
               : t('clinics.fromAnchor')}
       </Text>
 
-      {/* Map */}
-      <Pressable
-        onLayout={(e) => setMapWidth(e.nativeEvent.layout.width)}
-        onPress={(e) => tapMap(e.nativeEvent.locationX, e.nativeEvent.locationY)}
-        style={[styles.map, { height: mapHeight || 200, borderColor: theme.border, backgroundColor: theme.card }]}>
-        {mapWidth > 0 &&
-          FACILITIES.map((f) => (
-            <View
-              key={f.id}
-              pointerEvents="none"
-              style={[
-                styles.dot,
-                { left: x(f.longitude) - 4, top: y(f.latitude) - 4, backgroundColor: f.services.length ? theme.primary : theme.textMuted },
-                f.id === selected && styles.dotSelected,
-                f.id === selected && { left: x(f.longitude) - 8, top: y(f.latitude) - 8, borderColor: theme.text, backgroundColor: theme.primary },
-              ]}
-            />
-          ))}
-        {mapWidth > 0 && (
-          <Text pointerEvents="none" style={[styles.you, { left: x(from.point.longitude) - 9, top: y(from.point.latitude) - 18 }]}>
-            📍
-          </Text>
-        )}
-      </Pressable>
-      <Text style={{ color: theme.textMuted, fontSize: 13 * scale }}>{t('clinics.mapHint')}</Text>
+      <ClinicMap selected={selected} onSelect={setSelected} from={from.point} fromIsUser={from.type === 'patient'} />
       {picked && card(picked, true)}
 
       <TextInput
@@ -181,9 +127,5 @@ const styles = StyleSheet.create({
   content: { padding: spacing.lg, gap: spacing.md, paddingBottom: spacing.xl * 2 },
   title: { fontWeight: '800' },
   name: { fontWeight: '700' },
-  map: { borderWidth: 1, borderRadius: radius.md, overflow: 'hidden' },
-  dot: { position: 'absolute', width: 8, height: 8, borderRadius: 4 },
-  dotSelected: { width: 16, height: 16, borderRadius: 8, borderWidth: 2 },
-  you: { position: 'absolute', fontSize: 18 },
   input: { borderWidth: 1, borderRadius: radius.md, paddingHorizontal: spacing.md, minHeight: 48 },
 });

@@ -301,17 +301,25 @@
     "intro": "Vituo {{count}} katika Kaunti ya Kilifi, vya karibu kwanza.",
     "locate": "Tumia mahali nilipo",
     "locateAgain": "Sasisha mahali nilipo",
-    "fromYou": "Umbali umepimwa kutoka mahali ulipo.",
+    "fromYou": "Umbali umepimwa kutoka mahali ulipo. Mahali ulipo hutoka kwenye GPS ya simu, ambayo haihitaji mtandao.",
     "fromAnchor": "Umbali umepimwa kutoka mji wa Kilifi hadi utakaposhiriki mahali ulipo.",
     "outside": "Inaonekana uko nje ya Kaunti ya Kilifi, kwa hivyo umbali umepimwa kutoka mji wa Kilifi.",
     "noLocation": "Mahali ulipo hapapatikani. Umbali umepimwa kutoka mji wa Kilifi.",
     "km": "Kilomita {{km}} (umbali wa moja kwa moja)",
     "servicesUnknown": "Huduma hazijathibitishwa kwenye rekodi zetu.",
     "openMap": "Fungua kwenye Ramani",
-    "mapHint": "Kila nukta ni kituo. Gusa ramani kuchagua kilicho karibu. Nukta nyekundu zina huduma zilizothibitishwa.",
+    "mapHint": "Gusa ramani kuchagua kituo kilicho karibu.",
     "search": "Tafuta kwa jina au eneo",
     "none": "Hakuna kituo kinacholingana na utafutaji huo.",
     "more": "Onyesha zaidi (vimebaki {{count}})",
-    "dataNote": "Namba za simu na saa za kazi hazipo kwenye rekodi za umma ambazo orodha hii inatoka. Mahali ni kutoka rekodi za zamani na huenda si sahihi kabisa. Tafadhali thibitisha na kliniki kabla ya kusafiri."
+    "dataNote": "Namba za simu na saa za kazi hazipo kwenye rekodi za umma ambazo orodha hii inatoka. Mahali ni kutoka rekodi za zamani na huenda si sahihi kabisa. Tafadhali thibitisha na kliniki kabla ya kusafiri.",
+    "mapTitle": "Kaunti ya {{county}}",
+    "offlineMap": "Inafanya kazi bila mtandao",
+    "ocean": "Bahari ya Hindi",
+    "kenya": "Kenya",
+    "legendConfirmed": "Huduma zimethibitishwa",
+    "legendOther": "Kituo kingine",
+    "legendYou": "Wewe",
+    "legendAnchor": "Mji wa Kilifi"
   }
 }

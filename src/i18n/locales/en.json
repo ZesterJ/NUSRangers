@@ -301,17 +301,25 @@
     "intro": "{{count}} facilities in Kilifi County, nearest first.",
     "locate": "Use my location",
     "locateAgain": "Update my location",
-    "fromYou": "Distances are measured from where you are.",
+    "fromYou": "Distances are measured from where you are. Your location comes from the phone's GPS, which needs no internet.",
     "fromAnchor": "Distances are measured from Kilifi town until you share your location.",
     "outside": "You appear to be outside Kilifi County, so distances are measured from Kilifi town.",
     "noLocation": "Your location is not available. Distances are measured from Kilifi town.",
     "km": "{{km}} km away (straight line)",
     "servicesUnknown": "Services are not confirmed in our records.",
     "openMap": "Open in Maps",
-    "mapHint": "Each dot is a facility. Tap the map to pick the nearest one. Red dots have confirmed services.",
+    "mapHint": "Tap the map to pick the nearest facility.",
     "search": "Search by name or area",
     "none": "No facility matches that search.",
     "more": "Show more ({{count}} left)",
-    "dataNote": "Phone numbers and opening hours are not in the public records this list comes from. Locations are from an older public record and may be inexact. Please confirm with the clinic before travelling."
+    "dataNote": "Phone numbers and opening hours are not in the public records this list comes from. Locations are from an older public record and may be inexact. Please confirm with the clinic before travelling.",
+    "mapTitle": "{{county}} County",
+    "offlineMap": "Works offline",
+    "ocean": "Indian Ocean",
+    "kenya": "Kenya",
+    "legendConfirmed": "Services confirmed",
+    "legendOther": "Other facility",
+    "legendYou": "You",
+    "legendAnchor": "Kilifi town"
   }
 }
