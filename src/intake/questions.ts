@@ -2,7 +2,7 @@ import type { Localized } from '@/packs/types';
 
 /**
  * Fixed guided questions (no free-form chat): each answer is short and on one topic,
- * which keeps speech recognition and extraction reliable.
+ * which keeps extraction reliable.
  * `samples` are suggested answers the user can tap instead of speaking or typing.
  * Swahili text needs review by a native speaker.
  */

@@ -85,7 +85,7 @@ export const healthPack: DomainPack = {
       id: 'intake',
       kind: 'action',
       title: { en: 'Start a patient intake', sw: 'Anza mahojiano ya mgonjwa' },
-      body: { en: 'Guided questions in Swahili, by voice or text. Works offline.', sw: 'Maswali kwa Kiswahili, kwa sauti au maandishi. Inafanya kazi bila mtandao.' },
+      body: { en: 'Guided questions in Swahili, answered by tapping or typing. Works offline.', sw: 'Maswali kwa Kiswahili, yanayojibiwa kwa kugusa au kuandika. Inafanya kazi bila mtandao.' },
       action: { type: 'intake' },
     },
     {

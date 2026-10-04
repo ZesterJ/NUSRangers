@@ -54,7 +54,7 @@ Uses the default `health` pack. Nobody needs to speak Swahili: tap the **demo an
 7. **Records tab:** "1 waiting to sync". Turn the signal back on: it syncs.
 8. Run it once more with vague answers (e.g. "sijui") to show **"Not sure. Ask a health worker"**: the brief's pass/fail fail-safe.
 
-Voice (🎙) needs the backend `/transcribe` endpoint and a connection; offline, the app says so and falls back to typing.
+Answers are tapped or typed; speech-to-text was removed because a Swahili speech model is too large for the phone.
 `npm run check:intake` runs scripted patients through extraction → triage → clinic ranking.
 
 ## Where things live

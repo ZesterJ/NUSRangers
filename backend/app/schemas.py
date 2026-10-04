@@ -94,3 +94,32 @@ class Extraction(BaseModel):
     dangerSigns: ExtractionField
     unmapped: list[str]
     source: Literal["rules", "model"]
+
+
+# ---- /classify: mirrors `Classification` in src/intake/types.ts ----
+class VisitNote(BaseModel):
+    """The confirmed visit note. The patient's name is never sent here."""
+
+    patientGroup: Optional[str] = None
+    sex: Optional[str] = None
+    symptoms: list[str] = Field(default_factory=list)
+    durationDays: Optional[float] = None
+    dangerSigns: list[str] = Field(default_factory=list)
+    notes: str = Field(default="", max_length=2000)
+
+
+class ClassifyRequest(BaseModel):
+    locale: str = Field(default="sw", max_length=16)
+    note: VisitNote
+
+
+class DiagnosisGroup(BaseModel):
+    group: str = Field(min_length=1)
+    score: Optional[float] = Field(default=None, ge=0, le=1)
+
+
+class ClassifyResponse(BaseModel):
+    seeDoctor: bool
+    # Most likely first; the app shows at most three.
+    diagnosisGroups: list[DiagnosisGroup] = Field(default_factory=list, max_length=10)
+    modelVersion: str = Field(min_length=1)

@@ -4,7 +4,7 @@ import { getSettings } from '@/store/settings';
 
 import { extractWithRules } from './extractRules';
 import { mergeExtractions } from './mergeExtraction';
-import type { Extraction } from './types';
+import type { Classification, ConfirmedIntake, Extraction } from './types';
 
 type Answers = Parameters<typeof extractWithRules>[0];
 
@@ -23,31 +23,6 @@ async function withTimeout<T>(fn: (signal: AbortSignal) => Promise<T>): Promise<
 }
 
 const canUseBackend = () => isOnline() && getSettings().aiMode !== 'offline';
-
-/**
- * Step 2: speech → text. Sends the recording to the backend /transcribe endpoint.
- * Returns null when offline or when transcription fails, so the screen falls back to typing.
- */
-export async function transcribe(uri: string, locale: string): Promise<string | null> {
-  if (!canUseBackend()) return null;
-  if (getSettings().useMock) {
-    await new Promise((r) => setTimeout(r, 800));
-    return null; // mock has no speech model; use typing or the suggested answers
-  }
-  try {
-    const form = new FormData();
-    // React Native's FormData accepts a { uri, name, type } file descriptor.
-    form.append('audio', { uri, name: 'answer.m4a', type: 'audio/m4a' } as unknown as Blob);
-    form.append('locale', locale);
-    const res = await withTimeout((signal) => fetch(`${base()}/transcribe`, { method: 'POST', body: form, signal }));
-    if (!res.ok) return null;
-    const json = (await res.json()) as { text?: string };
-    return json.text?.trim() || null;
-  } catch (e) {
-    console.warn('[intake] transcribe failed', e);
-    return null;
-  }
-}
 
 /**
  * Step 3: text → structured symptoms. Uses the trained parser (backend /extract) when reachable,
@@ -71,5 +46,30 @@ export async function extract(answers: Answers, locale: string): Promise<Extract
   } catch (e) {
     console.warn('[intake] extract failed, using rules', e);
     return rules;
+  }
+}
+
+/**
+ * Step 6: confirmed visit note → "see a doctor" + diagnosis groups, from the backend classification model.
+ * Returns null when offline, on the mock, or when the backend has no model; triage then uses the on-phone rules alone.
+ * The patient's name is not sent.
+ */
+export async function classify(intake: ConfirmedIntake, locale: string): Promise<Classification | null> {
+  if (!canUseBackend() || getSettings().useMock) return null;
+  const { patientName: _name, ...note } = intake;
+  try {
+    const res = await withTimeout((signal) =>
+      fetch(`${base()}/classify`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ locale, note }),
+        signal,
+      }),
+    );
+    if (!res.ok) return null;
+    return (await res.json()) as Classification;
+  } catch (e) {
+    console.warn('[intake] classify failed, using on-phone triage', e);
+    return null;
   }
 }

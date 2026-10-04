@@ -1,10 +1,11 @@
 /**
- * Intake record: the JSON contract between speech → extraction → triage → referral → QR handoff.
+ * Intake record: the JSON contract between the patient's answers → extraction → triage → referral → QR handoff.
  * The backend /extract endpoint (jw's parser) must return `Extraction` in exactly this shape.
  * Keep docs/api.md in sync when this changes.
  */
 
-export type PatientGroup = 'child_u5' | 'pregnant' | 'adult';
+export type PatientGroup = 'child_u5' | 'child_5plus' | 'pregnant' | 'adult';
+export type Sex = 'female' | 'male';
 
 export const SYMPTOMS = [
   'fever',
@@ -16,6 +17,9 @@ export const SYMPTOMS = [
   'abdominal_pain',
   'rash',
   'weakness',
+  'sore_throat',
+  'chest_pain',
+  'limb_pain',
 ] as const;
 export type Symptom = (typeof SYMPTOMS)[number];
 
@@ -49,6 +53,9 @@ export type Extraction = {
 
 /** What the patient confirmed on the review screen. */
 export type ConfirmedIntake = {
+  /** Optional; helps the clinic match the record to the person. */
+  patientName?: string;
+  sex?: Sex;
   patientGroup: PatientGroup | null;
   symptoms: Symptom[];
   durationDays: number | null;
@@ -83,6 +90,16 @@ export type Recommendation = {
   stale: boolean;
 };
 
+/**
+ * Backend /classify result for a confirmed visit note. Decision support for the health worker:
+ * diagnosis groups are suggestions from a model, not a diagnosis.
+ */
+export type Classification = {
+  seeDoctor: boolean;
+  diagnosisGroups: { group: string; score?: number }[];
+  modelVersion: string;
+};
+
 export type IntakeRecord = {
   id: string;
   createdAt: number;
@@ -90,6 +107,7 @@ export type IntakeRecord = {
   transcript: string[];
   intake: ConfirmedIntake;
   triage: Triage;
+  classification?: Classification;
   facilityId: string | null;
   status: 'handed_off' | 'received';
 };

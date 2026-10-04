@@ -14,7 +14,16 @@ export const LEVEL_ICON: Record<Triage['level'], string> = {
 };
 
 /** Triage result + confirmed answers. Used on the result screen, the clinic scan screen and records. */
-export function IntakeSummary({ intake, triage }: { intake: ConfirmedIntake; triage: Triage }) {
+export function IntakeSummary({
+  intake,
+  triage,
+  groups = [],
+}: {
+  intake: ConfirmedIntake;
+  triage: Triage;
+  /** Diagnosis groups suggested by the classification model, if it ran. */
+  groups?: string[];
+}) {
   const { theme } = usePackContext();
   const { t } = useTranslation();
   const color =
@@ -42,7 +51,9 @@ export function IntakeSummary({ intake, triage }: { intake: ConfirmedIntake; tri
         </Text>
       ))}
       <View style={{ height: spacing.sm }} />
+      {!!intake.patientName && row(t('intake.name'), intake.patientName)}
       {row(t('intake.who'), intake.patientGroup ? t(`intake.group.${intake.patientGroup}`) : '')}
+      {!!intake.sex && row(t('intake.sex'), t(`intake.sexOpt.${intake.sex}`))}
       {row(t('intake.symptoms'), intake.symptoms.map((s) => t(`intake.sym.${s}`)).join(', '))}
       {row(t('intake.duration'), intake.durationDays === null ? '' : String(intake.durationDays))}
       {row(
@@ -50,6 +61,12 @@ export function IntakeSummary({ intake, triage }: { intake: ConfirmedIntake; tri
         intake.dangerSigns.length ? intake.dangerSigns.map((d) => t(`intake.ds.${d}`)).join(', ') : t('intake.none'),
       )}
       {!!intake.notes && row(t('intake.notes'), intake.notes)}
+      {groups.length > 0 && (
+        <>
+          {row(t('intake.groups'), groups.map((g) => g.replace(/_/g, ' ')).join(', '))}
+          <Text style={[styles.disclaimer, { color: theme.textMuted }]}>{t('intake.groupsNote')}</Text>
+        </>
+      )}
       <Text style={[styles.disclaimer, { color: theme.textMuted }]}>{t('intake.humanDecides')}</Text>
     </Card>
   );

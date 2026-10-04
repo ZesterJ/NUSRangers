@@ -79,11 +79,6 @@
   },
   "intake": {
     "step": "Question {{n}} of {{total}}",
-    "speak": "Speak",
-    "stop": "Stop",
-    "listening": "Listening…",
-    "transcribing": "Converting speech to text…",
-    "voiceUnavailable": "Voice input is unavailable without a connection. Please type the answer or select a suggested answer.",
     "typeHere": "Type the answer here",
     "samples": "Suggested answers",
     "next": "Next",
@@ -125,8 +120,46 @@
     "saved": "Saved on this device. It will sync when a connection is available.",
     "newIntake": "Start a new visit note",
     "transcript": "Patient's answers",
+    "groups": "Possible condition groups",
+    "groupsNote": "Suggested by the assessment model for the health worker. Not a diagnosis.",
+    "optionsTitle": "Select an option",
+    "orDescribe": "Or answer in your own words",
+    "whoOpt": {
+      "self": "Me",
+      "child_u5": "My child (under 5)",
+      "child_5plus": "My child (5 or older)",
+      "other_adult": "Another adult"
+    },
+    "name": "Patient's name",
+    "namePlaceholder": "Enter the name (optional)",
+    "sex": "Sex",
+    "sexOpt": { "female": "Female", "male": "Male" },
+    "pregnantQ": "Is the patient pregnant?",
+    "pregnantOpt": { "yes": "Yes", "no": "No", "unsure": "Not sure" },
+    "dur": {
+      "d1": "1 day",
+      "d2": "2 days",
+      "d3": "3 days",
+      "d7": "1 week",
+      "other": "Other",
+      "otherDays": "Number of days"
+    },
+    "noneOfThese": "None of these",
+    "bodyTitle": "Or tap the affected area",
+    "bodyOptions": "Common problems: {{part}}. Select all that apply",
+    "bodyRemove": "Remove {{part}}",
+    "affectedArea": "Affected area",
+    "part": {
+      "head": "Head",
+      "throat": "Throat",
+      "chest": "Chest",
+      "abdomen": "Abdomen",
+      "limbs": "Arms and legs",
+      "skin": "Skin or whole body"
+    },
     "group": {
       "child_u5": "Child under 5",
+      "child_5plus": "Child 5 or older",
       "pregnant": "Pregnant woman",
       "adult": "Adult"
     },
@@ -139,7 +172,10 @@
       "headache": "Headache",
       "abdominal_pain": "Abdominal pain",
       "rash": "Rash",
-      "weakness": "Weakness"
+      "weakness": "Weakness",
+      "sore_throat": "Sore throat",
+      "chest_pain": "Chest pain",
+      "limb_pain": "Joint or limb pain"
     },
     "ds": {
       "unable_to_drink": "Unable to drink",

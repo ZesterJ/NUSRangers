@@ -79,11 +79,6 @@
   },
   "intake": {
     "step": "Swali {{n}} kati ya {{total}}",
-    "speak": "Ongea",
-    "stop": "Simama",
-    "listening": "Inasikiliza…",
-    "transcribing": "Inageuza sauti kuwa maandishi…",
-    "voiceUnavailable": "Sauti haipatikani bila mtandao. Tafadhali andika jibu au chagua jibu linalopendekezwa.",
     "typeHere": "Andika jibu",
     "samples": "Majibu yanayopendekezwa",
     "next": "Endelea",
@@ -125,8 +120,46 @@
     "saved": "Imehifadhiwa kwenye simu. Itatumwa kukiwa na mtandao.",
     "newIntake": "Anza mahojiano mapya",
     "transcript": "Kilichosemwa",
+    "groups": "Makundi ya magonjwa yanayowezekana",
+    "groupsNote": "Imependekezwa na modeli kwa ajili ya mhudumu wa afya. Si utambuzi.",
+    "optionsTitle": "Chagua jibu",
+    "orDescribe": "Au jibu kwa maneno yako",
+    "whoOpt": {
+      "self": "Mimi",
+      "child_u5": "Mtoto wangu (chini ya miaka 5)",
+      "child_5plus": "Mtoto wangu (miaka 5 au zaidi)",
+      "other_adult": "Mtu mzima mwingine"
+    },
+    "name": "Jina la mgonjwa",
+    "namePlaceholder": "Andika jina (si lazima)",
+    "sex": "Jinsia",
+    "sexOpt": { "female": "Mwanamke", "male": "Mwanamume" },
+    "pregnantQ": "Je, mgonjwa ni mjamzito?",
+    "pregnantOpt": { "yes": "Ndiyo", "no": "Hapana", "unsure": "Sina uhakika" },
+    "dur": {
+      "d1": "Siku 1",
+      "d2": "Siku 2",
+      "d3": "Siku 3",
+      "d7": "Wiki 1",
+      "other": "Nyingine",
+      "otherDays": "Idadi ya siku"
+    },
+    "noneOfThese": "Hakuna kati ya haya",
+    "bodyTitle": "Au gusa sehemu yenye tatizo",
+    "bodyOptions": "Matatizo ya kawaida: {{part}}. Chagua yote yanayohusika",
+    "bodyRemove": "Ondoa {{part}}",
+    "affectedArea": "Sehemu yenye tatizo",
+    "part": {
+      "head": "Kichwa",
+      "throat": "Koo",
+      "chest": "Kifua",
+      "abdomen": "Tumbo",
+      "limbs": "Mikono na miguu",
+      "skin": "Ngozi au mwili mzima"
+    },
     "group": {
       "child_u5": "Mtoto chini ya miaka 5",
+      "child_5plus": "Mtoto wa miaka 5 au zaidi",
       "pregnant": "Mama mjamzito",
       "adult": "Mtu mzima"
     },
@@ -139,7 +172,10 @@
       "headache": "Maumivu ya kichwa",
       "abdominal_pain": "Maumivu ya tumbo",
       "rash": "Upele",
-      "weakness": "Udhaifu"
+      "weakness": "Udhaifu",
+      "sore_throat": "Maumivu ya koo",
+      "chest_pain": "Maumivu ya kifua",
+      "limb_pain": "Maumivu ya viungo"
     },
     "ds": {
       "unable_to_drink": "Hawezi kunywa",
