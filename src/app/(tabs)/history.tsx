@@ -44,7 +44,8 @@ export default function History() {
   return (
     <View style={{ flex: 1, backgroundColor: theme.background }}>
       <ScrollView contentContainerStyle={styles.content}>
-        {pending > 0 && (
+        {/* Upload status is for staff. A patient only needs the code; the upload happens on its own. */}
+        {role === 'clinic' && pending > 0 && (
           <>
             <Text style={{ color: theme.warning, fontWeight: '700' }}>⏳ {t('history.pending', { count: pending })}</Text>
             <Button

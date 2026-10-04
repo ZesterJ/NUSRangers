@@ -116,7 +116,7 @@
     "handoff": "Get my clinic code",
     "qrTitle": "Show this code at the clinic",
     "qrHint": "The clinic scans this code to get your answers, so you do not have to repeat them.",
-    "saved": "Saved on this phone. It will be sent when there is signal.",
+    "saved": "Saved on this phone.",
     "newIntake": "Start a new visit note",
     "transcript": "Patient's answers",
     "services": "Services needed",

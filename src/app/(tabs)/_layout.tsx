@@ -55,7 +55,7 @@ export default function TabsLayout() {
         options={{
           title: t('tabs.records'),
           tabBarIcon: icon('🗂️'),
-          tabBarBadge: pending || undefined,
+          tabBarBadge: (role === 'clinic' && pending) || undefined,
           ...(role ? {} : { href: null }),
         }}
       />
