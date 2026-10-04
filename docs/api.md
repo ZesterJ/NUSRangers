@@ -136,3 +136,51 @@ Dockerfile needs no change for a runtime mount; it only copies application code.
 Do not commit large artifacts or training data. Supply the real trained pipeline,
 version, feature contract, runtime dependencies, and evaluation fixtures once the
 hackathon task is known.
+
+---
+
+# Health intake endpoints (speech → structured record)
+
+The app's Intake tab calls these. While they don't exist (or the phone is offline), the app falls back to
+typing / demo answers and to the on-phone rule-based extractor (`src/intake/extractRules.ts`).
+Types: `src/intake/types.ts`. Run `npm run check:intake` to see the offline pipeline on scripted patients.
+
+## `POST /transcribe` (speech-to-text, Jia Wei)
+`multipart/form-data` with:
+- `audio`: one recorded answer, `audio/m4a` (Expo `RecordingPresets.LOW_QUALITY`, mono, typically 5–20 s)
+- `locale`: `sw` or `en`
+
+Response: `{ "text": "Ana homa kali na anakohoa" }`. Return `{ "text": "" }` or a non-200 when unsure; the app then asks the user to type.
+
+## `POST /extract` (text → JSON, jw's parser)
+Request:
+```json
+{
+  "locale": "sw",
+  "answers": {
+    "who": "Mtoto wangu wa miaka miwili",
+    "complaint": "Ana homa kali na anakohoa",
+    "duration": "Siku tatu",
+    "danger": "Hawezi kunywa"
+  }
+}
+```
+Response (`Extraction`). Only use the listed codes, and mark guesses `"low"`:
+```json
+{
+  "patientGroup": { "value": "child_u5", "confidence": "high", "evidence": "Mtoto wangu" },
+  "symptoms": { "value": ["fever", "cough"], "confidence": "high" },
+  "durationDays": { "value": 3, "confidence": "high" },
+  "dangerSigns": { "value": ["unable_to_drink"], "confidence": "high" },
+  "unmapped": [],
+  "source": "model"
+}
+```
+- `patientGroup`: `child_u5 | pregnant | adult | null`
+- `symptoms`: `fever, cough, difficulty_breathing, diarrhoea, vomiting, headache, abdominal_pain, rash, weakness`
+- `dangerSigns`: `unable_to_drink, vomits_everything, convulsions, lethargic, chest_indrawing, vaginal_bleeding, severe_headache_blurred_vision, reduced_fetal_movement, blood_in_stool`
+- `dangerSigns` with an empty list must be `"low"` unless the patient clearly said there were none. The app treats low-confidence "no danger signs" as **unsure → ask a health worker**.
+- Anything you can't map goes in `unmapped` (shown to the clinician, never used for triage).
+
+## `POST /records` (store-and-forward)
+Body: the full `IntakeRecord` JSON. Response `{ "ok": true }`. Sent from the outbox when signal returns. Map it to DHIS2 on the server.

@@ -18,7 +18,7 @@ export const healthPack: DomainPack = {
     { code: 'en', label: 'English' },
     { code: 'sw', label: 'Kiswahili' },
   ],
-  defaultLocale: 'en',
+  defaultLocale: 'sw',
   systemPrompt:
     'You are CHW Companion, supporting community health workers in low-resource settings. ' +
     'You NEVER diagnose or prescribe. You help recognise danger signs, decide urgency of referral, and give follow-up reminders, ' +
@@ -82,10 +82,18 @@ export const healthPack: DomainPack = {
       body: { en: 'About 6 sachets left. Request a restock.', sw: 'Pakiti 6 zimebaki. Omba zaidi.' },
     },
     {
-      id: 'check',
+      id: 'intake',
       kind: 'action',
-      title: { en: 'Start a household visit check', sw: 'Anza ukaguzi wa ziara' },
-      action: { type: 'capture' },
+      title: { en: 'Start a patient intake', sw: 'Anza mahojiano ya mgonjwa' },
+      body: { en: 'Guided questions in Swahili, by voice or text. Works offline.', sw: 'Maswali kwa Kiswahili, kwa sauti au maandishi. Inafanya kazi bila mtandao.' },
+      action: { type: 'intake' },
+    },
+    {
+      id: 'scan',
+      kind: 'action',
+      title: { en: 'Clinic: receive a patient', sw: 'Kliniki: pokea mgonjwa' },
+      body: { en: 'Scan the handoff code instead of re-taking the history.', sw: 'Skani msimbo badala ya kuuliza historia tena.' },
+      action: { type: 'scan' },
     },
   ],
   captureForm: {

@@ -62,5 +62,11 @@ def test_sms_webhook_returns_twiml():
 def test_parse_sms_prefix_and_default():
     assert parse_sms("AGRI: when to plant?") == ("agri", "when to plant?")
     assert parse_sms("tourism:price") == ("tourism", "price")
-    assert parse_sms("no prefix here") == ("agri", "no prefix here")
-    assert parse_sms("Note: unknown prefix") == ("agri", "Note: unknown prefix")
+    assert parse_sms("no prefix here") == ("health", "no prefix here")
+    assert parse_sms("Note: unknown prefix") == ("health", "Note: unknown prefix")
+
+
+def test_records_store_and_forward():
+    r = client.post("/records", json={"id": "abc12345", "triage": {"level": "refer_now"}})
+    assert r.status_code == 200 and r.json() == {"ok": True}
+    assert client.post("/records", json={"triage": {}}).status_code == 422

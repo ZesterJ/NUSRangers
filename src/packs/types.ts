@@ -19,6 +19,8 @@ export type KnowledgeItem = {
 export type HomeCardAction =
   | { type: 'chat'; prompt: Localized }
   | { type: 'capture' }
+  | { type: 'intake' }
+  | { type: 'scan' }
   | { type: 'url'; url: string };
 
 export type HomeCard = {

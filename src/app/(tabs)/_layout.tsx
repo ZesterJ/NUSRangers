@@ -30,12 +30,15 @@ export default function TabsLayout() {
         headerTitle: `${pack.emoji} ${pack.appName}`,
       }}>
       <Tabs.Screen name="index" options={{ title: t('tabs.home'), tabBarIcon: icon('🏠') }} />
-      <Tabs.Screen name="chat" options={{ title: t('tabs.chat'), tabBarIcon: icon('💬') }} />
-      <Tabs.Screen name="capture" options={{ title: t('tabs.capture'), tabBarIcon: icon('📝') }} />
+      <Tabs.Screen name="intake" options={{ title: t('tabs.intake'), tabBarIcon: icon('🎙') }} />
+      <Tabs.Screen name="scan" options={{ title: t('tabs.scan'), tabBarIcon: icon('▦') }} />
       <Tabs.Screen
         name="history"
-        options={{ title: t('tabs.history'), tabBarIcon: icon('🗂️'), tabBarBadge: pending || undefined }}
+        options={{ title: t('tabs.records'), tabBarIcon: icon('🗂️'), tabBarBadge: pending || undefined }}
       />
+      {/* Kept from the generic template, hidden for the health intake flow. */}
+      <Tabs.Screen name="chat" options={{ href: null, title: t('tabs.chat') }} />
+      <Tabs.Screen name="capture" options={{ href: null, title: t('tabs.capture') }} />
       <Tabs.Screen name="settings" options={{ title: t('tabs.settings'), tabBarIcon: icon('⚙️') }} />
     </Tabs>
   );

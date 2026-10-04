@@ -41,6 +41,22 @@ Everything in the app runs in **Expo Go** except the optional on-device LLM (see
 
 Pro tip: record this as a backup video before judging.
 
+## Health intake demo (Noor's journey, about 2 minutes)
+
+Uses the default `health` pack. Nobody needs to speak Swahili: tap the **demo answers** under each question.
+
+1. **Settings → Simulate no signal** on. Everything below works offline.
+2. **Intake tab:** 4 guided questions (🔊 reads each one aloud). Tap the demo answers: child, fever + cough, 3 days, "cannot drink".
+3. **Check the answers:** the form is pre-filled from what was said. Point out the ⚠ "please check" items and the 📱 "read on this phone" label.
+4. **Confirm → result:** 🚨 "Go to a clinic now", the reasons, and "a health worker makes the final decision".
+5. **Suggested clinics:** ranked by what she needs, travel time and staffing. Show the "call ahead" warning on clinics with stale data.
+6. **Create clinic handoff → QR.** On a second phone, open the **Clinic** tab, scan it, see ✓ Verified, and tap Mark as received.
+7. **Records tab:** "1 waiting to sync". Turn the signal back on: it syncs.
+8. Run it once more with vague answers (e.g. "sijui") to show **"Not sure. Ask a health worker"**: the brief's pass/fail fail-safe.
+
+Voice (🎙) needs the backend `/transcribe` endpoint and a connection; offline, the app says so and falls back to typing.
+`npm run check:intake` runs scripted patients through extraction → triage → clinic ranking.
+
 ## Where things live
 
 | What | Where |
@@ -52,6 +68,7 @@ Pro tip: record this as a backup video before judging.
 | Backend (FastAPI + Claude) | `backend/`, deploy guide in `docs/BACKEND_DEPLOY.md` |
 | Offline storage and sync queue | `src/db/index.ts`, `src/ai/sync.ts` |
 | Screens | `src/app/(tabs)/*.tsx` |
+| Health intake: questions, extraction rules, triage, clinic ranking, QR | `src/intake/*` |
 | UI strings | `src/i18n/locales/*.json` |
 
 ## Optional: on-device LLM (stretch goal)
