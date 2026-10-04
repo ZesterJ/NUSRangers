@@ -46,6 +46,8 @@ export default function Settings() {
       </Text>
 
       <SectionTitle>{t('settings.developer')}</SectionTitle>
+      {Object.keys(PACKS).length > 1 && (
+        <>
       <Text style={{ color: theme.text, fontWeight: '600' }}>{t('settings.pack')}</Text>
       <View style={styles.chips}>
         {Object.values(PACKS).map((p) => (
@@ -61,6 +63,8 @@ export default function Settings() {
           />
         ))}
       </View>
+        </>
+      )}
       <Row label={t('settings.useMock')} value={s.useMock} onChange={(v) => s.set({ useMock: v })} />
       <Text style={{ color: theme.text, fontWeight: '600' }}>{t('settings.apiUrl')}</Text>
       <TextInput
