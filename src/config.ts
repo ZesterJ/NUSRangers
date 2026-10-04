@@ -5,4 +5,6 @@ export const config = {
   defaultPack: process.env.EXPO_PUBLIC_PACK ?? 'health',
   // Longer than the backend's own model timeout (LLM_TIMEOUT_SECONDS=25) so its 503 reaches us first.
   requestTimeoutMs: 30000,
+  /** Intake waits this long for the backend parser before using the on-phone rules, so a dead backend never stalls the flow. */
+  extractTimeoutMs: 8000,
 };

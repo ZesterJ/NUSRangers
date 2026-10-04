@@ -49,7 +49,7 @@ Uses the default `health` pack. Nobody needs to speak Swahili: tap the **demo an
 2. **Intake tab:** 4 guided questions (🔊 reads each one aloud). Tap the demo answers: child, fever + cough, 3 days, "cannot drink".
 3. **Check the answers:** the form is pre-filled from what was said. Point out the ⚠ "please check" items and the 📱 "read on this phone" label.
 4. **Confirm → result:** 🚨 "Go to a clinic now", the reasons, and "a health worker makes the final decision".
-5. **Suggested clinics:** ranked by what she needs, travel time and staffing. Show the "call ahead" warning on clinics with stale data.
+5. **Recommended clinics:** real Kilifi facilities whose services are documented, nearest first (straight-line distance). Computed on the phone, so it works with no signal. Opening hours and staffing are not known.
 6. **Create clinic handoff → QR.** On a second phone, open the **Clinic** tab, scan it, see ✓ Verified, and tap Mark as received.
 7. **Records tab:** "1 waiting to sync". Turn the signal back on: it syncs.
 8. Run it once more with vague answers (e.g. "sijui") to show **"Not sure. Ask a health worker"**: the brief's pass/fail fail-safe.

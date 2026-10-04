@@ -1,0 +1,599 @@
+{
+  "reference": {
+    "name": "KILIFI DISTRICT HOSPITAL",
+    "coordinates": {
+      "latitude": -3.6320500004444045,
+      "longitude": 39.85721999968128
+    },
+    "purpose": "source-coordinate demo anchor, not a patient"
+  },
+  "generalOutpatient": {
+    "status": "candidates_found",
+    "candidates": [
+      {
+        "facilityId": "arcgis:f5876f6990e141198c92847f2c780afe:0:c7c3c0ed-1708-4201-a8aa-cfd0a125111a",
+        "facilityName": "KILIFI DISTRICT HOSPITAL",
+        "rank": 1,
+        "matchedServices": [
+          "generalOutpatient"
+        ],
+        "matchedOptionalServices": [],
+        "distanceKm": 0.0,
+        "distanceType": "straight_line",
+        "estimatedTravelMinutes": null,
+        "availabilityStatus": "unknown",
+        "dataSource": "verified_capabilities.csv; see candidate capabilityEvidence for public URLs",
+        "dataYear": null,
+        "capabilityObservedAt": null,
+        "capabilityVerifiedAt": null,
+        "reasons": [
+          "Required generalOutpatient capability explicitly documented in source",
+          "0 optional capabilities explicitly documented",
+          "Ordered by straight-line distance within optional-match tier",
+          "Current opening, staff, equipment and referral availability are unknown"
+        ],
+        "capabilityEvidence": [
+          {
+            "facilityId": "arcgis:f5876f6990e141198c92847f2c780afe:0:c7c3c0ed-1708-4201-a8aa-cfd0a125111a",
+            "facilityName": "KILIFI DISTRICT HOSPITAL",
+            "capability": "generalOutpatient",
+            "value": "true",
+            "source": "https://kmhfr.health.go.ke/public/facilities/09d5776f-81a0-4bf0-bbbb-77d607803976",
+            "sourceDate": "",
+            "evidence": "Source explicitly documents outpatient care.",
+            "verificationStatus": "source_verified_indexed",
+            "sourceId": "kilifi_registry",
+            "accessDate": "2026-10-04",
+            "observationPeriod": "unknown; search index crawl approximately two months before access",
+            "matchStatus": "documented_coordinate_name_match"
+          }
+        ]
+      },
+      {
+        "facilityId": "arcgis:f5876f6990e141198c92847f2c780afe:0:22225dfe-b45e-439c-b7d2-c2b1d3eda5ee",
+        "facilityName": "TAKAUNGU DISP",
+        "rank": 2,
+        "matchedServices": [
+          "generalOutpatient"
+        ],
+        "matchedOptionalServices": [],
+        "distanceKm": 5.645,
+        "distanceType": "straight_line",
+        "estimatedTravelMinutes": null,
+        "availabilityStatus": "unknown",
+        "dataSource": "verified_capabilities.csv; see candidate capabilityEvidence for public URLs",
+        "dataYear": null,
+        "capabilityObservedAt": null,
+        "capabilityVerifiedAt": null,
+        "reasons": [
+          "Required generalOutpatient capability explicitly documented in source",
+          "0 optional capabilities explicitly documented",
+          "Ordered by straight-line distance within optional-match tier",
+          "Current opening, staff, equipment and referral availability are unknown"
+        ],
+        "capabilityEvidence": [
+          {
+            "facilityId": "arcgis:f5876f6990e141198c92847f2c780afe:0:22225dfe-b45e-439c-b7d2-c2b1d3eda5ee",
+            "facilityName": "TAKAUNGU DISP",
+            "capability": "generalOutpatient",
+            "value": "true",
+            "source": "https://kmhfr.health.go.ke/public/facilities/505bfafc-1eb3-4daf-8a68-30418b76b9ba",
+            "sourceDate": "",
+            "evidence": "Source explicitly documents outpatient care.",
+            "verificationStatus": "source_verified_indexed",
+            "sourceId": "takaungu_registry",
+            "accessDate": "2026-10-04",
+            "observationPeriod": "unknown; search index crawl approximately two months before access",
+            "matchStatus": "documented_coordinate_name_match"
+          }
+        ]
+      },
+      {
+        "facilityId": "arcgis:f5876f6990e141198c92847f2c780afe:0:432f282e-b63a-4f56-8ea9-424a20344bbb",
+        "facilityName": "JARIBUNI DISP",
+        "rank": 3,
+        "matchedServices": [
+          "generalOutpatient"
+        ],
+        "matchedOptionalServices": [],
+        "distanceKm": 12.705,
+        "distanceType": "straight_line",
+        "estimatedTravelMinutes": null,
+        "availabilityStatus": "unknown",
+        "dataSource": "verified_capabilities.csv; see candidate capabilityEvidence for public URLs",
+        "dataYear": null,
+        "capabilityObservedAt": null,
+        "capabilityVerifiedAt": null,
+        "reasons": [
+          "Required generalOutpatient capability explicitly documented in source",
+          "0 optional capabilities explicitly documented",
+          "Ordered by straight-line distance within optional-match tier",
+          "Current opening, staff, equipment and referral availability are unknown"
+        ],
+        "capabilityEvidence": [
+          {
+            "facilityId": "arcgis:f5876f6990e141198c92847f2c780afe:0:432f282e-b63a-4f56-8ea9-424a20344bbb",
+            "facilityName": "JARIBUNI DISP",
+            "capability": "generalOutpatient",
+            "value": "true",
+            "source": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6081997/",
+            "sourceDate": "2018",
+            "evidence": "Historical outpatient site identified in Methods; routine patient care documented.",
+            "verificationStatus": "source_verified_historical",
+            "sourceId": "outpatient_study",
+            "accessDate": "2026-10-04",
+            "observationPeriod": "2016",
+            "matchStatus": "documented_historical_match"
+          }
+        ]
+      }
+    ],
+    "requiresVerification": true,
+    "rankingMethod": "optional_matches_then_straight_line_distance_then_id",
+    "availabilityStatus": "unknown",
+    "reasonCodes": [],
+    "excluded": {
+      "incompatible": 0,
+      "unknownCapability": 2
+    },
+    "evidenceMode": "documented_source_snapshot_demo_including_historical_observations",
+    "limitations": [
+      "Not current capability verification or clinical suitability",
+      "No live opening, beds, staffing, waiting time or referral acceptance data",
+      "Matches and service mappings require human confirmation"
+    ]
+  },
+  "childHealth": {
+    "status": "candidates_found",
+    "candidates": [
+      {
+        "facilityId": "arcgis:f5876f6990e141198c92847f2c780afe:0:c7c3c0ed-1708-4201-a8aa-cfd0a125111a",
+        "facilityName": "KILIFI DISTRICT HOSPITAL",
+        "rank": 1,
+        "matchedServices": [
+          "childHealth"
+        ],
+        "matchedOptionalServices": [],
+        "distanceKm": 0.0,
+        "distanceType": "straight_line",
+        "estimatedTravelMinutes": null,
+        "availabilityStatus": "unknown",
+        "dataSource": "verified_capabilities.csv; see candidate capabilityEvidence for public URLs",
+        "dataYear": null,
+        "capabilityObservedAt": null,
+        "capabilityVerifiedAt": null,
+        "reasons": [
+          "Required childHealth capability explicitly documented in source",
+          "0 optional capabilities explicitly documented",
+          "Ordered by straight-line distance within optional-match tier",
+          "Current opening, staff, equipment and referral availability are unknown"
+        ],
+        "capabilityEvidence": [
+          {
+            "facilityId": "arcgis:f5876f6990e141198c92847f2c780afe:0:c7c3c0ed-1708-4201-a8aa-cfd0a125111a",
+            "facilityName": "KILIFI DISTRICT HOSPITAL",
+            "capability": "childHealth",
+            "value": "true",
+            "source": "https://kmhfr.health.go.ke/public/facilities/09d5776f-81a0-4bf0-bbbb-77d607803976",
+            "sourceDate": "",
+            "evidence": "Registry lists a paediatric outpatient clinic.",
+            "verificationStatus": "source_verified_indexed",
+            "sourceId": "kilifi_registry",
+            "accessDate": "2026-10-04",
+            "observationPeriod": "unknown; search index crawl approximately two months before access",
+            "matchStatus": "documented_coordinate_name_match"
+          }
+        ]
+      },
+      {
+        "facilityId": "arcgis:f5876f6990e141198c92847f2c780afe:0:d58ed94d-b717-4fb6-b4b0-2d5ea7c8e271",
+        "facilityName": "NGERENYA DISP",
+        "rank": 2,
+        "matchedServices": [
+          "childHealth"
+        ],
+        "matchedOptionalServices": [],
+        "distanceKm": 13.191,
+        "distanceType": "straight_line",
+        "estimatedTravelMinutes": null,
+        "availabilityStatus": "unknown",
+        "dataSource": "verified_capabilities.csv; see candidate capabilityEvidence for public URLs",
+        "dataYear": null,
+        "capabilityObservedAt": null,
+        "capabilityVerifiedAt": null,
+        "reasons": [
+          "Required childHealth capability explicitly documented in source",
+          "0 optional capabilities explicitly documented",
+          "Ordered by straight-line distance within optional-match tier",
+          "Current opening, staff, equipment and referral availability are unknown"
+        ],
+        "capabilityEvidence": [
+          {
+            "facilityId": "arcgis:f5876f6990e141198c92847f2c780afe:0:d58ed94d-b717-4fb6-b4b0-2d5ea7c8e271",
+            "facilityName": "NGERENYA DISP",
+            "capability": "childHealth",
+            "value": "true",
+            "source": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7889702/",
+            "sourceDate": "2021",
+            "evidence": "Historical assessment of febrile children below sixteen documented at this dispensary.",
+            "verificationStatus": "source_verified_historical",
+            "sourceId": "child_study",
+            "accessDate": "2026-10-04",
+            "observationPeriod": "2014-03/2018-10",
+            "matchStatus": "documented_historical_match"
+          }
+        ]
+      },
+      {
+        "facilityId": "arcgis:f5876f6990e141198c92847f2c780afe:0:333932dd-3e1d-4772-92f7-e98d82e32a47",
+        "facilityName": "PINGILIKANI DISP",
+        "rank": 3,
+        "matchedServices": [
+          "childHealth"
+        ],
+        "matchedOptionalServices": [],
+        "distanceKm": 18.36,
+        "distanceType": "straight_line",
+        "estimatedTravelMinutes": null,
+        "availabilityStatus": "unknown",
+        "dataSource": "verified_capabilities.csv; see candidate capabilityEvidence for public URLs",
+        "dataYear": null,
+        "capabilityObservedAt": null,
+        "capabilityVerifiedAt": null,
+        "reasons": [
+          "Required childHealth capability explicitly documented in source",
+          "0 optional capabilities explicitly documented",
+          "Ordered by straight-line distance within optional-match tier",
+          "Current opening, staff, equipment and referral availability are unknown"
+        ],
+        "capabilityEvidence": [
+          {
+            "facilityId": "arcgis:f5876f6990e141198c92847f2c780afe:0:333932dd-3e1d-4772-92f7-e98d82e32a47",
+            "facilityName": "PINGILIKANI DISP",
+            "capability": "childHealth",
+            "value": "true",
+            "source": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7889702/",
+            "sourceDate": "2021",
+            "evidence": "Historical assessment of febrile children below sixteen documented at this dispensary.",
+            "verificationStatus": "source_verified_historical",
+            "sourceId": "child_study",
+            "accessDate": "2026-10-04",
+            "observationPeriod": "2014-03/2018-10",
+            "matchStatus": "documented_historical_match"
+          }
+        ]
+      }
+    ],
+    "requiresVerification": true,
+    "rankingMethod": "optional_matches_then_straight_line_distance_then_id",
+    "availabilityStatus": "unknown",
+    "reasonCodes": [],
+    "excluded": {
+      "incompatible": 0,
+      "unknownCapability": 9
+    },
+    "evidenceMode": "documented_source_snapshot_demo_including_historical_observations",
+    "limitations": [
+      "Not current capability verification or clinical suitability",
+      "No live opening, beds, staffing, waiting time or referral acceptance data",
+      "Matches and service mappings require human confirmation"
+    ]
+  },
+  "maternal": {
+    "status": "candidates_found",
+    "candidates": [
+      {
+        "facilityId": "arcgis:f5876f6990e141198c92847f2c780afe:0:c7c3c0ed-1708-4201-a8aa-cfd0a125111a",
+        "facilityName": "KILIFI DISTRICT HOSPITAL",
+        "rank": 1,
+        "matchedServices": [
+          "maternal"
+        ],
+        "matchedOptionalServices": [],
+        "distanceKm": 0.0,
+        "distanceType": "straight_line",
+        "estimatedTravelMinutes": null,
+        "availabilityStatus": "unknown",
+        "dataSource": "verified_capabilities.csv; see candidate capabilityEvidence for public URLs",
+        "dataYear": null,
+        "capabilityObservedAt": null,
+        "capabilityVerifiedAt": null,
+        "reasons": [
+          "Required maternal capability explicitly documented in source",
+          "0 optional capabilities explicitly documented",
+          "Ordered by straight-line distance within optional-match tier",
+          "Current opening, staff, equipment and referral availability are unknown"
+        ],
+        "capabilityEvidence": [
+          {
+            "facilityId": "arcgis:f5876f6990e141198c92847f2c780afe:0:c7c3c0ed-1708-4201-a8aa-cfd0a125111a",
+            "facilityName": "KILIFI DISTRICT HOSPITAL",
+            "capability": "maternal",
+            "value": "true",
+            "source": "https://kmhfr.health.go.ke/public/facilities/09d5776f-81a0-4bf0-bbbb-77d607803976",
+            "sourceDate": "",
+            "evidence": "Source explicitly documents antenatal or maternity services.",
+            "verificationStatus": "source_verified_indexed",
+            "sourceId": "kilifi_registry",
+            "accessDate": "2026-10-04",
+            "observationPeriod": "unknown; search index crawl approximately two months before access",
+            "matchStatus": "documented_coordinate_name_match"
+          }
+        ]
+      },
+      {
+        "facilityId": "arcgis:f5876f6990e141198c92847f2c780afe:0:22225dfe-b45e-439c-b7d2-c2b1d3eda5ee",
+        "facilityName": "TAKAUNGU DISP",
+        "rank": 2,
+        "matchedServices": [
+          "maternal"
+        ],
+        "matchedOptionalServices": [],
+        "distanceKm": 5.645,
+        "distanceType": "straight_line",
+        "estimatedTravelMinutes": null,
+        "availabilityStatus": "unknown",
+        "dataSource": "verified_capabilities.csv; see candidate capabilityEvidence for public URLs",
+        "dataYear": null,
+        "capabilityObservedAt": null,
+        "capabilityVerifiedAt": null,
+        "reasons": [
+          "Required maternal capability explicitly documented in source",
+          "0 optional capabilities explicitly documented",
+          "Ordered by straight-line distance within optional-match tier",
+          "Current opening, staff, equipment and referral availability are unknown"
+        ],
+        "capabilityEvidence": [
+          {
+            "facilityId": "arcgis:f5876f6990e141198c92847f2c780afe:0:22225dfe-b45e-439c-b7d2-c2b1d3eda5ee",
+            "facilityName": "TAKAUNGU DISP",
+            "capability": "maternal",
+            "value": "true",
+            "source": "https://kmhfr.health.go.ke/public/facilities/505bfafc-1eb3-4daf-8a68-30418b76b9ba",
+            "sourceDate": "",
+            "evidence": "Source explicitly documents antenatal or maternity services.",
+            "verificationStatus": "source_verified_indexed",
+            "sourceId": "takaungu_registry",
+            "accessDate": "2026-10-04",
+            "observationPeriod": "unknown; search index crawl approximately two months before access",
+            "matchStatus": "documented_coordinate_name_match"
+          }
+        ]
+      },
+      {
+        "facilityId": "arcgis:f5876f6990e141198c92847f2c780afe:0:333932dd-3e1d-4772-92f7-e98d82e32a47",
+        "facilityName": "PINGILIKANI DISP",
+        "rank": 3,
+        "matchedServices": [
+          "maternal"
+        ],
+        "matchedOptionalServices": [],
+        "distanceKm": 18.36,
+        "distanceType": "straight_line",
+        "estimatedTravelMinutes": null,
+        "availabilityStatus": "unknown",
+        "dataSource": "verified_capabilities.csv; see candidate capabilityEvidence for public URLs",
+        "dataYear": null,
+        "capabilityObservedAt": null,
+        "capabilityVerifiedAt": null,
+        "reasons": [
+          "Required maternal capability explicitly documented in source",
+          "0 optional capabilities explicitly documented",
+          "Ordered by straight-line distance within optional-match tier",
+          "Current opening, staff, equipment and referral availability are unknown"
+        ],
+        "capabilityEvidence": [
+          {
+            "facilityId": "arcgis:f5876f6990e141198c92847f2c780afe:0:333932dd-3e1d-4772-92f7-e98d82e32a47",
+            "facilityName": "PINGILIKANI DISP",
+            "capability": "maternal",
+            "value": "true",
+            "source": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7059845/",
+            "sourceDate": "2020",
+            "evidence": "Antenatal attendances recorded during the 2014 study.",
+            "verificationStatus": "source_verified_historical",
+            "sourceId": "anc_study",
+            "accessDate": "2026-10-04",
+            "observationPeriod": "2014-08/2014-10",
+            "matchStatus": "documented_historical_match"
+          }
+        ]
+      }
+    ],
+    "requiresVerification": true,
+    "rankingMethod": "optional_matches_then_straight_line_distance_then_id",
+    "availabilityStatus": "unknown",
+    "reasonCodes": [],
+    "excluded": {
+      "incompatible": 0,
+      "unknownCapability": 6
+    },
+    "evidenceMode": "documented_source_snapshot_demo_including_historical_observations",
+    "limitations": [
+      "Not current capability verification or clinical suitability",
+      "No live opening, beds, staffing, waiting time or referral acceptance data",
+      "Matches and service mappings require human confirmation"
+    ]
+  },
+  "noConfirmedCompatibleFacility": {
+    "status": "insufficient_data",
+    "candidates": [],
+    "requiresVerification": true,
+    "rankingMethod": null,
+    "availabilityStatus": "unknown",
+    "reasonCodes": [
+      "mandatory_capabilities_not_confirmed"
+    ],
+    "excluded": {
+      "incompatible": 0,
+      "unknownCapability": 12
+    },
+    "evidenceMode": "documented_source_snapshot_demo_including_historical_observations",
+    "limitations": [
+      "Not current capability verification or clinical suitability",
+      "No live opening, beds, staffing, waiting time or referral acceptance data",
+      "Matches and service mappings require human confirmation"
+    ]
+  },
+  "unknownCapabilityExclusion": {
+    "status": "candidates_found",
+    "candidates": [
+      {
+        "facilityId": "arcgis:f5876f6990e141198c92847f2c780afe:0:c7c3c0ed-1708-4201-a8aa-cfd0a125111a",
+        "facilityName": "KILIFI DISTRICT HOSPITAL",
+        "rank": 1,
+        "matchedServices": [
+          "childHealth",
+          "generalOutpatient",
+          "maternal"
+        ],
+        "matchedOptionalServices": [],
+        "distanceKm": 0.0,
+        "distanceType": "straight_line",
+        "estimatedTravelMinutes": null,
+        "availabilityStatus": "unknown",
+        "dataSource": "verified_capabilities.csv; see candidate capabilityEvidence for public URLs",
+        "dataYear": null,
+        "capabilityObservedAt": null,
+        "capabilityVerifiedAt": null,
+        "reasons": [
+          "Required childHealth capability explicitly documented in source",
+          "Required generalOutpatient capability explicitly documented in source",
+          "Required maternal capability explicitly documented in source",
+          "0 optional capabilities explicitly documented",
+          "Ordered by straight-line distance within optional-match tier",
+          "Current opening, staff, equipment and referral availability are unknown"
+        ],
+        "capabilityEvidence": [
+          {
+            "facilityId": "arcgis:f5876f6990e141198c92847f2c780afe:0:c7c3c0ed-1708-4201-a8aa-cfd0a125111a",
+            "facilityName": "KILIFI DISTRICT HOSPITAL",
+            "capability": "generalOutpatient",
+            "value": "true",
+            "source": "https://kmhfr.health.go.ke/public/facilities/09d5776f-81a0-4bf0-bbbb-77d607803976",
+            "sourceDate": "",
+            "evidence": "Source explicitly documents outpatient care.",
+            "verificationStatus": "source_verified_indexed",
+            "sourceId": "kilifi_registry",
+            "accessDate": "2026-10-04",
+            "observationPeriod": "unknown; search index crawl approximately two months before access",
+            "matchStatus": "documented_coordinate_name_match"
+          },
+          {
+            "facilityId": "arcgis:f5876f6990e141198c92847f2c780afe:0:c7c3c0ed-1708-4201-a8aa-cfd0a125111a",
+            "facilityName": "KILIFI DISTRICT HOSPITAL",
+            "capability": "childHealth",
+            "value": "true",
+            "source": "https://kmhfr.health.go.ke/public/facilities/09d5776f-81a0-4bf0-bbbb-77d607803976",
+            "sourceDate": "",
+            "evidence": "Registry lists a paediatric outpatient clinic.",
+            "verificationStatus": "source_verified_indexed",
+            "sourceId": "kilifi_registry",
+            "accessDate": "2026-10-04",
+            "observationPeriod": "unknown; search index crawl approximately two months before access",
+            "matchStatus": "documented_coordinate_name_match"
+          },
+          {
+            "facilityId": "arcgis:f5876f6990e141198c92847f2c780afe:0:c7c3c0ed-1708-4201-a8aa-cfd0a125111a",
+            "facilityName": "KILIFI DISTRICT HOSPITAL",
+            "capability": "maternal",
+            "value": "true",
+            "source": "https://kmhfr.health.go.ke/public/facilities/09d5776f-81a0-4bf0-bbbb-77d607803976",
+            "sourceDate": "",
+            "evidence": "Source explicitly documents antenatal or maternity services.",
+            "verificationStatus": "source_verified_indexed",
+            "sourceId": "kilifi_registry",
+            "accessDate": "2026-10-04",
+            "observationPeriod": "unknown; search index crawl approximately two months before access",
+            "matchStatus": "documented_coordinate_name_match"
+          }
+        ]
+      },
+      {
+        "facilityId": "arcgis:f5876f6990e141198c92847f2c780afe:0:333932dd-3e1d-4772-92f7-e98d82e32a47",
+        "facilityName": "PINGILIKANI DISP",
+        "rank": 2,
+        "matchedServices": [
+          "childHealth",
+          "generalOutpatient",
+          "maternal"
+        ],
+        "matchedOptionalServices": [],
+        "distanceKm": 18.36,
+        "distanceType": "straight_line",
+        "estimatedTravelMinutes": null,
+        "availabilityStatus": "unknown",
+        "dataSource": "verified_capabilities.csv; see candidate capabilityEvidence for public URLs",
+        "dataYear": null,
+        "capabilityObservedAt": null,
+        "capabilityVerifiedAt": null,
+        "reasons": [
+          "Required childHealth capability explicitly documented in source",
+          "Required generalOutpatient capability explicitly documented in source",
+          "Required maternal capability explicitly documented in source",
+          "0 optional capabilities explicitly documented",
+          "Ordered by straight-line distance within optional-match tier",
+          "Current opening, staff, equipment and referral availability are unknown"
+        ],
+        "capabilityEvidence": [
+          {
+            "facilityId": "arcgis:f5876f6990e141198c92847f2c780afe:0:333932dd-3e1d-4772-92f7-e98d82e32a47",
+            "facilityName": "PINGILIKANI DISP",
+            "capability": "generalOutpatient",
+            "value": "true",
+            "source": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6081997/",
+            "sourceDate": "2018",
+            "evidence": "Historical outpatient site identified in Methods; routine patient care documented.",
+            "verificationStatus": "source_verified_historical",
+            "sourceId": "outpatient_study",
+            "accessDate": "2026-10-04",
+            "observationPeriod": "2016",
+            "matchStatus": "documented_historical_match"
+          },
+          {
+            "facilityId": "arcgis:f5876f6990e141198c92847f2c780afe:0:333932dd-3e1d-4772-92f7-e98d82e32a47",
+            "facilityName": "PINGILIKANI DISP",
+            "capability": "childHealth",
+            "value": "true",
+            "source": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7889702/",
+            "sourceDate": "2021",
+            "evidence": "Historical assessment of febrile children below sixteen documented at this dispensary.",
+            "verificationStatus": "source_verified_historical",
+            "sourceId": "child_study",
+            "accessDate": "2026-10-04",
+            "observationPeriod": "2014-03/2018-10",
+            "matchStatus": "documented_historical_match"
+          },
+          {
+            "facilityId": "arcgis:f5876f6990e141198c92847f2c780afe:0:333932dd-3e1d-4772-92f7-e98d82e32a47",
+            "facilityName": "PINGILIKANI DISP",
+            "capability": "maternal",
+            "value": "true",
+            "source": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7059845/",
+            "sourceDate": "2020",
+            "evidence": "Antenatal attendances recorded during the 2014 study.",
+            "verificationStatus": "source_verified_historical",
+            "sourceId": "anc_study",
+            "accessDate": "2026-10-04",
+            "observationPeriod": "2014-08/2014-10",
+            "matchStatus": "documented_historical_match"
+          }
+        ]
+      }
+    ],
+    "requiresVerification": true,
+    "rankingMethod": "optional_matches_then_straight_line_distance_then_id",
+    "availabilityStatus": "unknown",
+    "reasonCodes": [],
+    "excluded": {
+      "incompatible": 0,
+      "unknownCapability": 10
+    },
+    "evidenceMode": "documented_source_snapshot_demo_including_historical_observations",
+    "limitations": [
+      "Not current capability verification or clinical suitability",
+      "No live opening, beds, staffing, waiting time or referral acceptance data",
+      "Matches and service mappings require human confirmation"
+    ]
+  }
+}

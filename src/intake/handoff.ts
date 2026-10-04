@@ -1,6 +1,5 @@
 import * as Crypto from 'expo-crypto';
 
-import { topGroups } from './classification';
 import type { IntakeRecord } from './types';
 
 /**
@@ -21,8 +20,9 @@ type Payload = {
   n: string; // notes
   tl: IntakeRecord['triage']['level'];
   r: string[]; // triage reasons
-  dg?: string[]; // diagnosis groups suggested by the classification model
+  sv?: string[]; // care services proposed by the backend
   f: string | null; // facility id
+  fn?: string; // facility name, for facilities the scanning phone has no list of
   c: string; // checksum
 };
 
@@ -47,8 +47,9 @@ export async function encodeHandoff(rec: IntakeRecord): Promise<string> {
     n: rec.intake.notes.slice(0, 200),
     tl: rec.triage.level,
     r: rec.triage.reasons,
-    ...(topGroups(rec.classification).length ? { dg: topGroups(rec.classification) } : {}),
+    ...(rec.services?.length ? { sv: rec.services } : {}),
     f: rec.facilityId,
+    ...(rec.facilityName ? { fn: rec.facilityName.slice(0, 40) } : {}),
   };
   return PREFIX + JSON.stringify({ ...body, c: await checksum(body) });
 }

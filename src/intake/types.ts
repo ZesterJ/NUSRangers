@@ -48,6 +48,8 @@ export type Extraction = {
   dangerSigns: Field<DangerSign[]>;
   /** Free-text the extractor could not map to a field. Shown to the clinician, never used for triage. */
   unmapped: string[];
+  /** From the model only: symptoms the patient explicitly denied ("no fever"). */
+  negatedSymptoms?: Symptom[];
   source: 'rules' | 'model';
 };
 
@@ -68,37 +70,31 @@ export type Triage = { level: TriageLevel; reasons: string[]; needs: Capability[
 
 export type Capability = 'emergency' | 'maternity' | 'under5' | 'lab' | 'general';
 
-export type Facility = {
-  id: string;
-  name: string;
-  level: 'dispensary' | 'health_centre' | 'sub_county_hospital';
-  capabilities: Capability[];
-  /** Pre-computed travel time from the user's village (minutes, walking or boda). */
-  travelMinutes: number;
-  phone?: string;
-  /** Last synced capacity snapshot. `null` = never synced. */
-  capacity: { staffOnDuty: number; queue: 'short' | 'medium' | 'long'; updatedAt: string } | null;
-  /** Typical probability staff are present (e.g. from Service Delivery Indicators absence rates). */
-  typicalStaffPresence: number;
-};
-
-export type Recommendation = {
-  facility: Facility;
-  score: number;
-  reasons: string[];
-  /** True when capacity data is missing or older than the freshness limit → "call ahead". */
-  stale: boolean;
-};
-
 /**
- * Backend /classify result for a confirmed visit note. Decision support for the health worker:
- * diagnosis groups are suggestions from a model, not a diagnosis.
+ * Proposed care services and Kilifi facility candidates for a confirmed visit note. Computed on the phone
+ * (src/intake/careRouting.ts); the backend /assess endpoint returns the same shape.
+ * Decision support only: not a diagnosis, and facility services come from a historical public-source snapshot.
  */
-export type Classification = {
-  seeDoctor: boolean;
-  diagnosisGroups: { group: string; score?: number }[];
-  modelVersion: string;
+export type CareRouting = {
+  requiredServices: string[];
+  /** "unclear": the care policy abstained (e.g. danger signs); services then follow the patient group only. */
+  assessmentStatus: 'proposed' | 'unclear';
+  routingStatus: string;
+  candidates: {
+    facilityId: string;
+    facilityName: string;
+    rank: number;
+    /** Straight-line distance, not travel time. */
+    distanceKm: number | null;
+    matchedServices: string[];
+  }[];
+  /** "demo_anchor": distances are measured from Kilifi District Hospital, not from the patient. */
+  origin: 'patient' | 'demo_anchor';
+  limitations: string[];
 };
+
+/** A clinic shown on the result screen. */
+export type ClinicOption = { id: string; name: string; reasons: string[] };
 
 export type IntakeRecord = {
   id: string;
@@ -107,7 +103,9 @@ export type IntakeRecord = {
   transcript: string[];
   intake: ConfirmedIntake;
   triage: Triage;
-  classification?: Classification;
+  /** Care services proposed by the care policy. */
+  services?: string[];
   facilityId: string | null;
+  facilityName?: string;
   status: 'handed_off' | 'received';
 };

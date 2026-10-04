@@ -2,7 +2,7 @@ import * as Crypto from 'expo-crypto';
 import * as Speech from 'expo-speech';
 import { useState, type ReactNode } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Linking, Pressable, ScrollView, StyleSheet, Text, TextInput, View } from 'react-native';
+import { Pressable, ScrollView, StyleSheet, Text, TextInput, View } from 'react-native';
 import QRCode from 'react-native-qrcode-svg';
 
 import { flushOutbox, refreshPending } from '@/ai/sync';
@@ -13,23 +13,21 @@ import { DangerOptions, DurationOptions, WhoOptions } from '@/components/Questio
 import { Button, Card, Chip, SectionTitle } from '@/components/ui';
 import { enqueue, saveIntake } from '@/db';
 import { applyBodyPicks, NO_PICKS, type BodyPicks } from '@/intake/bodyParts';
-import { applyClassification, topGroups } from '@/intake/classification';
+import { assessCareOnPhone } from '@/intake/careRouting';
 import { applyChoices, NO_CHOICES, type Choices } from '@/intake/choices';
-import { SAMPLE_FACILITIES } from '@/intake/facilities';
 import { encodeHandoff } from '@/intake/handoff';
 import { QUESTIONS } from '@/intake/questions';
-import { recommend } from '@/intake/recommend';
-import { classify, extract } from '@/intake/services';
+import { extract } from '@/intake/services';
 import { triage } from '@/intake/triage';
 import {
   DANGER_SIGNS,
   SYMPTOMS,
-  type Classification,
+  type CareRouting,
+  type ClinicOption,
   type ConfirmedIntake,
   type Extraction,
   type IntakeRecord,
   type PatientGroup,
-  type Recommendation,
   type Triage,
 } from '@/intake/types';
 import { tr } from '@/packs/types';
@@ -59,7 +57,7 @@ function IntakeFlow({ onRestart }: { onRestart: () => void }) {
   const [choices, setChoices] = useState<Choices>(NO_CHOICES);
   const [extraction, setExtraction] = useState<Extraction | null>(null);
   const [form, setForm] = useState<ConfirmedIntake | null>(null);
-  const [result, setResult] = useState<{ triage: Triage; recs: Recommendation[]; classification: Classification | null } | null>(null);
+  const [result, setResult] = useState<{ triage: Triage; clinics: ClinicOption[]; care: CareRouting } | null>(null);
   const [chosen, setChosen] = useState<string | null>(null);
   const [qr, setQr] = useState<string | null>(null);
 
@@ -96,15 +94,23 @@ function IntakeFlow({ onRestart }: { onRestart: () => void }) {
   };
 
   // ---------- Steps 6–7: triage and clinic suggestions ----------
-  const confirm = async () => {
+  const confirm = () => {
     if (!form) return;
-    setStep('extracting');
-    // The on-phone rules always run; the backend classification model can only raise the urgency.
-    const classification = await classify(form, locale);
-    const tri = applyClassification(triage(form, extraction ?? undefined), classification);
-    const recs = recommend(SAMPLE_FACILITIES, tri);
-    setResult({ triage: tri, recs, classification });
-    setChosen(recs[0]?.facility.id ?? null);
+    // Everything here runs on the phone, so it works with no signal: urgency from the triage rules,
+    // then care services and Kilifi facilities from the care policy.
+    const tri = triage(form, extraction ?? undefined);
+    const care = assessCareOnPhone(form);
+    const clinics: ClinicOption[] = care.candidates.map((c) => ({
+      id: c.facilityId,
+      name: c.facilityName,
+      reasons: [
+        ...(c.distanceKm !== null ? [t('intake.kmAway', { km: c.distanceKm.toFixed(1) })] : []),
+        t('intake.documented', { services: c.matchedServices.map((s) => t(`intake.service.${s}`, { defaultValue: s })).join(', ') }),
+        t('intake.availabilityUnknown'),
+      ],
+    }));
+    setResult({ triage: tri, clinics, care });
+    setChosen(clinics[0]?.id ?? null);
     setStep('result');
   };
 
@@ -118,8 +124,9 @@ function IntakeFlow({ onRestart }: { onRestart: () => void }) {
       transcript: QUESTIONS.map((qq) => answers[qq.id] ?? '').filter(Boolean),
       intake: form,
       triage: result.triage,
-      ...(result.classification ? { classification: result.classification } : {}),
+      ...(result.care.requiredServices.length ? { services: result.care.requiredServices } : {}),
       facilityId: chosen,
+      facilityName: result.clinics.find((c) => c.id === chosen)?.name,
       status: 'handed_off',
     };
     await saveIntake(rec);
@@ -197,37 +204,34 @@ function IntakeFlow({ onRestart }: { onRestart: () => void }) {
         {step === 'result' && form && result && (
           <>
             <Text style={[styles.question, { color: theme.text }]}>{t('intake.resultTitle')}</Text>
-            <IntakeSummary intake={form} triage={result.triage} groups={topGroups(result.classification)} />
+            <IntakeSummary intake={form} triage={result.triage} services={result.care.requiredServices} />
 
             {result.triage.level !== 'home_care' && (
               <>
                 <SectionTitle>
-                  {t('intake.clinics')} · {t('intake.sampleData')}
+                  {t('intake.clinics')} · {t('intake.kilifiData')}
                 </SectionTitle>
-                {result.recs.length === 0 && <Text style={{ color: theme.warning }}>{t('intake.noClinic')}</Text>}
-                {result.recs.map((r) => {
-                  const selected = chosen === r.facility.id;
+                <Text style={{ color: theme.textMuted }}>
+                  {t('intake.routingNote')}
+                  {result.care.origin === 'demo_anchor' ? ` ${t('intake.demoOrigin')}` : ''}
+                </Text>
+                {result.clinics.length === 0 && <Text style={{ color: theme.warning }}>{t('intake.noClinic')}</Text>}
+                {result.clinics.map((c) => {
+                  const selected = chosen === c.id;
                   return (
-                    <Pressable key={r.facility.id} onPress={() => setChosen(r.facility.id)}>
+                    <Pressable key={c.id} onPress={() => setChosen(c.id)}>
                       <Card style={selected ? { borderColor: theme.primary, borderWidth: 2 } : undefined}>
                         <View style={styles.clinicHead}>
-                          <Text style={[styles.clinicName, { color: theme.text }]}>{r.facility.name}</Text>
+                          <Text style={[styles.clinicName, { color: theme.text }]}>{c.name}</Text>
                           <Text style={{ color: theme.primary, fontWeight: '700' }}>
                             {selected ? `✓ ${t('intake.chosen')}` : t('intake.choose')}
                           </Text>
                         </View>
-                        {r.reasons.map((x) => (
+                        {c.reasons.map((x) => (
                           <Text key={x} style={{ color: theme.textMuted }}>
                             • {x}
                           </Text>
                         ))}
-                        {r.stale && r.facility.phone && (
-                          <Pressable onPress={() => Linking.openURL(`tel:${r.facility.phone}`)}>
-                            <Text style={{ color: theme.warning, fontWeight: '700' }}>
-                              📞 {t('intake.callAhead')} {r.facility.phone}
-                            </Text>
-                          </Pressable>
-                        )}
                       </Card>
                     </Pressable>
                   );

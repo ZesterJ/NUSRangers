@@ -11,18 +11,18 @@ from fastapi import Body, Depends, FastAPI, Form, HTTPException, Request
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import Response
 
-from .classify import Classifier, ClassifierUnavailableError, load_classifier
+from .care import CareRouter, CareUnavailableError, load_care_router
 from .extract import ExtractorUnavailableError, IntakeExtractor, load_extractor
 from .llm import LLMError, make_provider
 from .ml import ModelUnavailableError, PredictionError, PredictionInputError, Predictor, load_model_service
 from .prompts import PACK_PROMPTS
 from .schemas import (
     AnalyzeRequest,
+    AssessRequest,
+    AssessResponse,
     Assessment,
     ChatRequest,
     ChatResponse,
-    ClassifyRequest,
-    ClassifyResponse,
     ExtractRequest,
     Extraction,
     PredictRequest,
@@ -49,19 +49,19 @@ async def lifespan(app: FastAPI):
     except ExtractorUnavailableError as exc:
         app.state.extractor_error = str(exc)
         log.warning("Extract endpoint unavailable: %s", exc)
-    app.state.classifier = None
-    app.state.classifier_error = "Classification model is unavailable"
+    app.state.care_router = None
+    app.state.care_error = "Care routing is unavailable"
     try:
-        app.state.classifier = load_classifier(os.getenv("CLASSIFY_MODEL_PATH"))
-    except ClassifierUnavailableError as exc:
-        app.state.classifier_error = str(exc)
-        log.warning("Classify endpoint unavailable: %s", exc)
+        app.state.care_router = load_care_router(os.getenv("CARE_CODE_PATH"), os.getenv("CARE_DATA_PATH"))
+    except CareUnavailableError as exc:
+        app.state.care_error = str(exc)
+        log.warning("Assess endpoint unavailable: %s", exc)
     try:
         yield
     finally:
         app.state.model_service = None
         app.state.extractor = None
-        app.state.classifier = None
+        app.state.care_router = None
 
 
 app = FastAPI(title="NUSRangers backend", version="0.1.0", lifespan=lifespan)
@@ -180,20 +180,20 @@ def extract(req: ExtractRequest, extractor: IntakeExtractor = Depends(get_extrac
         raise HTTPException(status_code=500, detail="Extraction failed") from exc
 
 
-def get_classifier(request: Request) -> Classifier:
-    classifier = getattr(request.app.state, "classifier", None)
-    if classifier is None:
-        # The app keeps its on-phone triage on any non-200.
-        detail = getattr(request.app.state, "classifier_error", "Classification model is unavailable")
+def get_care_router(request: Request) -> CareRouter:
+    router = getattr(request.app.state, "care_router", None)
+    if router is None:
+        # The app keeps its on-phone clinic list on any non-200.
+        detail = getattr(request.app.state, "care_error", "Care routing is unavailable")
         raise HTTPException(status_code=503, detail=detail)
-    return classifier
+    return router
 
 
-@app.post("/classify", response_model=ClassifyResponse, response_model_exclude_none=True)
-def classify(req: ClassifyRequest, classifier: Classifier = Depends(get_classifier)):
+@app.post("/assess", response_model=AssessResponse)
+def assess(req: AssessRequest, router: CareRouter = Depends(get_care_router)):
     # Never log the note: it is patient data.
     try:
-        return classifier.classify(req)
+        return router.assess(req)
     except Exception as exc:
-        log.exception("Classification failed")
-        raise HTTPException(status_code=500, detail="Classification failed") from exc
+        log.exception("Care assessment failed")
+        raise HTTPException(status_code=500, detail="Care assessment failed") from exc

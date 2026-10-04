@@ -70,18 +70,6 @@ export const healthPack: DomainPack = {
   ],
   homeCards: [
     {
-      id: 'followups',
-      kind: 'metric',
-      title: { en: 'Follow-ups due today', sw: 'Ufuatiliaji wa leo' },
-      value: '4',
-    },
-    {
-      id: 'stock',
-      kind: 'alert',
-      title: { en: 'ORS stock low', sw: 'ORS inakaribia kuisha' },
-      body: { en: 'About 6 sachets left. Request a restock.', sw: 'Pakiti 6 zimebaki. Omba zaidi.' },
-    },
-    {
       id: 'intake',
       kind: 'action',
       title: { en: 'Start a patient intake', sw: 'Anza mahojiano ya mgonjwa' },

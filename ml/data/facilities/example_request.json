@@ -1,0 +1,10 @@
+{
+  "requiredServices": [
+    "childHealth"
+  ],
+  "optionalServices": [],
+  "patientContext": {
+    "subjectStatus": "resolved"
+  },
+  "patientCoordinates": null
+}
