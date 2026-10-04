@@ -33,7 +33,7 @@ export const DANGER_SIGNS = [
 ] as const;
 export type DangerSign = (typeof DANGER_SIGNS)[number];
 
-/** `low` = the model or rules guessed; the review screen highlights it for the patient to check. */
+/** `low` = the model or rules were unsure; the review screen highlights it for the patient to check. */
 export type Confidence = 'high' | 'low';
 export type Field<T> = { value: T; confidence: Confidence; evidence?: string };
 

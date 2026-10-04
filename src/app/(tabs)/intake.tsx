@@ -230,7 +230,7 @@ function IntakeFlow({ onRestart }: { onRestart: () => void }) {
   );
 }
 
-/** A review field. `low` confidence = the extractor guessed, so the patient is asked to check it. */
+/** A review field. `low` confidence = the extractor was unsure, so the patient is asked to check it. */
 function Section({ label, low, children }: { label: string; low: boolean; children: ReactNode }) {
   const { theme } = usePackContext();
   const { t } = useTranslation();
@@ -259,6 +259,10 @@ function ReviewForm({
 }) {
   const { theme } = usePackContext();
   const { t } = useTranslation();
+  // Starts as a read-only confirmation of what was understood; the controls appear only on request.
+  const [editing, setEditing] = useState(false);
+
+  const read = (value: string) => <Text style={[styles.readValue, { color: theme.text }]}>{value || '—'}</Text>;
 
   return (
     <>
@@ -269,63 +273,86 @@ function ReviewForm({
       </Text>
 
       <Section label={t('intake.who')} low={extraction.patientGroup.confidence === 'low'}>
-        <View style={styles.chips}>
-          {GROUPS.map((g) => (
-            <Chip
-              key={g}
-              label={t(`intake.group.${g}`)}
-              selected={form.patientGroup === g}
-              onPress={() => setForm({ ...form, patientGroup: g })}
-            />
-          ))}
-        </View>
+        {editing ? (
+          <View style={styles.chips}>
+            {GROUPS.map((g) => (
+              <Chip
+                key={g}
+                label={t(`intake.group.${g}`)}
+                selected={form.patientGroup === g}
+                onPress={() => setForm({ ...form, patientGroup: g })}
+              />
+            ))}
+          </View>
+        ) : (
+          read(form.patientGroup ? t(`intake.group.${form.patientGroup}`) : '')
+        )}
       </Section>
 
       <Section label={t('intake.symptoms')} low={extraction.symptoms.confidence === 'low'}>
-        <View style={styles.chips}>
-          {SYMPTOMS.map((s) => (
-            <Chip
-              key={s}
-              label={t(`intake.sym.${s}`)}
-              selected={form.symptoms.includes(s)}
-              onPress={() => setForm({ ...form, symptoms: toggle(form.symptoms, s) })}
-            />
-          ))}
-        </View>
+        {editing ? (
+          <View style={styles.chips}>
+            {SYMPTOMS.map((s) => (
+              <Chip
+                key={s}
+                label={t(`intake.sym.${s}`)}
+                selected={form.symptoms.includes(s)}
+                onPress={() => setForm({ ...form, symptoms: toggle(form.symptoms, s) })}
+              />
+            ))}
+          </View>
+        ) : (
+          read(form.symptoms.map((s) => t(`intake.sym.${s}`)).join(', '))
+        )}
       </Section>
 
       <Section label={t('intake.duration')} low={extraction.durationDays.confidence === 'low'}>
-        <TextInput
-          style={[styles.input, styles.short, { color: theme.text, borderColor: theme.border, backgroundColor: theme.card }]}
-          keyboardType="numeric"
-          value={form.durationDays === null ? '' : String(form.durationDays)}
-          onChangeText={(v) => setForm({ ...form, durationDays: v === '' ? null : Number(v.replace(/\D/g, '')) })}
-        />
+        {editing ? (
+          <TextInput
+            style={[styles.input, styles.short, { color: theme.text, borderColor: theme.border, backgroundColor: theme.card }]}
+            keyboardType="numeric"
+            value={form.durationDays === null ? '' : String(form.durationDays)}
+            onChangeText={(v) => setForm({ ...form, durationDays: v === '' ? null : Number(v.replace(/\D/g, '')) })}
+          />
+        ) : (
+          read(form.durationDays === null ? '' : String(form.durationDays))
+        )}
       </Section>
 
       <Section label={t('intake.danger')} low={extraction.dangerSigns.confidence === 'low'}>
-        <View style={styles.chips}>
-          {DANGER_SIGNS.map((d) => (
-            <Chip
-              key={d}
-              label={t(`intake.ds.${d}`)}
-              selected={form.dangerSigns.includes(d)}
-              onPress={() => setForm({ ...form, dangerSigns: toggle(form.dangerSigns, d) })}
-            />
-          ))}
-        </View>
+        {editing ? (
+          <View style={styles.chips}>
+            {DANGER_SIGNS.map((d) => (
+              <Chip
+                key={d}
+                label={t(`intake.ds.${d}`)}
+                selected={form.dangerSigns.includes(d)}
+                onPress={() => setForm({ ...form, dangerSigns: toggle(form.dangerSigns, d) })}
+              />
+            ))}
+          </View>
+        ) : (
+          read(form.dangerSigns.length ? form.dangerSigns.map((d) => t(`intake.ds.${d}`)).join(', ') : t('intake.none'))
+        )}
       </Section>
 
-      <Section label={t('intake.notes')} low={false}>
-        <TextInput
-          style={[styles.input, { color: theme.text, borderColor: theme.border, backgroundColor: theme.card }]}
-          value={form.notes}
-          onChangeText={(v) => setForm({ ...form, notes: v })}
-          multiline
-        />
-      </Section>
+      {(editing || !!form.notes) && (
+        <Section label={t('intake.notes')} low={false}>
+          {editing ? (
+            <TextInput
+              style={[styles.input, { color: theme.text, borderColor: theme.border, backgroundColor: theme.card }]}
+              value={form.notes}
+              onChangeText={(v) => setForm({ ...form, notes: v })}
+              multiline
+            />
+          ) : (
+            read(form.notes)
+          )}
+        </Section>
+      )}
 
       <Button label={`✓ ${t('intake.confirm')}`} onPress={onConfirm} />
+      {!editing && <Button label={`✎ ${t('intake.edit')}`} variant="outline" onPress={() => setEditing(true)} />}
     </>
   );
 }
@@ -344,6 +371,7 @@ const styles = StyleSheet.create({
   sectionHead: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' },
   sectionLabel: { fontSize: 16, fontWeight: '700' },
   check: { fontSize: 13, fontWeight: '700' },
+  readValue: { fontSize: 17, fontWeight: '600' },
   clinicHead: { flexDirection: 'row', justifyContent: 'space-between', gap: spacing.sm },
   clinicName: { fontSize: 17, fontWeight: '700', flexShrink: 1 },
   qrBox: { backgroundColor: '#FFFFFF', padding: 16, borderRadius: radius.md, marginVertical: spacing.sm },
