@@ -11,8 +11,9 @@ This app does not diagnose and does not give medical advice. A health worker mak
 ## Try it
 
 ### Option 1: install the Android app
-1. On an Android phone, open the latest build: <https://expo.dev/accounts/mushroomyyy/projects/nusrangers/builds/601b5265-69c8-43e1-af2f-00b91b0786d3>
-2. Tap **Install**, download the APK, and allow installation from your browser when asked.
+1. On an Android phone, open the releases page and download the `.apk` file from the latest release: <https://github.com/ZesterJ/NUSRangers/releases/latest>
+   (The same build is also on Expo: <https://expo.dev/accounts/mushroomyyy/projects/nusrangers/builds/601b5265-69c8-43e1-af2f-00b91b0786d3>, tap **Install**.)
+2. Allow installation from your browser when asked.
 3. Open **Njia ya Afya**.
 
 There is no iPhone build (it needs a paid Apple Developer account). On an iPhone, use option 2.
