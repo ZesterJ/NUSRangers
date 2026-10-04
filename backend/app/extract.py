@@ -151,6 +151,7 @@ class IntakeExtractor:
         symptoms: list[str] = []
         signs: list[str] = []
         notes: list[str] = []
+        negated: list[str] = []
         unsure = False  # the model abstained or hedged somewhere in the clinical answers
         for result in clinical:
             unsure = unsure or bool(result.get("abstentions"))
@@ -162,6 +163,10 @@ class IntakeExtractor:
                     signs.append(DANGER_MAP[label])
                 if label in NOTE_ONLY and NOTE_ONLY[label] not in notes:
                     notes.append(NOTE_ONLY[label])
+            for label, decision in result.get("symptomDecisions", {}).items():
+                code = SYMPTOM_MAP.get(label)
+                if decision.get("state") == "negated" and code and code not in negated:
+                    negated.append(code)
             states = result.get("reportedSignStates", {})
             unsure = unsure or any(s.get("state") == "uncertain" for s in states.values())
 
@@ -204,6 +209,7 @@ class IntakeExtractor:
                 value=signs, confidence="high" if danger_sure and not extra_signs else "low", evidence=answers.danger
             ),
             unmapped=notes,
+            negatedSymptoms=[s for s in negated if s not in symptoms],
             source="model",
         )
 

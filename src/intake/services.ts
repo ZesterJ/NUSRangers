@@ -4,7 +4,7 @@ import { getSettings } from '@/store/settings';
 
 import { extractWithRules } from './extractRules';
 import { mergeExtractions } from './mergeExtraction';
-import type { Classification, ConfirmedIntake, Extraction } from './types';
+import type { Extraction } from './types';
 
 type Answers = Parameters<typeof extractWithRules>[0];
 
@@ -14,7 +14,7 @@ function base() {
 
 async function withTimeout<T>(fn: (signal: AbortSignal) => Promise<T>): Promise<T> {
   const controller = new AbortController();
-  const timer = setTimeout(() => controller.abort(), config.requestTimeoutMs);
+  const timer = setTimeout(() => controller.abort(), config.extractTimeoutMs);
   try {
     return await fn(controller.signal);
   } finally {
@@ -46,30 +46,5 @@ export async function extract(answers: Answers, locale: string): Promise<Extract
   } catch (e) {
     console.warn('[intake] extract failed, using rules', e);
     return rules;
-  }
-}
-
-/**
- * Step 6: confirmed visit note → "see a doctor" + diagnosis groups, from the backend classification model.
- * Returns null when offline, on the mock, or when the backend has no model; triage then uses the on-phone rules alone.
- * The patient's name is not sent.
- */
-export async function classify(intake: ConfirmedIntake, locale: string): Promise<Classification | null> {
-  if (!canUseBackend() || getSettings().useMock) return null;
-  const { patientName: _name, ...note } = intake;
-  try {
-    const res = await withTimeout((signal) =>
-      fetch(`${base()}/classify`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ locale, note }),
-        signal,
-      }),
-    );
-    if (!res.ok) return null;
-    return (await res.json()) as Classification;
-  } catch (e) {
-    console.warn('[intake] classify failed, using on-phone triage', e);
-    return null;
   }
 }

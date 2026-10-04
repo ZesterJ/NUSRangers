@@ -1,0 +1,65 @@
+{
+  "reference": {
+    "facilityId": "arcgis:f5876f6990e141198c92847f2c780afe:0:c7c3c0ed-1708-4201-a8aa-cfd0a125111a",
+    "facilityName": "KILIFI DISTRICT HOSPITAL",
+    "coordinates": {
+      "latitude": -3.6320500004444045,
+      "longitude": 39.85721999968128
+    },
+    "purpose": "geographic demo anchor; not patient coordinates"
+  },
+  "serviceRouting": {
+    "status": "insufficient_data",
+    "candidates": [],
+    "requiresVerification": true,
+    "rankingMethod": null,
+    "availabilityStatus": "unknown",
+    "reasonCodes": [
+      "mandatory_capabilities_not_confirmed"
+    ],
+    "excluded": {
+      "incompatible": 0,
+      "unknownCapability": 209
+    }
+  },
+  "geographicDirectory": {
+    "purpose": "Nearby source records only; no confirmed service compatibility or referral recommendation",
+    "referenceFacilityExcluded": true,
+    "requiresVerification": true,
+    "entries": [
+      {
+        "facilityId": "arcgis:f5876f6990e141198c92847f2c780afe:0:b4f44743-42a7-4e5d-90d6-ec52b6146b21",
+        "facilityName": "SEASIDE MED CENTRE",
+        "distanceKm": 0.455,
+        "distanceType": "straight_line",
+        "estimatedTravelMinutes": null,
+        "availabilityStatus": "unknown",
+        "serviceCompatibility": "unknown",
+        "coordinateSource": "AMKENI",
+        "coordinatePrecisionWarning": "accuracy_unverified"
+      },
+      {
+        "facilityId": "arcgis:f5876f6990e141198c92847f2c780afe:0:7b1cd454-acbc-4f5b-ae7e-995db24c2853",
+        "facilityName": "MSENANGU NURSING  & MATERNITY HOME LTD",
+        "distanceKm": 0.559,
+        "distanceType": "straight_line",
+        "estimatedTravelMinutes": null,
+        "availabilityStatus": "unknown",
+        "serviceCompatibility": "unknown",
+        "coordinateSource": "AMKENI",
+        "coordinatePrecisionWarning": "accuracy_unverified"
+      },
+      {
+        "facilityId": "arcgis:f5876f6990e141198c92847f2c780afe:0:e8acda41-6892-4316-bb79-038e57268e4d",
+        "facilityName": "MISSION UNION MED CLINIC",
+        "distanceKm": 0.656,
+        "distanceType": "straight_line",
+        "estimatedTravelMinutes": null,
+        "availabilityStatus": "unknown",
+        "serviceCompatibility": "unknown",
+        "coordinateSource": "AMKENI",
+        "coordinatePrecisionWarning": "accuracy_unverified"
+      }
+    ]
+  }
+}

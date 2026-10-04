@@ -93,10 +93,12 @@ class Extraction(BaseModel):
     durationDays: ExtractionField
     dangerSigns: ExtractionField
     unmapped: list[str]
+    # Symptoms the patient explicitly denied ("no fever"), so the app's keyword rules do not add them back.
+    negatedSymptoms: list[str] = Field(default_factory=list)
     source: Literal["rules", "model"]
 
 
-# ---- /classify: mirrors `Classification` in src/intake/types.ts ----
+# ---- /assess: mirrors `CareRouting` in src/intake/types.ts ----
 class VisitNote(BaseModel):
     """The confirmed visit note. The patient's name is never sent here."""
 
@@ -108,18 +110,33 @@ class VisitNote(BaseModel):
     notes: str = Field(default="", max_length=2000)
 
 
-class ClassifyRequest(BaseModel):
+class Coordinates(BaseModel):
+    latitude: float = Field(ge=-90, le=90)
+    longitude: float = Field(ge=-180, le=180)
+
+
+class AssessRequest(BaseModel):
     locale: str = Field(default="sw", max_length=16)
     note: VisitNote
+    coordinates: Optional[Coordinates] = None
 
 
-class DiagnosisGroup(BaseModel):
-    group: str = Field(min_length=1)
-    score: Optional[float] = Field(default=None, ge=0, le=1)
+class FacilityCandidate(BaseModel):
+    facilityId: str
+    facilityName: str
+    rank: int
+    # Straight-line distance, not travel time. None when coordinates are incomplete.
+    distanceKm: Optional[float] = None
+    matchedServices: list[str]
 
 
-class ClassifyResponse(BaseModel):
-    seeDoctor: bool
-    # Most likely first; the app shows at most three.
-    diagnosisGroups: list[DiagnosisGroup] = Field(default_factory=list, max_length=10)
-    modelVersion: str = Field(min_length=1)
+class AssessResponse(BaseModel):
+    requiredServices: list[str]
+    # "unclear": the care policy abstained (e.g. danger signs); services then follow the patient group only.
+    assessmentStatus: Literal["proposed", "unclear"]
+    routingStatus: str
+    candidates: list[FacilityCandidate]
+    # "demo_anchor": distances are measured from Kilifi District Hospital, not from the patient.
+    origin: Literal["patient", "demo_anchor"]
+    limitations: list[str]
+    requiresVerification: Literal[True] = True

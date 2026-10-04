@@ -1,0 +1,67 @@
+{
+  "sourceRecords": 209,
+  "canonicalFacilities": 209,
+  "completeness": "count and complete object-ID set match; transfer limit not exceeded",
+  "countyScope": "dataset-scoped; not independently boundary-verified",
+  "facilityTypeCodeCounts": {
+    "4": 56,
+    "1": 5,
+    "3": 12,
+    "6": 123,
+    "9": 3,
+    "5": 3,
+    "7": 7
+  },
+  "ownershipCodeCounts": {
+    "MISS": 18,
+    "MOH": 46,
+    "LA": 1,
+    "PRIV": 142,
+    "AF": 1,
+    "OTHER MIN": 1
+  },
+  "legacyDistrictCounts": {
+    "MALINDI": 89,
+    "KILIFI": 120
+  },
+  "canonicalNonNullCounts": {
+    "facilityId": 209,
+    "facilityName": 209,
+    "county": 209,
+    "countyId": 0,
+    "subcounty": 0,
+    "facilityLevel": 0,
+    "facilityType": 209,
+    "latitude": 209,
+    "longitude": 209,
+    "capabilities": 209,
+    "dataSource": 209,
+    "dataYear": 0,
+    "capabilityObservedAt": 0,
+    "capabilityVerifiedAt": 0
+  },
+  "capabilities": {
+    "generalOutpatient": {
+      "unknown": 209
+    },
+    "childHealth": {
+      "unknown": 209
+    },
+    "maternal": {
+      "unknown": 209
+    },
+    "laboratory": {
+      "unknown": 209
+    },
+    "imaging": {
+      "unknown": 209
+    },
+    "emergency": {
+      "unknown": 209
+    }
+  },
+  "proxyCoordinateCount": 10,
+  "allCoordinates": "WGS84 query geometry, range checked and agrees with attributes within 1e-5 degrees",
+  "dataYear": null,
+  "licence": "Not specified in item licenseInfo or layer copyrightText"
+}
