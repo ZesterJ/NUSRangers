@@ -22,6 +22,7 @@ const has = (text: string, words: string[]) => words.some((w) => text.includes(w
 const GROUP: Record<PatientGroup, string[]> = {
   pregnant: ['mimba', 'mjamzito', 'pregnant', 'pregnancy'],
   child_u5: ['mtoto', 'mwanangu', 'mtoto mchanga', 'child', 'baby', 'son', 'daughter', 'toddler'],
+  child_5plus: [], // only set from the tap-to-answer options, where the age band is explicit
   adult: ['mimi', 'mume', 'mke', 'baba', 'mama', 'myself', 'husband', 'wife', 'father', 'mother', 'me '],
 };
 
@@ -35,6 +36,9 @@ const SYMPTOM_WORDS: Record<Symptom, string[]> = {
   abdominal_pain: ['tumbo', 'stomach', 'abdominal', 'belly'],
   rash: ['upele', 'vipele', 'rash'],
   weakness: ['udhaifu', 'dhaifu', 'uchovu', 'weak', 'tired'],
+  sore_throat: ['koo', 'sore throat', 'throat hurts'],
+  chest_pain: ['maumivu ya kifua', 'kifua kinauma', 'chest pain', 'chest hurts'],
+  limb_pain: ['maumivu ya viungo', 'mguu unauma', 'mkono unauma', 'joint pain', 'leg pain', 'arm pain'],
 };
 
 const DANGER_WORDS: Record<DangerSign, string[]> = {

@@ -57,6 +57,8 @@ export default function Scan() {
         </Text>
         <IntakeSummary
           intake={{
+            patientName: p.nm,
+            sex: p.sx,
             patientGroup: p.g,
             symptoms: p.s as Symptom[],
             durationDays: p.d,
@@ -64,6 +66,7 @@ export default function Scan() {
             notes: p.n,
           }}
           triage={{ level: p.tl, reasons: p.r, needs: [] }}
+          groups={p.dg}
         />
         <Text style={{ color: theme.warning }}>{t('scan.checkInPerson')}</Text>
         {received ? (

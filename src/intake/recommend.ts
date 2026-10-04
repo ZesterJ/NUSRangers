@@ -35,10 +35,10 @@ export function recommend(facilities: Facility[], t: Triage, now = Date.now()): 
 
       const score = available * 0.55 + travelScore * 0.35 * travelWeight - queuePenalty;
 
-      reasons.push(`${f.travelMinutes} min away`);
+      reasons.push(`${f.travelMinutes} min travel time`);
       if (required.length) reasons.push(`Offers ${required.join(', ')}`);
-      if (stale) reasons.push(`Staffing unknown, usually present ${Math.round(f.typicalStaffPresence * 100)}% of days`);
-      else reasons.push(`${f.capacity!.staffOnDuty} staff on duty, ${f.capacity!.queue} queue (${Math.round(ageH)}h ago)`);
+      if (stale) reasons.push(`Staffing not confirmed; staff typically present ${Math.round(f.typicalStaffPresence * 100)}% of days`);
+      else reasons.push(`${f.capacity!.staffOnDuty} staff on duty, ${f.capacity!.queue} waiting (updated ${Math.round(ageH)}h ago)`);
 
       return { facility: f, score: Math.round(score * 100) / 100, reasons, stale };
     })

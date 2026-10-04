@@ -5,21 +5,26 @@ import { useTranslation } from 'react-i18next';
 import { Linking, Pressable, ScrollView, StyleSheet, Text, TextInput, View } from 'react-native';
 import QRCode from 'react-native-qrcode-svg';
 
-import { refreshPending } from '@/ai/sync';
+import { flushOutbox, refreshPending } from '@/ai/sync';
+import { BodyPicker } from '@/components/BodyPicker';
 import { IntakeSummary } from '@/components/IntakeSummary';
 import { OfflineBanner } from '@/components/OfflineBanner';
+import { DangerOptions, DurationOptions, WhoOptions } from '@/components/QuestionOptions';
 import { Button, Card, Chip, SectionTitle } from '@/components/ui';
-import { VoiceButton } from '@/components/VoiceButton';
 import { enqueue, saveIntake } from '@/db';
+import { applyBodyPicks, NO_PICKS, type BodyPicks } from '@/intake/bodyParts';
+import { applyClassification, topGroups } from '@/intake/classification';
+import { applyChoices, NO_CHOICES, type Choices } from '@/intake/choices';
 import { SAMPLE_FACILITIES } from '@/intake/facilities';
 import { encodeHandoff } from '@/intake/handoff';
 import { QUESTIONS } from '@/intake/questions';
 import { recommend } from '@/intake/recommend';
-import { extract } from '@/intake/services';
+import { classify, extract } from '@/intake/services';
 import { triage } from '@/intake/triage';
 import {
   DANGER_SIGNS,
   SYMPTOMS,
+  type Classification,
   type ConfirmedIntake,
   type Extraction,
   type IntakeRecord,
@@ -33,7 +38,7 @@ import { radius, spacing, usePackContext } from '@/theme';
 type QuestionId = (typeof QUESTIONS)[number]['id'];
 type Step = 'ask' | 'extracting' | 'review' | 'result';
 
-const GROUPS: PatientGroup[] = ['child_u5', 'pregnant', 'adult'];
+const GROUPS: PatientGroup[] = ['child_u5', 'child_5plus', 'pregnant', 'adult'];
 
 const toggle = <T,>(list: T[], v: T) => (list.includes(v) ? list.filter((x) => x !== v) : [...list, v]);
 
@@ -50,38 +55,55 @@ function IntakeFlow({ onRestart }: { onRestart: () => void }) {
   const [step, setStep] = useState<Step>('ask');
   const [qi, setQi] = useState(0);
   const [answers, setAnswers] = useState<Partial<Record<QuestionId, string>>>({});
-  const [voiceMsg, setVoiceMsg] = useState<string | null>(null);
+  const [picks, setPicks] = useState<BodyPicks>(NO_PICKS);
+  const [choices, setChoices] = useState<Choices>(NO_CHOICES);
   const [extraction, setExtraction] = useState<Extraction | null>(null);
   const [form, setForm] = useState<ConfirmedIntake | null>(null);
-  const [result, setResult] = useState<{ triage: Triage; recs: Recommendation[] } | null>(null);
+  const [result, setResult] = useState<{ triage: Triage; recs: Recommendation[]; classification: Classification | null } | null>(null);
   const [chosen, setChosen] = useState<string | null>(null);
   const [qr, setQr] = useState<string | null>(null);
 
   const q = QUESTIONS[qi];
   const answer = answers[q.id] ?? '';
   const setAnswer = (v: string) => setAnswers((a) => ({ ...a, [q.id]: v }));
+  // Every question can be answered by tapping instead of in words.
+  const tapped = {
+    who: choices.who !== null,
+    complaint: picks.parts.length > 0,
+    duration: choices.durationDays !== null,
+    danger: choices.dangerSigns.length > 0 || choices.noDanger,
+  }[q.id];
+  const answered = !!answer.trim() || tapped;
 
   // ---------- Step 3: extract, then pre-fill the form ----------
   const finishQuestions = async () => {
     setStep('extracting');
-    const ex = await extract(answers, locale);
+    const ex = applyChoices(applyBodyPicks(await extract(answers, locale), picks), choices);
+    const area = picks.parts.length
+      ? [`${t('intake.affectedArea')}: ${picks.parts.map((p) => t(`intake.part.${p}`)).join(', ')}`]
+      : [];
     setExtraction(ex);
     setForm({
+      patientName: choices.name.trim() || undefined,
+      sex: choices.sex ?? undefined,
       patientGroup: ex.patientGroup.value,
       symptoms: ex.symptoms.value,
       durationDays: ex.durationDays.value,
       dangerSigns: ex.dangerSigns.value,
-      notes: ex.unmapped.join(' · '),
+      notes: [...area, ...ex.unmapped].join(' · '),
     });
     setStep('review');
   };
 
   // ---------- Steps 6–7: triage and clinic suggestions ----------
-  const confirm = () => {
+  const confirm = async () => {
     if (!form) return;
-    const tri = triage(form, extraction ?? undefined);
+    setStep('extracting');
+    // The on-phone rules always run; the backend classification model can only raise the urgency.
+    const classification = await classify(form, locale);
+    const tri = applyClassification(triage(form, extraction ?? undefined), classification);
     const recs = recommend(SAMPLE_FACILITIES, tri);
-    setResult({ triage: tri, recs });
+    setResult({ triage: tri, recs, classification });
     setChosen(recs[0]?.facility.id ?? null);
     setStep('result');
   };
@@ -96,6 +118,7 @@ function IntakeFlow({ onRestart }: { onRestart: () => void }) {
       transcript: QUESTIONS.map((qq) => answers[qq.id] ?? '').filter(Boolean),
       intake: form,
       triage: result.triage,
+      ...(result.classification ? { classification: result.classification } : {}),
       facilityId: chosen,
       status: 'handed_off',
     };
@@ -103,6 +126,8 @@ function IntakeFlow({ onRestart }: { onRestart: () => void }) {
     await enqueue('intake', 0, rec);
     await refreshPending();
     setQr(await encodeHandoff(rec));
+    // Send now if there is signal; otherwise it stays queued until the connection returns.
+    void flushOutbox();
   };
 
   return (
@@ -123,17 +148,16 @@ function IntakeFlow({ onRestart }: { onRestart: () => void }) {
             <Pressable onPress={() => Speech.speak(tr(q.prompt, locale), { language: locale })}>
               <Text style={[styles.question, { color: theme.text }]}>🔊 {tr(q.prompt, locale)}</Text>
             </Pressable>
+            {q.id !== 'complaint' && (
+              <>
+                <SectionTitle>{t('intake.optionsTitle')}</SectionTitle>
+                {q.id === 'who' && <WhoOptions choices={choices} onChange={setChoices} />}
+                {q.id === 'duration' && <DurationOptions choices={choices} onChange={setChoices} />}
+                {q.id === 'danger' && <DangerOptions choices={choices} onChange={setChoices} />}
+                <SectionTitle>{t('intake.orDescribe')}</SectionTitle>
+              </>
+            )}
             <Text style={{ color: theme.textMuted }}>{tr(q.hint, locale)}</Text>
-
-            <VoiceButton
-              onText={(text) => {
-                if (text) {
-                  setAnswer(text);
-                  setVoiceMsg(null);
-                } else setVoiceMsg(t('intake.voiceUnavailable'));
-              }}
-            />
-            {voiceMsg && <Text style={{ color: theme.warning }}>{voiceMsg}</Text>}
 
             <TextInput
               style={[styles.input, { color: theme.text, borderColor: theme.border, backgroundColor: theme.card }]}
@@ -143,6 +167,8 @@ function IntakeFlow({ onRestart }: { onRestart: () => void }) {
               placeholderTextColor={theme.textMuted}
               multiline
             />
+
+            {q.id === 'complaint' && <BodyPicker picks={picks} onChange={setPicks} />}
 
             <SectionTitle>{t('intake.samples')}</SectionTitle>
             <View style={styles.chips}>
@@ -154,9 +180,9 @@ function IntakeFlow({ onRestart }: { onRestart: () => void }) {
             <View style={styles.nav}>
               {qi > 0 && <Button label={t('intake.back')} variant="outline" onPress={() => setQi(qi - 1)} />}
               {qi < QUESTIONS.length - 1 ? (
-                <Button label={t('intake.next')} disabled={!answer.trim()} onPress={() => setQi(qi + 1)} style={{ flex: 1 }} />
+                <Button label={t('intake.next')} disabled={!answered} onPress={() => setQi(qi + 1)} style={{ flex: 1 }} />
               ) : (
-                <Button label={t('intake.finish')} disabled={!answer.trim()} onPress={finishQuestions} style={{ flex: 1 }} />
+                <Button label={t('intake.finish')} disabled={!answered} onPress={finishQuestions} style={{ flex: 1 }} />
               )}
             </View>
           </>
@@ -171,7 +197,7 @@ function IntakeFlow({ onRestart }: { onRestart: () => void }) {
         {step === 'result' && form && result && (
           <>
             <Text style={[styles.question, { color: theme.text }]}>{t('intake.resultTitle')}</Text>
-            <IntakeSummary intake={form} triage={result.triage} />
+            <IntakeSummary intake={form} triage={result.triage} groups={topGroups(result.classification)} />
 
             {result.triage.level !== 'home_care' && (
               <>
@@ -272,6 +298,20 @@ function ReviewForm({
         {extraction.source === 'model' ? '☁️' : '📱'} {t(`intake.source.${extraction.source}`)}
       </Text>
 
+      {(editing || !!form.patientName) && (
+        <Section label={t('intake.name')} low={false}>
+          {editing ? (
+            <TextInput
+              style={[styles.input, { color: theme.text, borderColor: theme.border, backgroundColor: theme.card }]}
+              value={form.patientName ?? ''}
+              onChangeText={(v) => setForm({ ...form, patientName: v || undefined })}
+            />
+          ) : (
+            read(form.patientName ?? '')
+          )}
+        </Section>
+      )}
+
       <Section label={t('intake.who')} low={extraction.patientGroup.confidence === 'low'}>
         {editing ? (
           <View style={styles.chips}>
@@ -285,7 +325,11 @@ function ReviewForm({
             ))}
           </View>
         ) : (
-          read(form.patientGroup ? t(`intake.group.${form.patientGroup}`) : '')
+          read(
+            [form.patientGroup && t(`intake.group.${form.patientGroup}`), form.sex && t(`intake.sexOpt.${form.sex}`)]
+              .filter(Boolean)
+              .join(' · '),
+          )
         )}
       </Section>
 

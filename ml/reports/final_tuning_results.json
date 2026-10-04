@@ -1,0 +1,5479 @@
+{
+  "label": "synthetic-data and authored experimental evaluation; not clinical validation",
+  "quality_gate_passed": true,
+  "gate_checks": {
+    "original_diagnostics": {
+      "micro_f1_non_decreasing": true,
+      "exact_set_non_decreasing": true,
+      "unsupported_count_non_increasing": true,
+      "unknown_handling_non_decreasing": true,
+      "no_extra_negation_or_subject_assertions": true
+    },
+    "expanded_diagnostics": {
+      "micro_f1_non_decreasing": true,
+      "exact_set_non_decreasing": true,
+      "unsupported_count_non_increasing": true,
+      "unknown_handling_non_decreasing": true,
+      "no_extra_negation_or_subject_assertions": true
+    },
+    "frozen_acceptance": {
+      "micro_f1_non_decreasing": true,
+      "exact_set_non_decreasing": true,
+      "unsupported_count_non_increasing": true,
+      "unknown_handling_non_decreasing": true,
+      "no_extra_negation_or_subject_assertions": true
+    }
+  },
+  "results": {
+    "synthetic_validation": {
+      "before": {
+        "symptoms": {
+          "examples": 205,
+          "micro_precision": 1.0,
+          "micro_recall": 0.8766816143497758,
+          "micro_f1": 0.9342891278375149,
+          "macro_f1_all_labels_zero_undefined": 0.5717753212583918,
+          "macro_f1_supported_labels": 0.9291348970448867,
+          "exact_set_match": 0.7317073170731707,
+          "per_label": {
+            "abdominal_pain": {
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0,
+              "support": 49,
+              "predicted_positive": 49,
+              "false_positives": 0,
+              "false_negatives": 0
+            },
+            "bleeding": {
+              "precision": null,
+              "recall": null,
+              "f1": null,
+              "support": 0,
+              "predicted_positive": 0,
+              "false_positives": 0,
+              "false_negatives": 0
+            },
+            "blurred_vision": {
+              "precision": 1.0,
+              "recall": 0.8461538461538461,
+              "f1": 0.9166666666666666,
+              "support": 39,
+              "predicted_positive": 33,
+              "false_positives": 0,
+              "false_negatives": 6
+            },
+            "breathing_difficulty": {
+              "precision": null,
+              "recall": null,
+              "f1": null,
+              "support": 0,
+              "predicted_positive": 0,
+              "false_positives": 0,
+              "false_negatives": 0
+            },
+            "cough": {
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0,
+              "support": 42,
+              "predicted_positive": 42,
+              "false_positives": 0,
+              "false_negatives": 0
+            },
+            "diarrhoea": {
+              "precision": 1.0,
+              "recall": 0.8717948717948718,
+              "f1": 0.9315068493150684,
+              "support": 39,
+              "predicted_positive": 34,
+              "false_positives": 0,
+              "false_negatives": 5
+            },
+            "fatigue": {
+              "precision": null,
+              "recall": null,
+              "f1": null,
+              "support": 0,
+              "predicted_positive": 0,
+              "false_positives": 0,
+              "false_negatives": 0
+            },
+            "fever": {
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0,
+              "support": 127,
+              "predicted_positive": 127,
+              "false_positives": 0,
+              "false_negatives": 0
+            },
+            "fluid_loss": {
+              "precision": null,
+              "recall": null,
+              "f1": null,
+              "support": 0,
+              "predicted_positive": 0,
+              "false_positives": 0,
+              "false_negatives": 0
+            },
+            "headache": {
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0,
+              "support": 39,
+              "predicted_positive": 39,
+              "false_positives": 0,
+              "false_negatives": 0
+            },
+            "reduced_fetal_movement": {
+              "precision": null,
+              "recall": null,
+              "f1": null,
+              "support": 0,
+              "predicted_positive": 0,
+              "false_positives": 0,
+              "false_negatives": 0
+            },
+            "vomiting": {
+              "precision": 1.0,
+              "recall": 0.41333333333333333,
+              "f1": 0.5849056603773585,
+              "support": 75,
+              "predicted_positive": 31,
+              "false_positives": 0,
+              "false_negatives": 44
+            },
+            "weakness": {
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0,
+              "support": 36,
+              "predicted_positive": 36,
+              "false_positives": 0,
+              "false_negatives": 0
+            }
+          },
+          "false_positives": 0,
+          "false_negatives": 55,
+          "unsupported_symptom_rate_vs_reference": 0.0,
+          "by_language": {
+            "en": {
+              "examples": 133,
+              "micro_precision": 1.0,
+              "micro_recall": 0.8625429553264605,
+              "micro_f1": 0.9261992619926199,
+              "macro_f1_all_labels_zero_undefined": 0.5699826489300174,
+              "macro_f1_supported_labels": 0.9262218045112782,
+              "exact_set_match": 0.6992481203007519,
+              "per_label": {
+                "abdominal_pain": {
+                  "precision": 1.0,
+                  "recall": 1.0,
+                  "f1": 1.0,
+                  "support": 33,
+                  "predicted_positive": 33,
+                  "false_positives": 0,
+                  "false_negatives": 0
+                },
+                "bleeding": {
+                  "precision": null,
+                  "recall": null,
+                  "f1": null,
+                  "support": 0,
+                  "predicted_positive": 0,
+                  "false_positives": 0,
+                  "false_negatives": 0
+                },
+                "blurred_vision": {
+                  "precision": 1.0,
+                  "recall": 0.75,
+                  "f1": 0.8571428571428571,
+                  "support": 24,
+                  "predicted_positive": 18,
+                  "false_positives": 0,
+                  "false_negatives": 6
+                },
+                "breathing_difficulty": {
+                  "precision": null,
+                  "recall": null,
+                  "f1": null,
+                  "support": 0,
+                  "predicted_positive": 0,
+                  "false_positives": 0,
+                  "false_negatives": 0
+                },
+                "cough": {
+                  "precision": 1.0,
+                  "recall": 1.0,
+                  "f1": 1.0,
+                  "support": 21,
+                  "predicted_positive": 21,
+                  "false_positives": 0,
+                  "false_negatives": 0
+                },
+                "diarrhoea": {
+                  "precision": 1.0,
+                  "recall": 1.0,
+                  "f1": 1.0,
+                  "support": 30,
+                  "predicted_positive": 30,
+                  "false_positives": 0,
+                  "false_negatives": 0
+                },
+                "fatigue": {
+                  "precision": null,
+                  "recall": null,
+                  "f1": null,
+                  "support": 0,
+                  "predicted_positive": 0,
+                  "false_positives": 0,
+                  "false_negatives": 0
+                },
+                "fever": {
+                  "precision": 1.0,
+                  "recall": 1.0,
+                  "f1": 1.0,
+                  "support": 79,
+                  "predicted_positive": 79,
+                  "false_positives": 0,
+                  "false_negatives": 0
+                },
+                "fluid_loss": {
+                  "precision": null,
+                  "recall": null,
+                  "f1": null,
+                  "support": 0,
+                  "predicted_positive": 0,
+                  "false_positives": 0,
+                  "false_negatives": 0
+                },
+                "headache": {
+                  "precision": 1.0,
+                  "recall": 1.0,
+                  "f1": 1.0,
+                  "support": 24,
+                  "predicted_positive": 24,
+                  "false_positives": 0,
+                  "false_negatives": 0
+                },
+                "reduced_fetal_movement": {
+                  "precision": null,
+                  "recall": null,
+                  "f1": null,
+                  "support": 0,
+                  "predicted_positive": 0,
+                  "false_positives": 0,
+                  "false_negatives": 0
+                },
+                "vomiting": {
+                  "precision": 1.0,
+                  "recall": 0.38181818181818183,
+                  "f1": 0.5526315789473685,
+                  "support": 55,
+                  "predicted_positive": 21,
+                  "false_positives": 0,
+                  "false_negatives": 34
+                },
+                "weakness": {
+                  "precision": 1.0,
+                  "recall": 1.0,
+                  "f1": 1.0,
+                  "support": 25,
+                  "predicted_positive": 25,
+                  "false_positives": 0,
+                  "false_negatives": 0
+                }
+              }
+            },
+            "sw": {
+              "examples": 72,
+              "micro_precision": 1.0,
+              "micro_recall": 0.9032258064516129,
+              "micro_f1": 0.9491525423728814,
+              "macro_f1_all_labels_zero_undefined": 0.5601577909270217,
+              "macro_f1_supported_labels": 0.9102564102564102,
+              "exact_set_match": 0.7916666666666666,
+              "per_label": {
+                "abdominal_pain": {
+                  "precision": 1.0,
+                  "recall": 1.0,
+                  "f1": 1.0,
+                  "support": 16,
+                  "predicted_positive": 16,
+                  "false_positives": 0,
+                  "false_negatives": 0
+                },
+                "bleeding": {
+                  "precision": null,
+                  "recall": null,
+                  "f1": null,
+                  "support": 0,
+                  "predicted_positive": 0,
+                  "false_positives": 0,
+                  "false_negatives": 0
+                },
+                "blurred_vision": {
+                  "precision": 1.0,
+                  "recall": 1.0,
+                  "f1": 1.0,
+                  "support": 15,
+                  "predicted_positive": 15,
+                  "false_positives": 0,
+                  "false_negatives": 0
+                },
+                "breathing_difficulty": {
+                  "precision": null,
+                  "recall": null,
+                  "f1": null,
+                  "support": 0,
+                  "predicted_positive": 0,
+                  "false_positives": 0,
+                  "false_negatives": 0
+                },
+                "cough": {
+                  "precision": 1.0,
+                  "recall": 1.0,
+                  "f1": 1.0,
+                  "support": 21,
+                  "predicted_positive": 21,
+                  "false_positives": 0,
+                  "false_negatives": 0
+                },
+                "diarrhoea": {
+                  "precision": 1.0,
+                  "recall": 0.4444444444444444,
+                  "f1": 0.6153846153846154,
+                  "support": 9,
+                  "predicted_positive": 4,
+                  "false_positives": 0,
+                  "false_negatives": 5
+                },
+                "fatigue": {
+                  "precision": null,
+                  "recall": null,
+                  "f1": null,
+                  "support": 0,
+                  "predicted_positive": 0,
+                  "false_positives": 0,
+                  "false_negatives": 0
+                },
+                "fever": {
+                  "precision": 1.0,
+                  "recall": 1.0,
+                  "f1": 1.0,
+                  "support": 48,
+                  "predicted_positive": 48,
+                  "false_positives": 0,
+                  "false_negatives": 0
+                },
+                "fluid_loss": {
+                  "precision": null,
+                  "recall": null,
+                  "f1": null,
+                  "support": 0,
+                  "predicted_positive": 0,
+                  "false_positives": 0,
+                  "false_negatives": 0
+                },
+                "headache": {
+                  "precision": 1.0,
+                  "recall": 1.0,
+                  "f1": 1.0,
+                  "support": 15,
+                  "predicted_positive": 15,
+                  "false_positives": 0,
+                  "false_negatives": 0
+                },
+                "reduced_fetal_movement": {
+                  "precision": null,
+                  "recall": null,
+                  "f1": null,
+                  "support": 0,
+                  "predicted_positive": 0,
+                  "false_positives": 0,
+                  "false_negatives": 0
+                },
+                "vomiting": {
+                  "precision": 1.0,
+                  "recall": 0.5,
+                  "f1": 0.6666666666666666,
+                  "support": 20,
+                  "predicted_positive": 10,
+                  "false_positives": 0,
+                  "false_negatives": 10
+                },
+                "weakness": {
+                  "precision": 1.0,
+                  "recall": 1.0,
+                  "f1": 1.0,
+                  "support": 11,
+                  "predicted_positive": 11,
+                  "false_positives": 0,
+                  "false_negatives": 0
+                }
+              }
+            }
+          }
+        },
+        "rules": {
+          "patientType": {
+            "examples": 205,
+            "exact_agreement": 0.4146341463414634,
+            "non_null_predictions": 85,
+            "coverage": 0.4146341463414634,
+            "missing_expected": 0,
+            "unknown_handling_accuracy": null,
+            "confusion": {
+              "'adult' -> None": 120,
+              "'child' -> 'child'": 36,
+              "'pregnant' -> 'pregnant'": 49
+            }
+          },
+          "durationDays": {
+            "examples": 205,
+            "exact_agreement": 0.6195121951219512,
+            "non_null_predictions": 127,
+            "coverage": 0.6195121951219512,
+            "missing_expected": 0,
+            "unknown_handling_accuracy": null,
+            "confusion": {
+              "1 -> 1": 32,
+              "1 -> None": 46,
+              "2 -> 2": 49,
+              "3 -> 3": 24,
+              "3 -> None": 12,
+              "4 -> 4": 22,
+              "4 -> None": 20
+            }
+          },
+          "hydrationIssue": {
+            "examples": 205,
+            "exact_agreement": 0.36585365853658536,
+            "non_null_predictions": 75,
+            "coverage": 0.36585365853658536,
+            "missing_expected": 0,
+            "unknown_handling_accuracy": null,
+            "confusion": {
+              "False -> None": 130,
+              "True -> True": 75
+            }
+          },
+          "reportedSigns": {
+            "examples": 205,
+            "micro_precision": 1.0,
+            "micro_recall": 0.9444444444444444,
+            "micro_f1": 0.9714285714285714,
+            "macro_f1_all_labels_zero_undefined": 0.3238095238095238,
+            "macro_f1_supported_labels": 0.9714285714285714,
+            "exact_set_match": 0.9902439024390244,
+            "per_label": {
+              "cannot_drink": {
+                "precision": 1.0,
+                "recall": 0.9444444444444444,
+                "f1": 0.9714285714285714,
+                "support": 36,
+                "predicted_positive": 34,
+                "false_positives": 0,
+                "false_negatives": 2
+              },
+              "convulsions": {
+                "precision": null,
+                "recall": null,
+                "f1": null,
+                "support": 0,
+                "predicted_positive": 0,
+                "false_positives": 0,
+                "false_negatives": 0
+              },
+              "bleeding": {
+                "precision": null,
+                "recall": null,
+                "f1": null,
+                "support": 0,
+                "predicted_positive": 0,
+                "false_positives": 0,
+                "false_negatives": 0
+              }
+            }
+          }
+        }
+      },
+      "after": {
+        "symptoms": {
+          "examples": 205,
+          "micro_precision": 1.0,
+          "micro_recall": 1.0,
+          "micro_f1": 1.0,
+          "macro_f1_all_labels_zero_undefined": 0.6153846153846154,
+          "macro_f1_supported_labels": 1.0,
+          "exact_set_match": 1.0,
+          "per_label": {
+            "abdominal_pain": {
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0,
+              "support": 49,
+              "predicted_positive": 49,
+              "false_positives": 0,
+              "false_negatives": 0
+            },
+            "bleeding": {
+              "precision": null,
+              "recall": null,
+              "f1": null,
+              "support": 0,
+              "predicted_positive": 0,
+              "false_positives": 0,
+              "false_negatives": 0
+            },
+            "blurred_vision": {
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0,
+              "support": 39,
+              "predicted_positive": 39,
+              "false_positives": 0,
+              "false_negatives": 0
+            },
+            "breathing_difficulty": {
+              "precision": null,
+              "recall": null,
+              "f1": null,
+              "support": 0,
+              "predicted_positive": 0,
+              "false_positives": 0,
+              "false_negatives": 0
+            },
+            "cough": {
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0,
+              "support": 42,
+              "predicted_positive": 42,
+              "false_positives": 0,
+              "false_negatives": 0
+            },
+            "diarrhoea": {
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0,
+              "support": 39,
+              "predicted_positive": 39,
+              "false_positives": 0,
+              "false_negatives": 0
+            },
+            "fatigue": {
+              "precision": null,
+              "recall": null,
+              "f1": null,
+              "support": 0,
+              "predicted_positive": 0,
+              "false_positives": 0,
+              "false_negatives": 0
+            },
+            "fever": {
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0,
+              "support": 127,
+              "predicted_positive": 127,
+              "false_positives": 0,
+              "false_negatives": 0
+            },
+            "fluid_loss": {
+              "precision": null,
+              "recall": null,
+              "f1": null,
+              "support": 0,
+              "predicted_positive": 0,
+              "false_positives": 0,
+              "false_negatives": 0
+            },
+            "headache": {
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0,
+              "support": 39,
+              "predicted_positive": 39,
+              "false_positives": 0,
+              "false_negatives": 0
+            },
+            "reduced_fetal_movement": {
+              "precision": null,
+              "recall": null,
+              "f1": null,
+              "support": 0,
+              "predicted_positive": 0,
+              "false_positives": 0,
+              "false_negatives": 0
+            },
+            "vomiting": {
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0,
+              "support": 75,
+              "predicted_positive": 75,
+              "false_positives": 0,
+              "false_negatives": 0
+            },
+            "weakness": {
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0,
+              "support": 36,
+              "predicted_positive": 36,
+              "false_positives": 0,
+              "false_negatives": 0
+            }
+          },
+          "false_positives": 0,
+          "false_negatives": 0,
+          "unsupported_symptom_rate_vs_reference": 0.0,
+          "by_language": {
+            "en": {
+              "examples": 133,
+              "micro_precision": 1.0,
+              "micro_recall": 1.0,
+              "micro_f1": 1.0,
+              "macro_f1_all_labels_zero_undefined": 0.6153846153846154,
+              "macro_f1_supported_labels": 1.0,
+              "exact_set_match": 1.0,
+              "per_label": {
+                "abdominal_pain": {
+                  "precision": 1.0,
+                  "recall": 1.0,
+                  "f1": 1.0,
+                  "support": 33,
+                  "predicted_positive": 33,
+                  "false_positives": 0,
+                  "false_negatives": 0
+                },
+                "bleeding": {
+                  "precision": null,
+                  "recall": null,
+                  "f1": null,
+                  "support": 0,
+                  "predicted_positive": 0,
+                  "false_positives": 0,
+                  "false_negatives": 0
+                },
+                "blurred_vision": {
+                  "precision": 1.0,
+                  "recall": 1.0,
+                  "f1": 1.0,
+                  "support": 24,
+                  "predicted_positive": 24,
+                  "false_positives": 0,
+                  "false_negatives": 0
+                },
+                "breathing_difficulty": {
+                  "precision": null,
+                  "recall": null,
+                  "f1": null,
+                  "support": 0,
+                  "predicted_positive": 0,
+                  "false_positives": 0,
+                  "false_negatives": 0
+                },
+                "cough": {
+                  "precision": 1.0,
+                  "recall": 1.0,
+                  "f1": 1.0,
+                  "support": 21,
+                  "predicted_positive": 21,
+                  "false_positives": 0,
+                  "false_negatives": 0
+                },
+                "diarrhoea": {
+                  "precision": 1.0,
+                  "recall": 1.0,
+                  "f1": 1.0,
+                  "support": 30,
+                  "predicted_positive": 30,
+                  "false_positives": 0,
+                  "false_negatives": 0
+                },
+                "fatigue": {
+                  "precision": null,
+                  "recall": null,
+                  "f1": null,
+                  "support": 0,
+                  "predicted_positive": 0,
+                  "false_positives": 0,
+                  "false_negatives": 0
+                },
+                "fever": {
+                  "precision": 1.0,
+                  "recall": 1.0,
+                  "f1": 1.0,
+                  "support": 79,
+                  "predicted_positive": 79,
+                  "false_positives": 0,
+                  "false_negatives": 0
+                },
+                "fluid_loss": {
+                  "precision": null,
+                  "recall": null,
+                  "f1": null,
+                  "support": 0,
+                  "predicted_positive": 0,
+                  "false_positives": 0,
+                  "false_negatives": 0
+                },
+                "headache": {
+                  "precision": 1.0,
+                  "recall": 1.0,
+                  "f1": 1.0,
+                  "support": 24,
+                  "predicted_positive": 24,
+                  "false_positives": 0,
+                  "false_negatives": 0
+                },
+                "reduced_fetal_movement": {
+                  "precision": null,
+                  "recall": null,
+                  "f1": null,
+                  "support": 0,
+                  "predicted_positive": 0,
+                  "false_positives": 0,
+                  "false_negatives": 0
+                },
+                "vomiting": {
+                  "precision": 1.0,
+                  "recall": 1.0,
+                  "f1": 1.0,
+                  "support": 55,
+                  "predicted_positive": 55,
+                  "false_positives": 0,
+                  "false_negatives": 0
+                },
+                "weakness": {
+                  "precision": 1.0,
+                  "recall": 1.0,
+                  "f1": 1.0,
+                  "support": 25,
+                  "predicted_positive": 25,
+                  "false_positives": 0,
+                  "false_negatives": 0
+                }
+              }
+            },
+            "sw": {
+              "examples": 72,
+              "micro_precision": 1.0,
+              "micro_recall": 1.0,
+              "micro_f1": 1.0,
+              "macro_f1_all_labels_zero_undefined": 0.6153846153846154,
+              "macro_f1_supported_labels": 1.0,
+              "exact_set_match": 1.0,
+              "per_label": {
+                "abdominal_pain": {
+                  "precision": 1.0,
+                  "recall": 1.0,
+                  "f1": 1.0,
+                  "support": 16,
+                  "predicted_positive": 16,
+                  "false_positives": 0,
+                  "false_negatives": 0
+                },
+                "bleeding": {
+                  "precision": null,
+                  "recall": null,
+                  "f1": null,
+                  "support": 0,
+                  "predicted_positive": 0,
+                  "false_positives": 0,
+                  "false_negatives": 0
+                },
+                "blurred_vision": {
+                  "precision": 1.0,
+                  "recall": 1.0,
+                  "f1": 1.0,
+                  "support": 15,
+                  "predicted_positive": 15,
+                  "false_positives": 0,
+                  "false_negatives": 0
+                },
+                "breathing_difficulty": {
+                  "precision": null,
+                  "recall": null,
+                  "f1": null,
+                  "support": 0,
+                  "predicted_positive": 0,
+                  "false_positives": 0,
+                  "false_negatives": 0
+                },
+                "cough": {
+                  "precision": 1.0,
+                  "recall": 1.0,
+                  "f1": 1.0,
+                  "support": 21,
+                  "predicted_positive": 21,
+                  "false_positives": 0,
+                  "false_negatives": 0
+                },
+                "diarrhoea": {
+                  "precision": 1.0,
+                  "recall": 1.0,
+                  "f1": 1.0,
+                  "support": 9,
+                  "predicted_positive": 9,
+                  "false_positives": 0,
+                  "false_negatives": 0
+                },
+                "fatigue": {
+                  "precision": null,
+                  "recall": null,
+                  "f1": null,
+                  "support": 0,
+                  "predicted_positive": 0,
+                  "false_positives": 0,
+                  "false_negatives": 0
+                },
+                "fever": {
+                  "precision": 1.0,
+                  "recall": 1.0,
+                  "f1": 1.0,
+                  "support": 48,
+                  "predicted_positive": 48,
+                  "false_positives": 0,
+                  "false_negatives": 0
+                },
+                "fluid_loss": {
+                  "precision": null,
+                  "recall": null,
+                  "f1": null,
+                  "support": 0,
+                  "predicted_positive": 0,
+                  "false_positives": 0,
+                  "false_negatives": 0
+                },
+                "headache": {
+                  "precision": 1.0,
+                  "recall": 1.0,
+                  "f1": 1.0,
+                  "support": 15,
+                  "predicted_positive": 15,
+                  "false_positives": 0,
+                  "false_negatives": 0
+                },
+                "reduced_fetal_movement": {
+                  "precision": null,
+                  "recall": null,
+                  "f1": null,
+                  "support": 0,
+                  "predicted_positive": 0,
+                  "false_positives": 0,
+                  "false_negatives": 0
+                },
+                "vomiting": {
+                  "precision": 1.0,
+                  "recall": 1.0,
+                  "f1": 1.0,
+                  "support": 20,
+                  "predicted_positive": 20,
+                  "false_positives": 0,
+                  "false_negatives": 0
+                },
+                "weakness": {
+                  "precision": 1.0,
+                  "recall": 1.0,
+                  "f1": 1.0,
+                  "support": 11,
+                  "predicted_positive": 11,
+                  "false_positives": 0,
+                  "false_negatives": 0
+                }
+              }
+            }
+          }
+        },
+        "rules": {
+          "patientType": {
+            "examples": 205,
+            "exact_agreement": 0.4146341463414634,
+            "non_null_predictions": 85,
+            "coverage": 0.4146341463414634,
+            "missing_expected": 0,
+            "unknown_handling_accuracy": null,
+            "confusion": {
+              "'adult' -> None": 120,
+              "'child' -> 'child'": 36,
+              "'pregnant' -> 'pregnant'": 49
+            }
+          },
+          "durationDays": {
+            "examples": 205,
+            "exact_agreement": 0.6195121951219512,
+            "non_null_predictions": 127,
+            "coverage": 0.6195121951219512,
+            "missing_expected": 0,
+            "unknown_handling_accuracy": null,
+            "confusion": {
+              "1 -> 1": 32,
+              "1 -> None": 46,
+              "2 -> 2": 49,
+              "3 -> 3": 24,
+              "3 -> None": 12,
+              "4 -> 4": 22,
+              "4 -> None": 20
+            }
+          },
+          "hydrationIssue": {
+            "examples": 205,
+            "exact_agreement": 0.36585365853658536,
+            "non_null_predictions": 75,
+            "coverage": 0.36585365853658536,
+            "missing_expected": 0,
+            "unknown_handling_accuracy": null,
+            "confusion": {
+              "False -> None": 130,
+              "True -> True": 75
+            }
+          },
+          "reportedSigns": {
+            "examples": 205,
+            "micro_precision": 1.0,
+            "micro_recall": 0.9444444444444444,
+            "micro_f1": 0.9714285714285714,
+            "macro_f1_all_labels_zero_undefined": 0.3238095238095238,
+            "macro_f1_supported_labels": 0.9714285714285714,
+            "exact_set_match": 0.9902439024390244,
+            "per_label": {
+              "cannot_drink": {
+                "precision": 1.0,
+                "recall": 0.9444444444444444,
+                "f1": 0.9714285714285714,
+                "support": 36,
+                "predicted_positive": 34,
+                "false_positives": 0,
+                "false_negatives": 2
+              },
+              "convulsions": {
+                "precision": null,
+                "recall": null,
+                "f1": null,
+                "support": 0,
+                "predicted_positive": 0,
+                "false_positives": 0,
+                "false_negatives": 0
+              },
+              "bleeding": {
+                "precision": null,
+                "recall": null,
+                "f1": null,
+                "support": 0,
+                "predicted_positive": 0,
+                "false_positives": 0,
+                "false_negatives": 0
+              }
+            }
+          }
+        }
+      }
+    },
+    "synthetic_test": {
+      "before": {
+        "symptoms": {
+          "examples": 190,
+          "micro_precision": 1.0,
+          "micro_recall": 0.9105960264900662,
+          "micro_f1": 0.9532062391681109,
+          "macro_f1_all_labels_zero_undefined": 0.36231946207957216,
+          "macro_f1_supported_labels": 0.9420306014068875,
+          "exact_set_match": 0.8578947368421053,
+          "per_label": {
+            "abdominal_pain": {
+              "precision": 1.0,
+              "recall": 0.6904761904761905,
+              "f1": 0.8169014084507042,
+              "support": 42,
+              "predicted_positive": 29,
+              "false_positives": 0,
+              "false_negatives": 13
+            },
+            "bleeding": {
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0,
+              "support": 36,
+              "predicted_positive": 36,
+              "false_positives": 0,
+              "false_negatives": 0
+            },
+            "blurred_vision": {
+              "precision": null,
+              "recall": null,
+              "f1": null,
+              "support": 0,
+              "predicted_positive": 0,
+              "false_positives": 0,
+              "false_negatives": 0
+            },
+            "breathing_difficulty": {
+              "precision": null,
+              "recall": null,
+              "f1": null,
+              "support": 0,
+              "predicted_positive": 0,
+              "false_positives": 0,
+              "false_negatives": 0
+            },
+            "cough": {
+              "precision": null,
+              "recall": null,
+              "f1": null,
+              "support": 0,
+              "predicted_positive": 0,
+              "false_positives": 0,
+              "false_negatives": 0
+            },
+            "diarrhoea": {
+              "precision": null,
+              "recall": null,
+              "f1": null,
+              "support": 0,
+              "predicted_positive": 0,
+              "false_positives": 0,
+              "false_negatives": 0
+            },
+            "fatigue": {
+              "precision": null,
+              "recall": null,
+              "f1": null,
+              "support": 0,
+              "predicted_positive": 0,
+              "false_positives": 0,
+              "false_negatives": 0
+            },
+            "fever": {
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0,
+              "support": 79,
+              "predicted_positive": 79,
+              "false_positives": 0,
+              "false_negatives": 0
+            },
+            "fluid_loss": {
+              "precision": null,
+              "recall": null,
+              "f1": null,
+              "support": 0,
+              "predicted_positive": 0,
+              "false_positives": 0,
+              "false_negatives": 0
+            },
+            "headache": {
+              "precision": null,
+              "recall": null,
+              "f1": null,
+              "support": 0,
+              "predicted_positive": 0,
+              "false_positives": 0,
+              "false_negatives": 0
+            },
+            "reduced_fetal_movement": {
+              "precision": null,
+              "recall": null,
+              "f1": null,
+              "support": 0,
+              "predicted_positive": 0,
+              "false_positives": 0,
+              "false_negatives": 0
+            },
+            "vomiting": {
+              "precision": 1.0,
+              "recall": 0.9605263157894737,
+              "f1": 0.9798657718120806,
+              "support": 76,
+              "predicted_positive": 73,
+              "false_positives": 0,
+              "false_negatives": 3
+            },
+            "weakness": {
+              "precision": 1.0,
+              "recall": 0.8405797101449275,
+              "f1": 0.9133858267716536,
+              "support": 69,
+              "predicted_positive": 58,
+              "false_positives": 0,
+              "false_negatives": 11
+            }
+          },
+          "false_positives": 0,
+          "false_negatives": 27,
+          "unsupported_symptom_rate_vs_reference": 0.0,
+          "by_language": {
+            "en": {
+              "examples": 131,
+              "micro_precision": 1.0,
+              "micro_recall": 0.8932038834951457,
+              "micro_f1": 0.9435897435897436,
+              "macro_f1_all_labels_zero_undefined": 0.356873497549473,
+              "macro_f1_supported_labels": 0.9278710936286299,
+              "exact_set_match": 0.8320610687022901,
+              "per_label": {
+                "abdominal_pain": {
+                  "precision": 1.0,
+                  "recall": 0.68,
+                  "f1": 0.8095238095238095,
+                  "support": 25,
+                  "predicted_positive": 17,
+                  "false_positives": 0,
+                  "false_negatives": 8
+                },
+                "bleeding": {
+                  "precision": 1.0,
+                  "recall": 1.0,
+                  "f1": 1.0,
+                  "support": 31,
+                  "predicted_positive": 31,
+                  "false_positives": 0,
+                  "false_negatives": 0
+                },
+                "blurred_vision": {
+                  "precision": null,
+                  "recall": null,
+                  "f1": null,
+                  "support": 0,
+                  "predicted_positive": 0,
+                  "false_positives": 0,
+                  "false_negatives": 0
+                },
+                "breathing_difficulty": {
+                  "precision": null,
+                  "recall": null,
+                  "f1": null,
+                  "support": 0,
+                  "predicted_positive": 0,
+                  "false_positives": 0,
+                  "false_negatives": 0
+                },
+                "cough": {
+                  "precision": null,
+                  "recall": null,
+                  "f1": null,
+                  "support": 0,
+                  "predicted_positive": 0,
+                  "false_positives": 0,
+                  "false_negatives": 0
+                },
+                "diarrhoea": {
+                  "precision": null,
+                  "recall": null,
+                  "f1": null,
+                  "support": 0,
+                  "predicted_positive": 0,
+                  "false_positives": 0,
+                  "false_negatives": 0
+                },
+                "fatigue": {
+                  "precision": null,
+                  "recall": null,
+                  "f1": null,
+                  "support": 0,
+                  "predicted_positive": 0,
+                  "false_positives": 0,
+                  "false_negatives": 0
+                },
+                "fever": {
+                  "precision": 1.0,
+                  "recall": 1.0,
+                  "f1": 1.0,
+                  "support": 55,
+                  "predicted_positive": 55,
+                  "false_positives": 0,
+                  "false_negatives": 0
+                },
+                "fluid_loss": {
+                  "precision": null,
+                  "recall": null,
+                  "f1": null,
+                  "support": 0,
+                  "predicted_positive": 0,
+                  "false_positives": 0,
+                  "false_negatives": 0
+                },
+                "headache": {
+                  "precision": null,
+                  "recall": null,
+                  "f1": null,
+                  "support": 0,
+                  "predicted_positive": 0,
+                  "false_positives": 0,
+                  "false_negatives": 0
+                },
+                "reduced_fetal_movement": {
+                  "precision": null,
+                  "recall": null,
+                  "f1": null,
+                  "support": 0,
+                  "predicted_positive": 0,
+                  "false_positives": 0,
+                  "false_negatives": 0
+                },
+                "vomiting": {
+                  "precision": 1.0,
+                  "recall": 0.94,
+                  "f1": 0.9690721649484536,
+                  "support": 50,
+                  "predicted_positive": 47,
+                  "false_positives": 0,
+                  "false_negatives": 3
+                },
+                "weakness": {
+                  "precision": 1.0,
+                  "recall": 0.7555555555555555,
+                  "f1": 0.8607594936708861,
+                  "support": 45,
+                  "predicted_positive": 34,
+                  "false_positives": 0,
+                  "false_negatives": 11
+                }
+              }
+            },
+            "sw": {
+              "examples": 59,
+              "micro_precision": 1.0,
+              "micro_recall": 0.9479166666666666,
+              "micro_f1": 0.9732620320855615,
+              "macro_f1_all_labels_zero_undefined": 0.3713527851458886,
+              "macro_f1_supported_labels": 0.9655172413793103,
+              "exact_set_match": 0.9152542372881356,
+              "per_label": {
+                "abdominal_pain": {
+                  "precision": 1.0,
+                  "recall": 0.7058823529411765,
+                  "f1": 0.8275862068965517,
+                  "support": 17,
+                  "predicted_positive": 12,
+                  "false_positives": 0,
+                  "false_negatives": 5
+                },
+                "bleeding": {
+                  "precision": 1.0,
+                  "recall": 1.0,
+                  "f1": 1.0,
+                  "support": 5,
+                  "predicted_positive": 5,
+                  "false_positives": 0,
+                  "false_negatives": 0
+                },
+                "blurred_vision": {
+                  "precision": null,
+                  "recall": null,
+                  "f1": null,
+                  "support": 0,
+                  "predicted_positive": 0,
+                  "false_positives": 0,
+                  "false_negatives": 0
+                },
+                "breathing_difficulty": {
+                  "precision": null,
+                  "recall": null,
+                  "f1": null,
+                  "support": 0,
+                  "predicted_positive": 0,
+                  "false_positives": 0,
+                  "false_negatives": 0
+                },
+                "cough": {
+                  "precision": null,
+                  "recall": null,
+                  "f1": null,
+                  "support": 0,
+                  "predicted_positive": 0,
+                  "false_positives": 0,
+                  "false_negatives": 0
+                },
+                "diarrhoea": {
+                  "precision": null,
+                  "recall": null,
+                  "f1": null,
+                  "support": 0,
+                  "predicted_positive": 0,
+                  "false_positives": 0,
+                  "false_negatives": 0
+                },
+                "fatigue": {
+                  "precision": null,
+                  "recall": null,
+                  "f1": null,
+                  "support": 0,
+                  "predicted_positive": 0,
+                  "false_positives": 0,
+                  "false_negatives": 0
+                },
+                "fever": {
+                  "precision": 1.0,
+                  "recall": 1.0,
+                  "f1": 1.0,
+                  "support": 24,
+                  "predicted_positive": 24,
+                  "false_positives": 0,
+                  "false_negatives": 0
+                },
+                "fluid_loss": {
+                  "precision": null,
+                  "recall": null,
+                  "f1": null,
+                  "support": 0,
+                  "predicted_positive": 0,
+                  "false_positives": 0,
+                  "false_negatives": 0
+                },
+                "headache": {
+                  "precision": null,
+                  "recall": null,
+                  "f1": null,
+                  "support": 0,
+                  "predicted_positive": 0,
+                  "false_positives": 0,
+                  "false_negatives": 0
+                },
+                "reduced_fetal_movement": {
+                  "precision": null,
+                  "recall": null,
+                  "f1": null,
+                  "support": 0,
+                  "predicted_positive": 0,
+                  "false_positives": 0,
+                  "false_negatives": 0
+                },
+                "vomiting": {
+                  "precision": 1.0,
+                  "recall": 1.0,
+                  "f1": 1.0,
+                  "support": 26,
+                  "predicted_positive": 26,
+                  "false_positives": 0,
+                  "false_negatives": 0
+                },
+                "weakness": {
+                  "precision": 1.0,
+                  "recall": 1.0,
+                  "f1": 1.0,
+                  "support": 24,
+                  "predicted_positive": 24,
+                  "false_positives": 0,
+                  "false_negatives": 0
+                }
+              }
+            }
+          }
+        },
+        "rules": {
+          "patientType": {
+            "examples": 190,
+            "exact_agreement": 0.22105263157894736,
+            "non_null_predictions": 42,
+            "coverage": 0.22105263157894736,
+            "missing_expected": 0,
+            "unknown_handling_accuracy": null,
+            "confusion": {
+              "'adult' -> None": 147,
+              "'child' -> 'child'": 42,
+              "'child' -> None": 1
+            }
+          },
+          "durationDays": {
+            "examples": 190,
+            "exact_agreement": 0.8210526315789474,
+            "non_null_predictions": 156,
+            "coverage": 0.8210526315789474,
+            "missing_expected": 0,
+            "unknown_handling_accuracy": null,
+            "confusion": {
+              "1 -> 1": 13,
+              "1 -> None": 23,
+              "2 -> 2": 65,
+              "2 -> None": 11,
+              "3 -> 3": 78
+            }
+          },
+          "hydrationIssue": {
+            "examples": 190,
+            "exact_agreement": 0.4,
+            "non_null_predictions": 76,
+            "coverage": 0.4,
+            "missing_expected": 0,
+            "unknown_handling_accuracy": null,
+            "confusion": {
+              "False -> None": 114,
+              "True -> True": 76
+            }
+          },
+          "reportedSigns": {
+            "examples": 190,
+            "micro_precision": 1.0,
+            "micro_recall": 0.9113924050632911,
+            "micro_f1": 0.9536423841059603,
+            "macro_f1_all_labels_zero_undefined": 0.6371308016877637,
+            "macro_f1_supported_labels": 0.9556962025316456,
+            "exact_set_match": 0.9631578947368421,
+            "per_label": {
+              "cannot_drink": {
+                "precision": 1.0,
+                "recall": 0.8372093023255814,
+                "f1": 0.9113924050632911,
+                "support": 43,
+                "predicted_positive": 36,
+                "false_positives": 0,
+                "false_negatives": 7
+              },
+              "convulsions": {
+                "precision": null,
+                "recall": null,
+                "f1": null,
+                "support": 0,
+                "predicted_positive": 0,
+                "false_positives": 0,
+                "false_negatives": 0
+              },
+              "bleeding": {
+                "precision": 1.0,
+                "recall": 1.0,
+                "f1": 1.0,
+                "support": 36,
+                "predicted_positive": 36,
+                "false_positives": 0,
+                "false_negatives": 0
+              }
+            }
+          }
+        }
+      },
+      "after": {
+        "symptoms": {
+          "examples": 190,
+          "micro_precision": 1.0,
+          "micro_recall": 0.9105960264900662,
+          "micro_f1": 0.9532062391681109,
+          "macro_f1_all_labels_zero_undefined": 0.36184601404955785,
+          "macro_f1_supported_labels": 0.9407996365288505,
+          "exact_set_match": 0.8578947368421053,
+          "per_label": {
+            "abdominal_pain": {
+              "precision": 1.0,
+              "recall": 0.6904761904761905,
+              "f1": 0.8169014084507042,
+              "support": 42,
+              "predicted_positive": 29,
+              "false_positives": 0,
+              "false_negatives": 13
+            },
+            "bleeding": {
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0,
+              "support": 36,
+              "predicted_positive": 36,
+              "false_positives": 0,
+              "false_negatives": 0
+            },
+            "blurred_vision": {
+              "precision": null,
+              "recall": null,
+              "f1": null,
+              "support": 0,
+              "predicted_positive": 0,
+              "false_positives": 0,
+              "false_negatives": 0
+            },
+            "breathing_difficulty": {
+              "precision": null,
+              "recall": null,
+              "f1": null,
+              "support": 0,
+              "predicted_positive": 0,
+              "false_positives": 0,
+              "false_negatives": 0
+            },
+            "cough": {
+              "precision": null,
+              "recall": null,
+              "f1": null,
+              "support": 0,
+              "predicted_positive": 0,
+              "false_positives": 0,
+              "false_negatives": 0
+            },
+            "diarrhoea": {
+              "precision": null,
+              "recall": null,
+              "f1": null,
+              "support": 0,
+              "predicted_positive": 0,
+              "false_positives": 0,
+              "false_negatives": 0
+            },
+            "fatigue": {
+              "precision": null,
+              "recall": null,
+              "f1": null,
+              "support": 0,
+              "predicted_positive": 0,
+              "false_positives": 0,
+              "false_negatives": 0
+            },
+            "fever": {
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0,
+              "support": 79,
+              "predicted_positive": 79,
+              "false_positives": 0,
+              "false_negatives": 0
+            },
+            "fluid_loss": {
+              "precision": null,
+              "recall": null,
+              "f1": null,
+              "support": 0,
+              "predicted_positive": 0,
+              "false_positives": 0,
+              "false_negatives": 0
+            },
+            "headache": {
+              "precision": null,
+              "recall": null,
+              "f1": null,
+              "support": 0,
+              "predicted_positive": 0,
+              "false_positives": 0,
+              "false_negatives": 0
+            },
+            "reduced_fetal_movement": {
+              "precision": null,
+              "recall": null,
+              "f1": null,
+              "support": 0,
+              "predicted_positive": 0,
+              "false_positives": 0,
+              "false_negatives": 0
+            },
+            "vomiting": {
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0,
+              "support": 76,
+              "predicted_positive": 76,
+              "false_positives": 0,
+              "false_negatives": 0
+            },
+            "weakness": {
+              "precision": 1.0,
+              "recall": 0.7971014492753623,
+              "f1": 0.8870967741935484,
+              "support": 69,
+              "predicted_positive": 55,
+              "false_positives": 0,
+              "false_negatives": 14
+            }
+          },
+          "false_positives": 0,
+          "false_negatives": 27,
+          "unsupported_symptom_rate_vs_reference": 0.0,
+          "by_language": {
+            "en": {
+              "examples": 131,
+              "micro_precision": 1.0,
+              "micro_recall": 0.8932038834951457,
+              "micro_f1": 0.9435897435897436,
+              "macro_f1_all_labels_zero_undefined": 0.35579332947754,
+              "macro_f1_supported_labels": 0.925062656641604,
+              "exact_set_match": 0.8320610687022901,
+              "per_label": {
+                "abdominal_pain": {
+                  "precision": 1.0,
+                  "recall": 0.68,
+                  "f1": 0.8095238095238095,
+                  "support": 25,
+                  "predicted_positive": 17,
+                  "false_positives": 0,
+                  "false_negatives": 8
+                },
+                "bleeding": {
+                  "precision": 1.0,
+                  "recall": 1.0,
+                  "f1": 1.0,
+                  "support": 31,
+                  "predicted_positive": 31,
+                  "false_positives": 0,
+                  "false_negatives": 0
+                },
+                "blurred_vision": {
+                  "precision": null,
+                  "recall": null,
+                  "f1": null,
+                  "support": 0,
+                  "predicted_positive": 0,
+                  "false_positives": 0,
+                  "false_negatives": 0
+                },
+                "breathing_difficulty": {
+                  "precision": null,
+                  "recall": null,
+                  "f1": null,
+                  "support": 0,
+                  "predicted_positive": 0,
+                  "false_positives": 0,
+                  "false_negatives": 0
+                },
+                "cough": {
+                  "precision": null,
+                  "recall": null,
+                  "f1": null,
+                  "support": 0,
+                  "predicted_positive": 0,
+                  "false_positives": 0,
+                  "false_negatives": 0
+                },
+                "diarrhoea": {
+                  "precision": null,
+                  "recall": null,
+                  "f1": null,
+                  "support": 0,
+                  "predicted_positive": 0,
+                  "false_positives": 0,
+                  "false_negatives": 0
+                },
+                "fatigue": {
+                  "precision": null,
+                  "recall": null,
+                  "f1": null,
+                  "support": 0,
+                  "predicted_positive": 0,
+                  "false_positives": 0,
+                  "false_negatives": 0
+                },
+                "fever": {
+                  "precision": 1.0,
+                  "recall": 1.0,
+                  "f1": 1.0,
+                  "support": 55,
+                  "predicted_positive": 55,
+                  "false_positives": 0,
+                  "false_negatives": 0
+                },
+                "fluid_loss": {
+                  "precision": null,
+                  "recall": null,
+                  "f1": null,
+                  "support": 0,
+                  "predicted_positive": 0,
+                  "false_positives": 0,
+                  "false_negatives": 0
+                },
+                "headache": {
+                  "precision": null,
+                  "recall": null,
+                  "f1": null,
+                  "support": 0,
+                  "predicted_positive": 0,
+                  "false_positives": 0,
+                  "false_negatives": 0
+                },
+                "reduced_fetal_movement": {
+                  "precision": null,
+                  "recall": null,
+                  "f1": null,
+                  "support": 0,
+                  "predicted_positive": 0,
+                  "false_positives": 0,
+                  "false_negatives": 0
+                },
+                "vomiting": {
+                  "precision": 1.0,
+                  "recall": 1.0,
+                  "f1": 1.0,
+                  "support": 50,
+                  "predicted_positive": 50,
+                  "false_positives": 0,
+                  "false_negatives": 0
+                },
+                "weakness": {
+                  "precision": 1.0,
+                  "recall": 0.6888888888888889,
+                  "f1": 0.8157894736842105,
+                  "support": 45,
+                  "predicted_positive": 31,
+                  "false_positives": 0,
+                  "false_negatives": 14
+                }
+              }
+            },
+            "sw": {
+              "examples": 59,
+              "micro_precision": 1.0,
+              "micro_recall": 0.9479166666666666,
+              "micro_f1": 0.9732620320855615,
+              "macro_f1_all_labels_zero_undefined": 0.3713527851458886,
+              "macro_f1_supported_labels": 0.9655172413793103,
+              "exact_set_match": 0.9152542372881356,
+              "per_label": {
+                "abdominal_pain": {
+                  "precision": 1.0,
+                  "recall": 0.7058823529411765,
+                  "f1": 0.8275862068965517,
+                  "support": 17,
+                  "predicted_positive": 12,
+                  "false_positives": 0,
+                  "false_negatives": 5
+                },
+                "bleeding": {
+                  "precision": 1.0,
+                  "recall": 1.0,
+                  "f1": 1.0,
+                  "support": 5,
+                  "predicted_positive": 5,
+                  "false_positives": 0,
+                  "false_negatives": 0
+                },
+                "blurred_vision": {
+                  "precision": null,
+                  "recall": null,
+                  "f1": null,
+                  "support": 0,
+                  "predicted_positive": 0,
+                  "false_positives": 0,
+                  "false_negatives": 0
+                },
+                "breathing_difficulty": {
+                  "precision": null,
+                  "recall": null,
+                  "f1": null,
+                  "support": 0,
+                  "predicted_positive": 0,
+                  "false_positives": 0,
+                  "false_negatives": 0
+                },
+                "cough": {
+                  "precision": null,
+                  "recall": null,
+                  "f1": null,
+                  "support": 0,
+                  "predicted_positive": 0,
+                  "false_positives": 0,
+                  "false_negatives": 0
+                },
+                "diarrhoea": {
+                  "precision": null,
+                  "recall": null,
+                  "f1": null,
+                  "support": 0,
+                  "predicted_positive": 0,
+                  "false_positives": 0,
+                  "false_negatives": 0
+                },
+                "fatigue": {
+                  "precision": null,
+                  "recall": null,
+                  "f1": null,
+                  "support": 0,
+                  "predicted_positive": 0,
+                  "false_positives": 0,
+                  "false_negatives": 0
+                },
+                "fever": {
+                  "precision": 1.0,
+                  "recall": 1.0,
+                  "f1": 1.0,
+                  "support": 24,
+                  "predicted_positive": 24,
+                  "false_positives": 0,
+                  "false_negatives": 0
+                },
+                "fluid_loss": {
+                  "precision": null,
+                  "recall": null,
+                  "f1": null,
+                  "support": 0,
+                  "predicted_positive": 0,
+                  "false_positives": 0,
+                  "false_negatives": 0
+                },
+                "headache": {
+                  "precision": null,
+                  "recall": null,
+                  "f1": null,
+                  "support": 0,
+                  "predicted_positive": 0,
+                  "false_positives": 0,
+                  "false_negatives": 0
+                },
+                "reduced_fetal_movement": {
+                  "precision": null,
+                  "recall": null,
+                  "f1": null,
+                  "support": 0,
+                  "predicted_positive": 0,
+                  "false_positives": 0,
+                  "false_negatives": 0
+                },
+                "vomiting": {
+                  "precision": 1.0,
+                  "recall": 1.0,
+                  "f1": 1.0,
+                  "support": 26,
+                  "predicted_positive": 26,
+                  "false_positives": 0,
+                  "false_negatives": 0
+                },
+                "weakness": {
+                  "precision": 1.0,
+                  "recall": 1.0,
+                  "f1": 1.0,
+                  "support": 24,
+                  "predicted_positive": 24,
+                  "false_positives": 0,
+                  "false_negatives": 0
+                }
+              }
+            }
+          }
+        },
+        "rules": {
+          "patientType": {
+            "examples": 190,
+            "exact_agreement": 0.22631578947368422,
+            "non_null_predictions": 43,
+            "coverage": 0.22631578947368422,
+            "missing_expected": 0,
+            "unknown_handling_accuracy": null,
+            "confusion": {
+              "'adult' -> None": 147,
+              "'child' -> 'child'": 43
+            }
+          },
+          "durationDays": {
+            "examples": 190,
+            "exact_agreement": 0.8210526315789474,
+            "non_null_predictions": 156,
+            "coverage": 0.8210526315789474,
+            "missing_expected": 0,
+            "unknown_handling_accuracy": null,
+            "confusion": {
+              "1 -> 1": 13,
+              "1 -> None": 23,
+              "2 -> 2": 65,
+              "2 -> None": 11,
+              "3 -> 3": 78
+            }
+          },
+          "hydrationIssue": {
+            "examples": 190,
+            "exact_agreement": 0.4,
+            "non_null_predictions": 76,
+            "coverage": 0.4,
+            "missing_expected": 0,
+            "unknown_handling_accuracy": null,
+            "confusion": {
+              "False -> None": 114,
+              "True -> True": 76
+            }
+          },
+          "reportedSigns": {
+            "examples": 190,
+            "micro_precision": 1.0,
+            "micro_recall": 0.9113924050632911,
+            "micro_f1": 0.9536423841059603,
+            "macro_f1_all_labels_zero_undefined": 0.6371308016877637,
+            "macro_f1_supported_labels": 0.9556962025316456,
+            "exact_set_match": 0.9631578947368421,
+            "per_label": {
+              "cannot_drink": {
+                "precision": 1.0,
+                "recall": 0.8372093023255814,
+                "f1": 0.9113924050632911,
+                "support": 43,
+                "predicted_positive": 36,
+                "false_positives": 0,
+                "false_negatives": 7
+              },
+              "convulsions": {
+                "precision": null,
+                "recall": null,
+                "f1": null,
+                "support": 0,
+                "predicted_positive": 0,
+                "false_positives": 0,
+                "false_negatives": 0
+              },
+              "bleeding": {
+                "precision": 1.0,
+                "recall": 1.0,
+                "f1": 1.0,
+                "support": 36,
+                "predicted_positive": 36,
+                "false_positives": 0,
+                "false_negatives": 0
+              }
+            }
+          }
+        }
+      }
+    },
+    "original_diagnostics": {
+      "before": {
+        "symptoms": {
+          "examples": 48,
+          "micro_precision": 1.0,
+          "micro_recall": 0.7,
+          "micro_f1": 0.8235294117647058,
+          "macro_f1_all_labels_zero_undefined": 0.324643172919035,
+          "macro_f1_supported_labels": 0.6029087497067793,
+          "exact_set_match": 0.8541666666666666,
+          "per_label": {
+            "abdominal_pain": {
+              "precision": null,
+              "recall": 0.0,
+              "f1": 0.0,
+              "support": 1,
+              "predicted_positive": 0,
+              "false_positives": 0,
+              "false_negatives": 1
+            },
+            "bleeding": {
+              "precision": 1.0,
+              "recall": 0.5,
+              "f1": 0.6666666666666666,
+              "support": 2,
+              "predicted_positive": 1,
+              "false_positives": 0,
+              "false_negatives": 1
+            },
+            "blurred_vision": {
+              "precision": null,
+              "recall": null,
+              "f1": null,
+              "support": 0,
+              "predicted_positive": 0,
+              "false_positives": 0,
+              "false_negatives": 0
+            },
+            "breathing_difficulty": {
+              "precision": null,
+              "recall": null,
+              "f1": null,
+              "support": 0,
+              "predicted_positive": 0,
+              "false_positives": 0,
+              "false_negatives": 0
+            },
+            "cough": {
+              "precision": 1.0,
+              "recall": 0.6666666666666666,
+              "f1": 0.8,
+              "support": 15,
+              "predicted_positive": 10,
+              "false_positives": 0,
+              "false_negatives": 5
+            },
+            "diarrhoea": {
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0,
+              "support": 1,
+              "predicted_positive": 1,
+              "false_positives": 0,
+              "false_negatives": 0
+            },
+            "fatigue": {
+              "precision": null,
+              "recall": null,
+              "f1": null,
+              "support": 0,
+              "predicted_positive": 0,
+              "false_positives": 0,
+              "false_negatives": 0
+            },
+            "fever": {
+              "precision": 1.0,
+              "recall": 0.8125,
+              "f1": 0.896551724137931,
+              "support": 16,
+              "predicted_positive": 13,
+              "false_positives": 0,
+              "false_negatives": 3
+            },
+            "fluid_loss": {
+              "precision": null,
+              "recall": null,
+              "f1": null,
+              "support": 0,
+              "predicted_positive": 0,
+              "false_positives": 0,
+              "false_negatives": 0
+            },
+            "headache": {
+              "precision": null,
+              "recall": null,
+              "f1": null,
+              "support": 0,
+              "predicted_positive": 0,
+              "false_positives": 0,
+              "false_negatives": 0
+            },
+            "reduced_fetal_movement": {
+              "precision": null,
+              "recall": null,
+              "f1": null,
+              "support": 0,
+              "predicted_positive": 0,
+              "false_positives": 0,
+              "false_negatives": 0
+            },
+            "vomiting": {
+              "precision": 1.0,
+              "recall": 0.75,
+              "f1": 0.8571428571428571,
+              "support": 4,
+              "predicted_positive": 3,
+              "false_positives": 0,
+              "false_negatives": 1
+            },
+            "weakness": {
+              "precision": null,
+              "recall": 0.0,
+              "f1": 0.0,
+              "support": 1,
+              "predicted_positive": 0,
+              "false_positives": 0,
+              "false_negatives": 1
+            }
+          },
+          "false_positives": 0,
+          "false_negatives": 12,
+          "unsupported_symptom_rate_vs_reference": 0.0,
+          "by_language": {
+            "en": {
+              "examples": 33,
+              "micro_precision": 1.0,
+              "micro_recall": 0.6428571428571429,
+              "micro_f1": 0.782608695652174,
+              "macro_f1_all_labels_zero_undefined": 0.3064102564102564,
+              "macro_f1_supported_labels": 0.569047619047619,
+              "exact_set_match": 0.8181818181818182,
+              "per_label": {
+                "abdominal_pain": {
+                  "precision": null,
+                  "recall": 0.0,
+                  "f1": 0.0,
+                  "support": 1,
+                  "predicted_positive": 0,
+                  "false_positives": 0,
+                  "false_negatives": 1
+                },
+                "bleeding": {
+                  "precision": 1.0,
+                  "recall": 0.5,
+                  "f1": 0.6666666666666666,
+                  "support": 2,
+                  "predicted_positive": 1,
+                  "false_positives": 0,
+                  "false_negatives": 1
+                },
+                "blurred_vision": {
+                  "precision": null,
+                  "recall": null,
+                  "f1": null,
+                  "support": 0,
+                  "predicted_positive": 0,
+                  "false_positives": 0,
+                  "false_negatives": 0
+                },
+                "breathing_difficulty": {
+                  "precision": null,
+                  "recall": null,
+                  "f1": null,
+                  "support": 0,
+                  "predicted_positive": 0,
+                  "false_positives": 0,
+                  "false_negatives": 0
+                },
+                "cough": {
+                  "precision": 1.0,
+                  "recall": 0.6,
+                  "f1": 0.75,
+                  "support": 10,
+                  "predicted_positive": 6,
+                  "false_positives": 0,
+                  "false_negatives": 4
+                },
+                "diarrhoea": {
+                  "precision": 1.0,
+                  "recall": 1.0,
+                  "f1": 1.0,
+                  "support": 1,
+                  "predicted_positive": 1,
+                  "false_positives": 0,
+                  "false_negatives": 0
+                },
+                "fatigue": {
+                  "precision": null,
+                  "recall": null,
+                  "f1": null,
+                  "support": 0,
+                  "predicted_positive": 0,
+                  "false_positives": 0,
+                  "false_negatives": 0
+                },
+                "fever": {
+                  "precision": 1.0,
+                  "recall": 0.8181818181818182,
+                  "f1": 0.9,
+                  "support": 11,
+                  "predicted_positive": 9,
+                  "false_positives": 0,
+                  "false_negatives": 2
+                },
+                "fluid_loss": {
+                  "precision": null,
+                  "recall": null,
+                  "f1": null,
+                  "support": 0,
+                  "predicted_positive": 0,
+                  "false_positives": 0,
+                  "false_negatives": 0
+                },
+                "headache": {
+                  "precision": null,
+                  "recall": null,
+                  "f1": null,
+                  "support": 0,
+                  "predicted_positive": 0,
+                  "false_positives": 0,
+                  "false_negatives": 0
+                },
+                "reduced_fetal_movement": {
+                  "precision": null,
+                  "recall": null,
+                  "f1": null,
+                  "support": 0,
+                  "predicted_positive": 0,
+                  "false_positives": 0,
+                  "false_negatives": 0
+                },
+                "vomiting": {
+                  "precision": 1.0,
+                  "recall": 0.5,
+                  "f1": 0.6666666666666666,
+                  "support": 2,
+                  "predicted_positive": 1,
+                  "false_positives": 0,
+                  "false_negatives": 1
+                },
+                "weakness": {
+                  "precision": null,
+                  "recall": 0.0,
+                  "f1": 0.0,
+                  "support": 1,
+                  "predicted_positive": 0,
+                  "false_positives": 0,
+                  "false_negatives": 1
+                }
+              }
+            },
+            "sw": {
+              "examples": 15,
+              "micro_precision": 1.0,
+              "micro_recall": 0.8333333333333334,
+              "micro_f1": 0.9090909090909091,
+              "macro_f1_all_labels_zero_undefined": 0.21367521367521367,
+              "macro_f1_supported_labels": 0.9259259259259259,
+              "exact_set_match": 0.9333333333333333,
+              "per_label": {
+                "abdominal_pain": {
+                  "precision": null,
+                  "recall": null,
+                  "f1": null,
+                  "support": 0,
+                  "predicted_positive": 0,
+                  "false_positives": 0,
+                  "false_negatives": 0
+                },
+                "bleeding": {
+                  "precision": null,
+                  "recall": null,
+                  "f1": null,
+                  "support": 0,
+                  "predicted_positive": 0,
+                  "false_positives": 0,
+                  "false_negatives": 0
+                },
+                "blurred_vision": {
+                  "precision": null,
+                  "recall": null,
+                  "f1": null,
+                  "support": 0,
+                  "predicted_positive": 0,
+                  "false_positives": 0,
+                  "false_negatives": 0
+                },
+                "breathing_difficulty": {
+                  "precision": null,
+                  "recall": null,
+                  "f1": null,
+                  "support": 0,
+                  "predicted_positive": 0,
+                  "false_positives": 0,
+                  "false_negatives": 0
+                },
+                "cough": {
+                  "precision": 1.0,
+                  "recall": 0.8,
+                  "f1": 0.8888888888888888,
+                  "support": 5,
+                  "predicted_positive": 4,
+                  "false_positives": 0,
+                  "false_negatives": 1
+                },
+                "diarrhoea": {
+                  "precision": null,
+                  "recall": null,
+                  "f1": null,
+                  "support": 0,
+                  "predicted_positive": 0,
+                  "false_positives": 0,
+                  "false_negatives": 0
+                },
+                "fatigue": {
+                  "precision": null,
+                  "recall": null,
+                  "f1": null,
+                  "support": 0,
+                  "predicted_positive": 0,
+                  "false_positives": 0,
+                  "false_negatives": 0
+                },
+                "fever": {
+                  "precision": 1.0,
+                  "recall": 0.8,
+                  "f1": 0.8888888888888888,
+                  "support": 5,
+                  "predicted_positive": 4,
+                  "false_positives": 0,
+                  "false_negatives": 1
+                },
+                "fluid_loss": {
+                  "precision": null,
+                  "recall": null,
+                  "f1": null,
+                  "support": 0,
+                  "predicted_positive": 0,
+                  "false_positives": 0,
+                  "false_negatives": 0
+                },
+                "headache": {
+                  "precision": null,
+                  "recall": null,
+                  "f1": null,
+                  "support": 0,
+                  "predicted_positive": 0,
+                  "false_positives": 0,
+                  "false_negatives": 0
+                },
+                "reduced_fetal_movement": {
+                  "precision": null,
+                  "recall": null,
+                  "f1": null,
+                  "support": 0,
+                  "predicted_positive": 0,
+                  "false_positives": 0,
+                  "false_negatives": 0
+                },
+                "vomiting": {
+                  "precision": 1.0,
+                  "recall": 1.0,
+                  "f1": 1.0,
+                  "support": 2,
+                  "predicted_positive": 2,
+                  "false_positives": 0,
+                  "false_negatives": 0
+                },
+                "weakness": {
+                  "precision": null,
+                  "recall": null,
+                  "f1": null,
+                  "support": 0,
+                  "predicted_positive": 0,
+                  "false_positives": 0,
+                  "false_negatives": 0
+                }
+              }
+            }
+          }
+        },
+        "rules": {
+          "patientType": {
+            "examples": 48,
+            "exact_agreement": 1.0,
+            "non_null_predictions": 20,
+            "coverage": 0.4166666666666667,
+            "missing_expected": 28,
+            "unknown_handling_accuracy": 1.0,
+            "confusion": {
+              "'adult' -> 'adult'": 2,
+              "'child' -> 'child'": 16,
+              "'pregnant' -> 'pregnant'": 2,
+              "None -> None": 28
+            },
+            "unsupported_assertions_vs_diagnostic_expectation": 0,
+            "unsupported_assertion_rate_among_assertions": 0.0
+          },
+          "durationDays": {
+            "examples": 48,
+            "exact_agreement": 1.0,
+            "non_null_predictions": 4,
+            "coverage": 0.08333333333333333,
+            "missing_expected": 44,
+            "unknown_handling_accuracy": 1.0,
+            "confusion": {
+              "2 -> 2.0": 1,
+              "3 -> 3": 3,
+              "None -> None": 44
+            },
+            "unsupported_assertions_vs_diagnostic_expectation": 0,
+            "unsupported_assertion_rate_among_assertions": 0.0
+          },
+          "hydrationIssue": {
+            "examples": 48,
+            "exact_agreement": 1.0,
+            "non_null_predictions": 10,
+            "coverage": 0.20833333333333334,
+            "missing_expected": 38,
+            "unknown_handling_accuracy": 1.0,
+            "confusion": {
+              "False -> False": 2,
+              "None -> None": 38,
+              "True -> True": 8
+            },
+            "unsupported_assertions_vs_diagnostic_expectation": 0,
+            "unsupported_assertion_rate_among_assertions": 0.0
+          },
+          "reportedSigns": {
+            "examples": 48,
+            "micro_precision": 1.0,
+            "micro_recall": 1.0,
+            "micro_f1": 1.0,
+            "macro_f1_all_labels_zero_undefined": 1.0,
+            "macro_f1_supported_labels": 1.0,
+            "exact_set_match": 1.0,
+            "per_label": {
+              "cannot_drink": {
+                "precision": 1.0,
+                "recall": 1.0,
+                "f1": 1.0,
+                "support": 3,
+                "predicted_positive": 3,
+                "false_positives": 0,
+                "false_negatives": 0
+              },
+              "convulsions": {
+                "precision": 1.0,
+                "recall": 1.0,
+                "f1": 1.0,
+                "support": 1,
+                "predicted_positive": 1,
+                "false_positives": 0,
+                "false_negatives": 0
+              },
+              "bleeding": {
+                "precision": 1.0,
+                "recall": 1.0,
+                "f1": 1.0,
+                "support": 1,
+                "predicted_positive": 1,
+                "false_positives": 0,
+                "false_negatives": 0
+              }
+            },
+            "unsupported_assertion_rate_among_assertions": 0.0
+          },
+          "all_field_assertions": {
+            "count": 39,
+            "unsupported": 0,
+            "rate": 0.0
+          }
+        },
+        "all_assertions": {
+          "count": 67,
+          "unsupported": 0,
+          "rate": 0.0
+        },
+        "controls": {
+          "negation": {
+            "examples": 7,
+            "symptom_exact_correct": 6,
+            "extra_symptoms": 0
+          },
+          "subjects": {
+            "examples": 2,
+            "symptom_exact_correct": 0,
+            "extra_symptoms": 0
+          }
+        }
+      },
+      "after": {
+        "symptoms": {
+          "examples": 48,
+          "micro_precision": 1.0,
+          "micro_recall": 0.85,
+          "micro_f1": 0.918918918918919,
+          "macro_f1_all_labels_zero_undefined": 0.35099846390168976,
+          "macro_f1_supported_labels": 0.6518542901031381,
+          "exact_set_match": 0.9166666666666666,
+          "per_label": {
+            "abdominal_pain": {
+              "precision": null,
+              "recall": 0.0,
+              "f1": 0.0,
+              "support": 1,
+              "predicted_positive": 0,
+              "false_positives": 0,
+              "false_negatives": 1
+            },
+            "bleeding": {
+              "precision": 1.0,
+              "recall": 0.5,
+              "f1": 0.6666666666666666,
+              "support": 2,
+              "predicted_positive": 1,
+              "false_positives": 0,
+              "false_negatives": 1
+            },
+            "blurred_vision": {
+              "precision": null,
+              "recall": null,
+              "f1": null,
+              "support": 0,
+              "predicted_positive": 0,
+              "false_positives": 0,
+              "false_negatives": 0
+            },
+            "breathing_difficulty": {
+              "precision": null,
+              "recall": null,
+              "f1": null,
+              "support": 0,
+              "predicted_positive": 0,
+              "false_positives": 0,
+              "false_negatives": 0
+            },
+            "cough": {
+              "precision": 1.0,
+              "recall": 0.8666666666666667,
+              "f1": 0.9285714285714286,
+              "support": 15,
+              "predicted_positive": 13,
+              "false_positives": 0,
+              "false_negatives": 2
+            },
+            "diarrhoea": {
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0,
+              "support": 1,
+              "predicted_positive": 1,
+              "false_positives": 0,
+              "false_negatives": 0
+            },
+            "fatigue": {
+              "precision": null,
+              "recall": null,
+              "f1": null,
+              "support": 0,
+              "predicted_positive": 0,
+              "false_positives": 0,
+              "false_negatives": 0
+            },
+            "fever": {
+              "precision": 1.0,
+              "recall": 0.9375,
+              "f1": 0.967741935483871,
+              "support": 16,
+              "predicted_positive": 15,
+              "false_positives": 0,
+              "false_negatives": 1
+            },
+            "fluid_loss": {
+              "precision": null,
+              "recall": null,
+              "f1": null,
+              "support": 0,
+              "predicted_positive": 0,
+              "false_positives": 0,
+              "false_negatives": 0
+            },
+            "headache": {
+              "precision": null,
+              "recall": null,
+              "f1": null,
+              "support": 0,
+              "predicted_positive": 0,
+              "false_positives": 0,
+              "false_negatives": 0
+            },
+            "reduced_fetal_movement": {
+              "precision": null,
+              "recall": null,
+              "f1": null,
+              "support": 0,
+              "predicted_positive": 0,
+              "false_positives": 0,
+              "false_negatives": 0
+            },
+            "vomiting": {
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0,
+              "support": 4,
+              "predicted_positive": 4,
+              "false_positives": 0,
+              "false_negatives": 0
+            },
+            "weakness": {
+              "precision": null,
+              "recall": 0.0,
+              "f1": 0.0,
+              "support": 1,
+              "predicted_positive": 0,
+              "false_positives": 0,
+              "false_negatives": 1
+            }
+          },
+          "false_positives": 0,
+          "false_negatives": 6,
+          "unsupported_symptom_rate_vs_reference": 0.0,
+          "by_language": {
+            "en": {
+              "examples": 33,
+              "micro_precision": 1.0,
+              "micro_recall": 0.7857142857142857,
+              "micro_f1": 0.88,
+              "macro_f1_all_labels_zero_undefined": 0.34676434676434675,
+              "macro_f1_supported_labels": 0.6439909297052154,
+              "exact_set_match": 0.8787878787878788,
+              "per_label": {
+                "abdominal_pain": {
+                  "precision": null,
+                  "recall": 0.0,
+                  "f1": 0.0,
+                  "support": 1,
+                  "predicted_positive": 0,
+                  "false_positives": 0,
+                  "false_negatives": 1
+                },
+                "bleeding": {
+                  "precision": 1.0,
+                  "recall": 0.5,
+                  "f1": 0.6666666666666666,
+                  "support": 2,
+                  "predicted_positive": 1,
+                  "false_positives": 0,
+                  "false_negatives": 1
+                },
+                "blurred_vision": {
+                  "precision": null,
+                  "recall": null,
+                  "f1": null,
+                  "support": 0,
+                  "predicted_positive": 0,
+                  "false_positives": 0,
+                  "false_negatives": 0
+                },
+                "breathing_difficulty": {
+                  "precision": null,
+                  "recall": null,
+                  "f1": null,
+                  "support": 0,
+                  "predicted_positive": 0,
+                  "false_positives": 0,
+                  "false_negatives": 0
+                },
+                "cough": {
+                  "precision": 1.0,
+                  "recall": 0.8,
+                  "f1": 0.8888888888888888,
+                  "support": 10,
+                  "predicted_positive": 8,
+                  "false_positives": 0,
+                  "false_negatives": 2
+                },
+                "diarrhoea": {
+                  "precision": 1.0,
+                  "recall": 1.0,
+                  "f1": 1.0,
+                  "support": 1,
+                  "predicted_positive": 1,
+                  "false_positives": 0,
+                  "false_negatives": 0
+                },
+                "fatigue": {
+                  "precision": null,
+                  "recall": null,
+                  "f1": null,
+                  "support": 0,
+                  "predicted_positive": 0,
+                  "false_positives": 0,
+                  "false_negatives": 0
+                },
+                "fever": {
+                  "precision": 1.0,
+                  "recall": 0.9090909090909091,
+                  "f1": 0.9523809523809523,
+                  "support": 11,
+                  "predicted_positive": 10,
+                  "false_positives": 0,
+                  "false_negatives": 1
+                },
+                "fluid_loss": {
+                  "precision": null,
+                  "recall": null,
+                  "f1": null,
+                  "support": 0,
+                  "predicted_positive": 0,
+                  "false_positives": 0,
+                  "false_negatives": 0
+                },
+                "headache": {
+                  "precision": null,
+                  "recall": null,
+                  "f1": null,
+                  "support": 0,
+                  "predicted_positive": 0,
+                  "false_positives": 0,
+                  "false_negatives": 0
+                },
+                "reduced_fetal_movement": {
+                  "precision": null,
+                  "recall": null,
+                  "f1": null,
+                  "support": 0,
+                  "predicted_positive": 0,
+                  "false_positives": 0,
+                  "false_negatives": 0
+                },
+                "vomiting": {
+                  "precision": 1.0,
+                  "recall": 1.0,
+                  "f1": 1.0,
+                  "support": 2,
+                  "predicted_positive": 2,
+                  "false_positives": 0,
+                  "false_negatives": 0
+                },
+                "weakness": {
+                  "precision": null,
+                  "recall": 0.0,
+                  "f1": 0.0,
+                  "support": 1,
+                  "predicted_positive": 0,
+                  "false_positives": 0,
+                  "false_negatives": 1
+                }
+              }
+            },
+            "sw": {
+              "examples": 15,
+              "micro_precision": 1.0,
+              "micro_recall": 1.0,
+              "micro_f1": 1.0,
+              "macro_f1_all_labels_zero_undefined": 0.23076923076923078,
+              "macro_f1_supported_labels": 1.0,
+              "exact_set_match": 1.0,
+              "per_label": {
+                "abdominal_pain": {
+                  "precision": null,
+                  "recall": null,
+                  "f1": null,
+                  "support": 0,
+                  "predicted_positive": 0,
+                  "false_positives": 0,
+                  "false_negatives": 0
+                },
+                "bleeding": {
+                  "precision": null,
+                  "recall": null,
+                  "f1": null,
+                  "support": 0,
+                  "predicted_positive": 0,
+                  "false_positives": 0,
+                  "false_negatives": 0
+                },
+                "blurred_vision": {
+                  "precision": null,
+                  "recall": null,
+                  "f1": null,
+                  "support": 0,
+                  "predicted_positive": 0,
+                  "false_positives": 0,
+                  "false_negatives": 0
+                },
+                "breathing_difficulty": {
+                  "precision": null,
+                  "recall": null,
+                  "f1": null,
+                  "support": 0,
+                  "predicted_positive": 0,
+                  "false_positives": 0,
+                  "false_negatives": 0
+                },
+                "cough": {
+                  "precision": 1.0,
+                  "recall": 1.0,
+                  "f1": 1.0,
+                  "support": 5,
+                  "predicted_positive": 5,
+                  "false_positives": 0,
+                  "false_negatives": 0
+                },
+                "diarrhoea": {
+                  "precision": null,
+                  "recall": null,
+                  "f1": null,
+                  "support": 0,
+                  "predicted_positive": 0,
+                  "false_positives": 0,
+                  "false_negatives": 0
+                },
+                "fatigue": {
+                  "precision": null,
+                  "recall": null,
+                  "f1": null,
+                  "support": 0,
+                  "predicted_positive": 0,
+                  "false_positives": 0,
+                  "false_negatives": 0
+                },
+                "fever": {
+                  "precision": 1.0,
+                  "recall": 1.0,
+                  "f1": 1.0,
+                  "support": 5,
+                  "predicted_positive": 5,
+                  "false_positives": 0,
+                  "false_negatives": 0
+                },
+                "fluid_loss": {
+                  "precision": null,
+                  "recall": null,
+                  "f1": null,
+                  "support": 0,
+                  "predicted_positive": 0,
+                  "false_positives": 0,
+                  "false_negatives": 0
+                },
+                "headache": {
+                  "precision": null,
+                  "recall": null,
+                  "f1": null,
+                  "support": 0,
+                  "predicted_positive": 0,
+                  "false_positives": 0,
+                  "false_negatives": 0
+                },
+                "reduced_fetal_movement": {
+                  "precision": null,
+                  "recall": null,
+                  "f1": null,
+                  "support": 0,
+                  "predicted_positive": 0,
+                  "false_positives": 0,
+                  "false_negatives": 0
+                },
+                "vomiting": {
+                  "precision": 1.0,
+                  "recall": 1.0,
+                  "f1": 1.0,
+                  "support": 2,
+                  "predicted_positive": 2,
+                  "false_positives": 0,
+                  "false_negatives": 0
+                },
+                "weakness": {
+                  "precision": null,
+                  "recall": null,
+                  "f1": null,
+                  "support": 0,
+                  "predicted_positive": 0,
+                  "false_positives": 0,
+                  "false_negatives": 0
+                }
+              }
+            }
+          }
+        },
+        "rules": {
+          "patientType": {
+            "examples": 48,
+            "exact_agreement": 1.0,
+            "non_null_predictions": 20,
+            "coverage": 0.4166666666666667,
+            "missing_expected": 28,
+            "unknown_handling_accuracy": 1.0,
+            "confusion": {
+              "'adult' -> 'adult'": 2,
+              "'child' -> 'child'": 16,
+              "'pregnant' -> 'pregnant'": 2,
+              "None -> None": 28
+            },
+            "unsupported_assertions_vs_diagnostic_expectation": 0,
+            "unsupported_assertion_rate_among_assertions": 0.0
+          },
+          "durationDays": {
+            "examples": 48,
+            "exact_agreement": 1.0,
+            "non_null_predictions": 4,
+            "coverage": 0.08333333333333333,
+            "missing_expected": 44,
+            "unknown_handling_accuracy": 1.0,
+            "confusion": {
+              "2 -> 2.0": 1,
+              "3 -> 3": 3,
+              "None -> None": 44
+            },
+            "unsupported_assertions_vs_diagnostic_expectation": 0,
+            "unsupported_assertion_rate_among_assertions": 0.0
+          },
+          "hydrationIssue": {
+            "examples": 48,
+            "exact_agreement": 1.0,
+            "non_null_predictions": 10,
+            "coverage": 0.20833333333333334,
+            "missing_expected": 38,
+            "unknown_handling_accuracy": 1.0,
+            "confusion": {
+              "False -> False": 2,
+              "None -> None": 38,
+              "True -> True": 8
+            },
+            "unsupported_assertions_vs_diagnostic_expectation": 0,
+            "unsupported_assertion_rate_among_assertions": 0.0
+          },
+          "reportedSigns": {
+            "examples": 48,
+            "micro_precision": 1.0,
+            "micro_recall": 1.0,
+            "micro_f1": 1.0,
+            "macro_f1_all_labels_zero_undefined": 1.0,
+            "macro_f1_supported_labels": 1.0,
+            "exact_set_match": 1.0,
+            "per_label": {
+              "cannot_drink": {
+                "precision": 1.0,
+                "recall": 1.0,
+                "f1": 1.0,
+                "support": 3,
+                "predicted_positive": 3,
+                "false_positives": 0,
+                "false_negatives": 0
+              },
+              "convulsions": {
+                "precision": 1.0,
+                "recall": 1.0,
+                "f1": 1.0,
+                "support": 1,
+                "predicted_positive": 1,
+                "false_positives": 0,
+                "false_negatives": 0
+              },
+              "bleeding": {
+                "precision": 1.0,
+                "recall": 1.0,
+                "f1": 1.0,
+                "support": 1,
+                "predicted_positive": 1,
+                "false_positives": 0,
+                "false_negatives": 0
+              }
+            },
+            "unsupported_assertion_rate_among_assertions": 0.0
+          },
+          "all_field_assertions": {
+            "count": 39,
+            "unsupported": 0,
+            "rate": 0.0
+          }
+        },
+        "all_assertions": {
+          "count": 73,
+          "unsupported": 0,
+          "rate": 0.0
+        },
+        "controls": {
+          "negation": {
+            "examples": 7,
+            "symptom_exact_correct": 7,
+            "extra_symptoms": 0
+          },
+          "subjects": {
+            "examples": 2,
+            "symptom_exact_correct": 0,
+            "extra_symptoms": 0
+          }
+        }
+      }
+    },
+    "expanded_diagnostics": {
+      "before": {
+        "symptoms": {
+          "examples": 42,
+          "micro_precision": 1.0,
+          "micro_recall": 0.8285714285714286,
+          "micro_f1": 0.90625,
+          "macro_f1_all_labels_zero_undefined": 0.3627450980392157,
+          "macro_f1_supported_labels": 0.9431372549019608,
+          "exact_set_match": 0.9047619047619048,
+          "per_label": {
+            "abdominal_pain": {
+              "precision": null,
+              "recall": null,
+              "f1": null,
+              "support": 0,
+              "predicted_positive": 0,
+              "false_positives": 0,
+              "false_negatives": 0
+            },
+            "bleeding": {
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0,
+              "support": 2,
+              "predicted_positive": 2,
+              "false_positives": 0,
+              "false_negatives": 0
+            },
+            "blurred_vision": {
+              "precision": null,
+              "recall": null,
+              "f1": null,
+              "support": 0,
+              "predicted_positive": 0,
+              "false_positives": 0,
+              "false_negatives": 0
+            },
+            "breathing_difficulty": {
+              "precision": null,
+              "recall": null,
+              "f1": null,
+              "support": 0,
+              "predicted_positive": 0,
+              "false_positives": 0,
+              "false_negatives": 0
+            },
+            "cough": {
+              "precision": 1.0,
+              "recall": 0.8888888888888888,
+              "f1": 0.9411764705882353,
+              "support": 9,
+              "predicted_positive": 8,
+              "false_positives": 0,
+              "false_negatives": 1
+            },
+            "diarrhoea": {
+              "precision": null,
+              "recall": null,
+              "f1": null,
+              "support": 0,
+              "predicted_positive": 0,
+              "false_positives": 0,
+              "false_negatives": 0
+            },
+            "fatigue": {
+              "precision": null,
+              "recall": null,
+              "f1": null,
+              "support": 0,
+              "predicted_positive": 0,
+              "false_positives": 0,
+              "false_negatives": 0
+            },
+            "fever": {
+              "precision": 1.0,
+              "recall": 0.7142857142857143,
+              "f1": 0.8333333333333334,
+              "support": 14,
+              "predicted_positive": 10,
+              "false_positives": 0,
+              "false_negatives": 4
+            },
+            "fluid_loss": {
+              "precision": null,
+              "recall": null,
+              "f1": null,
+              "support": 0,
+              "predicted_positive": 0,
+              "false_positives": 0,
+              "false_negatives": 0
+            },
+            "headache": {
+              "precision": null,
+              "recall": null,
+              "f1": null,
+              "support": 0,
+              "predicted_positive": 0,
+              "false_positives": 0,
+              "false_negatives": 0
+            },
+            "reduced_fetal_movement": {
+              "precision": null,
+              "recall": null,
+              "f1": null,
+              "support": 0,
+              "predicted_positive": 0,
+              "false_positives": 0,
+              "false_negatives": 0
+            },
+            "vomiting": {
+              "precision": 1.0,
+              "recall": 0.8888888888888888,
+              "f1": 0.9411764705882353,
+              "support": 9,
+              "predicted_positive": 8,
+              "false_positives": 0,
+              "false_negatives": 1
+            },
+            "weakness": {
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0,
+              "support": 1,
+              "predicted_positive": 1,
+              "false_positives": 0,
+              "false_negatives": 0
+            }
+          },
+          "false_positives": 0,
+          "false_negatives": 6,
+          "unsupported_symptom_rate_vs_reference": 0.0,
+          "by_language": {
+            "en": {
+              "examples": 26,
+              "micro_precision": 1.0,
+              "micro_recall": 0.85,
+              "micro_f1": 0.918918918918919,
+              "macro_f1_all_labels_zero_undefined": 0.3666333666333666,
+              "macro_f1_supported_labels": 0.9532467532467532,
+              "exact_set_match": 0.9230769230769231,
+              "per_label": {
+                "abdominal_pain": {
+                  "precision": null,
+                  "recall": null,
+                  "f1": null,
+                  "support": 0,
+                  "predicted_positive": 0,
+                  "false_positives": 0,
+                  "false_negatives": 0
+                },
+                "bleeding": {
+                  "precision": 1.0,
+                  "recall": 1.0,
+                  "f1": 1.0,
+                  "support": 1,
+                  "predicted_positive": 1,
+                  "false_positives": 0,
+                  "false_negatives": 0
+                },
+                "blurred_vision": {
+                  "precision": null,
+                  "recall": null,
+                  "f1": null,
+                  "support": 0,
+                  "predicted_positive": 0,
+                  "false_positives": 0,
+                  "false_negatives": 0
+                },
+                "breathing_difficulty": {
+                  "precision": null,
+                  "recall": null,
+                  "f1": null,
+                  "support": 0,
+                  "predicted_positive": 0,
+                  "false_positives": 0,
+                  "false_negatives": 0
+                },
+                "cough": {
+                  "precision": 1.0,
+                  "recall": 1.0,
+                  "f1": 1.0,
+                  "support": 4,
+                  "predicted_positive": 4,
+                  "false_positives": 0,
+                  "false_negatives": 0
+                },
+                "diarrhoea": {
+                  "precision": null,
+                  "recall": null,
+                  "f1": null,
+                  "support": 0,
+                  "predicted_positive": 0,
+                  "false_positives": 0,
+                  "false_negatives": 0
+                },
+                "fatigue": {
+                  "precision": null,
+                  "recall": null,
+                  "f1": null,
+                  "support": 0,
+                  "predicted_positive": 0,
+                  "false_positives": 0,
+                  "false_negatives": 0
+                },
+                "fever": {
+                  "precision": 1.0,
+                  "recall": 0.75,
+                  "f1": 0.8571428571428571,
+                  "support": 8,
+                  "predicted_positive": 6,
+                  "false_positives": 0,
+                  "false_negatives": 2
+                },
+                "fluid_loss": {
+                  "precision": null,
+                  "recall": null,
+                  "f1": null,
+                  "support": 0,
+                  "predicted_positive": 0,
+                  "false_positives": 0,
+                  "false_negatives": 0
+                },
+                "headache": {
+                  "precision": null,
+                  "recall": null,
+                  "f1": null,
+                  "support": 0,
+                  "predicted_positive": 0,
+                  "false_positives": 0,
+                  "false_negatives": 0
+                },
+                "reduced_fetal_movement": {
+                  "precision": null,
+                  "recall": null,
+                  "f1": null,
+                  "support": 0,
+                  "predicted_positive": 0,
+                  "false_positives": 0,
+                  "false_negatives": 0
+                },
+                "vomiting": {
+                  "precision": 1.0,
+                  "recall": 0.8333333333333334,
+                  "f1": 0.9090909090909091,
+                  "support": 6,
+                  "predicted_positive": 5,
+                  "false_positives": 0,
+                  "false_negatives": 1
+                },
+                "weakness": {
+                  "precision": 1.0,
+                  "recall": 1.0,
+                  "f1": 1.0,
+                  "support": 1,
+                  "predicted_positive": 1,
+                  "false_positives": 0,
+                  "false_negatives": 0
+                }
+              }
+            },
+            "mixed": {
+              "examples": 3,
+              "micro_precision": 1.0,
+              "micro_recall": 1.0,
+              "micro_f1": 1.0,
+              "macro_f1_all_labels_zero_undefined": 0.23076923076923078,
+              "macro_f1_supported_labels": 1.0,
+              "exact_set_match": 1.0,
+              "per_label": {
+                "abdominal_pain": {
+                  "precision": null,
+                  "recall": null,
+                  "f1": null,
+                  "support": 0,
+                  "predicted_positive": 0,
+                  "false_positives": 0,
+                  "false_negatives": 0
+                },
+                "bleeding": {
+                  "precision": null,
+                  "recall": null,
+                  "f1": null,
+                  "support": 0,
+                  "predicted_positive": 0,
+                  "false_positives": 0,
+                  "false_negatives": 0
+                },
+                "blurred_vision": {
+                  "precision": null,
+                  "recall": null,
+                  "f1": null,
+                  "support": 0,
+                  "predicted_positive": 0,
+                  "false_positives": 0,
+                  "false_negatives": 0
+                },
+                "breathing_difficulty": {
+                  "precision": null,
+                  "recall": null,
+                  "f1": null,
+                  "support": 0,
+                  "predicted_positive": 0,
+                  "false_positives": 0,
+                  "false_negatives": 0
+                },
+                "cough": {
+                  "precision": 1.0,
+                  "recall": 1.0,
+                  "f1": 1.0,
+                  "support": 1,
+                  "predicted_positive": 1,
+                  "false_positives": 0,
+                  "false_negatives": 0
+                },
+                "diarrhoea": {
+                  "precision": null,
+                  "recall": null,
+                  "f1": null,
+                  "support": 0,
+                  "predicted_positive": 0,
+                  "false_positives": 0,
+                  "false_negatives": 0
+                },
+                "fatigue": {
+                  "precision": null,
+                  "recall": null,
+                  "f1": null,
+                  "support": 0,
+                  "predicted_positive": 0,
+                  "false_positives": 0,
+                  "false_negatives": 0
+                },
+                "fever": {
+                  "precision": 1.0,
+                  "recall": 1.0,
+                  "f1": 1.0,
+                  "support": 1,
+                  "predicted_positive": 1,
+                  "false_positives": 0,
+                  "false_negatives": 0
+                },
+                "fluid_loss": {
+                  "precision": null,
+                  "recall": null,
+                  "f1": null,
+                  "support": 0,
+                  "predicted_positive": 0,
+                  "false_positives": 0,
+                  "false_negatives": 0
+                },
+                "headache": {
+                  "precision": null,
+                  "recall": null,
+                  "f1": null,
+                  "support": 0,
+                  "predicted_positive": 0,
+                  "false_positives": 0,
+                  "false_negatives": 0
+                },
+                "reduced_fetal_movement": {
+                  "precision": null,
+                  "recall": null,
+                  "f1": null,
+                  "support": 0,
+                  "predicted_positive": 0,
+                  "false_positives": 0,
+                  "false_negatives": 0
+                },
+                "vomiting": {
+                  "precision": 1.0,
+                  "recall": 1.0,
+                  "f1": 1.0,
+                  "support": 2,
+                  "predicted_positive": 2,
+                  "false_positives": 0,
+                  "false_negatives": 0
+                },
+                "weakness": {
+                  "precision": null,
+                  "recall": null,
+                  "f1": null,
+                  "support": 0,
+                  "predicted_positive": 0,
+                  "false_positives": 0,
+                  "false_negatives": 0
+                }
+              }
+            },
+            "sw": {
+              "examples": 13,
+              "micro_precision": 1.0,
+              "micro_recall": 0.7272727272727273,
+              "micro_f1": 0.8421052631578947,
+              "macro_f1_all_labels_zero_undefined": 0.2774725274725275,
+              "macro_f1_supported_labels": 0.9017857142857143,
+              "exact_set_match": 0.8461538461538461,
+              "per_label": {
+                "abdominal_pain": {
+                  "precision": null,
+                  "recall": null,
+                  "f1": null,
+                  "support": 0,
+                  "predicted_positive": 0,
+                  "false_positives": 0,
+                  "false_negatives": 0
+                },
+                "bleeding": {
+                  "precision": 1.0,
+                  "recall": 1.0,
+                  "f1": 1.0,
+                  "support": 1,
+                  "predicted_positive": 1,
+                  "false_positives": 0,
+                  "false_negatives": 0
+                },
+                "blurred_vision": {
+                  "precision": null,
+                  "recall": null,
+                  "f1": null,
+                  "support": 0,
+                  "predicted_positive": 0,
+                  "false_positives": 0,
+                  "false_negatives": 0
+                },
+                "breathing_difficulty": {
+                  "precision": null,
+                  "recall": null,
+                  "f1": null,
+                  "support": 0,
+                  "predicted_positive": 0,
+                  "false_positives": 0,
+                  "false_negatives": 0
+                },
+                "cough": {
+                  "precision": 1.0,
+                  "recall": 0.75,
+                  "f1": 0.8571428571428571,
+                  "support": 4,
+                  "predicted_positive": 3,
+                  "false_positives": 0,
+                  "false_negatives": 1
+                },
+                "diarrhoea": {
+                  "precision": null,
+                  "recall": null,
+                  "f1": null,
+                  "support": 0,
+                  "predicted_positive": 0,
+                  "false_positives": 0,
+                  "false_negatives": 0
+                },
+                "fatigue": {
+                  "precision": null,
+                  "recall": null,
+                  "f1": null,
+                  "support": 0,
+                  "predicted_positive": 0,
+                  "false_positives": 0,
+                  "false_negatives": 0
+                },
+                "fever": {
+                  "precision": 1.0,
+                  "recall": 0.6,
+                  "f1": 0.75,
+                  "support": 5,
+                  "predicted_positive": 3,
+                  "false_positives": 0,
+                  "false_negatives": 2
+                },
+                "fluid_loss": {
+                  "precision": null,
+                  "recall": null,
+                  "f1": null,
+                  "support": 0,
+                  "predicted_positive": 0,
+                  "false_positives": 0,
+                  "false_negatives": 0
+                },
+                "headache": {
+                  "precision": null,
+                  "recall": null,
+                  "f1": null,
+                  "support": 0,
+                  "predicted_positive": 0,
+                  "false_positives": 0,
+                  "false_negatives": 0
+                },
+                "reduced_fetal_movement": {
+                  "precision": null,
+                  "recall": null,
+                  "f1": null,
+                  "support": 0,
+                  "predicted_positive": 0,
+                  "false_positives": 0,
+                  "false_negatives": 0
+                },
+                "vomiting": {
+                  "precision": 1.0,
+                  "recall": 1.0,
+                  "f1": 1.0,
+                  "support": 1,
+                  "predicted_positive": 1,
+                  "false_positives": 0,
+                  "false_negatives": 0
+                },
+                "weakness": {
+                  "precision": null,
+                  "recall": null,
+                  "f1": null,
+                  "support": 0,
+                  "predicted_positive": 0,
+                  "false_positives": 0,
+                  "false_negatives": 0
+                }
+              }
+            }
+          }
+        },
+        "rules": {
+          "patientType": {
+            "examples": 42,
+            "exact_agreement": 1.0,
+            "non_null_predictions": 14,
+            "coverage": 0.3333333333333333,
+            "missing_expected": 28,
+            "unknown_handling_accuracy": 1.0,
+            "confusion": {
+              "'child' -> 'child'": 14,
+              "None -> None": 28
+            },
+            "unsupported_assertions_vs_diagnostic_expectation": 0,
+            "unsupported_assertion_rate_among_assertions": 0.0
+          },
+          "durationDays": {
+            "examples": 42,
+            "exact_agreement": 1.0,
+            "non_null_predictions": 7,
+            "coverage": 0.16666666666666666,
+            "missing_expected": 35,
+            "unknown_handling_accuracy": 1.0,
+            "confusion": {
+              "2 -> 2.0": 2,
+              "3 -> 3": 5,
+              "None -> None": 35
+            },
+            "unsupported_assertions_vs_diagnostic_expectation": 0,
+            "unsupported_assertion_rate_among_assertions": 0.0
+          },
+          "hydrationIssue": {
+            "examples": 42,
+            "exact_agreement": 1.0,
+            "non_null_predictions": 5,
+            "coverage": 0.11904761904761904,
+            "missing_expected": 37,
+            "unknown_handling_accuracy": 1.0,
+            "confusion": {
+              "False -> False": 2,
+              "None -> None": 37,
+              "True -> True": 3
+            },
+            "unsupported_assertions_vs_diagnostic_expectation": 0,
+            "unsupported_assertion_rate_among_assertions": 0.0
+          },
+          "reportedSigns": {
+            "examples": 42,
+            "micro_precision": 1.0,
+            "micro_recall": 1.0,
+            "micro_f1": 1.0,
+            "macro_f1_all_labels_zero_undefined": 0.6666666666666666,
+            "macro_f1_supported_labels": 1.0,
+            "exact_set_match": 1.0,
+            "per_label": {
+              "cannot_drink": {
+                "precision": 1.0,
+                "recall": 1.0,
+                "f1": 1.0,
+                "support": 1,
+                "predicted_positive": 1,
+                "false_positives": 0,
+                "false_negatives": 0
+              },
+              "convulsions": {
+                "precision": null,
+                "recall": null,
+                "f1": null,
+                "support": 0,
+                "predicted_positive": 0,
+                "false_positives": 0,
+                "false_negatives": 0
+              },
+              "bleeding": {
+                "precision": 1.0,
+                "recall": 1.0,
+                "f1": 1.0,
+                "support": 2,
+                "predicted_positive": 2,
+                "false_positives": 0,
+                "false_negatives": 0
+              }
+            },
+            "unsupported_assertion_rate_among_assertions": 0.0
+          },
+          "all_field_assertions": {
+            "count": 29,
+            "unsupported": 0,
+            "rate": 0.0
+          }
+        },
+        "all_assertions": {
+          "count": 58,
+          "unsupported": 0,
+          "rate": 0.0
+        },
+        "controls": {
+          "negation": {
+            "examples": 8,
+            "symptom_exact_correct": 8,
+            "extra_symptoms": 0
+          },
+          "subjects": {
+            "examples": 4,
+            "symptom_exact_correct": 4,
+            "extra_symptoms": 0
+          }
+        }
+      },
+      "after": {
+        "symptoms": {
+          "examples": 42,
+          "micro_precision": 1.0,
+          "micro_recall": 0.9428571428571428,
+          "micro_f1": 0.9705882352941176,
+          "macro_f1_all_labels_zero_undefined": 0.37869822485207105,
+          "macro_f1_supported_labels": 0.9846153846153847,
+          "exact_set_match": 0.9523809523809523,
+          "per_label": {
+            "abdominal_pain": {
+              "precision": null,
+              "recall": null,
+              "f1": null,
+              "support": 0,
+              "predicted_positive": 0,
+              "false_positives": 0,
+              "false_negatives": 0
+            },
+            "bleeding": {
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0,
+              "support": 2,
+              "predicted_positive": 2,
+              "false_positives": 0,
+              "false_negatives": 0
+            },
+            "blurred_vision": {
+              "precision": null,
+              "recall": null,
+              "f1": null,
+              "support": 0,
+              "predicted_positive": 0,
+              "false_positives": 0,
+              "false_negatives": 0
+            },
+            "breathing_difficulty": {
+              "precision": null,
+              "recall": null,
+              "f1": null,
+              "support": 0,
+              "predicted_positive": 0,
+              "false_positives": 0,
+              "false_negatives": 0
+            },
+            "cough": {
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0,
+              "support": 9,
+              "predicted_positive": 9,
+              "false_positives": 0,
+              "false_negatives": 0
+            },
+            "diarrhoea": {
+              "precision": null,
+              "recall": null,
+              "f1": null,
+              "support": 0,
+              "predicted_positive": 0,
+              "false_positives": 0,
+              "false_negatives": 0
+            },
+            "fatigue": {
+              "precision": null,
+              "recall": null,
+              "f1": null,
+              "support": 0,
+              "predicted_positive": 0,
+              "false_positives": 0,
+              "false_negatives": 0
+            },
+            "fever": {
+              "precision": 1.0,
+              "recall": 0.8571428571428571,
+              "f1": 0.9230769230769231,
+              "support": 14,
+              "predicted_positive": 12,
+              "false_positives": 0,
+              "false_negatives": 2
+            },
+            "fluid_loss": {
+              "precision": null,
+              "recall": null,
+              "f1": null,
+              "support": 0,
+              "predicted_positive": 0,
+              "false_positives": 0,
+              "false_negatives": 0
+            },
+            "headache": {
+              "precision": null,
+              "recall": null,
+              "f1": null,
+              "support": 0,
+              "predicted_positive": 0,
+              "false_positives": 0,
+              "false_negatives": 0
+            },
+            "reduced_fetal_movement": {
+              "precision": null,
+              "recall": null,
+              "f1": null,
+              "support": 0,
+              "predicted_positive": 0,
+              "false_positives": 0,
+              "false_negatives": 0
+            },
+            "vomiting": {
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0,
+              "support": 9,
+              "predicted_positive": 9,
+              "false_positives": 0,
+              "false_negatives": 0
+            },
+            "weakness": {
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0,
+              "support": 1,
+              "predicted_positive": 1,
+              "false_positives": 0,
+              "false_negatives": 0
+            }
+          },
+          "false_positives": 0,
+          "false_negatives": 2,
+          "unsupported_symptom_rate_vs_reference": 0.0,
+          "by_language": {
+            "en": {
+              "examples": 26,
+              "micro_precision": 1.0,
+              "micro_recall": 0.95,
+              "micro_f1": 0.9743589743589743,
+              "macro_f1_all_labels_zero_undefined": 0.3794871794871795,
+              "macro_f1_supported_labels": 0.9866666666666667,
+              "exact_set_match": 0.9615384615384616,
+              "per_label": {
+                "abdominal_pain": {
+                  "precision": null,
+                  "recall": null,
+                  "f1": null,
+                  "support": 0,
+                  "predicted_positive": 0,
+                  "false_positives": 0,
+                  "false_negatives": 0
+                },
+                "bleeding": {
+                  "precision": 1.0,
+                  "recall": 1.0,
+                  "f1": 1.0,
+                  "support": 1,
+                  "predicted_positive": 1,
+                  "false_positives": 0,
+                  "false_negatives": 0
+                },
+                "blurred_vision": {
+                  "precision": null,
+                  "recall": null,
+                  "f1": null,
+                  "support": 0,
+                  "predicted_positive": 0,
+                  "false_positives": 0,
+                  "false_negatives": 0
+                },
+                "breathing_difficulty": {
+                  "precision": null,
+                  "recall": null,
+                  "f1": null,
+                  "support": 0,
+                  "predicted_positive": 0,
+                  "false_positives": 0,
+                  "false_negatives": 0
+                },
+                "cough": {
+                  "precision": 1.0,
+                  "recall": 1.0,
+                  "f1": 1.0,
+                  "support": 4,
+                  "predicted_positive": 4,
+                  "false_positives": 0,
+                  "false_negatives": 0
+                },
+                "diarrhoea": {
+                  "precision": null,
+                  "recall": null,
+                  "f1": null,
+                  "support": 0,
+                  "predicted_positive": 0,
+                  "false_positives": 0,
+                  "false_negatives": 0
+                },
+                "fatigue": {
+                  "precision": null,
+                  "recall": null,
+                  "f1": null,
+                  "support": 0,
+                  "predicted_positive": 0,
+                  "false_positives": 0,
+                  "false_negatives": 0
+                },
+                "fever": {
+                  "precision": 1.0,
+                  "recall": 0.875,
+                  "f1": 0.9333333333333333,
+                  "support": 8,
+                  "predicted_positive": 7,
+                  "false_positives": 0,
+                  "false_negatives": 1
+                },
+                "fluid_loss": {
+                  "precision": null,
+                  "recall": null,
+                  "f1": null,
+                  "support": 0,
+                  "predicted_positive": 0,
+                  "false_positives": 0,
+                  "false_negatives": 0
+                },
+                "headache": {
+                  "precision": null,
+                  "recall": null,
+                  "f1": null,
+                  "support": 0,
+                  "predicted_positive": 0,
+                  "false_positives": 0,
+                  "false_negatives": 0
+                },
+                "reduced_fetal_movement": {
+                  "precision": null,
+                  "recall": null,
+                  "f1": null,
+                  "support": 0,
+                  "predicted_positive": 0,
+                  "false_positives": 0,
+                  "false_negatives": 0
+                },
+                "vomiting": {
+                  "precision": 1.0,
+                  "recall": 1.0,
+                  "f1": 1.0,
+                  "support": 6,
+                  "predicted_positive": 6,
+                  "false_positives": 0,
+                  "false_negatives": 0
+                },
+                "weakness": {
+                  "precision": 1.0,
+                  "recall": 1.0,
+                  "f1": 1.0,
+                  "support": 1,
+                  "predicted_positive": 1,
+                  "false_positives": 0,
+                  "false_negatives": 0
+                }
+              }
+            },
+            "mixed": {
+              "examples": 3,
+              "micro_precision": 1.0,
+              "micro_recall": 1.0,
+              "micro_f1": 1.0,
+              "macro_f1_all_labels_zero_undefined": 0.23076923076923078,
+              "macro_f1_supported_labels": 1.0,
+              "exact_set_match": 1.0,
+              "per_label": {
+                "abdominal_pain": {
+                  "precision": null,
+                  "recall": null,
+                  "f1": null,
+                  "support": 0,
+                  "predicted_positive": 0,
+                  "false_positives": 0,
+                  "false_negatives": 0
+                },
+                "bleeding": {
+                  "precision": null,
+                  "recall": null,
+                  "f1": null,
+                  "support": 0,
+                  "predicted_positive": 0,
+                  "false_positives": 0,
+                  "false_negatives": 0
+                },
+                "blurred_vision": {
+                  "precision": null,
+                  "recall": null,
+                  "f1": null,
+                  "support": 0,
+                  "predicted_positive": 0,
+                  "false_positives": 0,
+                  "false_negatives": 0
+                },
+                "breathing_difficulty": {
+                  "precision": null,
+                  "recall": null,
+                  "f1": null,
+                  "support": 0,
+                  "predicted_positive": 0,
+                  "false_positives": 0,
+                  "false_negatives": 0
+                },
+                "cough": {
+                  "precision": 1.0,
+                  "recall": 1.0,
+                  "f1": 1.0,
+                  "support": 1,
+                  "predicted_positive": 1,
+                  "false_positives": 0,
+                  "false_negatives": 0
+                },
+                "diarrhoea": {
+                  "precision": null,
+                  "recall": null,
+                  "f1": null,
+                  "support": 0,
+                  "predicted_positive": 0,
+                  "false_positives": 0,
+                  "false_negatives": 0
+                },
+                "fatigue": {
+                  "precision": null,
+                  "recall": null,
+                  "f1": null,
+                  "support": 0,
+                  "predicted_positive": 0,
+                  "false_positives": 0,
+                  "false_negatives": 0
+                },
+                "fever": {
+                  "precision": 1.0,
+                  "recall": 1.0,
+                  "f1": 1.0,
+                  "support": 1,
+                  "predicted_positive": 1,
+                  "false_positives": 0,
+                  "false_negatives": 0
+                },
+                "fluid_loss": {
+                  "precision": null,
+                  "recall": null,
+                  "f1": null,
+                  "support": 0,
+                  "predicted_positive": 0,
+                  "false_positives": 0,
+                  "false_negatives": 0
+                },
+                "headache": {
+                  "precision": null,
+                  "recall": null,
+                  "f1": null,
+                  "support": 0,
+                  "predicted_positive": 0,
+                  "false_positives": 0,
+                  "false_negatives": 0
+                },
+                "reduced_fetal_movement": {
+                  "precision": null,
+                  "recall": null,
+                  "f1": null,
+                  "support": 0,
+                  "predicted_positive": 0,
+                  "false_positives": 0,
+                  "false_negatives": 0
+                },
+                "vomiting": {
+                  "precision": 1.0,
+                  "recall": 1.0,
+                  "f1": 1.0,
+                  "support": 2,
+                  "predicted_positive": 2,
+                  "false_positives": 0,
+                  "false_negatives": 0
+                },
+                "weakness": {
+                  "precision": null,
+                  "recall": null,
+                  "f1": null,
+                  "support": 0,
+                  "predicted_positive": 0,
+                  "false_positives": 0,
+                  "false_negatives": 0
+                }
+              }
+            },
+            "sw": {
+              "examples": 13,
+              "micro_precision": 1.0,
+              "micro_recall": 0.9090909090909091,
+              "micro_f1": 0.9523809523809523,
+              "macro_f1_all_labels_zero_undefined": 0.29914529914529914,
+              "macro_f1_supported_labels": 0.9722222222222222,
+              "exact_set_match": 0.9230769230769231,
+              "per_label": {
+                "abdominal_pain": {
+                  "precision": null,
+                  "recall": null,
+                  "f1": null,
+                  "support": 0,
+                  "predicted_positive": 0,
+                  "false_positives": 0,
+                  "false_negatives": 0
+                },
+                "bleeding": {
+                  "precision": 1.0,
+                  "recall": 1.0,
+                  "f1": 1.0,
+                  "support": 1,
+                  "predicted_positive": 1,
+                  "false_positives": 0,
+                  "false_negatives": 0
+                },
+                "blurred_vision": {
+                  "precision": null,
+                  "recall": null,
+                  "f1": null,
+                  "support": 0,
+                  "predicted_positive": 0,
+                  "false_positives": 0,
+                  "false_negatives": 0
+                },
+                "breathing_difficulty": {
+                  "precision": null,
+                  "recall": null,
+                  "f1": null,
+                  "support": 0,
+                  "predicted_positive": 0,
+                  "false_positives": 0,
+                  "false_negatives": 0
+                },
+                "cough": {
+                  "precision": 1.0,
+                  "recall": 1.0,
+                  "f1": 1.0,
+                  "support": 4,
+                  "predicted_positive": 4,
+                  "false_positives": 0,
+                  "false_negatives": 0
+                },
+                "diarrhoea": {
+                  "precision": null,
+                  "recall": null,
+                  "f1": null,
+                  "support": 0,
+                  "predicted_positive": 0,
+                  "false_positives": 0,
+                  "false_negatives": 0
+                },
+                "fatigue": {
+                  "precision": null,
+                  "recall": null,
+                  "f1": null,
+                  "support": 0,
+                  "predicted_positive": 0,
+                  "false_positives": 0,
+                  "false_negatives": 0
+                },
+                "fever": {
+                  "precision": 1.0,
+                  "recall": 0.8,
+                  "f1": 0.8888888888888888,
+                  "support": 5,
+                  "predicted_positive": 4,
+                  "false_positives": 0,
+                  "false_negatives": 1
+                },
+                "fluid_loss": {
+                  "precision": null,
+                  "recall": null,
+                  "f1": null,
+                  "support": 0,
+                  "predicted_positive": 0,
+                  "false_positives": 0,
+                  "false_negatives": 0
+                },
+                "headache": {
+                  "precision": null,
+                  "recall": null,
+                  "f1": null,
+                  "support": 0,
+                  "predicted_positive": 0,
+                  "false_positives": 0,
+                  "false_negatives": 0
+                },
+                "reduced_fetal_movement": {
+                  "precision": null,
+                  "recall": null,
+                  "f1": null,
+                  "support": 0,
+                  "predicted_positive": 0,
+                  "false_positives": 0,
+                  "false_negatives": 0
+                },
+                "vomiting": {
+                  "precision": 1.0,
+                  "recall": 1.0,
+                  "f1": 1.0,
+                  "support": 1,
+                  "predicted_positive": 1,
+                  "false_positives": 0,
+                  "false_negatives": 0
+                },
+                "weakness": {
+                  "precision": null,
+                  "recall": null,
+                  "f1": null,
+                  "support": 0,
+                  "predicted_positive": 0,
+                  "false_positives": 0,
+                  "false_negatives": 0
+                }
+              }
+            }
+          }
+        },
+        "rules": {
+          "patientType": {
+            "examples": 42,
+            "exact_agreement": 1.0,
+            "non_null_predictions": 14,
+            "coverage": 0.3333333333333333,
+            "missing_expected": 28,
+            "unknown_handling_accuracy": 1.0,
+            "confusion": {
+              "'child' -> 'child'": 14,
+              "None -> None": 28
+            },
+            "unsupported_assertions_vs_diagnostic_expectation": 0,
+            "unsupported_assertion_rate_among_assertions": 0.0
+          },
+          "durationDays": {
+            "examples": 42,
+            "exact_agreement": 1.0,
+            "non_null_predictions": 7,
+            "coverage": 0.16666666666666666,
+            "missing_expected": 35,
+            "unknown_handling_accuracy": 1.0,
+            "confusion": {
+              "2 -> 2.0": 2,
+              "3 -> 3": 5,
+              "None -> None": 35
+            },
+            "unsupported_assertions_vs_diagnostic_expectation": 0,
+            "unsupported_assertion_rate_among_assertions": 0.0
+          },
+          "hydrationIssue": {
+            "examples": 42,
+            "exact_agreement": 1.0,
+            "non_null_predictions": 5,
+            "coverage": 0.11904761904761904,
+            "missing_expected": 37,
+            "unknown_handling_accuracy": 1.0,
+            "confusion": {
+              "False -> False": 2,
+              "None -> None": 37,
+              "True -> True": 3
+            },
+            "unsupported_assertions_vs_diagnostic_expectation": 0,
+            "unsupported_assertion_rate_among_assertions": 0.0
+          },
+          "reportedSigns": {
+            "examples": 42,
+            "micro_precision": 1.0,
+            "micro_recall": 1.0,
+            "micro_f1": 1.0,
+            "macro_f1_all_labels_zero_undefined": 0.6666666666666666,
+            "macro_f1_supported_labels": 1.0,
+            "exact_set_match": 1.0,
+            "per_label": {
+              "cannot_drink": {
+                "precision": 1.0,
+                "recall": 1.0,
+                "f1": 1.0,
+                "support": 1,
+                "predicted_positive": 1,
+                "false_positives": 0,
+                "false_negatives": 0
+              },
+              "convulsions": {
+                "precision": null,
+                "recall": null,
+                "f1": null,
+                "support": 0,
+                "predicted_positive": 0,
+                "false_positives": 0,
+                "false_negatives": 0
+              },
+              "bleeding": {
+                "precision": 1.0,
+                "recall": 1.0,
+                "f1": 1.0,
+                "support": 2,
+                "predicted_positive": 2,
+                "false_positives": 0,
+                "false_negatives": 0
+              }
+            },
+            "unsupported_assertion_rate_among_assertions": 0.0
+          },
+          "all_field_assertions": {
+            "count": 29,
+            "unsupported": 0,
+            "rate": 0.0
+          }
+        },
+        "all_assertions": {
+          "count": 62,
+          "unsupported": 0,
+          "rate": 0.0
+        },
+        "controls": {
+          "negation": {
+            "examples": 8,
+            "symptom_exact_correct": 8,
+            "extra_symptoms": 0
+          },
+          "subjects": {
+            "examples": 4,
+            "symptom_exact_correct": 4,
+            "extra_symptoms": 0
+          }
+        }
+      }
+    },
+    "frozen_acceptance": {
+      "before": {
+        "symptoms": {
+          "examples": 48,
+          "micro_precision": 0.9285714285714286,
+          "micro_recall": 0.5909090909090909,
+          "micro_f1": 0.7222222222222222,
+          "macro_f1_all_labels_zero_undefined": 0.6863553113553114,
+          "macro_f1_supported_labels": 0.7435515873015873,
+          "exact_set_match": 0.6875,
+          "per_label": {
+            "abdominal_pain": {
+              "precision": 1.0,
+              "recall": 0.3333333333333333,
+              "f1": 0.5,
+              "support": 3,
+              "predicted_positive": 1,
+              "false_positives": 0,
+              "false_negatives": 2
+            },
+            "bleeding": {
+              "precision": null,
+              "recall": null,
+              "f1": null,
+              "support": 0,
+              "predicted_positive": 0,
+              "false_positives": 0,
+              "false_negatives": 0
+            },
+            "blurred_vision": {
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0,
+              "support": 1,
+              "predicted_positive": 1,
+              "false_positives": 0,
+              "false_negatives": 0
+            },
+            "breathing_difficulty": {
+              "precision": 1.0,
+              "recall": 0.5,
+              "f1": 0.6666666666666666,
+              "support": 2,
+              "predicted_positive": 1,
+              "false_positives": 0,
+              "false_negatives": 1
+            },
+            "cough": {
+              "precision": 1.0,
+              "recall": 0.6,
+              "f1": 0.75,
+              "support": 10,
+              "predicted_positive": 6,
+              "false_positives": 0,
+              "false_negatives": 4
+            },
+            "diarrhoea": {
+              "precision": 1.0,
+              "recall": 0.5,
+              "f1": 0.6666666666666666,
+              "support": 2,
+              "predicted_positive": 1,
+              "false_positives": 0,
+              "false_negatives": 1
+            },
+            "fatigue": {
+              "precision": null,
+              "recall": 0.0,
+              "f1": 0.0,
+              "support": 2,
+              "predicted_positive": 0,
+              "false_positives": 0,
+              "false_negatives": 2
+            },
+            "fever": {
+              "precision": 0.8333333333333334,
+              "recall": 0.5,
+              "f1": 0.625,
+              "support": 10,
+              "predicted_positive": 6,
+              "false_positives": 1,
+              "false_negatives": 5
+            },
+            "fluid_loss": {
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0,
+              "support": 1,
+              "predicted_positive": 1,
+              "false_positives": 0,
+              "false_negatives": 0
+            },
+            "headache": {
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0,
+              "support": 3,
+              "predicted_positive": 3,
+              "false_positives": 0,
+              "false_negatives": 0
+            },
+            "reduced_fetal_movement": {
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0,
+              "support": 1,
+              "predicted_positive": 1,
+              "false_positives": 0,
+              "false_negatives": 0
+            },
+            "vomiting": {
+              "precision": 0.8333333333333334,
+              "recall": 0.625,
+              "f1": 0.7142857142857143,
+              "support": 8,
+              "predicted_positive": 6,
+              "false_positives": 1,
+              "false_negatives": 3
+            },
+            "weakness": {
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0,
+              "support": 1,
+              "predicted_positive": 1,
+              "false_positives": 0,
+              "false_negatives": 0
+            }
+          },
+          "false_positives": 2,
+          "false_negatives": 18,
+          "unsupported_symptom_rate_vs_reference": 0.07142857142857142,
+          "by_language": {
+            "en": {
+              "examples": 27,
+              "micro_precision": 1.0,
+              "micro_recall": 0.5,
+              "micro_f1": 0.6666666666666666,
+              "macro_f1_all_labels_zero_undefined": 0.6080586080586081,
+              "macro_f1_supported_labels": 0.6587301587301587,
+              "exact_set_match": 0.6666666666666666,
+              "per_label": {
+                "abdominal_pain": {
+                  "precision": null,
+                  "recall": 0.0,
+                  "f1": 0.0,
+                  "support": 2,
+                  "predicted_positive": 0,
+                  "false_positives": 0,
+                  "false_negatives": 2
+                },
+                "bleeding": {
+                  "precision": null,
+                  "recall": null,
+                  "f1": null,
+                  "support": 0,
+                  "predicted_positive": 0,
+                  "false_positives": 0,
+                  "false_negatives": 0
+                },
+                "blurred_vision": {
+                  "precision": 1.0,
+                  "recall": 1.0,
+                  "f1": 1.0,
+                  "support": 1,
+                  "predicted_positive": 1,
+                  "false_positives": 0,
+                  "false_negatives": 0
+                },
+                "breathing_difficulty": {
+                  "precision": null,
+                  "recall": 0.0,
+                  "f1": 0.0,
+                  "support": 1,
+                  "predicted_positive": 0,
+                  "false_positives": 0,
+                  "false_negatives": 1
+                },
+                "cough": {
+                  "precision": 1.0,
+                  "recall": 0.5,
+                  "f1": 0.6666666666666666,
+                  "support": 6,
+                  "predicted_positive": 3,
+                  "false_positives": 0,
+                  "false_negatives": 3
+                },
+                "diarrhoea": {
+                  "precision": 1.0,
+                  "recall": 1.0,
+                  "f1": 1.0,
+                  "support": 1,
+                  "predicted_positive": 1,
+                  "false_positives": 0,
+                  "false_negatives": 0
+                },
+                "fatigue": {
+                  "precision": null,
+                  "recall": 0.0,
+                  "f1": 0.0,
+                  "support": 2,
+                  "predicted_positive": 0,
+                  "false_positives": 0,
+                  "false_negatives": 2
+                },
+                "fever": {
+                  "precision": 1.0,
+                  "recall": 0.4,
+                  "f1": 0.5714285714285714,
+                  "support": 5,
+                  "predicted_positive": 2,
+                  "false_positives": 0,
+                  "false_negatives": 3
+                },
+                "fluid_loss": {
+                  "precision": 1.0,
+                  "recall": 1.0,
+                  "f1": 1.0,
+                  "support": 1,
+                  "predicted_positive": 1,
+                  "false_positives": 0,
+                  "false_negatives": 0
+                },
+                "headache": {
+                  "precision": 1.0,
+                  "recall": 1.0,
+                  "f1": 1.0,
+                  "support": 1,
+                  "predicted_positive": 1,
+                  "false_positives": 0,
+                  "false_negatives": 0
+                },
+                "reduced_fetal_movement": {
+                  "precision": 1.0,
+                  "recall": 1.0,
+                  "f1": 1.0,
+                  "support": 1,
+                  "predicted_positive": 1,
+                  "false_positives": 0,
+                  "false_negatives": 0
+                },
+                "vomiting": {
+                  "precision": 1.0,
+                  "recall": 0.5,
+                  "f1": 0.6666666666666666,
+                  "support": 4,
+                  "predicted_positive": 2,
+                  "false_positives": 0,
+                  "false_negatives": 2
+                },
+                "weakness": {
+                  "precision": 1.0,
+                  "recall": 1.0,
+                  "f1": 1.0,
+                  "support": 1,
+                  "predicted_positive": 1,
+                  "false_positives": 0,
+                  "false_negatives": 0
+                }
+              }
+            },
+            "mixed": {
+              "examples": 3,
+              "micro_precision": 1.0,
+              "micro_recall": 0.4,
+              "micro_f1": 0.5714285714285714,
+              "macro_f1_all_labels_zero_undefined": 0.10256410256410256,
+              "macro_f1_supported_labels": 0.4444444444444444,
+              "exact_set_match": 0.0,
+              "per_label": {
+                "abdominal_pain": {
+                  "precision": null,
+                  "recall": null,
+                  "f1": null,
+                  "support": 0,
+                  "predicted_positive": 0,
+                  "false_positives": 0,
+                  "false_negatives": 0
+                },
+                "bleeding": {
+                  "precision": null,
+                  "recall": null,
+                  "f1": null,
+                  "support": 0,
+                  "predicted_positive": 0,
+                  "false_positives": 0,
+                  "false_negatives": 0
+                },
+                "blurred_vision": {
+                  "precision": null,
+                  "recall": null,
+                  "f1": null,
+                  "support": 0,
+                  "predicted_positive": 0,
+                  "false_positives": 0,
+                  "false_negatives": 0
+                },
+                "breathing_difficulty": {
+                  "precision": null,
+                  "recall": null,
+                  "f1": null,
+                  "support": 0,
+                  "predicted_positive": 0,
+                  "false_positives": 0,
+                  "false_negatives": 0
+                },
+                "cough": {
+                  "precision": null,
+                  "recall": 0.0,
+                  "f1": 0.0,
+                  "support": 1,
+                  "predicted_positive": 0,
+                  "false_positives": 0,
+                  "false_negatives": 1
+                },
+                "diarrhoea": {
+                  "precision": null,
+                  "recall": null,
+                  "f1": null,
+                  "support": 0,
+                  "predicted_positive": 0,
+                  "false_positives": 0,
+                  "false_negatives": 0
+                },
+                "fatigue": {
+                  "precision": null,
+                  "recall": null,
+                  "f1": null,
+                  "support": 0,
+                  "predicted_positive": 0,
+                  "false_positives": 0,
+                  "false_negatives": 0
+                },
+                "fever": {
+                  "precision": 1.0,
+                  "recall": 0.5,
+                  "f1": 0.6666666666666666,
+                  "support": 2,
+                  "predicted_positive": 1,
+                  "false_positives": 0,
+                  "false_negatives": 1
+                },
+                "fluid_loss": {
+                  "precision": null,
+                  "recall": null,
+                  "f1": null,
+                  "support": 0,
+                  "predicted_positive": 0,
+                  "false_positives": 0,
+                  "false_negatives": 0
+                },
+                "headache": {
+                  "precision": null,
+                  "recall": null,
+                  "f1": null,
+                  "support": 0,
+                  "predicted_positive": 0,
+                  "false_positives": 0,
+                  "false_negatives": 0
+                },
+                "reduced_fetal_movement": {
+                  "precision": null,
+                  "recall": null,
+                  "f1": null,
+                  "support": 0,
+                  "predicted_positive": 0,
+                  "false_positives": 0,
+                  "false_negatives": 0
+                },
+                "vomiting": {
+                  "precision": 1.0,
+                  "recall": 0.5,
+                  "f1": 0.6666666666666666,
+                  "support": 2,
+                  "predicted_positive": 1,
+                  "false_positives": 0,
+                  "false_negatives": 1
+                },
+                "weakness": {
+                  "precision": null,
+                  "recall": null,
+                  "f1": null,
+                  "support": 0,
+                  "predicted_positive": 0,
+                  "false_positives": 0,
+                  "false_negatives": 0
+                }
+              }
+            },
+            "sw": {
+              "examples": 18,
+              "micro_precision": 0.8461538461538461,
+              "micro_recall": 0.8461538461538461,
+              "micro_f1": 0.8461538461538461,
+              "macro_f1_all_labels_zero_undefined": 0.42051282051282046,
+              "macro_f1_supported_labels": 0.7809523809523808,
+              "exact_set_match": 0.8333333333333334,
+              "per_label": {
+                "abdominal_pain": {
+                  "precision": 1.0,
+                  "recall": 1.0,
+                  "f1": 1.0,
+                  "support": 1,
+                  "predicted_positive": 1,
+                  "false_positives": 0,
+                  "false_negatives": 0
+                },
+                "bleeding": {
+                  "precision": null,
+                  "recall": null,
+                  "f1": null,
+                  "support": 0,
+                  "predicted_positive": 0,
+                  "false_positives": 0,
+                  "false_negatives": 0
+                },
+                "blurred_vision": {
+                  "precision": null,
+                  "recall": null,
+                  "f1": null,
+                  "support": 0,
+                  "predicted_positive": 0,
+                  "false_positives": 0,
+                  "false_negatives": 0
+                },
+                "breathing_difficulty": {
+                  "precision": 1.0,
+                  "recall": 1.0,
+                  "f1": 1.0,
+                  "support": 1,
+                  "predicted_positive": 1,
+                  "false_positives": 0,
+                  "false_negatives": 0
+                },
+                "cough": {
+                  "precision": 1.0,
+                  "recall": 1.0,
+                  "f1": 1.0,
+                  "support": 3,
+                  "predicted_positive": 3,
+                  "false_positives": 0,
+                  "false_negatives": 0
+                },
+                "diarrhoea": {
+                  "precision": null,
+                  "recall": 0.0,
+                  "f1": 0.0,
+                  "support": 1,
+                  "predicted_positive": 0,
+                  "false_positives": 0,
+                  "false_negatives": 1
+                },
+                "fatigue": {
+                  "precision": null,
+                  "recall": null,
+                  "f1": null,
+                  "support": 0,
+                  "predicted_positive": 0,
+                  "false_positives": 0,
+                  "false_negatives": 0
+                },
+                "fever": {
+                  "precision": 0.6666666666666666,
+                  "recall": 0.6666666666666666,
+                  "f1": 0.6666666666666666,
+                  "support": 3,
+                  "predicted_positive": 3,
+                  "false_positives": 1,
+                  "false_negatives": 1
+                },
+                "fluid_loss": {
+                  "precision": null,
+                  "recall": null,
+                  "f1": null,
+                  "support": 0,
+                  "predicted_positive": 0,
+                  "false_positives": 0,
+                  "false_negatives": 0
+                },
+                "headache": {
+                  "precision": 1.0,
+                  "recall": 1.0,
+                  "f1": 1.0,
+                  "support": 2,
+                  "predicted_positive": 2,
+                  "false_positives": 0,
+                  "false_negatives": 0
+                },
+                "reduced_fetal_movement": {
+                  "precision": null,
+                  "recall": null,
+                  "f1": null,
+                  "support": 0,
+                  "predicted_positive": 0,
+                  "false_positives": 0,
+                  "false_negatives": 0
+                },
+                "vomiting": {
+                  "precision": 0.6666666666666666,
+                  "recall": 1.0,
+                  "f1": 0.8,
+                  "support": 2,
+                  "predicted_positive": 3,
+                  "false_positives": 1,
+                  "false_negatives": 0
+                },
+                "weakness": {
+                  "precision": null,
+                  "recall": null,
+                  "f1": null,
+                  "support": 0,
+                  "predicted_positive": 0,
+                  "false_positives": 0,
+                  "false_negatives": 0
+                }
+              }
+            }
+          }
+        },
+        "rules": {
+          "patientType": {
+            "examples": 48,
+            "exact_agreement": 0.7708333333333334,
+            "non_null_predictions": 3,
+            "coverage": 0.0625,
+            "missing_expected": 34,
+            "unknown_handling_accuracy": 1.0,
+            "confusion": {
+              "'child' -> 'child'": 1,
+              "'child' -> None": 11,
+              "'pregnant' -> 'pregnant'": 2,
+              "None -> None": 34
+            },
+            "unsupported_assertions_vs_diagnostic_expectation": 0,
+            "unsupported_assertion_rate_among_assertions": 0.0
+          },
+          "durationDays": {
+            "examples": 48,
+            "exact_agreement": 0.9791666666666666,
+            "non_null_predictions": 3,
+            "coverage": 0.0625,
+            "missing_expected": 44,
+            "unknown_handling_accuracy": 1.0,
+            "confusion": {
+              "2 -> 2": 1,
+              "3 -> 3": 1,
+              "3 -> None": 1,
+              "4 -> 4": 1,
+              "None -> None": 44
+            },
+            "unsupported_assertions_vs_diagnostic_expectation": 0,
+            "unsupported_assertion_rate_among_assertions": 0.0
+          },
+          "hydrationIssue": {
+            "examples": 48,
+            "exact_agreement": 0.9583333333333334,
+            "non_null_predictions": 3,
+            "coverage": 0.0625,
+            "missing_expected": 43,
+            "unknown_handling_accuracy": 1.0,
+            "confusion": {
+              "False -> False": 1,
+              "False -> None": 1,
+              "None -> None": 43,
+              "True -> None": 1,
+              "True -> True": 2
+            },
+            "unsupported_assertions_vs_diagnostic_expectation": 0,
+            "unsupported_assertion_rate_among_assertions": 0.0
+          },
+          "reportedSigns": {
+            "examples": 48,
+            "micro_precision": 1.0,
+            "micro_recall": 1.0,
+            "micro_f1": 1.0,
+            "macro_f1_all_labels_zero_undefined": 0.6666666666666666,
+            "macro_f1_supported_labels": 1.0,
+            "exact_set_match": 1.0,
+            "per_label": {
+              "cannot_drink": {
+                "precision": 1.0,
+                "recall": 1.0,
+                "f1": 1.0,
+                "support": 1,
+                "predicted_positive": 1,
+                "false_positives": 0,
+                "false_negatives": 0
+              },
+              "convulsions": {
+                "precision": 1.0,
+                "recall": 1.0,
+                "f1": 1.0,
+                "support": 1,
+                "predicted_positive": 1,
+                "false_positives": 0,
+                "false_negatives": 0
+              },
+              "bleeding": {
+                "precision": null,
+                "recall": null,
+                "f1": null,
+                "support": 0,
+                "predicted_positive": 0,
+                "false_positives": 0,
+                "false_negatives": 0
+              }
+            },
+            "unsupported_assertion_rate_among_assertions": 0.0
+          },
+          "all_field_assertions": {
+            "count": 11,
+            "unsupported": 0,
+            "rate": 0.0
+          }
+        },
+        "all_assertions": {
+          "count": 39,
+          "unsupported": 2,
+          "rate": 0.05128205128205128
+        },
+        "controls": {
+          "negation": {
+            "examples": 12,
+            "symptom_exact_correct": 9,
+            "extra_symptoms": 0
+          },
+          "subjects": {
+            "examples": 2,
+            "symptom_exact_correct": 1,
+            "extra_symptoms": 2
+          }
+        }
+      },
+      "after": {
+        "symptoms": {
+          "examples": 48,
+          "micro_precision": 1.0,
+          "micro_recall": 0.8636363636363636,
+          "micro_f1": 0.926829268292683,
+          "macro_f1_all_labels_zero_undefined": 0.8644280384218465,
+          "macro_f1_supported_labels": 0.9364637082903338,
+          "exact_set_match": 0.8958333333333334,
+          "per_label": {
+            "abdominal_pain": {
+              "precision": 1.0,
+              "recall": 0.6666666666666666,
+              "f1": 0.8,
+              "support": 3,
+              "predicted_positive": 2,
+              "false_positives": 0,
+              "false_negatives": 1
+            },
+            "bleeding": {
+              "precision": null,
+              "recall": null,
+              "f1": null,
+              "support": 0,
+              "predicted_positive": 0,
+              "false_positives": 0,
+              "false_negatives": 0
+            },
+            "blurred_vision": {
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0,
+              "support": 1,
+              "predicted_positive": 1,
+              "false_positives": 0,
+              "false_negatives": 0
+            },
+            "breathing_difficulty": {
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0,
+              "support": 2,
+              "predicted_positive": 2,
+              "false_positives": 0,
+              "false_negatives": 0
+            },
+            "cough": {
+              "precision": 1.0,
+              "recall": 0.9,
+              "f1": 0.9473684210526315,
+              "support": 10,
+              "predicted_positive": 9,
+              "false_positives": 0,
+              "false_negatives": 1
+            },
+            "diarrhoea": {
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0,
+              "support": 2,
+              "predicted_positive": 2,
+              "false_positives": 0,
+              "false_negatives": 0
+            },
+            "fatigue": {
+              "precision": 1.0,
+              "recall": 0.5,
+              "f1": 0.6666666666666666,
+              "support": 2,
+              "predicted_positive": 1,
+              "false_positives": 0,
+              "false_negatives": 1
+            },
+            "fever": {
+              "precision": 1.0,
+              "recall": 0.7,
+              "f1": 0.8235294117647058,
+              "support": 10,
+              "predicted_positive": 7,
+              "false_positives": 0,
+              "false_negatives": 3
+            },
+            "fluid_loss": {
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0,
+              "support": 1,
+              "predicted_positive": 1,
+              "false_positives": 0,
+              "false_negatives": 0
+            },
+            "headache": {
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0,
+              "support": 3,
+              "predicted_positive": 3,
+              "false_positives": 0,
+              "false_negatives": 0
+            },
+            "reduced_fetal_movement": {
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0,
+              "support": 1,
+              "predicted_positive": 1,
+              "false_positives": 0,
+              "false_negatives": 0
+            },
+            "vomiting": {
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0,
+              "support": 8,
+              "predicted_positive": 8,
+              "false_positives": 0,
+              "false_negatives": 0
+            },
+            "weakness": {
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0,
+              "support": 1,
+              "predicted_positive": 1,
+              "false_positives": 0,
+              "false_negatives": 0
+            }
+          },
+          "false_positives": 0,
+          "false_negatives": 6,
+          "unsupported_symptom_rate_vs_reference": 0.0,
+          "by_language": {
+            "en": {
+              "examples": 27,
+              "micro_precision": 1.0,
+              "micro_recall": 0.8461538461538461,
+              "micro_f1": 0.9166666666666666,
+              "macro_f1_all_labels_zero_undefined": 0.8562548562548563,
+              "macro_f1_supported_labels": 0.9276094276094277,
+              "exact_set_match": 0.8888888888888888,
+              "per_label": {
+                "abdominal_pain": {
+                  "precision": 1.0,
+                  "recall": 0.5,
+                  "f1": 0.6666666666666666,
+                  "support": 2,
+                  "predicted_positive": 1,
+                  "false_positives": 0,
+                  "false_negatives": 1
+                },
+                "bleeding": {
+                  "precision": null,
+                  "recall": null,
+                  "f1": null,
+                  "support": 0,
+                  "predicted_positive": 0,
+                  "false_positives": 0,
+                  "false_negatives": 0
+                },
+                "blurred_vision": {
+                  "precision": 1.0,
+                  "recall": 1.0,
+                  "f1": 1.0,
+                  "support": 1,
+                  "predicted_positive": 1,
+                  "false_positives": 0,
+                  "false_negatives": 0
+                },
+                "breathing_difficulty": {
+                  "precision": 1.0,
+                  "recall": 1.0,
+                  "f1": 1.0,
+                  "support": 1,
+                  "predicted_positive": 1,
+                  "false_positives": 0,
+                  "false_negatives": 0
+                },
+                "cough": {
+                  "precision": 1.0,
+                  "recall": 0.8333333333333334,
+                  "f1": 0.9090909090909091,
+                  "support": 6,
+                  "predicted_positive": 5,
+                  "false_positives": 0,
+                  "false_negatives": 1
+                },
+                "diarrhoea": {
+                  "precision": 1.0,
+                  "recall": 1.0,
+                  "f1": 1.0,
+                  "support": 1,
+                  "predicted_positive": 1,
+                  "false_positives": 0,
+                  "false_negatives": 0
+                },
+                "fatigue": {
+                  "precision": 1.0,
+                  "recall": 0.5,
+                  "f1": 0.6666666666666666,
+                  "support": 2,
+                  "predicted_positive": 1,
+                  "false_positives": 0,
+                  "false_negatives": 1
+                },
+                "fever": {
+                  "precision": 1.0,
+                  "recall": 0.8,
+                  "f1": 0.8888888888888888,
+                  "support": 5,
+                  "predicted_positive": 4,
+                  "false_positives": 0,
+                  "false_negatives": 1
+                },
+                "fluid_loss": {
+                  "precision": 1.0,
+                  "recall": 1.0,
+                  "f1": 1.0,
+                  "support": 1,
+                  "predicted_positive": 1,
+                  "false_positives": 0,
+                  "false_negatives": 0
+                },
+                "headache": {
+                  "precision": 1.0,
+                  "recall": 1.0,
+                  "f1": 1.0,
+                  "support": 1,
+                  "predicted_positive": 1,
+                  "false_positives": 0,
+                  "false_negatives": 0
+                },
+                "reduced_fetal_movement": {
+                  "precision": 1.0,
+                  "recall": 1.0,
+                  "f1": 1.0,
+                  "support": 1,
+                  "predicted_positive": 1,
+                  "false_positives": 0,
+                  "false_negatives": 0
+                },
+                "vomiting": {
+                  "precision": 1.0,
+                  "recall": 1.0,
+                  "f1": 1.0,
+                  "support": 4,
+                  "predicted_positive": 4,
+                  "false_positives": 0,
+                  "false_negatives": 0
+                },
+                "weakness": {
+                  "precision": 1.0,
+                  "recall": 1.0,
+                  "f1": 1.0,
+                  "support": 1,
+                  "predicted_positive": 1,
+                  "false_positives": 0,
+                  "false_negatives": 0
+                }
+              }
+            },
+            "mixed": {
+              "examples": 3,
+              "micro_precision": 1.0,
+              "micro_recall": 0.8,
+              "micro_f1": 0.8888888888888888,
+              "macro_f1_all_labels_zero_undefined": 0.20512820512820512,
+              "macro_f1_supported_labels": 0.8888888888888888,
+              "exact_set_match": 0.6666666666666666,
+              "per_label": {
+                "abdominal_pain": {
+                  "precision": null,
+                  "recall": null,
+                  "f1": null,
+                  "support": 0,
+                  "predicted_positive": 0,
+                  "false_positives": 0,
+                  "false_negatives": 0
+                },
+                "bleeding": {
+                  "precision": null,
+                  "recall": null,
+                  "f1": null,
+                  "support": 0,
+                  "predicted_positive": 0,
+                  "false_positives": 0,
+                  "false_negatives": 0
+                },
+                "blurred_vision": {
+                  "precision": null,
+                  "recall": null,
+                  "f1": null,
+                  "support": 0,
+                  "predicted_positive": 0,
+                  "false_positives": 0,
+                  "false_negatives": 0
+                },
+                "breathing_difficulty": {
+                  "precision": null,
+                  "recall": null,
+                  "f1": null,
+                  "support": 0,
+                  "predicted_positive": 0,
+                  "false_positives": 0,
+                  "false_negatives": 0
+                },
+                "cough": {
+                  "precision": 1.0,
+                  "recall": 1.0,
+                  "f1": 1.0,
+                  "support": 1,
+                  "predicted_positive": 1,
+                  "false_positives": 0,
+                  "false_negatives": 0
+                },
+                "diarrhoea": {
+                  "precision": null,
+                  "recall": null,
+                  "f1": null,
+                  "support": 0,
+                  "predicted_positive": 0,
+                  "false_positives": 0,
+                  "false_negatives": 0
+                },
+                "fatigue": {
+                  "precision": null,
+                  "recall": null,
+                  "f1": null,
+                  "support": 0,
+                  "predicted_positive": 0,
+                  "false_positives": 0,
+                  "false_negatives": 0
+                },
+                "fever": {
+                  "precision": 1.0,
+                  "recall": 0.5,
+                  "f1": 0.6666666666666666,
+                  "support": 2,
+                  "predicted_positive": 1,
+                  "false_positives": 0,
+                  "false_negatives": 1
+                },
+                "fluid_loss": {
+                  "precision": null,
+                  "recall": null,
+                  "f1": null,
+                  "support": 0,
+                  "predicted_positive": 0,
+                  "false_positives": 0,
+                  "false_negatives": 0
+                },
+                "headache": {
+                  "precision": null,
+                  "recall": null,
+                  "f1": null,
+                  "support": 0,
+                  "predicted_positive": 0,
+                  "false_positives": 0,
+                  "false_negatives": 0
+                },
+                "reduced_fetal_movement": {
+                  "precision": null,
+                  "recall": null,
+                  "f1": null,
+                  "support": 0,
+                  "predicted_positive": 0,
+                  "false_positives": 0,
+                  "false_negatives": 0
+                },
+                "vomiting": {
+                  "precision": 1.0,
+                  "recall": 1.0,
+                  "f1": 1.0,
+                  "support": 2,
+                  "predicted_positive": 2,
+                  "false_positives": 0,
+                  "false_negatives": 0
+                },
+                "weakness": {
+                  "precision": null,
+                  "recall": null,
+                  "f1": null,
+                  "support": 0,
+                  "predicted_positive": 0,
+                  "false_positives": 0,
+                  "false_negatives": 0
+                }
+              }
+            },
+            "sw": {
+              "examples": 18,
+              "micro_precision": 1.0,
+              "micro_recall": 0.9230769230769231,
+              "micro_f1": 0.96,
+              "macro_f1_all_labels_zero_undefined": 0.5230769230769231,
+              "macro_f1_supported_labels": 0.9714285714285714,
+              "exact_set_match": 0.9444444444444444,
+              "per_label": {
+                "abdominal_pain": {
+                  "precision": 1.0,
+                  "recall": 1.0,
+                  "f1": 1.0,
+                  "support": 1,
+                  "predicted_positive": 1,
+                  "false_positives": 0,
+                  "false_negatives": 0
+                },
+                "bleeding": {
+                  "precision": null,
+                  "recall": null,
+                  "f1": null,
+                  "support": 0,
+                  "predicted_positive": 0,
+                  "false_positives": 0,
+                  "false_negatives": 0
+                },
+                "blurred_vision": {
+                  "precision": null,
+                  "recall": null,
+                  "f1": null,
+                  "support": 0,
+                  "predicted_positive": 0,
+                  "false_positives": 0,
+                  "false_negatives": 0
+                },
+                "breathing_difficulty": {
+                  "precision": 1.0,
+                  "recall": 1.0,
+                  "f1": 1.0,
+                  "support": 1,
+                  "predicted_positive": 1,
+                  "false_positives": 0,
+                  "false_negatives": 0
+                },
+                "cough": {
+                  "precision": 1.0,
+                  "recall": 1.0,
+                  "f1": 1.0,
+                  "support": 3,
+                  "predicted_positive": 3,
+                  "false_positives": 0,
+                  "false_negatives": 0
+                },
+                "diarrhoea": {
+                  "precision": 1.0,
+                  "recall": 1.0,
+                  "f1": 1.0,
+                  "support": 1,
+                  "predicted_positive": 1,
+                  "false_positives": 0,
+                  "false_negatives": 0
+                },
+                "fatigue": {
+                  "precision": null,
+                  "recall": null,
+                  "f1": null,
+                  "support": 0,
+                  "predicted_positive": 0,
+                  "false_positives": 0,
+                  "false_negatives": 0
+                },
+                "fever": {
+                  "precision": 1.0,
+                  "recall": 0.6666666666666666,
+                  "f1": 0.8,
+                  "support": 3,
+                  "predicted_positive": 2,
+                  "false_positives": 0,
+                  "false_negatives": 1
+                },
+                "fluid_loss": {
+                  "precision": null,
+                  "recall": null,
+                  "f1": null,
+                  "support": 0,
+                  "predicted_positive": 0,
+                  "false_positives": 0,
+                  "false_negatives": 0
+                },
+                "headache": {
+                  "precision": 1.0,
+                  "recall": 1.0,
+                  "f1": 1.0,
+                  "support": 2,
+                  "predicted_positive": 2,
+                  "false_positives": 0,
+                  "false_negatives": 0
+                },
+                "reduced_fetal_movement": {
+                  "precision": null,
+                  "recall": null,
+                  "f1": null,
+                  "support": 0,
+                  "predicted_positive": 0,
+                  "false_positives": 0,
+                  "false_negatives": 0
+                },
+                "vomiting": {
+                  "precision": 1.0,
+                  "recall": 1.0,
+                  "f1": 1.0,
+                  "support": 2,
+                  "predicted_positive": 2,
+                  "false_positives": 0,
+                  "false_negatives": 0
+                },
+                "weakness": {
+                  "precision": null,
+                  "recall": null,
+                  "f1": null,
+                  "support": 0,
+                  "predicted_positive": 0,
+                  "false_positives": 0,
+                  "false_negatives": 0
+                }
+              }
+            }
+          }
+        },
+        "rules": {
+          "patientType": {
+            "examples": 48,
+            "exact_agreement": 1.0,
+            "non_null_predictions": 14,
+            "coverage": 0.2916666666666667,
+            "missing_expected": 34,
+            "unknown_handling_accuracy": 1.0,
+            "confusion": {
+              "'child' -> 'child'": 12,
+              "'pregnant' -> 'pregnant'": 2,
+              "None -> None": 34
+            },
+            "unsupported_assertions_vs_diagnostic_expectation": 0,
+            "unsupported_assertion_rate_among_assertions": 0.0
+          },
+          "durationDays": {
+            "examples": 48,
+            "exact_agreement": 1.0,
+            "non_null_predictions": 4,
+            "coverage": 0.08333333333333333,
+            "missing_expected": 44,
+            "unknown_handling_accuracy": 1.0,
+            "confusion": {
+              "2 -> 2": 1,
+              "3 -> 3": 2,
+              "4 -> 4": 1,
+              "None -> None": 44
+            },
+            "unsupported_assertions_vs_diagnostic_expectation": 0,
+            "unsupported_assertion_rate_among_assertions": 0.0
+          },
+          "hydrationIssue": {
+            "examples": 48,
+            "exact_agreement": 1.0,
+            "non_null_predictions": 5,
+            "coverage": 0.10416666666666667,
+            "missing_expected": 43,
+            "unknown_handling_accuracy": 1.0,
+            "confusion": {
+              "False -> False": 2,
+              "None -> None": 43,
+              "True -> True": 3
+            },
+            "unsupported_assertions_vs_diagnostic_expectation": 0,
+            "unsupported_assertion_rate_among_assertions": 0.0
+          },
+          "reportedSigns": {
+            "examples": 48,
+            "micro_precision": 1.0,
+            "micro_recall": 1.0,
+            "micro_f1": 1.0,
+            "macro_f1_all_labels_zero_undefined": 0.6666666666666666,
+            "macro_f1_supported_labels": 1.0,
+            "exact_set_match": 1.0,
+            "per_label": {
+              "cannot_drink": {
+                "precision": 1.0,
+                "recall": 1.0,
+                "f1": 1.0,
+                "support": 1,
+                "predicted_positive": 1,
+                "false_positives": 0,
+                "false_negatives": 0
+              },
+              "convulsions": {
+                "precision": 1.0,
+                "recall": 1.0,
+                "f1": 1.0,
+                "support": 1,
+                "predicted_positive": 1,
+                "false_positives": 0,
+                "false_negatives": 0
+              },
+              "bleeding": {
+                "precision": null,
+                "recall": null,
+                "f1": null,
+                "support": 0,
+                "predicted_positive": 0,
+                "false_positives": 0,
+                "false_negatives": 0
+              }
+            },
+            "unsupported_assertion_rate_among_assertions": 0.0
+          },
+          "all_field_assertions": {
+            "count": 25,
+            "unsupported": 0,
+            "rate": 0.0
+          }
+        },
+        "all_assertions": {
+          "count": 63,
+          "unsupported": 0,
+          "rate": 0.0
+        },
+        "controls": {
+          "negation": {
+            "examples": 12,
+            "symptom_exact_correct": 12,
+            "extra_symptoms": 0
+          },
+          "subjects": {
+            "examples": 2,
+            "symptom_exact_correct": 2,
+            "extra_symptoms": 0
+          }
+        }
+      }
+    }
+  },
+  "latency": {
+    "before_rules": {
+      "p50_ms": 0.058333,
+      "p95_ms": 0.12166605
+    },
+    "after_rules": {
+      "p50_ms": 0.060792,
+      "p95_ms": 0.1250535
+    },
+    "before_full": {
+      "p50_ms": 0.7543545,
+      "p95_ms": 0.8986856999999999
+    },
+    "after_full": {
+      "p50_ms": 0.770229,
+      "p95_ms": 0.9297624999999999
+    }
+  },
+  "thresholds": {
+    "abdominal_pain": 0.3,
+    "bleeding": 0.3,
+    "blurred_vision": 0.25,
+    "breathing_difficulty": 0.3,
+    "cough": 0.3,
+    "diarrhoea": 0.15,
+    "fatigue": 0.3,
+    "fever": 0.3,
+    "fluid_loss": 0.3,
+    "headache": 0.3,
+    "reduced_fetal_movement": 0.3,
+    "vomiting": 0.1,
+    "weakness": 0.3
+  },
+  "candidate_bytes": 97783,
+  "candidate_sha256": "c03967d0927d686eaddb09e8380994ec5eccd45a423bba94d31d8f0eb64c8e94",
+  "base_artifact_sha256": "8372d7ae43b27da88593ab8ea501e475481d8b5e2ac7ef0698705e9b2cdcecf4",
+  "acceptance_sha256": "b68e08737ae3ecbd5734972b8d234a1643e9e909bdcb19075c04ef68ef715eac",
+  "reference_source_sha256": "3a4b0cea3b88808edf130f6e6dd6313e1d1bf9b663c00982aff59af91c3e8b35",
+  "classifier_weights_unchanged": true,
+  "code_config_verified": true,
+  "split_manifest_sha256": "5a9566b64839a6888d6a20d86ed56de80c965a7be4f03ae50819d5a91fdec79d"
+}

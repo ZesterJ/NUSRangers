@@ -50,3 +50,11 @@ __pycache__/
 .pytest_cache/
 .venv/
 venv/
+
+# ML generated data and model exports (keep workspace documentation)
+/ml/data/processed/*
+!/ml/data/processed/.gitkeep
+/ml/artifacts/*
+!/ml/artifacts/.gitkeep
+/ml/data/evaluation/*.jsonl
+/ml/data/evaluation/*.csv

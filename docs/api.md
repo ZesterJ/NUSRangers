@@ -139,20 +139,19 @@ hackathon task is known.
 
 ---
 
-# Health intake endpoints (speech → structured record)
+# Health intake endpoints (answers → structured record)
 
 The app's Intake tab calls these. While they don't exist (or the phone is offline), the app falls back to
 typing / demo answers and to the on-phone rule-based extractor (`src/intake/extractRules.ts`).
 Types: `src/intake/types.ts`. Run `npm run check:intake` to see the offline pipeline on scripted patients.
 
-## `POST /transcribe` (speech-to-text, Jia Wei)
-`multipart/form-data` with:
-- `audio`: one recorded answer, `audio/m4a` (Expo `RecordingPresets.LOW_QUALITY`, mono, typically 5–20 s)
-- `locale`: `sw` or `en`
-
-Response: `{ "text": "Ana homa kali na anakohoa" }`. Return `{ "text": "" }` or a non-200 when unsure; the app then asks the user to type.
-
 ## `POST /extract` (text → JSON, jw's parser)
+Implemented in `backend/app/extract.py`, which wraps the extraction model in `ml/` (build the artifact
+first, see `ml/README.md`; override locations with `EXTRACT_MODEL_PATH` / `EXTRACT_CODE_PATH`). It returns
+`503` when the model is not loaded, and the app then uses its on-phone rules. When it does answer, the app
+combines the result with the on-phone rules (`src/intake/mergeExtraction.ts`): the model is preferred where
+it is confident, the rules fill gaps, and danger signs found by either are kept.
+
 Request:
 ```json
 {
@@ -176,11 +175,41 @@ Response (`Extraction`). Only use the listed codes, and mark guesses `"low"`:
   "source": "model"
 }
 ```
-- `patientGroup`: `child_u5 | pregnant | adult | null`
-- `symptoms`: `fever, cough, difficulty_breathing, diarrhoea, vomiting, headache, abdominal_pain, rash, weakness`
+- `patientGroup`: `child_u5 | pregnant | adult | null` (the app also has `child_5plus`, set only from its tap-to-answer options)
+- `symptoms`: `fever, cough, difficulty_breathing, diarrhoea, vomiting, headache, abdominal_pain, rash, weakness, sore_throat, chest_pain, limb_pain` (the last three are set by the on-phone rules and the body diagram; the model does not emit them)
 - `dangerSigns`: `unable_to_drink, vomits_everything, convulsions, lethargic, chest_indrawing, vaginal_bleeding, severe_headache_blurred_vision, reduced_fetal_movement, blood_in_stool`
 - `dangerSigns` with an empty list must be `"low"` unless the patient clearly said there were none. The app treats low-confidence "no danger signs" as **unsure → ask a health worker**.
 - Anything you can't map goes in `unmapped` (shown to the clinician, never used for triage).
+
+## `POST /classify` (visit note → see a doctor + diagnosis groups)
+Proposed contract; the route exists (`backend/app/classify.py`) but answers `503` until a classification
+model is plugged in. The app calls it after the patient confirms the visit note.
+
+Request (the confirmed note, from taps and free text alike; the patient's name is not sent):
+```json
+{
+  "locale": "sw",
+  "note": {
+    "patientGroup": "adult",
+    "sex": "female",
+    "symptoms": ["headache", "abdominal_pain"],
+    "durationDays": 3,
+    "dangerSigns": ["vomits_everything"],
+    "notes": "Affected area: Head, Abdomen"
+  }
+}
+```
+Response:
+```json
+{
+  "seeDoctor": true,
+  "diagnosisGroups": [{ "group": "gastrointestinal", "score": 0.62 }],
+  "modelVersion": "v1"
+}
+```
+- `diagnosisGroups`: most likely first; the app shows at most three, labelled as a suggestion for the health worker.
+- The app never lets this lower the urgency from its on-phone rules: `seeDoctor: true` can turn "home care"
+  into "visit a clinic within 24 hours", but danger signs and "not sure, ask a health worker" always stand.
 
 ## `POST /records` (store-and-forward)
 Body: the full `IntakeRecord` JSON. Response `{ "ok": true }`. Sent from the outbox when signal returns. Map it to DHIS2 on the server.

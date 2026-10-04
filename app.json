@@ -22,7 +22,7 @@
       "package": "org.nusrangers.app"
     },
     "web": {
-      "output": "static",
+      "output": "single",
       "favicon": "./assets/images/favicon.png"
     },
     "plugins": [
@@ -54,12 +54,6 @@
         "expo-camera",
         {
           "cameraPermission": "Used to scan patient handoff codes at the clinic."
-        }
-      ],
-      [
-        "expo-audio",
-        {
-          "microphonePermission": "Used to record the patient's spoken answers."
         }
       ]
     ],
