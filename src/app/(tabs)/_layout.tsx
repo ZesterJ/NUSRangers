@@ -31,7 +31,11 @@ export default function TabsLayout() {
         headerTitle: `${pack.emoji} ${pack.appName}`,
       }}>
       <Tabs.Screen name="index" options={{ title: t('tabs.home'), tabBarIcon: icon('🏠') }} />
-      <Tabs.Screen name="intake" options={{ title: t('tabs.intake'), tabBarIcon: icon('📝') }} />
+      {/* Until someone signs in on Home, only Home and Settings are reachable. */}
+      <Tabs.Screen
+        name="intake"
+        options={{ title: t('tabs.intake'), tabBarIcon: icon('📝'), ...(role ? {} : { href: null }) }}
+      />
       {/* The clinic screens are for clinic staff only. */}
       <Tabs.Screen
         name="scan"
@@ -39,7 +43,12 @@ export default function TabsLayout() {
       />
       <Tabs.Screen
         name="history"
-        options={{ title: t('tabs.records'), tabBarIcon: icon('🗂️'), tabBarBadge: pending || undefined }}
+        options={{
+          title: t('tabs.records'),
+          tabBarIcon: icon('🗂️'),
+          tabBarBadge: pending || undefined,
+          ...(role ? {} : { href: null }),
+        }}
       />
       {/* Kept from the generic template, hidden for the health intake flow. */}
       <Tabs.Screen name="chat" options={{ href: null, title: t('tabs.chat') }} />

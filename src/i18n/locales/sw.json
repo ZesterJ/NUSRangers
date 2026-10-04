@@ -283,11 +283,15 @@
     "noReports": "Hakuna ripoti za upimaji bado. Muuguzi hutengeneza moja kutoka kwenye foleni."
   },
   "home": {
-    "welcome": "Karibu! Ungependa kufanya nini leo?",
+    "signInTitle": "Karibu! Tafadhali ingia kwenye akaunti yako",
+    "signInHint": "Chagua jinsi unavyotumia programu.",
+    "welcome": "Ungependa kufanya nini leo?",
     "rolePatient": "Mgonjwa au mlezi",
     "roleClinic": "Wafanyakazi wa kliniki",
     "pinPrompt": "Weka PIN ya kliniki",
     "pinWrong": "PIN hiyo si sahihi.",
-    "unlock": "Fungua mwonekano wa kliniki"
+    "signIn": "Ingia",
+    "signedInAs": "Umeingia kama: {{role}}",
+    "signOut": "Toka"
   }
 }

@@ -18,7 +18,8 @@ export type Role = 'patient' | 'clinic';
 type SettingsState = {
   hydrated: boolean;
   onboarded: boolean;
-  role: Role;
+  /** null = nobody is signed in yet; Home shows the sign-in screen. */
+  role: Role | null;
   packId: string;
   locale: string;
   aiMode: AiMode;
@@ -34,7 +35,7 @@ export const useSettings = create<SettingsState>()(
     (set) => ({
       hydrated: false,
       onboarded: false,
-      role: 'patient',
+      role: null,
       packId: config.defaultPack,
       locale: getPack(config.defaultPack).defaultLocale,
       aiMode: 'auto',

@@ -5,7 +5,7 @@ import { ScrollView, StyleSheet, Text, TextInput, View } from 'react-native';
 
 import { HomeCardView } from '@/components/HomeCardView';
 import { OfflineBanner } from '@/components/OfflineBanner';
-import { Button, Card, Chip } from '@/components/ui';
+import { Button, Card } from '@/components/ui';
 import { config } from '@/config';
 import { useIsOnline } from '@/store/connectivity';
 import { useSettings } from '@/store/settings';
@@ -17,7 +17,7 @@ export default function Home() {
   const { t } = useTranslation();
   const role = useSettings((s) => s.role);
   const set = useSettings((s) => s.set);
-  // The clinic view sits behind a PIN so a patient does not wander into it.
+  // Clinic staff sign in with the clinic PIN, so a patient does not wander into the clinic view.
   const [unlocking, setUnlocking] = useState(false);
   const [pin, setPin] = useState('');
   const [wrong, setWrong] = useState(false);
@@ -43,50 +43,58 @@ export default function Home() {
             accessibilityLabel={pack.appName}
           />
         </View>
-        <View style={styles.header}>
-          <Text style={[styles.welcome, { color: theme.text }]}>{t('home.welcome')}</Text>
-          <Text style={{ color: online ? theme.success : theme.warning, fontWeight: '700' }}>
-            ● {online ? t('common.online') : t('common.offline')}
-          </Text>
-        </View>
-
-        <View style={styles.chips}>
-          <Chip
-            label={`🙋 ${t('home.rolePatient')}`}
-            selected={role === 'patient'}
-            onPress={() => {
-              set({ role: 'patient' });
-              setUnlocking(false);
-            }}
-          />
-          <Chip label={`🏥 ${t('home.roleClinic')}`} selected={role === 'clinic'} onPress={() => role !== 'clinic' && setUnlocking(true)} />
-        </View>
-
-        {unlocking && role !== 'clinic' && (
-          <Card>
-            <Text style={{ color: theme.text, fontWeight: '700' }}>🔒 {t('home.pinPrompt')}</Text>
-            <TextInput
-              style={[styles.input, { color: theme.text, borderColor: wrong ? theme.danger : theme.border, backgroundColor: theme.background }]}
-              value={pin}
-              onChangeText={(v) => {
-                setPin(v);
-                setWrong(false);
-              }}
-              keyboardType="number-pad"
-              secureTextEntry
-              maxLength={8}
-              onSubmitEditing={unlock}
-            />
-            {wrong && <Text style={{ color: theme.danger }}>{t('home.pinWrong')}</Text>}
-            <Button label={t('home.unlock')} disabled={!pin} onPress={unlock} />
-          </Card>
+        {role === null ? (
+          // ---------- Sign in ----------
+          <>
+            <View style={styles.header}>
+              <Text style={[styles.welcome, { color: theme.text }]}>{t('home.signInTitle')}</Text>
+              <Text style={{ color: theme.textMuted }}>{t('home.signInHint')}</Text>
+            </View>
+            <Button label={`🙋 ${t('home.rolePatient')}`} onPress={() => set({ role: 'patient' })} />
+            <Button label={`🏥 ${t('home.roleClinic')}`} variant="outline" onPress={() => setUnlocking(true)} />
+            {unlocking && (
+              <Card>
+                <Text style={{ color: theme.text, fontWeight: '700' }}>🔒 {t('home.pinPrompt')}</Text>
+                <TextInput
+                  style={[styles.input, { color: theme.text, borderColor: wrong ? theme.danger : theme.border, backgroundColor: theme.background }]}
+                  value={pin}
+                  onChangeText={(v) => {
+                    setPin(v);
+                    setWrong(false);
+                  }}
+                  keyboardType="number-pad"
+                  secureTextEntry
+                  maxLength={8}
+                  autoFocus
+                  onSubmitEditing={unlock}
+                />
+                {wrong && <Text style={{ color: theme.danger }}>{t('home.pinWrong')}</Text>}
+                <Button label={t('home.signIn')} disabled={!pin} onPress={unlock} />
+              </Card>
+            )}
+          </>
+        ) : (
+          // ---------- Signed in: choose what to do ----------
+          <>
+            <View style={styles.header}>
+              <Text style={[styles.welcome, { color: theme.text }]}>{t('home.welcome')}</Text>
+              <Text style={{ color: online ? theme.success : theme.warning, fontWeight: '700' }}>
+                ● {online ? t('common.online') : t('common.offline')}
+              </Text>
+            </View>
+            {pack.homeCards
+              .filter((card) => !card.roles || card.roles.includes(role))
+              .map((card) => (
+                <HomeCardView key={card.id} card={card} />
+              ))}
+            <View style={styles.signedIn}>
+              <Text style={{ color: theme.textMuted, flex: 1 }}>
+                {t('home.signedInAs', { role: t(role === 'clinic' ? 'home.roleClinic' : 'home.rolePatient') })}
+              </Text>
+              <Button label={t('home.signOut')} variant="outline" onPress={() => set({ role: null })} />
+            </View>
+          </>
         )}
-
-        {pack.homeCards
-          .filter((card) => !card.roles || card.roles.includes(role))
-          .map((card) => (
-            <HomeCardView key={card.id} card={card} />
-          ))}
       </ScrollView>
     </View>
   );
@@ -98,6 +106,6 @@ const styles = StyleSheet.create({
   logo: { width: '100%', aspectRatio: 1024 / 559 },
   header: { gap: spacing.xs },
   welcome: { fontSize: 20, fontWeight: '800' },
-  chips: { flexDirection: 'row', flexWrap: 'wrap', gap: spacing.sm },
+  signedIn: { flexDirection: 'row', alignItems: 'center', gap: spacing.md, marginTop: spacing.md },
   input: { borderWidth: 1, borderRadius: radius.md, padding: spacing.md, fontSize: 18, marginVertical: spacing.sm },
 });

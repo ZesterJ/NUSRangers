@@ -283,11 +283,15 @@
     "noReports": "No triage reports yet. The nurse creates one from the queue."
   },
   "home": {
-    "welcome": "Welcome! What would you like to do today?",
+    "signInTitle": "Welcome! Please sign in to your account",
+    "signInHint": "Choose how you are using the app.",
+    "welcome": "What would you like to do today?",
     "rolePatient": "Patient or caregiver",
     "roleClinic": "Clinic staff",
     "pinPrompt": "Enter the clinic PIN",
     "pinWrong": "That PIN is not correct.",
-    "unlock": "Open the clinic view"
+    "signIn": "Sign in",
+    "signedInAs": "Signed in as: {{role}}",
+    "signOut": "Sign out"
   }
 }
