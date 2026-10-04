@@ -54,8 +54,9 @@ export default function Settings() {
         ))}
       </View>
 
-      {/* Connection and backend settings are for the team and clinic staff, never for patients. */}
-      {s.role === "clinic" && (
+      {/* Connection and backend settings are for the team while developing (Expo Go, dev builds).
+          An installed build never shows them: its backend address is fixed when the app is built. */}
+      {s.role === "clinic" && __DEV__ && (
         <>
           <SectionTitle>{t("settings.aiMode")}</SectionTitle>
           <View style={styles.chips}>
