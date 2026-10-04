@@ -70,3 +70,19 @@ def test_records_store_and_forward():
     r = client.post("/records", json={"id": "abc12345", "triage": {"level": "refer_now"}})
     assert r.status_code == 200 and r.json() == {"ok": True}
     assert client.post("/records", json={"triage": {}}).status_code == 422
+
+
+def test_guidance_registry_is_served_and_every_entry_cites_a_source():
+    from fastapi.testclient import TestClient
+
+    from app import main
+
+    with TestClient(main.app) as c:
+        res = c.get("/guidance")
+    assert res.status_code == 200
+    registry = res.json()
+    assert registry["version"] >= 1
+    assert registry["entries"]
+    for entry in registry["entries"]:
+        assert entry["sourceId"] in registry["sources"]
+        assert entry["points"]

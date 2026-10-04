@@ -98,6 +98,8 @@ export type ClinicOption = { id: string; name: string; reasons: string[] };
 
 export type IntakeRecord = {
   id: string;
+  /** Which view made the note. Records shows only the notes made in the view that is signed in. */
+  owner?: 'patient' | 'clinic';
   createdAt: number;
   locale: string;
   transcript: string[];
@@ -107,5 +109,7 @@ export type IntakeRecord = {
   services?: string[];
   facilityId: string | null;
   facilityName?: string;
+  /** Seconds from opening the visit note to creating the clinic code. */
+  completedInSec?: number;
   status: 'handed_off' | 'received';
 };

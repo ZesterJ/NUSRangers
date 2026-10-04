@@ -7,7 +7,6 @@ import type { AiSource } from '@/ai/types';
 import { api } from '@/api/client';
 import { AssessmentCard } from '@/components/AssessmentCard';
 import { FormFieldInput } from '@/components/FormFieldInput';
-import { OfflineBanner } from '@/components/OfflineBanner';
 import { Button } from '@/components/ui';
 import { addReport, enqueue, setReportResult } from '@/db';
 import type { Assessment, FormValues } from '@/packs/types';
@@ -67,7 +66,6 @@ function CaptureScreen() {
 
   return (
     <View style={{ flex: 1, backgroundColor: theme.background }}>
-      <OfflineBanner />
       <ScrollView contentContainerStyle={styles.content} keyboardShouldPersistTaps="handled">
         <Text style={[styles.title, { color: theme.text }]}>{tr(form.title, locale)}</Text>
         {form.intro && <Text style={{ color: theme.textMuted, marginBottom: spacing.lg }}>{tr(form.intro, locale)}</Text>}

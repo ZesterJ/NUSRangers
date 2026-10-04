@@ -1,0 +1,13 @@
+# Render Blueprint for the backend. In Render: New + → Blueprint → pick this repository.
+services:
+  - type: web
+    name: njia-ya-afya-backend
+    runtime: docker
+    plan: free
+    dockerfilePath: ./backend/Dockerfile
+    dockerContext: .
+    healthCheckPath: /health
+    envVars:
+      # "echo" needs no API key: the chat endpoints return placeholders, which the visit-note flow does not use.
+      - key: LLM_PROVIDER
+        value: echo

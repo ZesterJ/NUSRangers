@@ -5,9 +5,11 @@
     "capture": "Report",
     "history": "History",
     "settings": "Settings",
-    "intake": "Intake",
+    "intake": "Visit Note",
     "scan": "Clinic",
-    "records": "Records"
+    "records": "Records",
+    "guidance": "Guidance",
+    "clinics": "Clinics"
   },
   "common": {
     "online": "Online",
@@ -16,7 +18,6 @@
     "cancel": "Cancel",
     "retry": "Retry"
   },
-  "offlineBanner": "You are offline. Answers come from the phone; anything else is sent when you reconnect.",
   "source": {
     "offline": "On-phone knowledge",
     "cache": "Saved answer",
@@ -54,9 +55,14 @@
     "pending": "{{count}} waiting to sync",
     "syncNow": "Sync now",
     "syncing": "Syncing…",
-    "empty": "No reports yet.",
+    "empty": "No visit notes yet.",
     "noResult": "Waiting for result",
-    "intakes": "Patient intakes"
+    "intakes": "Visit notes",
+    "deleteAll": "Delete my visit notes",
+    "deleteConfirm": "This removes every visit note in this list from this phone. It cannot be undone. Notes already given to a clinic stay with the clinic.",
+    "deleteYes": "Delete",
+    "keptFor": "Visit notes are removed from this phone automatically after {{days}} days.",
+    "completedIn": "Completed in {{minutes}} min {{seconds}} s"
   },
   "settings": {
     "language": "Language",
@@ -85,41 +91,41 @@
     "back": "Back",
     "finish": "Review answers",
     "extracting": "Processing the answers…",
-    "reviewTitle": "Visit note summary",
-    "reviewHint": "This summary was prepared from the answers provided. Please verify any item marked \"Please verify\" and correct anything that is inaccurate.",
+    "reviewTitle": "Check your answers",
+    "reviewHint": "Is this right? Tap \"Edit details\" to change anything. Look closely at anything marked \"Please check\".",
     "edit": "Edit details",
-    "pleaseCheck": "Please verify",
+    "pleaseCheck": "Please check",
     "who": "Patient",
     "symptoms": "Symptoms",
-    "duration": "Duration (days)",
+    "duration": "How many days",
     "danger": "Danger signs",
     "none": "None",
-    "notes": "Additional notes",
+    "notes": "Other notes",
     "source": {
       "rules": "Processed on this device",
       "model": "Processed by the AI model"
     },
     "confirm": "Confirm visit note",
-    "resultTitle": "Recommended next step",
+    "resultTitle": "What to do next",
     "level": {
       "refer_now": "Go to a clinic immediately",
       "refer_24h": "Visit a clinic within 24 hours",
       "home_care": "Home care. Reassess in 2 days",
-      "unsure": "Unable to determine. Please consult a health worker"
+      "unsure": "Not sure. Please ask a health worker"
     },
-    "humanDecides": "This is decision support, not a diagnosis. A health worker makes the final decision.",
+    "humanDecides": "This is advice, not a diagnosis. A health worker decides.",
     "clinics": "Recommended clinics",
     "noClinic": "No suitable clinic within range. Please call the sub-county referral line or consult a health worker.",
     "choose": "Select",
     "chosen": "Selected",
-    "handoff": "Generate clinic handoff code",
-    "qrTitle": "Present this code at the clinic",
-    "qrHint": "The clinic scans this code to receive the visit note, so the questions do not need to be repeated.",
-    "saved": "Saved on this device. It will sync when a connection is available.",
+    "handoff": "Get my clinic code",
+    "qrTitle": "Show this code at the clinic",
+    "qrHint": "The clinic scans this code to get your answers, so you do not have to repeat them.",
+    "saved": "Saved on this phone.",
     "newIntake": "Start a new visit note",
     "transcript": "Patient's answers",
     "services": "Services needed",
-    "servicesNote": "Proposed from the answers for the health worker to confirm. Not a diagnosis.",
+    "servicesNote": "Suggested from your answers. A health worker will confirm. Not a diagnosis.",
     "service": {
       "generalOutpatient": "General outpatient",
       "childHealth": "Child health",
@@ -128,23 +134,30 @@
     "kilifiData": "Kilifi facility records",
     "kmAway": "{{km}} km away (straight line)",
     "documented": "Documented services: {{services}}",
-    "availabilityUnknown": "Opening hours and staffing are not confirmed. Call ahead if possible.",
+    "availabilityUnknown": "Opening hours are not confirmed. Call ahead if you can.",
     "demoOrigin": "Distances are measured from Kilifi District Hospital (demo location).",
-    "routingNote": "Facility services come from a historical public-source snapshot and need confirming.",
-    "optionsTitle": "Select an option",
-    "orDescribe": "Or answer in your own words",
+    "routingNote": "Clinic details come from older public records. Check with the clinic first.",
+    "optionsTitle": "Tap an answer",
+    "orDescribe": "Or type your answer",
     "whoOpt": {
       "self": "Me",
       "child_u5": "My child (under 5)",
       "child_5plus": "My child (5 or older)",
       "other_adult": "Another adult"
     },
-    "name": "Patient's name",
-    "namePlaceholder": "Enter the name (optional)",
+    "name": "Patient's full name",
+    "namePlaceholder": "Full name as on the ID card",
     "sex": "Sex",
-    "sexOpt": { "female": "Female", "male": "Male" },
+    "sexOpt": {
+      "female": "Female",
+      "male": "Male"
+    },
     "pregnantQ": "Is the patient pregnant?",
-    "pregnantOpt": { "yes": "Yes", "no": "No", "unsure": "Not sure" },
+    "pregnantOpt": {
+      "yes": "Yes",
+      "no": "No",
+      "unsure": "Not sure"
+    },
     "dur": {
       "d1": "1 day",
       "d2": "2 days",
@@ -154,9 +167,8 @@
       "otherDays": "Number of days"
     },
     "noneOfThese": "None of these",
-    "bodyTitle": "Or tap the affected area",
-    "bodyOptions": "Common problems: {{part}}. Select all that apply",
-    "bodyRemove": "Remove {{part}}",
+    "bodyTitle": "Or tap where it hurts",
+    "bodyOptions": "{{part}}: tap all that apply",
     "affectedArea": "Affected area",
     "part": {
       "head": "Head",
@@ -196,7 +208,9 @@
       "severe_headache_blurred_vision": "Severe headache with blurred vision",
       "reduced_fetal_movement": "Reduced fetal movement",
       "blood_in_stool": "Blood in stool"
-    }
+    },
+    "nameHint": "Write the full name as on the ID card (or birth certificate for a child). The clinic will check it.",
+    "followUp": "If not better, check again on {{date}}."
   },
   "scan": {
     "title": "Clinic: receive a patient",
@@ -208,8 +222,121 @@
     "not_ours": "This is not a handoff code issued by this app.",
     "unreadable": "The code could not be read. Please try again.",
     "markReceived": "Mark as received",
-    "received": "Received",
+    "received": "Registered at the clinic",
     "scanAgain": "Scan another",
     "checkInPerson": "Confirm the patient's identity in person."
+  },
+  "guidance": {
+    "title": "Guidance reminders for this patient",
+    "intro": "Matched to the visit note from the guidance registry. For the clinician; the clinical decision stays with you.",
+    "source": "Source",
+    "draft": "Draft: not yet clinically reviewed.",
+    "footer": "Registry version {{version}}, updated {{updated}}. Reminders only: follow the current national guideline.",
+    "tabTitle": "WHO guidance by condition",
+    "tabIntro": "Reference for clinic staff. Tap a condition to read the reminders and open the source."
+  },
+  "clinic": {
+    "queueTitle": "Clinic queue",
+    "scanButton": "Reception: scan a patient's visit note",
+    "empty": "No patients in the queue yet. Reception adds them by scanning the patient's visit note.",
+    "status": {
+      "waiting": "Waiting for triage",
+      "triaged": "Triaged",
+      "seen": "Seen by doctor"
+    },
+    "addToQueue": "Add to clinic queue",
+    "nurseTitle": "Nurse triage",
+    "vitals": "Vital signs",
+    "v": {
+      "temperatureC": "Temperature (°C)",
+      "pulse": "Pulse (per minute)",
+      "respiratoryRate": "Breaths per minute",
+      "systolic": "Blood pressure, upper (mmHg)",
+      "diastolic": "Blood pressure, lower (mmHg)",
+      "spo2": "Oxygen saturation (%)",
+      "weightKg": "Weight (kg)"
+    },
+    "flag": {
+      "fever": "Fever (38.0 °C or higher)",
+      "low_spo2": "Low oxygen saturation (below 90%)",
+      "fast_breathing_child": "Fast breathing for a child (40 or more per minute; 50 or more if under 12 months)",
+      "raised_bp_pregnancy": "Raised blood pressure in pregnancy (140/90 or higher)",
+      "severe_bp_pregnancy": "Severely raised blood pressure in pregnancy (160/110 or higher)"
+    },
+    "priority": "Triage priority",
+    "priorityOpt": {
+      "emergency": "Emergency",
+      "priority": "Priority",
+      "routine": "Routine"
+    },
+    "suggested": "Suggested from the visit note and vital signs: {{priority}}. The nurse decides.",
+    "nurseNotes": "Nurse's notes",
+    "saveReport": "Confirm and save triage report",
+    "reportTitle": "Triage report",
+    "triagedAt": "Triaged at {{time}}",
+    "noVitals": "No vital signs recorded.",
+    "flagsNote": "Highlights are automatic and for checking only. Draft thresholds: not yet clinically reviewed.",
+    "patientReported": "Reported by the patient",
+    "markSeen": "Mark as seen by doctor",
+    "editTriage": "Edit triage",
+    "back": "Back to queue",
+    "noteTitle": "Visit note",
+    "noteHint": "Check the patient's answers and correct anything that differs from your assessment.",
+    "confirmedNote": "Visit note confirmed by the nurse",
+    "editedNote": "Visit note corrected and confirmed by the nurse",
+    "confirmedTitle": "Visit note (confirmed by the nurse)",
+    "originalTitle": "Originally reported by the patient",
+    "reportsTitle": "Triage reports",
+    "showAll": "Show the whole queue",
+    "noReports": "No triage reports yet. The nurse creates one from the queue."
+  },
+  "home": {
+    "signInTitle": "Welcome! Please sign in to your account",
+    "signInHint": "Choose how you are using the app.",
+    "welcome": "What would you like to do today?",
+    "rolePatient": "Patient or Caregiver",
+    "roleClinic": "Clinic Staff",
+    "pinPrompt": "Enter the clinic PIN",
+    "pinWrong": "That PIN is not correct.",
+    "signIn": "Sign in",
+    "signedInAs": "Signed in as: {{role}}",
+    "signOut": "Sign out"
+  },
+  "clinics": {
+    "title": "Clinics and hospitals",
+    "intro": "{{count}} facilities in Kilifi County, nearest first.",
+    "locate": "Use my location",
+    "locateAgain": "Update my location",
+    "fromYou": "Distances are measured from where you are. Your location comes from the phone's GPS, which needs no internet.",
+    "fromAnchor": "Distances are measured from Kilifi town until you share your location.",
+    "outside": "You appear to be outside Kilifi County, so distances are measured from Kilifi town.",
+    "noLocation": "Your location is not available. Distances are measured from Kilifi town.",
+    "km": "{{km}} km away (straight line)",
+    "servicesUnknown": "Services are not confirmed in our records.",
+    "openMap": "Open in Maps",
+    "mapHint": "Tap the map to pick the nearest facility.",
+    "search": "Search by name or area",
+    "none": "No facility matches that search.",
+    "more": "Show more ({{count}} left)",
+    "dataNote": "Phone numbers and opening hours are not in the public records this list comes from. Locations are from an older public record and may be inexact. Please confirm with the clinic before travelling.",
+    "mapTitle": "{{county}} County",
+    "offlineMap": "Works offline",
+    "ocean": "Indian Ocean",
+    "kenya": "Kenya",
+    "legendConfirmed": "Services confirmed",
+    "legendOther": "Other facility",
+    "legendYou": "You",
+    "legendAnchor": "Kilifi town"
+  },
+  "consent": {
+    "title": "Privacy and consent notice",
+    "notDiagnosis": "This app does not diagnose illness and does not give medical advice.",
+    "guidance": "It only helps you get care: it prepares a visit note for the clinic and suggests where to go. A health worker makes every medical decision.",
+    "emergency": "In an emergency, go to the nearest clinic or hospital straight away. Do not wait for the app.",
+    "stored": "Your answers, including the patient's name, are saved on this phone. Anyone who uses the app on this phone can see them. You can delete them at any time, and they are removed automatically after 30 days.",
+    "shared": "Your visit note is shared with the clinic when you show your code. When the phone has signal, a copy is also sent to the clinic's record system.",
+    "location": "Your location is used only on this phone, to show clinics near you, and only if you allow it.",
+    "agreeNote": "By continuing, you confirm that you have read this and agree to your information being used in this way.",
+    "agree": "I understand and agree"
   }
 }

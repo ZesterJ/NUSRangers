@@ -12,9 +12,16 @@ import { PACKS, getPack } from '@/packs';
  */
 export type AiMode = 'auto' | 'offline' | 'cloud';
 
+/** Who is using this phone: a patient or caregiver, or clinic staff (reception, nurse, doctor). */
+export type Role = 'patient' | 'clinic';
+
 type SettingsState = {
   hydrated: boolean;
   onboarded: boolean;
+  /** The person agreed to the privacy and consent notice on this phone. */
+  consented: boolean;
+  /** null = nobody is signed in yet; Home shows the sign-in screen. */
+  role: Role | null;
   packId: string;
   locale: string;
   aiMode: AiMode;
@@ -30,6 +37,8 @@ export const useSettings = create<SettingsState>()(
     (set) => ({
       hydrated: false,
       onboarded: false,
+      consented: false,
+      role: null,
       packId: config.defaultPack,
       locale: getPack(config.defaultPack).defaultLocale,
       aiMode: 'auto',

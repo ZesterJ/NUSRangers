@@ -30,14 +30,16 @@ const palettes = {
 
 export type Theme = (typeof palettes)['light'] & { primary: string; primaryText: string };
 
-/** Active pack + locale + colours, in one hook for screens. */
+/** Active pack + locale + colours + text scale, in one hook for screens. */
 export function usePackContext() {
   const packId = useSettings((s) => s.packId);
   const locale = useSettings((s) => s.locale);
   const scheme = useColorScheme() === 'dark' ? 'dark' : 'light';
   const pack = getPack(packId);
   const theme: Theme = { ...palettes[scheme], ...pack.theme };
-  return { pack, locale, theme };
+  // Patients may have low vision or little reading practice: their screens use larger text.
+  const scale = useSettings((s) => s.role) === 'clinic' ? 1 : 1.2;
+  return { pack, locale, theme, scale };
 }
 
 export const spacing = { xs: 4, sm: 8, md: 12, lg: 16, xl: 24 };

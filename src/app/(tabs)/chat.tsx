@@ -17,7 +17,6 @@ import { ask } from '@/ai/AiRouter';
 import { refreshPending, useSyncStore, type QueuedChat } from '@/ai/sync';
 import type { ChatMessage } from '@/api/types';
 import { ChatBubble } from '@/components/ChatBubble';
-import { OfflineBanner } from '@/components/OfflineBanner';
 import { Chip } from '@/components/ui';
 import { addMessage, clearMessages, enqueue, listMessages, type StoredMessage } from '@/db';
 import { tr } from '@/packs/types';
@@ -93,7 +92,6 @@ export default function Chat() {
       style={{ flex: 1, backgroundColor: theme.background }}
       behavior={Platform.OS === 'ios' ? 'padding' : undefined}
       keyboardVerticalOffset={90}>
-      <OfflineBanner />
       <FlatList
         ref={listRef}
         data={data}

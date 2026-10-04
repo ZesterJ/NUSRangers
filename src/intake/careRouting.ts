@@ -39,7 +39,7 @@ export function assessServices(intake: ConfirmedIntake): Pick<CareRouting, 'requ
 }
 
 /** Haversine distance, same radius as ml/src/facility_router.py. */
-function distanceKm(a: Coordinates, b: Coordinates) {
+export function distanceKm(a: Coordinates, b: Coordinates) {
   const rad = (d: number) => (d * Math.PI) / 180;
   const h =
     Math.sin(rad(b.latitude - a.latitude) / 2) ** 2 +
@@ -47,7 +47,8 @@ function distanceKm(a: Coordinates, b: Coordinates) {
   return 6371.0088 * 2 * Math.asin(Math.sqrt(Math.min(1, Math.max(0, h))));
 }
 
-function origin(coordinates?: Coordinates): { point: Coordinates; type: CareRouting['origin'] } {
+/** Where distances are measured from: the phone's location when it is inside the area covered, else the demo anchor. */
+export function origin(coordinates?: Coordinates): { point: Coordinates; type: CareRouting['origin'] } {
   const b = data.bounds;
   if (
     coordinates &&

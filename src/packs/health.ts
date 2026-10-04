@@ -7,20 +7,21 @@ import type { DomainPack } from './types';
 export const healthPack: DomainPack = {
   id: 'health',
   track: 'health',
-  appName: 'CHW Companion',
+  appName: 'Njia ya Afya',
   emoji: '🩺',
   tagline: {
-    en: 'Danger-sign checks and referrals for community health workers',
-    sw: 'Ukaguzi wa dalili hatari na rufaa kwa wahudumu wa afya',
+    en: 'Your visit note, ready before you reach the clinic',
+    sw: 'Taarifa yako ya matibabu, tayari kabla ya kufika kliniki',
   },
-  theme: { primary: '#C62828', primaryText: '#FFFFFF' },
+  // The logo's blue, darkened so white text on it stays readable. Red is kept for danger and emergency only.
+  theme: { primary: '#1B6CA8', primaryText: '#FFFFFF' },
   locales: [
     { code: 'en', label: 'English' },
     { code: 'sw', label: 'Kiswahili' },
   ],
   defaultLocale: 'sw',
   systemPrompt:
-    'You are CHW Companion, supporting community health workers in low-resource settings. ' +
+    'You are Njia ya Afya, supporting community health workers in low-resource settings. ' +
     'You NEVER diagnose or prescribe. You help recognise danger signs, decide urgency of referral, and give follow-up reminders, ' +
     'following WHO community case management guidance. Always end urgent cases with "Refer to the nearest clinic now." ' +
     'Answer in the user language, at most 4 short sentences.',
@@ -72,16 +73,56 @@ export const healthPack: DomainPack = {
     {
       id: 'intake',
       kind: 'action',
-      title: { en: 'Start a patient intake', sw: 'Anza mahojiano ya mgonjwa' },
+      icon: '📝',
+      roles: ['patient'],
+      title: { en: 'Start a visit note', sw: 'Anza taarifa ya mgonjwa' },
       body: { en: 'Guided questions in Swahili, answered by tapping or typing. Works offline.', sw: 'Maswali kwa Kiswahili, yanayojibiwa kwa kugusa au kuandika. Inafanya kazi bila mtandao.' },
       action: { type: 'intake' },
     },
     {
-      id: 'scan',
+      id: 'records',
       kind: 'action',
-      title: { en: 'Clinic: receive a patient', sw: 'Kliniki: pokea mgonjwa' },
-      body: { en: 'Scan the handoff code instead of re-taking the history.', sw: 'Skani msimbo badala ya kuuliza historia tena.' },
+      icon: '🗂️',
+      roles: ['patient'],
+      title: { en: 'My visit notes', sw: 'Taarifa zangu' },
+      body: { en: 'See saved visit notes and show the clinic code again.', sw: 'Tazama taarifa zilizohifadhiwa na uonyeshe tena msimbo wa kliniki.' },
+      action: { type: 'records' },
+    },
+    {
+      id: 'receive',
+      kind: 'action',
+      icon: '📷',
+      roles: ['clinic'],
+      title: { en: 'Receive a patient', sw: 'Pokea mgonjwa' },
+      body: { en: "Scan the patient's visit note code to add them to the queue.", sw: 'Skani msimbo wa taarifa ya mgonjwa ili kumwongeza kwenye foleni.' },
+      action: { type: 'scanCode' },
+    },
+    {
+      id: 'queue',
+      kind: 'action',
+      icon: '🩺',
+      roles: ['clinic'],
+      title: { en: 'Clinic queue and triage', sw: 'Foleni ya kliniki na upimaji' },
+      body: { en: 'Check the visit note, record vital signs and set the priority.', sw: 'Kagua taarifa, rekodi vipimo muhimu na uweke kipaumbele.' },
       action: { type: 'scan' },
+    },
+    {
+      id: 'reports',
+      kind: 'action',
+      icon: '📋',
+      roles: ['clinic'],
+      title: { en: 'Triage reports', sw: 'Ripoti za upimaji' },
+      body: { en: 'Open a triage report with the visit note and guidance reminders.', sw: 'Fungua ripoti ya upimaji pamoja na taarifa ya mgonjwa na vikumbusho vya miongozo.' },
+      action: { type: 'reports' },
+    },
+    {
+      id: 'walkin',
+      kind: 'action',
+      icon: '🚶',
+      roles: ['clinic'],
+      title: { en: 'Visit note for a walk-in patient', sw: 'Taarifa ya mgonjwa aliyefika bila miadi' },
+      body: { en: 'Take the visit note here for a patient without the app.', sw: 'Chukua taarifa hapa kwa mgonjwa asiye na programu.' },
+      action: { type: 'intake' },
     },
   ],
   captureForm: {

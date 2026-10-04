@@ -1,9 +1,11 @@
 """NUSRangers backend: the cloud half of the app's hybrid AI. Contract: docs/api.md."""
 
+import json
 import logging
 import os
 import re
 from contextlib import asynccontextmanager
+from pathlib import Path
 from typing import Any
 from xml.sax.saxutils import escape
 
@@ -75,6 +77,18 @@ DEFAULT_PACK = os.getenv("DEFAULT_PACK", "health")
 def _raise(e: LLMError):
     # 503 = try again later, 502 = upstream rejected the request. Either way the app falls back offline.
     raise HTTPException(status_code=503 if e.retryable else 502, detail=str(e))
+
+
+GUIDANCE_PATH = Path(os.getenv("GUIDANCE_PATH") or Path(__file__).resolve().parents[2] / "src/intake/guidanceRegistry.json")
+
+
+@app.get("/guidance")
+def guidance():
+    """The current guidance registry. Phones download it when its version is newer than their copy."""
+    try:
+        return json.loads(GUIDANCE_PATH.read_text())
+    except (OSError, ValueError) as exc:
+        raise HTTPException(status_code=503, detail="Guidance registry is unavailable") from exc
 
 
 @app.get("/health")
@@ -170,7 +184,8 @@ def get_extractor(request: Request) -> IntakeExtractor:
     return extractor
 
 
-@app.post("/extract", response_model=Extraction, response_model_exclude_none=True)
+# Null values are sent explicitly ("value": null): the app tells "not found" apart from a missing field.
+@app.post("/extract", response_model=Extraction)
 def extract(req: ExtractRequest, extractor: IntakeExtractor = Depends(get_extractor)):
     # Never log the answers: they are patient data.
     try:

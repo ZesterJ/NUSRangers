@@ -1,7 +1,6 @@
 {
   "tabs": { "home": "Inicio", "chat": "Preguntar", "capture": "Registrar", "history": "Historial", "settings": "Ajustes" },
   "common": { "online": "En línea", "offline": "Sin conexión", "save": "Guardar", "cancel": "Cancelar", "retry": "Reintentar" },
-  "offlineBanner": "Sin conexión. Las respuestas salen del teléfono; lo demás se envía al reconectar.",
   "source": {
     "offline": "Conocimiento en el teléfono",
     "cache": "Respuesta guardada",

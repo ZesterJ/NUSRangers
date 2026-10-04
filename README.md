@@ -10,7 +10,7 @@ At kickoff we plug the chosen problem into a **domain pack** (`src/packs/`) inst
 - **Settings:** language, AI mode (Auto / Offline only / Cloud only), simulate no signal, pack switcher, mock/real backend, backend URL
 - Offline-first storage (SQLite) and multilingual UI (en / sw / es)
 
-Sample packs: 🌱 `agri` (ShambaMate), 🩺 `health` (CHW Companion), 🏡 `tourism` (HostMate).
+Sample packs: 🌱 `agri` (ShambaMate), 🩺 `health` (Njia ya Afya), 🏡 `tourism` (HostMate).
 
 ## Quick start
 

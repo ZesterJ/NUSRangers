@@ -1,6 +1,7 @@
 import * as Crypto from 'expo-crypto';
 
-import type { IntakeRecord } from './types';
+import type { ClinicVisit } from './clinic';
+import type { DangerSign, IntakeRecord, Symptom } from './types';
 
 /**
  * QR handoff payload. Short keys keep the QR small enough to scan from a cheap phone screen.
@@ -28,7 +29,7 @@ type Payload = {
 
 const PREFIX = 'NURX1:';
 
-async function checksum(body: Omit<Payload, 'c'>) {
+async function checksum(body: unknown) {
   const hex = await Crypto.digestStringAsync(Crypto.CryptoDigestAlgorithm.SHA256, JSON.stringify(body));
   return hex.slice(0, 12);
 }
@@ -67,4 +68,24 @@ export async function decodeHandoff(text: string): Promise<DecodedHandoff> {
   const { c, ...body } = payload;
   if ((await checksum(body)) !== c) return { ok: false, error: 'tampered' };
   return { ok: true, payload };
+}
+
+/** The visit note as the clinic stores it once reception has scanned the handoff. */
+export function visitFromHandoff(p: Payload): ClinicVisit {
+  return {
+    id: p.id,
+    receivedAt: Date.now(),
+    note: {
+      patientName: p.nm,
+      sex: p.sx,
+      patientGroup: p.g,
+      symptoms: p.s as Symptom[],
+      durationDays: p.d,
+      dangerSigns: p.ds as DangerSign[],
+      notes: p.n,
+    },
+    selfTriage: { level: p.tl, reasons: p.r },
+    services: p.sv,
+    status: 'waiting',
+  };
 }

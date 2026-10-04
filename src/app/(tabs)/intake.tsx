@@ -2,21 +2,22 @@ import * as Crypto from 'expo-crypto';
 import * as Speech from 'expo-speech';
 import { useState, type ReactNode } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Pressable, ScrollView, StyleSheet, Text, TextInput, View } from 'react-native';
+import { Pressable, StyleSheet, Text, TextInput, View } from 'react-native';
 import QRCode from 'react-native-qrcode-svg';
 
 import { flushOutbox, refreshPending } from '@/ai/sync';
 import { BodyPicker } from '@/components/BodyPicker';
 import { IntakeSummary } from '@/components/IntakeSummary';
-import { OfflineBanner } from '@/components/OfflineBanner';
+import { LanguageSwitch } from '@/components/LanguageSwitch';
 import { DangerOptions, DurationOptions, WhoOptions } from '@/components/QuestionOptions';
-import { Button, Card, Chip, SectionTitle } from '@/components/ui';
+import { Button, Card, Chip, KeyboardScrollView, SectionTitle } from '@/components/ui';
 import { enqueue, saveIntake } from '@/db';
 import { applyBodyPicks, NO_PICKS, type BodyPicks } from '@/intake/bodyParts';
-import { assessCareOnPhone } from '@/intake/careRouting';
+import { assessCareOnPhone, type Coordinates } from '@/intake/careRouting';
 import { applyChoices, NO_CHOICES, type Choices } from '@/intake/choices';
 import { encodeHandoff } from '@/intake/handoff';
 import { QUESTIONS } from '@/intake/questions';
+import { currentCoordinates } from '@/intake/location';
 import { extract } from '@/intake/services';
 import { triage } from '@/intake/triage';
 import {
@@ -31,6 +32,7 @@ import {
   type Triage,
 } from '@/intake/types';
 import { tr } from '@/packs/types';
+import { useSettings } from '@/store/settings';
 import { radius, spacing, usePackContext } from '@/theme';
 
 type QuestionId = (typeof QUESTIONS)[number]['id'];
@@ -47,9 +49,14 @@ export default function Intake() {
 }
 
 function IntakeFlow({ onRestart }: { onRestart: () => void }) {
-  const { locale, theme } = usePackContext();
+  const { locale, theme, scale } = usePackContext();
   const { t } = useTranslation();
+  const role = useSettings((s) => s.role);
+  const big = { fontSize: 22 * scale, lineHeight: 28 * scale };
+  const body = { fontSize: 15 * scale };
 
+  // For the record: how long the visit note took, from opening it to creating the clinic code.
+  const [startedAt] = useState(() => Date.now());
   const [step, setStep] = useState<Step>('ask');
   const [qi, setQi] = useState(0);
   const [answers, setAnswers] = useState<Partial<Record<QuestionId, string>>>({});
@@ -57,7 +64,7 @@ function IntakeFlow({ onRestart }: { onRestart: () => void }) {
   const [choices, setChoices] = useState<Choices>(NO_CHOICES);
   const [extraction, setExtraction] = useState<Extraction | null>(null);
   const [form, setForm] = useState<ConfirmedIntake | null>(null);
-  const [result, setResult] = useState<{ triage: Triage; clinics: ClinicOption[]; care: CareRouting } | null>(null);
+  const [result, setResult] = useState<{ triage: Triage; clinics: ClinicOption[]; care: CareRouting; madeAt: number } | null>(null);
   const [chosen, setChosen] = useState<string | null>(null);
   const [qr, setQr] = useState<string | null>(null);
 
@@ -71,7 +78,8 @@ function IntakeFlow({ onRestart }: { onRestart: () => void }) {
     duration: choices.durationDays !== null,
     danger: choices.dangerSigns.length > 0 || choices.noDanger,
   }[q.id];
-  const answered = !!answer.trim() || tapped;
+  // The clinic checks the patient's full name at registration, so the first question cannot be passed without it.
+  const answered = (!!answer.trim() || tapped) && (q.id !== 'who' || !!choices.name.trim());
 
   // ---------- Step 3: extract, then pre-fill the form ----------
   const finishQuestions = async () => {
@@ -94,12 +102,8 @@ function IntakeFlow({ onRestart }: { onRestart: () => void }) {
   };
 
   // ---------- Steps 6–7: triage and clinic suggestions ----------
-  const confirm = () => {
-    if (!form) return;
-    // Everything here runs on the phone, so it works with no signal: urgency from the triage rules,
-    // then care services and Kilifi facilities from the care policy.
-    const tri = triage(form, extraction ?? undefined);
-    const care = assessCareOnPhone(form);
+  const route = (note: ConfirmedIntake, coords: Coordinates | null) => {
+    const care = assessCareOnPhone(note, coords ?? undefined);
     const clinics: ClinicOption[] = care.candidates.map((c) => ({
       id: c.facilityId,
       name: c.facilityName,
@@ -109,9 +113,29 @@ function IntakeFlow({ onRestart }: { onRestart: () => void }) {
         t('intake.availabilityUnknown'),
       ],
     }));
-    setResult({ triage: tri, clinics, care });
+    return { care, clinics };
+  };
+
+  const confirm = async () => {
+    if (!form) return;
+    // Everything here runs on the phone, so it works with no signal: urgency from the triage rules,
+    // then care services and Kilifi facilities from the care policy, nearest to the phone's GPS position
+    // when location is already allowed (no prompt here).
+    const tri = triage(form, extraction ?? undefined);
+    const { care, clinics } = route(form, await currentCoordinates(false));
+    setResult({ triage: tri, clinics, care, madeAt: Date.now() });
     setChosen(clinics[0]?.id ?? null);
     setStep('result');
+  };
+
+  /** Result screen: the patient chose to share their location, so re-rank the clinics from where they are. */
+  const useMyLocation = async () => {
+    if (!form || !result) return;
+    const coords = await currentCoordinates(true);
+    if (!coords) return;
+    const { care, clinics } = route(form, coords);
+    setResult({ ...result, care, clinics });
+    setChosen(clinics[0]?.id ?? null);
   };
 
   // ---------- Steps 8 & 10: save locally, queue sync, show QR ----------
@@ -119,7 +143,9 @@ function IntakeFlow({ onRestart }: { onRestart: () => void }) {
     if (!form || !result) return;
     const rec: IntakeRecord = {
       id: Crypto.randomUUID().slice(0, 8),
-      createdAt: Date.now(),
+      owner: role ?? 'patient',
+      completedInSec: Math.round((Date.now() - startedAt) / 1000),
+      createdAt: result.madeAt,
       locale,
       transcript: QUESTIONS.map((qq) => answers[qq.id] ?? '').filter(Boolean),
       intake: form,
@@ -139,8 +165,9 @@ function IntakeFlow({ onRestart }: { onRestart: () => void }) {
 
   return (
     <View style={{ flex: 1, backgroundColor: theme.background }}>
-      <OfflineBanner />
-      <ScrollView contentContainerStyle={styles.content} keyboardShouldPersistTaps="handled">
+      <KeyboardScrollView contentContainerStyle={styles.content}>
+        {/* So a helper and the patient can swap language at any point in the visit note. */}
+        <LanguageSwitch />
         {step === 'ask' && (
           <>
             <Text style={[styles.step, { color: theme.textMuted }]}>
@@ -153,7 +180,7 @@ function IntakeFlow({ onRestart }: { onRestart: () => void }) {
             </View>
 
             <Pressable onPress={() => Speech.speak(tr(q.prompt, locale), { language: locale })}>
-              <Text style={[styles.question, { color: theme.text }]}>🔊 {tr(q.prompt, locale)}</Text>
+              <Text style={[styles.question, big, { color: theme.text }]}>🔊 {tr(q.prompt, locale)}</Text>
             </Pressable>
             {q.id !== 'complaint' && (
               <>
@@ -164,10 +191,10 @@ function IntakeFlow({ onRestart }: { onRestart: () => void }) {
                 <SectionTitle>{t('intake.orDescribe')}</SectionTitle>
               </>
             )}
-            <Text style={{ color: theme.textMuted }}>{tr(q.hint, locale)}</Text>
+            <Text style={[body, { color: theme.textMuted }]}>{tr(q.hint, locale)}</Text>
 
             <TextInput
-              style={[styles.input, { color: theme.text, borderColor: theme.border, backgroundColor: theme.card }]}
+              style={[styles.input, { color: theme.text, borderColor: theme.border, backgroundColor: theme.card, fontSize: 16 * scale }]}
               value={answer}
               onChangeText={setAnswer}
               placeholder={t('intake.typeHere')}
@@ -180,7 +207,7 @@ function IntakeFlow({ onRestart }: { onRestart: () => void }) {
             <SectionTitle>{t('intake.samples')}</SectionTitle>
             <View style={styles.chips}>
               {q.samples.map((s) => (
-                <Chip key={s.sw} label={locale === 'sw' ? s.sw : `${s.sw} (${s.en})`} onPress={() => setAnswer(s.sw)} />
+                <Chip key={s.sw} label={locale === 'sw' ? s.sw : s.en} onPress={() => setAnswer(locale === 'sw' ? s.sw : s.en)} />
               ))}
             </View>
 
@@ -195,7 +222,7 @@ function IntakeFlow({ onRestart }: { onRestart: () => void }) {
           </>
         )}
 
-        {step === 'extracting' && <Text style={[styles.question, { color: theme.text }]}>{t('intake.extracting')}</Text>}
+        {step === 'extracting' && <Text style={[styles.question, big, { color: theme.text }]}>{t('intake.extracting')}</Text>}
 
         {step === 'review' && form && extraction && (
           <ReviewForm extraction={extraction} form={form} setForm={setForm} onConfirm={confirm} />
@@ -203,18 +230,21 @@ function IntakeFlow({ onRestart }: { onRestart: () => void }) {
 
         {step === 'result' && form && result && (
           <>
-            <Text style={[styles.question, { color: theme.text }]}>{t('intake.resultTitle')}</Text>
-            <IntakeSummary intake={form} triage={result.triage} services={result.care.requiredServices} />
+            <Text style={[styles.question, big, { color: theme.text }]}>{t('intake.resultTitle')}</Text>
+            <IntakeSummary intake={form} triage={result.triage} services={result.care.requiredServices} madeAt={result.madeAt} />
 
             {result.triage.level !== 'home_care' && (
               <>
                 <SectionTitle>
                   {t('intake.clinics')} · {t('intake.kilifiData')}
                 </SectionTitle>
-                <Text style={{ color: theme.textMuted }}>
+                <Text style={[body, { color: theme.textMuted }]}>
                   {t('intake.routingNote')}
                   {result.care.origin === 'demo_anchor' ? ` ${t('intake.demoOrigin')}` : ''}
                 </Text>
+                {result.care.origin === 'demo_anchor' && !qr && (
+                  <Button label={`📍 ${t('clinics.locate')}`} variant="outline" onPress={useMyLocation} />
+                )}
                 {result.clinics.length === 0 && <Text style={{ color: theme.warning }}>{t('intake.noClinic')}</Text>}
                 {result.clinics.map((c) => {
                   const selected = chosen === c.id;
@@ -222,13 +252,13 @@ function IntakeFlow({ onRestart }: { onRestart: () => void }) {
                     <Pressable key={c.id} onPress={() => setChosen(c.id)}>
                       <Card style={selected ? { borderColor: theme.primary, borderWidth: 2 } : undefined}>
                         <View style={styles.clinicHead}>
-                          <Text style={[styles.clinicName, { color: theme.text }]}>{c.name}</Text>
+                          <Text style={[styles.clinicName, { color: theme.text, fontSize: 17 * scale }]}>{c.name}</Text>
                           <Text style={{ color: theme.primary, fontWeight: '700' }}>
                             {selected ? `✓ ${t('intake.chosen')}` : t('intake.choose')}
                           </Text>
                         </View>
                         {c.reasons.map((x) => (
-                          <Text key={x} style={{ color: theme.textMuted }}>
+                          <Text key={x} style={[body, { color: theme.textMuted }]}>
                             • {x}
                           </Text>
                         ))}
@@ -255,19 +285,19 @@ function IntakeFlow({ onRestart }: { onRestart: () => void }) {
             <Button label={t('intake.newIntake')} variant="outline" onPress={onRestart} />
           </>
         )}
-      </ScrollView>
+      </KeyboardScrollView>
     </View>
   );
 }
 
 /** A review field. `low` confidence = the extractor was unsure, so the patient is asked to check it. */
 function Section({ label, low, children }: { label: string; low: boolean; children: ReactNode }) {
-  const { theme } = usePackContext();
+  const { theme, scale } = usePackContext();
   const { t } = useTranslation();
   return (
     <View style={[styles.section, low && { borderColor: theme.warning, backgroundColor: theme.card }]}>
       <View style={styles.sectionHead}>
-        <Text style={[styles.sectionLabel, { color: theme.text }]}>{label}</Text>
+        <Text style={[styles.sectionLabel, { color: theme.text, fontSize: 16 * scale }]}>{label}</Text>
         {low && <Text style={[styles.check, { color: theme.warning }]}>⚠ {t('intake.pleaseCheck')}</Text>}
       </View>
       {children}
@@ -287,17 +317,21 @@ function ReviewForm({
   setForm: (f: ConfirmedIntake) => void;
   onConfirm: () => void;
 }) {
-  const { theme } = usePackContext();
+  const { theme, scale } = usePackContext();
   const { t } = useTranslation();
   // Starts as a read-only confirmation of what was understood; the controls appear only on request.
   const [editing, setEditing] = useState(false);
 
-  const read = (value: string) => <Text style={[styles.readValue, { color: theme.text }]}>{value || '—'}</Text>;
+  const read = (value: string) => (
+    <Text style={[styles.readValue, { color: theme.text, fontSize: 17 * scale }]}>{value || '—'}</Text>
+  );
 
   return (
     <>
-      <Text style={[styles.question, { color: theme.text }]}>{t('intake.reviewTitle')}</Text>
-      <Text style={{ color: theme.textMuted }}>{t('intake.reviewHint')}</Text>
+      <Text style={[styles.question, { color: theme.text, fontSize: 22 * scale, lineHeight: 28 * scale }]}>
+        {t('intake.reviewTitle')}
+      </Text>
+      <Text style={{ color: theme.textMuted, fontSize: 15 * scale }}>{t('intake.reviewHint')}</Text>
       <Text style={{ color: theme.textMuted, fontSize: 12 }}>
         {extraction.source === 'model' ? '☁️' : '📱'} {t(`intake.source.${extraction.source}`)}
       </Text>

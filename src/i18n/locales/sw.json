@@ -5,9 +5,11 @@
     "capture": "Ripoti",
     "history": "Historia",
     "settings": "Mipangilio",
-    "intake": "Mahojiano",
+    "intake": "Taarifa",
     "scan": "Kliniki",
-    "records": "Kumbukumbu"
+    "records": "Kumbukumbu",
+    "guidance": "Miongozo",
+    "clinics": "Kliniki"
   },
   "common": {
     "online": "Mtandaoni",
@@ -16,7 +18,6 @@
     "cancel": "Ghairi",
     "retry": "Jaribu tena"
   },
-  "offlineBanner": "Uko nje ya mtandao. Majibu yanatoka kwenye simu; mengine yatatumwa ukiunganishwa.",
   "source": {
     "offline": "Maarifa ya simu",
     "cache": "Jibu lililohifadhiwa",
@@ -54,9 +55,14 @@
     "pending": "{{count}} zinasubiri kutumwa",
     "syncNow": "Tuma sasa",
     "syncing": "Inatuma…",
-    "empty": "Hakuna ripoti bado.",
+    "empty": "Hakuna taarifa bado.",
     "noResult": "Inasubiri matokeo",
-    "intakes": "Mahojiano ya wagonjwa"
+    "intakes": "Taarifa za wagonjwa",
+    "deleteAll": "Futa taarifa zangu",
+    "deleteConfirm": "Hii itaondoa kila taarifa kwenye orodha hii kutoka kwenye simu hii. Haiwezi kurudishwa. Taarifa ambazo tayari zimetolewa kwa kliniki zitabaki kwa kliniki.",
+    "deleteYes": "Futa",
+    "keptFor": "Taarifa huondolewa kwenye simu hii zenyewe baada ya siku {{days}}.",
+    "completedIn": "Imekamilika kwa dakika {{minutes}} sekunde {{seconds}}"
   },
   "settings": {
     "language": "Lugha",
@@ -85,10 +91,10 @@
     "back": "Rudi",
     "finish": "Kagua majibu",
     "extracting": "Inasoma majibu…",
-    "reviewTitle": "Muhtasari wa taarifa ya mgonjwa",
-    "reviewHint": "Muhtasari huu umeandaliwa kutokana na majibu yaliyotolewa. Tafadhali hakiki vitu vilivyoandikwa \"Tafadhali hakiki\" na urekebishe kisicho sahihi.",
+    "reviewTitle": "Kagua majibu yako",
+    "reviewHint": "Je, hii ni sahihi? Gusa \"Rekebisha taarifa\" kubadilisha chochote. Angalia kwa makini vitu vilivyoandikwa \"Tafadhali kagua\".",
     "edit": "Rekebisha taarifa",
-    "pleaseCheck": "Tafadhali hakiki",
+    "pleaseCheck": "Tafadhali kagua",
     "who": "Nani anaumwa",
     "symptoms": "Matatizo",
     "duration": "Siku za ugonjwa",
@@ -115,7 +121,7 @@
     "handoff": "Tengeneza makabidhiano ya kliniki",
     "qrTitle": "Onyesha hii kliniki",
     "qrHint": "Kliniki inaskani msimbo huu kupata majibu bila kuuliza tena.",
-    "saved": "Imehifadhiwa kwenye simu. Itatumwa kukiwa na mtandao.",
+    "saved": "Imehifadhiwa kwenye simu.",
     "newIntake": "Anza mahojiano mapya",
     "transcript": "Kilichosemwa",
     "services": "Huduma zinazohitajika",
@@ -139,12 +145,19 @@
       "child_5plus": "Mtoto wangu (miaka 5 au zaidi)",
       "other_adult": "Mtu mzima mwingine"
     },
-    "name": "Jina la mgonjwa",
-    "namePlaceholder": "Andika jina (si lazima)",
+    "name": "Jina kamili la mgonjwa",
+    "namePlaceholder": "Jina kamili kama lilivyo kwenye kitambulisho",
     "sex": "Jinsia",
-    "sexOpt": { "female": "Mwanamke", "male": "Mwanamume" },
+    "sexOpt": {
+      "female": "Mwanamke",
+      "male": "Mwanamume"
+    },
     "pregnantQ": "Je, mgonjwa ni mjamzito?",
-    "pregnantOpt": { "yes": "Ndiyo", "no": "Hapana", "unsure": "Sina uhakika" },
+    "pregnantOpt": {
+      "yes": "Ndiyo",
+      "no": "Hapana",
+      "unsure": "Sina uhakika"
+    },
     "dur": {
       "d1": "Siku 1",
       "d2": "Siku 2",
@@ -156,7 +169,6 @@
     "noneOfThese": "Hakuna kati ya haya",
     "bodyTitle": "Au gusa sehemu yenye tatizo",
     "bodyOptions": "Matatizo ya kawaida: {{part}}. Chagua yote yanayohusika",
-    "bodyRemove": "Ondoa {{part}}",
     "affectedArea": "Sehemu yenye tatizo",
     "part": {
       "head": "Kichwa",
@@ -196,7 +208,9 @@
       "severe_headache_blurred_vision": "Kichwa kikali, kuona ukungu",
       "reduced_fetal_movement": "Mtoto anacheza kidogo",
       "blood_in_stool": "Damu kwenye choo"
-    }
+    },
+    "nameHint": "Andika jina kamili kama lilivyo kwenye kitambulisho cha taifa (au cheti cha kuzaliwa kwa mtoto). Kliniki italikagua wakati wa usajili.",
+    "followUp": "Usipopata nafuu, kagua tena tarehe {{date}}."
   },
   "scan": {
     "title": "Kliniki: pokea mgonjwa",
@@ -208,8 +222,121 @@
     "not_ours": "Huu si msimbo wa makabidhiano wa programu hii.",
     "unreadable": "Msimbo haukusomeka. Jaribu tena.",
     "markReceived": "Weka kama imepokelewa",
-    "received": "Imepokelewa",
+    "received": "Amesajiliwa kliniki",
     "scanAgain": "Skani mwingine",
     "checkInPerson": "Thibitisha utambulisho wa mgonjwa ana kwa ana."
+  },
+  "guidance": {
+    "title": "Vikumbusho vya miongozo kwa mgonjwa huyu",
+    "intro": "Vimelinganishwa na taarifa ya mgonjwa kutoka kwenye rejista ya miongozo. Kwa ajili ya mhudumu; uamuzi wa kitabibu ni wako.",
+    "source": "Chanzo",
+    "draft": "Rasimu: bado haijapitiwa na mtaalamu wa afya.",
+    "footer": "Rejista toleo {{version}}, imesasishwa {{updated}}. Ni vikumbusho tu: fuata mwongozo wa kitaifa wa sasa.",
+    "tabTitle": "Miongozo ya WHO kwa kila hali",
+    "tabIntro": "Marejeo kwa wafanyakazi wa kliniki. Gusa hali ili kusoma vikumbusho na kufungua chanzo."
+  },
+  "clinic": {
+    "queueTitle": "Foleni ya kliniki",
+    "scanButton": "Mapokezi: skani taarifa ya mgonjwa",
+    "empty": "Hakuna wagonjwa kwenye foleni bado. Mapokezi huwaongeza kwa kuskani taarifa ya mgonjwa.",
+    "status": {
+      "waiting": "Anasubiri kupimwa",
+      "triaged": "Amepimwa",
+      "seen": "Ameonwa na daktari"
+    },
+    "addToQueue": "Ongeza kwenye foleni",
+    "nurseTitle": "Upimaji wa muuguzi",
+    "vitals": "Vipimo muhimu",
+    "v": {
+      "temperatureC": "Joto (°C)",
+      "pulse": "Mapigo ya moyo (kwa dakika)",
+      "respiratoryRate": "Pumzi kwa dakika",
+      "systolic": "Shinikizo la damu, juu (mmHg)",
+      "diastolic": "Shinikizo la damu, chini (mmHg)",
+      "spo2": "Oksijeni kwenye damu (%)",
+      "weightKg": "Uzito (kg)"
+    },
+    "flag": {
+      "fever": "Homa (38.0 °C au zaidi)",
+      "low_spo2": "Oksijeni ndogo kwenye damu (chini ya 90%)",
+      "fast_breathing_child": "Kupumua haraka kwa mtoto (40 au zaidi kwa dakika; 50 au zaidi chini ya miezi 12)",
+      "raised_bp_pregnancy": "Shinikizo la damu la juu wakati wa ujauzito (140/90 au zaidi)",
+      "severe_bp_pregnancy": "Shinikizo la damu la juu sana wakati wa ujauzito (160/110 au zaidi)"
+    },
+    "priority": "Kipaumbele",
+    "priorityOpt": {
+      "emergency": "Dharura",
+      "priority": "Kipaumbele",
+      "routine": "Kawaida"
+    },
+    "suggested": "Pendekezo kutokana na taarifa na vipimo: {{priority}}. Muuguzi ndiye anayeamua.",
+    "nurseNotes": "Maelezo ya muuguzi",
+    "saveReport": "Thibitisha na uhifadhi ripoti ya upimaji",
+    "reportTitle": "Ripoti ya upimaji",
+    "triagedAt": "Amepimwa saa {{time}}",
+    "noVitals": "Hakuna vipimo vilivyorekodiwa.",
+    "flagsNote": "Alama ni za kiotomatiki na ni za kukagua tu. Viwango ni rasimu: bado havijapitiwa na mtaalamu.",
+    "patientReported": "Alichoripoti mgonjwa",
+    "markSeen": "Weka alama: ameonwa na daktari",
+    "editTriage": "Rekebisha upimaji",
+    "back": "Rudi kwenye foleni",
+    "noteTitle": "Taarifa ya mgonjwa",
+    "noteHint": "Kagua majibu ya mgonjwa na urekebishe chochote kinachotofautiana na tathmini yako.",
+    "confirmedNote": "Taarifa imethibitishwa na muuguzi",
+    "editedNote": "Taarifa imerekebishwa na kuthibitishwa na muuguzi",
+    "confirmedTitle": "Taarifa ya mgonjwa (imethibitishwa na muuguzi)",
+    "originalTitle": "Alichoripoti mgonjwa mwanzoni",
+    "reportsTitle": "Ripoti za upimaji",
+    "showAll": "Onyesha foleni yote",
+    "noReports": "Hakuna ripoti za upimaji bado. Muuguzi hutengeneza moja kutoka kwenye foleni."
+  },
+  "home": {
+    "signInTitle": "Karibu! Tafadhali ingia kwenye akaunti yako",
+    "signInHint": "Chagua jinsi unavyotumia programu.",
+    "welcome": "Ungependa kufanya nini leo?",
+    "rolePatient": "Mgonjwa au Mlezi",
+    "roleClinic": "Wafanyakazi wa Kliniki",
+    "pinPrompt": "Weka PIN ya kliniki",
+    "pinWrong": "PIN hiyo si sahihi.",
+    "signIn": "Ingia",
+    "signedInAs": "Umeingia kama: {{role}}",
+    "signOut": "Toka"
+  },
+  "clinics": {
+    "title": "Kliniki na hospitali",
+    "intro": "Vituo {{count}} katika Kaunti ya Kilifi, vya karibu kwanza.",
+    "locate": "Tumia mahali nilipo",
+    "locateAgain": "Sasisha mahali nilipo",
+    "fromYou": "Umbali umepimwa kutoka mahali ulipo. Mahali ulipo hutoka kwenye GPS ya simu, ambayo haihitaji mtandao.",
+    "fromAnchor": "Umbali umepimwa kutoka mji wa Kilifi hadi utakaposhiriki mahali ulipo.",
+    "outside": "Inaonekana uko nje ya Kaunti ya Kilifi, kwa hivyo umbali umepimwa kutoka mji wa Kilifi.",
+    "noLocation": "Mahali ulipo hapapatikani. Umbali umepimwa kutoka mji wa Kilifi.",
+    "km": "Kilomita {{km}} (umbali wa moja kwa moja)",
+    "servicesUnknown": "Huduma hazijathibitishwa kwenye rekodi zetu.",
+    "openMap": "Fungua kwenye Ramani",
+    "mapHint": "Gusa ramani kuchagua kituo kilicho karibu.",
+    "search": "Tafuta kwa jina au eneo",
+    "none": "Hakuna kituo kinacholingana na utafutaji huo.",
+    "more": "Onyesha zaidi (vimebaki {{count}})",
+    "dataNote": "Namba za simu na saa za kazi hazipo kwenye rekodi za umma ambazo orodha hii inatoka. Mahali ni kutoka rekodi za zamani na huenda si sahihi kabisa. Tafadhali thibitisha na kliniki kabla ya kusafiri.",
+    "mapTitle": "Kaunti ya {{county}}",
+    "offlineMap": "Inafanya kazi bila mtandao",
+    "ocean": "Bahari ya Hindi",
+    "kenya": "Kenya",
+    "legendConfirmed": "Huduma zimethibitishwa",
+    "legendOther": "Kituo kingine",
+    "legendYou": "Wewe",
+    "legendAnchor": "Mji wa Kilifi"
+  },
+  "consent": {
+    "title": "Taarifa ya faragha na ridhaa",
+    "notDiagnosis": "Programu hii haitambui magonjwa wala haitoi ushauri wa kitabibu.",
+    "guidance": "Inakusaidia tu kupata huduma: inaandaa taarifa ya mgonjwa kwa ajili ya kliniki na kupendekeza mahali pa kwenda. Mhudumu wa afya ndiye anayefanya kila uamuzi wa kitabibu.",
+    "emergency": "Wakati wa dharura, nenda mara moja kwenye kliniki au hospitali iliyo karibu. Usisubiri programu.",
+    "stored": "Majibu yako, pamoja na jina la mgonjwa, yanahifadhiwa kwenye simu hii. Yeyote anayetumia programu kwenye simu hii anaweza kuyaona. Unaweza kuyafuta wakati wowote, na huondolewa yenyewe baada ya siku 30.",
+    "shared": "Taarifa yako inashirikiwa na kliniki unapoonyesha msimbo wako. Simu ikipata mtandao, nakala pia hutumwa kwenye mfumo wa kumbukumbu wa kliniki.",
+    "location": "Mahali ulipo panatumika kwenye simu hii tu, kuonyesha kliniki zilizo karibu nawe, na ikiwa tu utaruhusu.",
+    "agreeNote": "Kwa kuendelea, unathibitisha kuwa umesoma haya na unakubali taarifa zako zitumike kwa njia hii.",
+    "agree": "Nimeelewa na ninakubali"
   }
 }

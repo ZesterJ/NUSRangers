@@ -1,6 +1,7 @@
 import * as SQLite from 'expo-sqlite';
 
 import type { AiSource } from '@/ai/types';
+import type { ClinicVisit } from '@/intake/clinic';
 import type { IntakeRecord } from '@/intake/types';
 import type { Assessment, FormValues } from '@/packs/types';
 
@@ -42,6 +43,11 @@ export function getDb() {
           created_at INTEGER NOT NULL,
           record TEXT NOT NULL,
           status TEXT NOT NULL
+        );
+        CREATE TABLE IF NOT EXISTS clinic_visits (
+          id TEXT PRIMARY KEY,
+          received_at INTEGER NOT NULL,
+          record TEXT NOT NULL
         );
         CREATE TABLE IF NOT EXISTS outbox (
           id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -225,6 +231,27 @@ export async function listIntakes(): Promise<IntakeRecord[]> {
   return rows.map((r) => JSON.parse(r.record));
 }
 
+/** Removes visit notes made in one view from this phone, including any still waiting to upload. */
+export async function deleteIntakes(owner: 'patient' | 'clinic') {
+  const db = await getDb();
+  const ids = (await listIntakes()).filter((rec) => (rec.owner ?? 'patient') === owner).map((rec) => rec.id);
+  for (const id of ids) await db.runAsync('DELETE FROM intakes WHERE id = ?', id);
+  for (const item of await listOutbox()) {
+    if (item.kind === 'intake' && ids.includes((JSON.parse(item.payload) as IntakeRecord).id)) await removeOutbox(item.id);
+  }
+  return ids.length;
+}
+
+/** Visit notes are not kept on the phone for ever: older ones are removed, unless they have not been uploaded yet. */
+export const KEEP_INTAKES_DAYS = 30;
+export async function purgeOldIntakes() {
+  const db = await getDb();
+  const cutoff = Date.now() - KEEP_INTAKES_DAYS * 24 * 60 * 60 * 1000;
+  const waiting = (await listOutbox()).filter((i) => i.kind === 'intake').map((i) => (JSON.parse(i.payload) as IntakeRecord).id);
+  const old = await db.getAllAsync<{ id: string }>('SELECT id FROM intakes WHERE created_at < ?', cutoff);
+  for (const { id } of old) if (!waiting.includes(id)) await db.runAsync('DELETE FROM intakes WHERE id = ?', id);
+}
+
 export async function markIntakeReceived(id: string) {
   const db = await getDb();
   const row = await db.getFirstAsync<{ record: string }>('SELECT record FROM intakes WHERE id = ?', id);
@@ -232,6 +259,24 @@ export async function markIntakeReceived(id: string) {
   const rec: IntakeRecord = { ...JSON.parse(row.record), status: 'received' };
   await saveIntake(rec);
   return true;
+}
+
+// ---------- clinic queue (patients received at this clinic) ----------
+
+export async function saveClinicVisit(visit: ClinicVisit) {
+  const db = await getDb();
+  await db.runAsync(
+    'INSERT OR REPLACE INTO clinic_visits (id, received_at, record) VALUES (?, ?, ?)',
+    visit.id,
+    visit.receivedAt,
+    JSON.stringify(visit),
+  );
+}
+
+export async function listClinicVisits(): Promise<ClinicVisit[]> {
+  const db = await getDb();
+  const rows = await db.getAllAsync<{ record: string }>('SELECT record FROM clinic_visits ORDER BY received_at ASC');
+  return rows.map((r) => JSON.parse(r.record));
 }
 
 // ---------- outbox (work to retry once back online) ----------

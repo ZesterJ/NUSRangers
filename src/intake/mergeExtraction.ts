@@ -12,7 +12,16 @@ const union = <T,>(a: T[], b: T[]) => [...a, ...b.filter((x) => !a.includes(x))]
  * empty. Where the model is not confident, both are shown and the field is marked for the patient to verify.
  * Danger signs are never dropped: a wrong extra one is corrected on the review screen, a missed one is not.
  */
-export function mergeExtractions(model: Extraction, rules: Extraction): Extraction {
+export function mergeExtractions(raw: Extraction, rules: Extraction): Extraction {
+  // A backend may leave out a value it could not find; treat a missing value exactly like null or an empty list.
+  const model: Extraction = {
+    ...raw,
+    patientGroup: { ...raw.patientGroup, value: raw.patientGroup?.value ?? null },
+    symptoms: { ...raw.symptoms, value: raw.symptoms?.value ?? [] },
+    durationDays: { ...raw.durationDays, value: raw.durationDays?.value ?? null },
+    dangerSigns: { ...raw.dangerSigns, value: raw.dangerSigns?.value ?? [] },
+    unmapped: raw.unmapped ?? [],
+  };
   const sure = (f: { confidence: string }) => f.confidence === 'high';
 
   let patientGroup = model.patientGroup;
