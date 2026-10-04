@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { StyleSheet, TextInput, View } from 'react-native';
+import { StyleSheet, Text, TextInput, View } from 'react-native';
 
 import {
   askPregnancy,
@@ -34,7 +34,8 @@ export function WhoOptions({ choices, onChange }: Props) {
         ))}
       </View>
 
-      <SectionTitle>{bi('intake.name')}</SectionTitle>
+      <SectionTitle>{bi('intake.name')} *</SectionTitle>
+      <Text style={{ color: theme.textMuted }}>{t('intake.nameHint')}</Text>
       <TextInput
         style={[styles.input, { color: theme.text, borderColor: theme.border, backgroundColor: theme.card }]}
         value={choices.name}

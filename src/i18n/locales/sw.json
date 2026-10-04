@@ -138,8 +138,8 @@
       "child_5plus": "Mtoto wangu (miaka 5 au zaidi)",
       "other_adult": "Mtu mzima mwingine"
     },
-    "name": "Jina la mgonjwa",
-    "namePlaceholder": "Andika jina (si lazima)",
+    "name": "Jina kamili la mgonjwa",
+    "namePlaceholder": "Jina kamili kama lilivyo kwenye kitambulisho",
     "sex": "Jinsia",
     "sexOpt": {
       "female": "Mwanamke",
@@ -201,7 +201,8 @@
       "severe_headache_blurred_vision": "Kichwa kikali, kuona ukungu",
       "reduced_fetal_movement": "Mtoto anacheza kidogo",
       "blood_in_stool": "Damu kwenye choo"
-    }
+    },
+    "nameHint": "Andika jina kamili kama lilivyo kwenye kitambulisho cha taifa (au cheti cha kuzaliwa kwa mtoto). Kliniki italikagua wakati wa usajili."
   },
   "scan": {
     "title": "Kliniki: pokea mgonjwa",

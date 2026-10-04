@@ -73,7 +73,8 @@ function IntakeFlow({ onRestart }: { onRestart: () => void }) {
     duration: choices.durationDays !== null,
     danger: choices.dangerSigns.length > 0 || choices.noDanger,
   }[q.id];
-  const answered = !!answer.trim() || tapped;
+  // The clinic checks the patient's full name at registration, so the first question cannot be passed without it.
+  const answered = (!!answer.trim() || tapped) && (q.id !== 'who' || !!choices.name.trim());
 
   // ---------- Step 3: extract, then pre-fill the form ----------
   const finishQuestions = async () => {

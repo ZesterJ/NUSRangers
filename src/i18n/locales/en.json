@@ -138,8 +138,8 @@
       "child_5plus": "My child (5 or older)",
       "other_adult": "Another adult"
     },
-    "name": "Patient's name",
-    "namePlaceholder": "Enter the name (optional)",
+    "name": "Patient's full name",
+    "namePlaceholder": "Full name as on the ID card",
     "sex": "Sex",
     "sexOpt": {
       "female": "Female",
@@ -201,7 +201,8 @@
       "severe_headache_blurred_vision": "Severe headache with blurred vision",
       "reduced_fetal_movement": "Reduced fetal movement",
       "blood_in_stool": "Blood in stool"
-    }
+    },
+    "nameHint": "Enter the full name exactly as it appears on the national ID card (or the birth certificate for a child). The clinic checks it at registration."
   },
   "scan": {
     "title": "Clinic: receive a patient",
