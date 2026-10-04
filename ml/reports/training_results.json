@@ -1,0 +1,2972 @@
+{
+  "benchmark": "synthetic-data benchmark results",
+  "selection": "validation supported-label macro F1, then micro F1; no test selection",
+  "split": {
+    "seed": 42,
+    "method": "Derived scenario-family split. Original records/splits remain unchanged.\n\nFamily proxy: patient_type + sorted symptoms + sorted danger_signs + hydration_issue\n+ notes. Excludes duration and language to group cross-language paraphrases and onset\nvariants. This deliberately coarse proxy uses annotation metadata ONLY for grouping,\nnever as input features. It is not a recovered generator ID. Shared phrases can remain.\n",
+    "family_count": 31,
+    "coverage_moves": [
+      {
+        "family": "7dc1d5578b8b8b87",
+        "from": "test",
+        "to": "train",
+        "reason": "training coverage for fatigue"
+      },
+      {
+        "family": "2b9ba6678524d263",
+        "from": "validation",
+        "to": "train",
+        "reason": "training coverage for fluid_loss"
+      },
+      {
+        "family": "6f23681961d82f29",
+        "from": "test",
+        "to": "train",
+        "reason": "training coverage for reduced_fetal_movement"
+      }
+    ],
+    "rows_per_split": {
+      "train": 805,
+      "validation": 205,
+      "test": 190
+    },
+    "families_per_split": {
+      "train": 21,
+      "validation": 5,
+      "test": 5
+    },
+    "language_counts": {
+      "train": {
+        "sw": 295,
+        "en": 510
+      },
+      "validation": {
+        "en": 133,
+        "sw": 72
+      },
+      "test": {
+        "en": 131,
+        "sw": 59
+      }
+    },
+    "label_support": {
+      "train": {
+        "abdominal_pain": 28,
+        "bleeding": 38,
+        "blurred_vision": 45,
+        "breathing_difficulty": 90,
+        "cough": 169,
+        "diarrhoea": 124,
+        "fatigue": 38,
+        "fever": 263,
+        "fluid_loss": 39,
+        "headache": 79,
+        "reduced_fetal_movement": 39,
+        "vomiting": 34,
+        "weakness": 78
+      },
+      "validation": {
+        "abdominal_pain": 49,
+        "bleeding": 0,
+        "blurred_vision": 39,
+        "breathing_difficulty": 0,
+        "cough": 42,
+        "diarrhoea": 39,
+        "fatigue": 0,
+        "fever": 127,
+        "fluid_loss": 0,
+        "headache": 39,
+        "reduced_fetal_movement": 0,
+        "vomiting": 75,
+        "weakness": 36
+      },
+      "test": {
+        "abdominal_pain": 42,
+        "bleeding": 36,
+        "blurred_vision": 0,
+        "breathing_difficulty": 0,
+        "cough": 0,
+        "diarrhoea": 0,
+        "fatigue": 0,
+        "fever": 79,
+        "fluid_loss": 0,
+        "headache": 0,
+        "reduced_fetal_movement": 0,
+        "vomiting": 76,
+        "weakness": 69
+      }
+    },
+    "original_split_counts_by_derived": {
+      "train": {
+        "train": 566,
+        "validation": 123,
+        "test": 116
+      },
+      "validation": {
+        "train": 133,
+        "test": 41,
+        "validation": 31
+      },
+      "test": {
+        "train": 141,
+        "validation": 26,
+        "test": 23
+      }
+    },
+    "record_manifest_sha256": "5a9566b64839a6888d6a20d86ed56de80c965a7be4f03ae50819d5a91fdec79d",
+    "exact_and_sentence_bag_overlap": 0,
+    "family_overlap": 0,
+    "heldout_sentence_fragment_overlap_fraction": {
+      "validation": 0.6923076923076923,
+      "test": 0.6764705882352942
+    }
+  },
+  "configurations": [
+    {
+      "config": {
+        "features": "word",
+        "C": 1.0,
+        "class_weight": null
+      },
+      "threshold": 0.3,
+      "validation": {
+        "examples": 205,
+        "micro_precision": 0.9441860465116279,
+        "micro_recall": 0.4551569506726457,
+        "micro_f1": 0.6142208774583964,
+        "macro_f1_all_labels_zero_undefined": 0.2610047846556742,
+        "macro_f1_supported_labels": 0.4241327750654706,
+        "exact_set_match": 0.07804878048780488,
+        "per_label": {
+          "abdominal_pain": {
+            "precision": null,
+            "recall": 0.0,
+            "f1": 0.0,
+            "support": 49,
+            "predicted_positive": 0,
+            "false_positives": 0,
+            "false_negatives": 49
+          },
+          "bleeding": {
+            "precision": null,
+            "recall": null,
+            "f1": null,
+            "support": 0,
+            "predicted_positive": 0,
+            "false_positives": 0,
+            "false_negatives": 0
+          },
+          "blurred_vision": {
+            "precision": 1.0,
+            "recall": 0.05128205128205128,
+            "f1": 0.0975609756097561,
+            "support": 39,
+            "predicted_positive": 2,
+            "false_positives": 0,
+            "false_negatives": 37
+          },
+          "breathing_difficulty": {
+            "precision": null,
+            "recall": null,
+            "f1": null,
+            "support": 0,
+            "predicted_positive": 0,
+            "false_positives": 0,
+            "false_negatives": 0
+          },
+          "cough": {
+            "precision": 1.0,
+            "recall": 0.3333333333333333,
+            "f1": 0.5,
+            "support": 42,
+            "predicted_positive": 14,
+            "false_positives": 0,
+            "false_negatives": 28
+          },
+          "diarrhoea": {
+            "precision": 0.6,
+            "recall": 0.46153846153846156,
+            "f1": 0.5217391304347826,
+            "support": 39,
+            "predicted_positive": 30,
+            "false_positives": 12,
+            "false_negatives": 21
+          },
+          "fatigue": {
+            "precision": null,
+            "recall": null,
+            "f1": null,
+            "support": 0,
+            "predicted_positive": 0,
+            "false_positives": 0,
+            "false_negatives": 0
+          },
+          "fever": {
+            "precision": 1.0,
+            "recall": 0.9763779527559056,
+            "f1": 0.9880478087649402,
+            "support": 127,
+            "predicted_positive": 124,
+            "false_positives": 0,
+            "false_negatives": 3
+          },
+          "fluid_loss": {
+            "precision": null,
+            "recall": null,
+            "f1": null,
+            "support": 0,
+            "predicted_positive": 0,
+            "false_positives": 0,
+            "false_negatives": 0
+          },
+          "headache": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "support": 39,
+            "predicted_positive": 39,
+            "false_positives": 0,
+            "false_negatives": 0
+          },
+          "reduced_fetal_movement": {
+            "precision": null,
+            "recall": null,
+            "f1": null,
+            "support": 0,
+            "predicted_positive": 0,
+            "false_positives": 0,
+            "false_negatives": 0
+          },
+          "vomiting": {
+            "precision": null,
+            "recall": 0.0,
+            "f1": 0.0,
+            "support": 75,
+            "predicted_positive": 0,
+            "false_positives": 0,
+            "false_negatives": 75
+          },
+          "weakness": {
+            "precision": 1.0,
+            "recall": 0.16666666666666666,
+            "f1": 0.2857142857142857,
+            "support": 36,
+            "predicted_positive": 6,
+            "false_positives": 0,
+            "false_negatives": 30
+          }
+        }
+      },
+      "threshold_comparison": [
+        {
+          "threshold": 0.3,
+          "macro_f1_supported_labels": 0.4241327750654706,
+          "micro_f1": 0.6142208774583964
+        },
+        {
+          "threshold": 0.5,
+          "macro_f1_supported_labels": 0.15374031007751937,
+          "micro_f1": 0.2440944881889764
+        },
+        {
+          "threshold": 0.7,
+          "macro_f1_supported_labels": 0.010125968992248062,
+          "micro_f1": 0.013363028953229399
+        }
+      ]
+    },
+    {
+      "config": {
+        "features": "word",
+        "C": 1.0,
+        "class_weight": "balanced"
+      },
+      "threshold": 0.3,
+      "validation": {
+        "examples": 205,
+        "micro_precision": 0.8508158508158508,
+        "micro_recall": 0.8183856502242153,
+        "micro_f1": 0.8342857142857143,
+        "macro_f1_all_labels_zero_undefined": 0.4971264246210755,
+        "macro_f1_supported_labels": 0.8078304400092476,
+        "exact_set_match": 0.5463414634146342,
+        "per_label": {
+          "abdominal_pain": {
+            "precision": 1.0,
+            "recall": 0.9795918367346939,
+            "f1": 0.9896907216494846,
+            "support": 49,
+            "predicted_positive": 48,
+            "false_positives": 0,
+            "false_negatives": 1
+          },
+          "bleeding": {
+            "precision": null,
+            "recall": null,
+            "f1": null,
+            "support": 0,
+            "predicted_positive": 0,
+            "false_positives": 0,
+            "false_negatives": 0
+          },
+          "blurred_vision": {
+            "precision": 0.7037037037037037,
+            "recall": 0.48717948717948717,
+            "f1": 0.5757575757575758,
+            "support": 39,
+            "predicted_positive": 27,
+            "false_positives": 8,
+            "false_negatives": 20
+          },
+          "breathing_difficulty": {
+            "precision": null,
+            "recall": null,
+            "f1": null,
+            "support": 0,
+            "predicted_positive": 0,
+            "false_positives": 0,
+            "false_negatives": 0
+          },
+          "cough": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "support": 42,
+            "predicted_positive": 42,
+            "false_positives": 0,
+            "false_negatives": 0
+          },
+          "diarrhoea": {
+            "precision": 0.4626865671641791,
+            "recall": 0.7948717948717948,
+            "f1": 0.5849056603773585,
+            "support": 39,
+            "predicted_positive": 67,
+            "false_positives": 36,
+            "false_negatives": 8
+          },
+          "fatigue": {
+            "precision": null,
+            "recall": null,
+            "f1": null,
+            "support": 0,
+            "predicted_positive": 0,
+            "false_positives": 0,
+            "false_negatives": 0
+          },
+          "fever": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "support": 127,
+            "predicted_positive": 127,
+            "false_positives": 0,
+            "false_negatives": 0
+          },
+          "fluid_loss": {
+            "precision": null,
+            "recall": null,
+            "f1": null,
+            "support": 0,
+            "predicted_positive": 0,
+            "false_positives": 0,
+            "false_negatives": 0
+          },
+          "headache": {
+            "precision": 0.7959183673469388,
+            "recall": 1.0,
+            "f1": 0.8863636363636364,
+            "support": 39,
+            "predicted_positive": 49,
+            "false_positives": 10,
+            "false_negatives": 0
+          },
+          "reduced_fetal_movement": {
+            "precision": null,
+            "recall": null,
+            "f1": null,
+            "support": 0,
+            "predicted_positive": 0,
+            "false_positives": 0,
+            "false_negatives": 0
+          },
+          "vomiting": {
+            "precision": 0.696969696969697,
+            "recall": 0.30666666666666664,
+            "f1": 0.42592592592592593,
+            "support": 75,
+            "predicted_positive": 33,
+            "false_positives": 10,
+            "false_negatives": 52
+          },
+          "weakness": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "support": 36,
+            "predicted_positive": 36,
+            "false_positives": 0,
+            "false_negatives": 0
+          }
+        }
+      },
+      "threshold_comparison": [
+        {
+          "threshold": 0.3,
+          "macro_f1_supported_labels": 0.8078304400092476,
+          "micro_f1": 0.8342857142857143
+        },
+        {
+          "threshold": 0.5,
+          "macro_f1_supported_labels": 0.520630460132668,
+          "micro_f1": 0.5993975903614458
+        },
+        {
+          "threshold": 0.7,
+          "macro_f1_supported_labels": 0.22489180027289785,
+          "micro_f1": 0.25440313111545987
+        }
+      ]
+    },
+    {
+      "config": {
+        "features": "word",
+        "C": 4.0,
+        "class_weight": null
+      },
+      "threshold": 0.3,
+      "validation": {
+        "examples": 205,
+        "micro_precision": 0.9484978540772532,
+        "micro_recall": 0.49551569506726456,
+        "micro_f1": 0.6509572901325479,
+        "macro_f1_all_labels_zero_undefined": 0.3016641253150149,
+        "macro_f1_supported_labels": 0.4902042036368992,
+        "exact_set_match": 0.0975609756097561,
+        "per_label": {
+          "abdominal_pain": {
+            "precision": null,
+            "recall": 0.0,
+            "f1": 0.0,
+            "support": 49,
+            "predicted_positive": 0,
+            "false_positives": 0,
+            "false_negatives": 49
+          },
+          "bleeding": {
+            "precision": null,
+            "recall": null,
+            "f1": null,
+            "support": 0,
+            "predicted_positive": 0,
+            "false_positives": 0,
+            "false_negatives": 0
+          },
+          "blurred_vision": {
+            "precision": 1.0,
+            "recall": 0.05128205128205128,
+            "f1": 0.0975609756097561,
+            "support": 39,
+            "predicted_positive": 2,
+            "false_positives": 0,
+            "false_negatives": 37
+          },
+          "breathing_difficulty": {
+            "precision": null,
+            "recall": null,
+            "f1": null,
+            "support": 0,
+            "predicted_positive": 0,
+            "false_positives": 0,
+            "false_negatives": 0
+          },
+          "cough": {
+            "precision": 1.0,
+            "recall": 0.42857142857142855,
+            "f1": 0.6,
+            "support": 42,
+            "predicted_positive": 18,
+            "false_positives": 0,
+            "false_negatives": 24
+          },
+          "diarrhoea": {
+            "precision": 0.6,
+            "recall": 0.46153846153846156,
+            "f1": 0.5217391304347826,
+            "support": 39,
+            "predicted_positive": 30,
+            "false_positives": 12,
+            "false_negatives": 21
+          },
+          "fatigue": {
+            "precision": null,
+            "recall": null,
+            "f1": null,
+            "support": 0,
+            "predicted_positive": 0,
+            "false_positives": 0,
+            "false_negatives": 0
+          },
+          "fever": {
+            "precision": 1.0,
+            "recall": 0.9763779527559056,
+            "f1": 0.9880478087649402,
+            "support": 127,
+            "predicted_positive": 124,
+            "false_positives": 0,
+            "false_negatives": 3
+          },
+          "fluid_loss": {
+            "precision": null,
+            "recall": null,
+            "f1": null,
+            "support": 0,
+            "predicted_positive": 0,
+            "false_positives": 0,
+            "false_negatives": 0
+          },
+          "headache": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "support": 39,
+            "predicted_positive": 39,
+            "false_positives": 0,
+            "false_negatives": 0
+          },
+          "reduced_fetal_movement": {
+            "precision": null,
+            "recall": null,
+            "f1": null,
+            "support": 0,
+            "predicted_positive": 0,
+            "false_positives": 0,
+            "false_negatives": 0
+          },
+          "vomiting": {
+            "precision": null,
+            "recall": 0.0,
+            "f1": 0.0,
+            "support": 75,
+            "predicted_positive": 0,
+            "false_positives": 0,
+            "false_negatives": 75
+          },
+          "weakness": {
+            "precision": 1.0,
+            "recall": 0.5555555555555556,
+            "f1": 0.7142857142857143,
+            "support": 36,
+            "predicted_positive": 20,
+            "false_positives": 0,
+            "false_negatives": 16
+          }
+        }
+      },
+      "threshold_comparison": [
+        {
+          "threshold": 0.3,
+          "macro_f1_supported_labels": 0.4902042036368992,
+          "micro_f1": 0.6509572901325479
+        },
+        {
+          "threshold": 0.5,
+          "macro_f1_supported_labels": 0.2857848179073957,
+          "micro_f1": 0.39568345323741005
+        },
+        {
+          "threshold": 0.7,
+          "macro_f1_supported_labels": 0.10384570494864612,
+          "micro_f1": 0.11416490486257928
+        }
+      ]
+    },
+    {
+      "config": {
+        "features": "word",
+        "C": 4.0,
+        "class_weight": "balanced"
+      },
+      "threshold": 0.3,
+      "validation": {
+        "examples": 205,
+        "micro_precision": 0.8926701570680629,
+        "micro_recall": 0.7645739910313901,
+        "micro_f1": 0.8236714975845411,
+        "macro_f1_all_labels_zero_undefined": 0.4885983754826591,
+        "macro_f1_supported_labels": 0.7939723601593209,
+        "exact_set_match": 0.5317073170731708,
+        "per_label": {
+          "abdominal_pain": {
+            "precision": 1.0,
+            "recall": 0.8163265306122449,
+            "f1": 0.898876404494382,
+            "support": 49,
+            "predicted_positive": 40,
+            "false_positives": 0,
+            "false_negatives": 9
+          },
+          "bleeding": {
+            "precision": null,
+            "recall": null,
+            "f1": null,
+            "support": 0,
+            "predicted_positive": 0,
+            "false_positives": 0,
+            "false_negatives": 0
+          },
+          "blurred_vision": {
+            "precision": 1.0,
+            "recall": 0.46153846153846156,
+            "f1": 0.631578947368421,
+            "support": 39,
+            "predicted_positive": 18,
+            "false_positives": 0,
+            "false_negatives": 21
+          },
+          "breathing_difficulty": {
+            "precision": null,
+            "recall": null,
+            "f1": null,
+            "support": 0,
+            "predicted_positive": 0,
+            "false_positives": 0,
+            "false_negatives": 0
+          },
+          "cough": {
+            "precision": 1.0,
+            "recall": 0.9047619047619048,
+            "f1": 0.95,
+            "support": 42,
+            "predicted_positive": 38,
+            "false_positives": 0,
+            "false_negatives": 4
+          },
+          "diarrhoea": {
+            "precision": 0.40350877192982454,
+            "recall": 0.5897435897435898,
+            "f1": 0.4791666666666667,
+            "support": 39,
+            "predicted_positive": 57,
+            "false_positives": 34,
+            "false_negatives": 16
+          },
+          "fatigue": {
+            "precision": null,
+            "recall": null,
+            "f1": null,
+            "support": 0,
+            "predicted_positive": 0,
+            "false_positives": 0,
+            "false_negatives": 0
+          },
+          "fever": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "support": 127,
+            "predicted_positive": 127,
+            "false_positives": 0,
+            "false_negatives": 0
+          },
+          "fluid_loss": {
+            "precision": null,
+            "recall": null,
+            "f1": null,
+            "support": 0,
+            "predicted_positive": 0,
+            "false_positives": 0,
+            "false_negatives": 0
+          },
+          "headache": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "support": 39,
+            "predicted_positive": 39,
+            "false_positives": 0,
+            "false_negatives": 0
+          },
+          "reduced_fetal_movement": {
+            "precision": null,
+            "recall": null,
+            "f1": null,
+            "support": 0,
+            "predicted_positive": 0,
+            "false_positives": 0,
+            "false_negatives": 0
+          },
+          "vomiting": {
+            "precision": 0.7407407407407407,
+            "recall": 0.26666666666666666,
+            "f1": 0.39215686274509803,
+            "support": 75,
+            "predicted_positive": 27,
+            "false_positives": 7,
+            "false_negatives": 55
+          },
+          "weakness": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "support": 36,
+            "predicted_positive": 36,
+            "false_positives": 0,
+            "false_negatives": 0
+          }
+        }
+      },
+      "threshold_comparison": [
+        {
+          "threshold": 0.3,
+          "macro_f1_supported_labels": 0.7939723601593209,
+          "micro_f1": 0.8236714975845411
+        },
+        {
+          "threshold": 0.5,
+          "macro_f1_supported_labels": 0.5188355792814437,
+          "micro_f1": 0.6116941529235382
+        },
+        {
+          "threshold": 0.7,
+          "macro_f1_supported_labels": 0.29067788408912243,
+          "micro_f1": 0.32645403377110693
+        }
+      ]
+    },
+    {
+      "config": {
+        "features": "char",
+        "C": 1.0,
+        "class_weight": null
+      },
+      "threshold": 0.3,
+      "validation": {
+        "examples": 205,
+        "micro_precision": 1.0,
+        "micro_recall": 0.5179372197309418,
+        "micro_f1": 0.6824224519940916,
+        "macro_f1_all_labels_zero_undefined": 0.3348004471909659,
+        "macro_f1_supported_labels": 0.5440507266853196,
+        "exact_set_match": 0.21951219512195122,
+        "per_label": {
+          "abdominal_pain": {
+            "precision": null,
+            "recall": 0.0,
+            "f1": 0.0,
+            "support": 49,
+            "predicted_positive": 0,
+            "false_positives": 0,
+            "false_negatives": 49
+          },
+          "bleeding": {
+            "precision": null,
+            "recall": null,
+            "f1": null,
+            "support": 0,
+            "predicted_positive": 0,
+            "false_positives": 0,
+            "false_negatives": 0
+          },
+          "blurred_vision": {
+            "precision": 1.0,
+            "recall": 0.15384615384615385,
+            "f1": 0.26666666666666666,
+            "support": 39,
+            "predicted_positive": 6,
+            "false_positives": 0,
+            "false_negatives": 33
+          },
+          "breathing_difficulty": {
+            "precision": null,
+            "recall": null,
+            "f1": null,
+            "support": 0,
+            "predicted_positive": 0,
+            "false_positives": 0,
+            "false_negatives": 0
+          },
+          "cough": {
+            "precision": 1.0,
+            "recall": 0.9285714285714286,
+            "f1": 0.9629629629629629,
+            "support": 42,
+            "predicted_positive": 39,
+            "false_positives": 0,
+            "false_negatives": 3
+          },
+          "diarrhoea": {
+            "precision": 1.0,
+            "recall": 0.5897435897435898,
+            "f1": 0.7419354838709677,
+            "support": 39,
+            "predicted_positive": 23,
+            "false_positives": 0,
+            "false_negatives": 16
+          },
+          "fatigue": {
+            "precision": null,
+            "recall": null,
+            "f1": null,
+            "support": 0,
+            "predicted_positive": 0,
+            "false_positives": 0,
+            "false_negatives": 0
+          },
+          "fever": {
+            "precision": 1.0,
+            "recall": 0.8976377952755905,
+            "f1": 0.946058091286307,
+            "support": 127,
+            "predicted_positive": 114,
+            "false_positives": 0,
+            "false_negatives": 13
+          },
+          "fluid_loss": {
+            "precision": null,
+            "recall": null,
+            "f1": null,
+            "support": 0,
+            "predicted_positive": 0,
+            "false_positives": 0,
+            "false_negatives": 0
+          },
+          "headache": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "support": 39,
+            "predicted_positive": 39,
+            "false_positives": 0,
+            "false_negatives": 0
+          },
+          "reduced_fetal_movement": {
+            "precision": null,
+            "recall": null,
+            "f1": null,
+            "support": 0,
+            "predicted_positive": 0,
+            "false_positives": 0,
+            "false_negatives": 0
+          },
+          "vomiting": {
+            "precision": null,
+            "recall": 0.0,
+            "f1": 0.0,
+            "support": 75,
+            "predicted_positive": 0,
+            "false_positives": 0,
+            "false_negatives": 75
+          },
+          "weakness": {
+            "precision": 1.0,
+            "recall": 0.2777777777777778,
+            "f1": 0.43478260869565216,
+            "support": 36,
+            "predicted_positive": 10,
+            "false_positives": 0,
+            "false_negatives": 26
+          }
+        }
+      },
+      "threshold_comparison": [
+        {
+          "threshold": 0.3,
+          "macro_f1_supported_labels": 0.5440507266853196,
+          "micro_f1": 0.6824224519940916
+        },
+        {
+          "threshold": 0.5,
+          "macro_f1_supported_labels": 0.2238259434208466,
+          "micro_f1": 0.2713178294573643
+        },
+        {
+          "threshold": 0.7,
+          "macro_f1_supported_labels": 0.03186509942703067,
+          "micro_f1": 0.03090507726269316
+        }
+      ]
+    },
+    {
+      "config": {
+        "features": "char",
+        "C": 1.0,
+        "class_weight": "balanced"
+      },
+      "threshold": 0.3,
+      "validation": {
+        "examples": 205,
+        "micro_precision": 0.8372591006423983,
+        "micro_recall": 0.8766816143497758,
+        "micro_f1": 0.8565169769989047,
+        "macro_f1_all_labels_zero_undefined": 0.5308330598392145,
+        "macro_f1_supported_labels": 0.8626037222387234,
+        "exact_set_match": 0.5609756097560976,
+        "per_label": {
+          "abdominal_pain": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "support": 49,
+            "predicted_positive": 49,
+            "false_positives": 0,
+            "false_negatives": 0
+          },
+          "bleeding": {
+            "precision": null,
+            "recall": null,
+            "f1": null,
+            "support": 0,
+            "predicted_positive": 0,
+            "false_positives": 0,
+            "false_negatives": 0
+          },
+          "blurred_vision": {
+            "precision": 0.7674418604651163,
+            "recall": 0.8461538461538461,
+            "f1": 0.8048780487804879,
+            "support": 39,
+            "predicted_positive": 43,
+            "false_positives": 10,
+            "false_negatives": 6
+          },
+          "breathing_difficulty": {
+            "precision": null,
+            "recall": null,
+            "f1": null,
+            "support": 0,
+            "predicted_positive": 0,
+            "false_positives": 0,
+            "false_negatives": 0
+          },
+          "cough": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "support": 42,
+            "predicted_positive": 42,
+            "false_positives": 0,
+            "false_negatives": 0
+          },
+          "diarrhoea": {
+            "precision": 0.5,
+            "recall": 0.8717948717948718,
+            "f1": 0.6355140186915887,
+            "support": 39,
+            "predicted_positive": 68,
+            "false_positives": 34,
+            "false_negatives": 5
+          },
+          "fatigue": {
+            "precision": 0.0,
+            "recall": null,
+            "f1": 0.0,
+            "support": 0,
+            "predicted_positive": 20,
+            "false_positives": 20,
+            "false_negatives": 0
+          },
+          "fever": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "support": 127,
+            "predicted_positive": 127,
+            "false_positives": 0,
+            "false_negatives": 0
+          },
+          "fluid_loss": {
+            "precision": null,
+            "recall": null,
+            "f1": null,
+            "support": 0,
+            "predicted_positive": 0,
+            "false_positives": 0,
+            "false_negatives": 0
+          },
+          "headache": {
+            "precision": 0.7959183673469388,
+            "recall": 1.0,
+            "f1": 0.8863636363636364,
+            "support": 39,
+            "predicted_positive": 49,
+            "false_positives": 10,
+            "false_negatives": 0
+          },
+          "reduced_fetal_movement": {
+            "precision": null,
+            "recall": null,
+            "f1": null,
+            "support": 0,
+            "predicted_positive": 0,
+            "false_positives": 0,
+            "false_negatives": 0
+          },
+          "vomiting": {
+            "precision": 0.9393939393939394,
+            "recall": 0.41333333333333333,
+            "f1": 0.5740740740740741,
+            "support": 75,
+            "predicted_positive": 33,
+            "false_positives": 2,
+            "false_negatives": 44
+          },
+          "weakness": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "support": 36,
+            "predicted_positive": 36,
+            "false_positives": 0,
+            "false_negatives": 0
+          }
+        }
+      },
+      "threshold_comparison": [
+        {
+          "threshold": 0.3,
+          "macro_f1_supported_labels": 0.8626037222387234,
+          "micro_f1": 0.8565169769989047
+        },
+        {
+          "threshold": 0.5,
+          "macro_f1_supported_labels": 0.7197020014974191,
+          "micro_f1": 0.7283072546230441
+        },
+        {
+          "threshold": 0.7,
+          "macro_f1_supported_labels": 0.3110473705605365,
+          "micro_f1": 0.3295880149812734
+        }
+      ]
+    },
+    {
+      "config": {
+        "features": "char",
+        "C": 4.0,
+        "class_weight": null
+      },
+      "threshold": 0.3,
+      "validation": {
+        "examples": 205,
+        "micro_precision": 1.0,
+        "micro_recall": 0.6053811659192825,
+        "micro_f1": 0.7541899441340782,
+        "macro_f1_all_labels_zero_undefined": 0.398393572668664,
+        "macro_f1_supported_labels": 0.647389555586579,
+        "exact_set_match": 0.3121951219512195,
+        "per_label": {
+          "abdominal_pain": {
+            "precision": null,
+            "recall": 0.0,
+            "f1": 0.0,
+            "support": 49,
+            "predicted_positive": 0,
+            "false_positives": 0,
+            "false_negatives": 49
+          },
+          "bleeding": {
+            "precision": null,
+            "recall": null,
+            "f1": null,
+            "support": 0,
+            "predicted_positive": 0,
+            "false_positives": 0,
+            "false_negatives": 0
+          },
+          "blurred_vision": {
+            "precision": 1.0,
+            "recall": 0.28205128205128205,
+            "f1": 0.44,
+            "support": 39,
+            "predicted_positive": 11,
+            "false_positives": 0,
+            "false_negatives": 28
+          },
+          "breathing_difficulty": {
+            "precision": null,
+            "recall": null,
+            "f1": null,
+            "support": 0,
+            "predicted_positive": 0,
+            "false_positives": 0,
+            "false_negatives": 0
+          },
+          "cough": {
+            "precision": 1.0,
+            "recall": 0.9523809523809523,
+            "f1": 0.975609756097561,
+            "support": 42,
+            "predicted_positive": 40,
+            "false_positives": 0,
+            "false_negatives": 2
+          },
+          "diarrhoea": {
+            "precision": 1.0,
+            "recall": 0.5897435897435898,
+            "f1": 0.7419354838709677,
+            "support": 39,
+            "predicted_positive": 23,
+            "false_positives": 0,
+            "false_negatives": 16
+          },
+          "fatigue": {
+            "precision": null,
+            "recall": null,
+            "f1": null,
+            "support": 0,
+            "predicted_positive": 0,
+            "false_positives": 0,
+            "false_negatives": 0
+          },
+          "fever": {
+            "precision": 1.0,
+            "recall": 0.952755905511811,
+            "f1": 0.9758064516129032,
+            "support": 127,
+            "predicted_positive": 121,
+            "false_positives": 0,
+            "false_negatives": 6
+          },
+          "fluid_loss": {
+            "precision": null,
+            "recall": null,
+            "f1": null,
+            "support": 0,
+            "predicted_positive": 0,
+            "false_positives": 0,
+            "false_negatives": 0
+          },
+          "headache": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "support": 39,
+            "predicted_positive": 39,
+            "false_positives": 0,
+            "false_negatives": 0
+          },
+          "reduced_fetal_movement": {
+            "precision": null,
+            "recall": null,
+            "f1": null,
+            "support": 0,
+            "predicted_positive": 0,
+            "false_positives": 0,
+            "false_negatives": 0
+          },
+          "vomiting": {
+            "precision": 1.0,
+            "recall": 0.25333333333333335,
+            "f1": 0.40425531914893614,
+            "support": 75,
+            "predicted_positive": 19,
+            "false_positives": 0,
+            "false_negatives": 56
+          },
+          "weakness": {
+            "precision": 1.0,
+            "recall": 0.4722222222222222,
+            "f1": 0.6415094339622641,
+            "support": 36,
+            "predicted_positive": 17,
+            "false_positives": 0,
+            "false_negatives": 19
+          }
+        }
+      },
+      "threshold_comparison": [
+        {
+          "threshold": 0.3,
+          "macro_f1_supported_labels": 0.647389555586579,
+          "micro_f1": 0.7541899441340782
+        },
+        {
+          "threshold": 0.5,
+          "macro_f1_supported_labels": 0.34148216221111044,
+          "micro_f1": 0.4128113879003559
+        },
+        {
+          "threshold": 0.7,
+          "macro_f1_supported_labels": 0.16969098915055827,
+          "micro_f1": 0.18699186991869918
+        }
+      ]
+    },
+    {
+      "config": {
+        "features": "char",
+        "C": 4.0,
+        "class_weight": "balanced"
+      },
+      "threshold": 0.3,
+      "validation": {
+        "examples": 205,
+        "micro_precision": 0.916256157635468,
+        "micro_recall": 0.8340807174887892,
+        "micro_f1": 0.8732394366197183,
+        "macro_f1_all_labels_zero_undefined": 0.5298963972332538,
+        "macro_f1_supported_labels": 0.8610816455040372,
+        "exact_set_match": 0.6,
+        "per_label": {
+          "abdominal_pain": {
+            "precision": 1.0,
+            "recall": 0.8979591836734694,
+            "f1": 0.946236559139785,
+            "support": 49,
+            "predicted_positive": 44,
+            "false_positives": 0,
+            "false_negatives": 5
+          },
+          "bleeding": {
+            "precision": null,
+            "recall": null,
+            "f1": null,
+            "support": 0,
+            "predicted_positive": 0,
+            "false_positives": 0,
+            "false_negatives": 0
+          },
+          "blurred_vision": {
+            "precision": 0.875,
+            "recall": 0.717948717948718,
+            "f1": 0.7887323943661971,
+            "support": 39,
+            "predicted_positive": 32,
+            "false_positives": 4,
+            "false_negatives": 11
+          },
+          "breathing_difficulty": {
+            "precision": null,
+            "recall": null,
+            "f1": null,
+            "support": 0,
+            "predicted_positive": 0,
+            "false_positives": 0,
+            "false_negatives": 0
+          },
+          "cough": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "support": 42,
+            "predicted_positive": 42,
+            "false_positives": 0,
+            "false_negatives": 0
+          },
+          "diarrhoea": {
+            "precision": 0.5714285714285714,
+            "recall": 0.8205128205128205,
+            "f1": 0.6736842105263158,
+            "support": 39,
+            "predicted_positive": 56,
+            "false_positives": 24,
+            "false_negatives": 7
+          },
+          "fatigue": {
+            "precision": 0.0,
+            "recall": null,
+            "f1": 0.0,
+            "support": 0,
+            "predicted_positive": 5,
+            "false_positives": 5,
+            "false_negatives": 0
+          },
+          "fever": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "support": 127,
+            "predicted_positive": 127,
+            "false_positives": 0,
+            "false_negatives": 0
+          },
+          "fluid_loss": {
+            "precision": null,
+            "recall": null,
+            "f1": null,
+            "support": 0,
+            "predicted_positive": 0,
+            "false_positives": 0,
+            "false_negatives": 0
+          },
+          "headache": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "support": 39,
+            "predicted_positive": 39,
+            "false_positives": 0,
+            "false_negatives": 0
+          },
+          "reduced_fetal_movement": {
+            "precision": null,
+            "recall": null,
+            "f1": null,
+            "support": 0,
+            "predicted_positive": 0,
+            "false_positives": 0,
+            "false_negatives": 0
+          },
+          "vomiting": {
+            "precision": 0.96,
+            "recall": 0.32,
+            "f1": 0.48,
+            "support": 75,
+            "predicted_positive": 25,
+            "false_positives": 1,
+            "false_negatives": 51
+          },
+          "weakness": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "support": 36,
+            "predicted_positive": 36,
+            "false_positives": 0,
+            "false_negatives": 0
+          }
+        }
+      },
+      "threshold_comparison": [
+        {
+          "threshold": 0.3,
+          "macro_f1_supported_labels": 0.8610816455040372,
+          "micro_f1": 0.8732394366197183
+        },
+        {
+          "threshold": 0.5,
+          "macro_f1_supported_labels": 0.7407573008496894,
+          "micro_f1": 0.7576601671309192
+        },
+        {
+          "threshold": 0.7,
+          "macro_f1_supported_labels": 0.423582206334166,
+          "micro_f1": 0.4432809773123909
+        }
+      ]
+    },
+    {
+      "config": {
+        "features": "combined",
+        "C": 1.0,
+        "class_weight": null
+      },
+      "threshold": 0.3,
+      "validation": {
+        "examples": 205,
+        "micro_precision": 0.9916666666666667,
+        "micro_recall": 0.5336322869955157,
+        "micro_f1": 0.6938775510204082,
+        "macro_f1_all_labels_zero_undefined": 0.33085913955899116,
+        "macro_f1_supported_labels": 0.5376461017833606,
+        "exact_set_match": 0.2,
+        "per_label": {
+          "abdominal_pain": {
+            "precision": null,
+            "recall": 0.0,
+            "f1": 0.0,
+            "support": 49,
+            "predicted_positive": 0,
+            "false_positives": 0,
+            "false_negatives": 49
+          },
+          "bleeding": {
+            "precision": null,
+            "recall": null,
+            "f1": null,
+            "support": 0,
+            "predicted_positive": 0,
+            "false_positives": 0,
+            "false_negatives": 0
+          },
+          "blurred_vision": {
+            "precision": 1.0,
+            "recall": 0.10256410256410256,
+            "f1": 0.18604651162790697,
+            "support": 39,
+            "predicted_positive": 4,
+            "false_positives": 0,
+            "false_negatives": 35
+          },
+          "breathing_difficulty": {
+            "precision": null,
+            "recall": null,
+            "f1": null,
+            "support": 0,
+            "predicted_positive": 0,
+            "false_positives": 0,
+            "false_negatives": 0
+          },
+          "cough": {
+            "precision": 1.0,
+            "recall": 0.8809523809523809,
+            "f1": 0.9367088607594937,
+            "support": 42,
+            "predicted_positive": 37,
+            "false_positives": 0,
+            "false_negatives": 5
+          },
+          "diarrhoea": {
+            "precision": 0.9090909090909091,
+            "recall": 0.5128205128205128,
+            "f1": 0.6557377049180327,
+            "support": 39,
+            "predicted_positive": 22,
+            "false_positives": 2,
+            "false_negatives": 19
+          },
+          "fatigue": {
+            "precision": null,
+            "recall": null,
+            "f1": null,
+            "support": 0,
+            "predicted_positive": 0,
+            "false_positives": 0,
+            "false_negatives": 0
+          },
+          "fever": {
+            "precision": 1.0,
+            "recall": 0.984251968503937,
+            "f1": 0.9920634920634921,
+            "support": 127,
+            "predicted_positive": 125,
+            "false_positives": 0,
+            "false_negatives": 2
+          },
+          "fluid_loss": {
+            "precision": null,
+            "recall": null,
+            "f1": null,
+            "support": 0,
+            "predicted_positive": 0,
+            "false_positives": 0,
+            "false_negatives": 0
+          },
+          "headache": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "support": 39,
+            "predicted_positive": 39,
+            "false_positives": 0,
+            "false_negatives": 0
+          },
+          "reduced_fetal_movement": {
+            "precision": null,
+            "recall": null,
+            "f1": null,
+            "support": 0,
+            "predicted_positive": 0,
+            "false_positives": 0,
+            "false_negatives": 0
+          },
+          "vomiting": {
+            "precision": null,
+            "recall": 0.0,
+            "f1": 0.0,
+            "support": 75,
+            "predicted_positive": 0,
+            "false_positives": 0,
+            "false_negatives": 75
+          },
+          "weakness": {
+            "precision": 1.0,
+            "recall": 0.3611111111111111,
+            "f1": 0.5306122448979592,
+            "support": 36,
+            "predicted_positive": 13,
+            "false_positives": 0,
+            "false_negatives": 23
+          }
+        }
+      },
+      "threshold_comparison": [
+        {
+          "threshold": 0.3,
+          "macro_f1_supported_labels": 0.5376461017833606,
+          "micro_f1": 0.6938775510204082
+        },
+        {
+          "threshold": 0.5,
+          "macro_f1_supported_labels": 0.28790124717963295,
+          "micro_f1": 0.37522768670309653
+        },
+        {
+          "threshold": 0.7,
+          "macro_f1_supported_labels": 0.07688504443183966,
+          "micro_f1": 0.06926406926406926
+        }
+      ]
+    },
+    {
+      "config": {
+        "features": "combined",
+        "C": 1.0,
+        "class_weight": "balanced"
+      },
+      "threshold": 0.3,
+      "validation": {
+        "examples": 205,
+        "micro_precision": 0.8865248226950354,
+        "micro_recall": 0.8408071748878924,
+        "micro_f1": 0.8630609896432682,
+        "macro_f1_all_labels_zero_undefined": 0.5188335639345246,
+        "macro_f1_supported_labels": 0.8431045413936025,
+        "exact_set_match": 0.6048780487804878,
+        "per_label": {
+          "abdominal_pain": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "support": 49,
+            "predicted_positive": 49,
+            "false_positives": 0,
+            "false_negatives": 0
+          },
+          "bleeding": {
+            "precision": null,
+            "recall": null,
+            "f1": null,
+            "support": 0,
+            "predicted_positive": 0,
+            "false_positives": 0,
+            "false_negatives": 0
+          },
+          "blurred_vision": {
+            "precision": 0.8181818181818182,
+            "recall": 0.6923076923076923,
+            "f1": 0.75,
+            "support": 39,
+            "predicted_positive": 33,
+            "false_positives": 6,
+            "false_negatives": 12
+          },
+          "breathing_difficulty": {
+            "precision": null,
+            "recall": null,
+            "f1": null,
+            "support": 0,
+            "predicted_positive": 0,
+            "false_positives": 0,
+            "false_negatives": 0
+          },
+          "cough": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "support": 42,
+            "predicted_positive": 42,
+            "false_positives": 0,
+            "false_negatives": 0
+          },
+          "diarrhoea": {
+            "precision": 0.484375,
+            "recall": 0.7948717948717948,
+            "f1": 0.6019417475728155,
+            "support": 39,
+            "predicted_positive": 64,
+            "false_positives": 33,
+            "false_negatives": 8
+          },
+          "fatigue": {
+            "precision": null,
+            "recall": null,
+            "f1": null,
+            "support": 0,
+            "predicted_positive": 0,
+            "false_positives": 0,
+            "false_negatives": 0
+          },
+          "fever": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "support": 127,
+            "predicted_positive": 127,
+            "false_positives": 0,
+            "false_negatives": 0
+          },
+          "fluid_loss": {
+            "precision": null,
+            "recall": null,
+            "f1": null,
+            "support": 0,
+            "predicted_positive": 0,
+            "false_positives": 0,
+            "false_negatives": 0
+          },
+          "headache": {
+            "precision": 0.8478260869565217,
+            "recall": 1.0,
+            "f1": 0.9176470588235294,
+            "support": 39,
+            "predicted_positive": 46,
+            "false_positives": 7,
+            "false_negatives": 0
+          },
+          "reduced_fetal_movement": {
+            "precision": null,
+            "recall": null,
+            "f1": null,
+            "support": 0,
+            "predicted_positive": 0,
+            "false_positives": 0,
+            "false_negatives": 0
+          },
+          "vomiting": {
+            "precision": 0.9230769230769231,
+            "recall": 0.32,
+            "f1": 0.4752475247524752,
+            "support": 75,
+            "predicted_positive": 26,
+            "false_positives": 2,
+            "false_negatives": 51
+          },
+          "weakness": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "support": 36,
+            "predicted_positive": 36,
+            "false_positives": 0,
+            "false_negatives": 0
+          }
+        }
+      },
+      "threshold_comparison": [
+        {
+          "threshold": 0.3,
+          "macro_f1_supported_labels": 0.8431045413936025,
+          "micro_f1": 0.8630609896432682
+        },
+        {
+          "threshold": 0.5,
+          "macro_f1_supported_labels": 0.6660188077559741,
+          "micro_f1": 0.6917510853835022
+        },
+        {
+          "threshold": 0.7,
+          "macro_f1_supported_labels": 0.2892386586084065,
+          "micro_f1": 0.32015065913371
+        }
+      ]
+    },
+    {
+      "config": {
+        "features": "combined",
+        "C": 4.0,
+        "class_weight": null
+      },
+      "threshold": 0.3,
+      "validation": {
+        "examples": 205,
+        "micro_precision": 0.9922178988326849,
+        "micro_recall": 0.5717488789237668,
+        "micro_f1": 0.7254623044096729,
+        "macro_f1_all_labels_zero_undefined": 0.3631308061279551,
+        "macro_f1_supported_labels": 0.590087559957927,
+        "exact_set_match": 0.22439024390243903,
+        "per_label": {
+          "abdominal_pain": {
+            "precision": null,
+            "recall": 0.0,
+            "f1": 0.0,
+            "support": 49,
+            "predicted_positive": 0,
+            "false_positives": 0,
+            "false_negatives": 49
+          },
+          "bleeding": {
+            "precision": null,
+            "recall": null,
+            "f1": null,
+            "support": 0,
+            "predicted_positive": 0,
+            "false_positives": 0,
+            "false_negatives": 0
+          },
+          "blurred_vision": {
+            "precision": 1.0,
+            "recall": 0.15384615384615385,
+            "f1": 0.26666666666666666,
+            "support": 39,
+            "predicted_positive": 6,
+            "false_positives": 0,
+            "false_negatives": 33
+          },
+          "breathing_difficulty": {
+            "precision": null,
+            "recall": null,
+            "f1": null,
+            "support": 0,
+            "predicted_positive": 0,
+            "false_positives": 0,
+            "false_negatives": 0
+          },
+          "cough": {
+            "precision": 1.0,
+            "recall": 0.9285714285714286,
+            "f1": 0.9629629629629629,
+            "support": 42,
+            "predicted_positive": 39,
+            "false_positives": 0,
+            "false_negatives": 3
+          },
+          "diarrhoea": {
+            "precision": 0.9090909090909091,
+            "recall": 0.5128205128205128,
+            "f1": 0.6557377049180327,
+            "support": 39,
+            "predicted_positive": 22,
+            "false_positives": 2,
+            "false_negatives": 19
+          },
+          "fatigue": {
+            "precision": null,
+            "recall": null,
+            "f1": null,
+            "support": 0,
+            "predicted_positive": 0,
+            "false_positives": 0,
+            "false_negatives": 0
+          },
+          "fever": {
+            "precision": 1.0,
+            "recall": 0.9921259842519685,
+            "f1": 0.9960474308300395,
+            "support": 127,
+            "predicted_positive": 126,
+            "false_positives": 0,
+            "false_negatives": 1
+          },
+          "fluid_loss": {
+            "precision": null,
+            "recall": null,
+            "f1": null,
+            "support": 0,
+            "predicted_positive": 0,
+            "false_positives": 0,
+            "false_negatives": 0
+          },
+          "headache": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "support": 39,
+            "predicted_positive": 39,
+            "false_positives": 0,
+            "false_negatives": 0
+          },
+          "reduced_fetal_movement": {
+            "precision": null,
+            "recall": null,
+            "f1": null,
+            "support": 0,
+            "predicted_positive": 0,
+            "false_positives": 0,
+            "false_negatives": 0
+          },
+          "vomiting": {
+            "precision": 1.0,
+            "recall": 0.06666666666666667,
+            "f1": 0.125,
+            "support": 75,
+            "predicted_positive": 5,
+            "false_positives": 0,
+            "false_negatives": 70
+          },
+          "weakness": {
+            "precision": 1.0,
+            "recall": 0.5555555555555556,
+            "f1": 0.7142857142857143,
+            "support": 36,
+            "predicted_positive": 20,
+            "false_positives": 0,
+            "false_negatives": 16
+          }
+        }
+      },
+      "threshold_comparison": [
+        {
+          "threshold": 0.3,
+          "macro_f1_supported_labels": 0.590087559957927,
+          "micro_f1": 0.7254623044096729
+        },
+        {
+          "threshold": 0.5,
+          "macro_f1_supported_labels": 0.35714699281919454,
+          "micro_f1": 0.44869565217391305
+        },
+        {
+          "threshold": 0.7,
+          "macro_f1_supported_labels": 0.18318699193044102,
+          "micro_f1": 0.20883534136546184
+        }
+      ]
+    },
+    {
+      "config": {
+        "features": "combined",
+        "C": 4.0,
+        "class_weight": "balanced"
+      },
+      "threshold": 0.3,
+      "validation": {
+        "examples": 205,
+        "micro_precision": 0.9328165374677002,
+        "micro_recall": 0.8094170403587444,
+        "micro_f1": 0.8667466986794717,
+        "macro_f1_all_labels_zero_undefined": 0.5201540128528901,
+        "macro_f1_supported_labels": 0.8452502708859464,
+        "exact_set_match": 0.6146341463414634,
+        "per_label": {
+          "abdominal_pain": {
+            "precision": 1.0,
+            "recall": 0.8571428571428571,
+            "f1": 0.9230769230769231,
+            "support": 49,
+            "predicted_positive": 42,
+            "false_positives": 0,
+            "false_negatives": 7
+          },
+          "bleeding": {
+            "precision": null,
+            "recall": null,
+            "f1": null,
+            "support": 0,
+            "predicted_positive": 0,
+            "false_positives": 0,
+            "false_negatives": 0
+          },
+          "blurred_vision": {
+            "precision": 1.0,
+            "recall": 0.6410256410256411,
+            "f1": 0.78125,
+            "support": 39,
+            "predicted_positive": 25,
+            "false_positives": 0,
+            "false_negatives": 14
+          },
+          "breathing_difficulty": {
+            "precision": null,
+            "recall": null,
+            "f1": null,
+            "support": 0,
+            "predicted_positive": 0,
+            "false_positives": 0,
+            "false_negatives": 0
+          },
+          "cough": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "support": 42,
+            "predicted_positive": 42,
+            "false_positives": 0,
+            "false_negatives": 0
+          },
+          "diarrhoea": {
+            "precision": 0.5283018867924528,
+            "recall": 0.717948717948718,
+            "f1": 0.6086956521739131,
+            "support": 39,
+            "predicted_positive": 53,
+            "false_positives": 25,
+            "false_negatives": 11
+          },
+          "fatigue": {
+            "precision": null,
+            "recall": null,
+            "f1": null,
+            "support": 0,
+            "predicted_positive": 0,
+            "false_positives": 0,
+            "false_negatives": 0
+          },
+          "fever": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "support": 127,
+            "predicted_positive": 127,
+            "false_positives": 0,
+            "false_negatives": 0
+          },
+          "fluid_loss": {
+            "precision": null,
+            "recall": null,
+            "f1": null,
+            "support": 0,
+            "predicted_positive": 0,
+            "false_positives": 0,
+            "false_negatives": 0
+          },
+          "headache": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "support": 39,
+            "predicted_positive": 39,
+            "false_positives": 0,
+            "false_negatives": 0
+          },
+          "reduced_fetal_movement": {
+            "precision": null,
+            "recall": null,
+            "f1": null,
+            "support": 0,
+            "predicted_positive": 0,
+            "false_positives": 0,
+            "false_negatives": 0
+          },
+          "vomiting": {
+            "precision": 0.9565217391304348,
+            "recall": 0.29333333333333333,
+            "f1": 0.4489795918367347,
+            "support": 75,
+            "predicted_positive": 23,
+            "false_positives": 1,
+            "false_negatives": 53
+          },
+          "weakness": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "support": 36,
+            "predicted_positive": 36,
+            "false_positives": 0,
+            "false_negatives": 0
+          }
+        }
+      },
+      "threshold_comparison": [
+        {
+          "threshold": 0.3,
+          "macro_f1_supported_labels": 0.8452502708859464,
+          "micro_f1": 0.8667466986794717
+        },
+        {
+          "threshold": 0.5,
+          "macro_f1_supported_labels": 0.697704680614403,
+          "micro_f1": 0.7590027700831025
+        },
+        {
+          "threshold": 0.7,
+          "macro_f1_supported_labels": 0.3878996495243545,
+          "micro_f1": 0.40998217468805703
+        }
+      ]
+    }
+  ],
+  "selected": {
+    "config": {
+      "features": "char",
+      "C": 1.0,
+      "class_weight": "balanced"
+    },
+    "threshold": 0.3,
+    "validation": {
+      "examples": 205,
+      "micro_precision": 0.8372591006423983,
+      "micro_recall": 0.8766816143497758,
+      "micro_f1": 0.8565169769989047,
+      "macro_f1_all_labels_zero_undefined": 0.5308330598392145,
+      "macro_f1_supported_labels": 0.8626037222387234,
+      "exact_set_match": 0.5609756097560976,
+      "per_label": {
+        "abdominal_pain": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "support": 49,
+          "predicted_positive": 49,
+          "false_positives": 0,
+          "false_negatives": 0
+        },
+        "bleeding": {
+          "precision": null,
+          "recall": null,
+          "f1": null,
+          "support": 0,
+          "predicted_positive": 0,
+          "false_positives": 0,
+          "false_negatives": 0
+        },
+        "blurred_vision": {
+          "precision": 0.7674418604651163,
+          "recall": 0.8461538461538461,
+          "f1": 0.8048780487804879,
+          "support": 39,
+          "predicted_positive": 43,
+          "false_positives": 10,
+          "false_negatives": 6
+        },
+        "breathing_difficulty": {
+          "precision": null,
+          "recall": null,
+          "f1": null,
+          "support": 0,
+          "predicted_positive": 0,
+          "false_positives": 0,
+          "false_negatives": 0
+        },
+        "cough": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "support": 42,
+          "predicted_positive": 42,
+          "false_positives": 0,
+          "false_negatives": 0
+        },
+        "diarrhoea": {
+          "precision": 0.5,
+          "recall": 0.8717948717948718,
+          "f1": 0.6355140186915887,
+          "support": 39,
+          "predicted_positive": 68,
+          "false_positives": 34,
+          "false_negatives": 5
+        },
+        "fatigue": {
+          "precision": 0.0,
+          "recall": null,
+          "f1": 0.0,
+          "support": 0,
+          "predicted_positive": 20,
+          "false_positives": 20,
+          "false_negatives": 0
+        },
+        "fever": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "support": 127,
+          "predicted_positive": 127,
+          "false_positives": 0,
+          "false_negatives": 0
+        },
+        "fluid_loss": {
+          "precision": null,
+          "recall": null,
+          "f1": null,
+          "support": 0,
+          "predicted_positive": 0,
+          "false_positives": 0,
+          "false_negatives": 0
+        },
+        "headache": {
+          "precision": 0.7959183673469388,
+          "recall": 1.0,
+          "f1": 0.8863636363636364,
+          "support": 39,
+          "predicted_positive": 49,
+          "false_positives": 10,
+          "false_negatives": 0
+        },
+        "reduced_fetal_movement": {
+          "precision": null,
+          "recall": null,
+          "f1": null,
+          "support": 0,
+          "predicted_positive": 0,
+          "false_positives": 0,
+          "false_negatives": 0
+        },
+        "vomiting": {
+          "precision": 0.9393939393939394,
+          "recall": 0.41333333333333333,
+          "f1": 0.5740740740740741,
+          "support": 75,
+          "predicted_positive": 33,
+          "false_positives": 2,
+          "false_negatives": 44
+        },
+        "weakness": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "support": 36,
+          "predicted_positive": 36,
+          "false_positives": 0,
+          "false_negatives": 0
+        }
+      }
+    },
+    "threshold_comparison": [
+      {
+        "threshold": 0.3,
+        "macro_f1_supported_labels": 0.8626037222387234,
+        "micro_f1": 0.8565169769989047
+      },
+      {
+        "threshold": 0.5,
+        "macro_f1_supported_labels": 0.7197020014974191,
+        "micro_f1": 0.7283072546230441
+      },
+      {
+        "threshold": 0.7,
+        "macro_f1_supported_labels": 0.3110473705605365,
+        "micro_f1": 0.3295880149812734
+      }
+    ]
+  },
+  "artifact": {
+    "experimental": true,
+    "purpose": "synthetic-data benchmark only; not deployment ready",
+    "labels": [
+      "abdominal_pain",
+      "bleeding",
+      "blurred_vision",
+      "breathing_difficulty",
+      "cough",
+      "diarrhoea",
+      "fatigue",
+      "fever",
+      "fluid_loss",
+      "headache",
+      "reduced_fetal_movement",
+      "vomiting",
+      "weakness"
+    ],
+    "threshold": 0.3,
+    "modelVersion": "experimental-symptoms-tfidf-v1",
+    "training_config": {
+      "features": "char",
+      "C": 1.0,
+      "class_weight": "balanced"
+    },
+    "split_manifest_sha256": "5a9566b64839a6888d6a20d86ed56de80c965a7be4f03ae50819d5a91fdec79d",
+    "train_ids": [
+      "health_ie_0000",
+      "health_ie_0001",
+      "health_ie_0002",
+      "health_ie_0003",
+      "health_ie_0004",
+      "health_ie_0005",
+      "health_ie_0006",
+      "health_ie_0007",
+      "health_ie_0009",
+      "health_ie_0010",
+      "health_ie_0012",
+      "health_ie_0013",
+      "health_ie_0015",
+      "health_ie_0017",
+      "health_ie_0021",
+      "health_ie_0022",
+      "health_ie_0023",
+      "health_ie_0024",
+      "health_ie_0026",
+      "health_ie_0028",
+      "health_ie_0030",
+      "health_ie_0031",
+      "health_ie_0032",
+      "health_ie_0033",
+      "health_ie_0034",
+      "health_ie_0035",
+      "health_ie_0037",
+      "health_ie_0038",
+      "health_ie_0039",
+      "health_ie_0040",
+      "health_ie_0041",
+      "health_ie_0043",
+      "health_ie_0044",
+      "health_ie_0045",
+      "health_ie_0046",
+      "health_ie_0047",
+      "health_ie_0049",
+      "health_ie_0050",
+      "health_ie_0051",
+      "health_ie_0052",
+      "health_ie_0055",
+      "health_ie_0056",
+      "health_ie_0057",
+      "health_ie_0059",
+      "health_ie_0060",
+      "health_ie_0061",
+      "health_ie_0062",
+      "health_ie_0064",
+      "health_ie_0066",
+      "health_ie_0067",
+      "health_ie_0071",
+      "health_ie_0072",
+      "health_ie_0073",
+      "health_ie_0075",
+      "health_ie_0076",
+      "health_ie_0077",
+      "health_ie_0079",
+      "health_ie_0082",
+      "health_ie_0083",
+      "health_ie_0085",
+      "health_ie_0088",
+      "health_ie_0093",
+      "health_ie_0094",
+      "health_ie_0095",
+      "health_ie_0096",
+      "health_ie_0097",
+      "health_ie_0098",
+      "health_ie_0099",
+      "health_ie_0100",
+      "health_ie_0101",
+      "health_ie_0102",
+      "health_ie_0103",
+      "health_ie_0104",
+      "health_ie_0105",
+      "health_ie_0106",
+      "health_ie_0107",
+      "health_ie_0109",
+      "health_ie_0110",
+      "health_ie_0111",
+      "health_ie_0112",
+      "health_ie_0115",
+      "health_ie_0116",
+      "health_ie_0117",
+      "health_ie_0119",
+      "health_ie_0120",
+      "health_ie_0121",
+      "health_ie_0123",
+      "health_ie_0124",
+      "health_ie_0125",
+      "health_ie_0126",
+      "health_ie_0129",
+      "health_ie_0130",
+      "health_ie_0131",
+      "health_ie_0133",
+      "health_ie_0136",
+      "health_ie_0137",
+      "health_ie_0138",
+      "health_ie_0139",
+      "health_ie_0144",
+      "health_ie_0145",
+      "health_ie_0147",
+      "health_ie_0148",
+      "health_ie_0150",
+      "health_ie_0151",
+      "health_ie_0154",
+      "health_ie_0155",
+      "health_ie_0156",
+      "health_ie_0158",
+      "health_ie_0159",
+      "health_ie_0160",
+      "health_ie_0162",
+      "health_ie_0163",
+      "health_ie_0164",
+      "health_ie_0165",
+      "health_ie_0166",
+      "health_ie_0167",
+      "health_ie_0168",
+      "health_ie_0172",
+      "health_ie_0173",
+      "health_ie_0175",
+      "health_ie_0178",
+      "health_ie_0181",
+      "health_ie_0182",
+      "health_ie_0184",
+      "health_ie_0187",
+      "health_ie_0188",
+      "health_ie_0189",
+      "health_ie_0190",
+      "health_ie_0191",
+      "health_ie_0192",
+      "health_ie_0193",
+      "health_ie_0195",
+      "health_ie_0197",
+      "health_ie_0200",
+      "health_ie_0203",
+      "health_ie_0204",
+      "health_ie_0205",
+      "health_ie_0206",
+      "health_ie_0207",
+      "health_ie_0208",
+      "health_ie_0210",
+      "health_ie_0213",
+      "health_ie_0217",
+      "health_ie_0218",
+      "health_ie_0220",
+      "health_ie_0221",
+      "health_ie_0222",
+      "health_ie_0223",
+      "health_ie_0224",
+      "health_ie_0227",
+      "health_ie_0228",
+      "health_ie_0229",
+      "health_ie_0231",
+      "health_ie_0232",
+      "health_ie_0233",
+      "health_ie_0234",
+      "health_ie_0235",
+      "health_ie_0237",
+      "health_ie_0240",
+      "health_ie_0242",
+      "health_ie_0243",
+      "health_ie_0244",
+      "health_ie_0245",
+      "health_ie_0247",
+      "health_ie_0248",
+      "health_ie_0249",
+      "health_ie_0251",
+      "health_ie_0255",
+      "health_ie_0258",
+      "health_ie_0259",
+      "health_ie_0263",
+      "health_ie_0264",
+      "health_ie_0266",
+      "health_ie_0269",
+      "health_ie_0270",
+      "health_ie_0271",
+      "health_ie_0272",
+      "health_ie_0274",
+      "health_ie_0275",
+      "health_ie_0276",
+      "health_ie_0277",
+      "health_ie_0278",
+      "health_ie_0279",
+      "health_ie_0280",
+      "health_ie_0281",
+      "health_ie_0284",
+      "health_ie_0285",
+      "health_ie_0286",
+      "health_ie_0287",
+      "health_ie_0288",
+      "health_ie_0289",
+      "health_ie_0290",
+      "health_ie_0292",
+      "health_ie_0294",
+      "health_ie_0295",
+      "health_ie_0296",
+      "health_ie_0298",
+      "health_ie_0299",
+      "health_ie_0301",
+      "health_ie_0302",
+      "health_ie_0304",
+      "health_ie_0306",
+      "health_ie_0307",
+      "health_ie_0308",
+      "health_ie_0312",
+      "health_ie_0313",
+      "health_ie_0315",
+      "health_ie_0316",
+      "health_ie_0318",
+      "health_ie_0321",
+      "health_ie_0324",
+      "health_ie_0325",
+      "health_ie_0326",
+      "health_ie_0328",
+      "health_ie_0330",
+      "health_ie_0331",
+      "health_ie_0333",
+      "health_ie_0334",
+      "health_ie_0335",
+      "health_ie_0336",
+      "health_ie_0337",
+      "health_ie_0338",
+      "health_ie_0339",
+      "health_ie_0340",
+      "health_ie_0342",
+      "health_ie_0344",
+      "health_ie_0346",
+      "health_ie_0347",
+      "health_ie_0350",
+      "health_ie_0351",
+      "health_ie_0352",
+      "health_ie_0353",
+      "health_ie_0354",
+      "health_ie_0355",
+      "health_ie_0356",
+      "health_ie_0357",
+      "health_ie_0358",
+      "health_ie_0359",
+      "health_ie_0361",
+      "health_ie_0365",
+      "health_ie_0366",
+      "health_ie_0367",
+      "health_ie_0369",
+      "health_ie_0371",
+      "health_ie_0373",
+      "health_ie_0374",
+      "health_ie_0375",
+      "health_ie_0376",
+      "health_ie_0377",
+      "health_ie_0379",
+      "health_ie_0380",
+      "health_ie_0383",
+      "health_ie_0384",
+      "health_ie_0385",
+      "health_ie_0389",
+      "health_ie_0390",
+      "health_ie_0391",
+      "health_ie_0393",
+      "health_ie_0394",
+      "health_ie_0395",
+      "health_ie_0396",
+      "health_ie_0397",
+      "health_ie_0398",
+      "health_ie_0399",
+      "health_ie_0400",
+      "health_ie_0402",
+      "health_ie_0404",
+      "health_ie_0405",
+      "health_ie_0409",
+      "health_ie_0410",
+      "health_ie_0411",
+      "health_ie_0412",
+      "health_ie_0413",
+      "health_ie_0414",
+      "health_ie_0415",
+      "health_ie_0416",
+      "health_ie_0417",
+      "health_ie_0418",
+      "health_ie_0419",
+      "health_ie_0421",
+      "health_ie_0423",
+      "health_ie_0425",
+      "health_ie_0426",
+      "health_ie_0427",
+      "health_ie_0429",
+      "health_ie_0431",
+      "health_ie_0433",
+      "health_ie_0435",
+      "health_ie_0437",
+      "health_ie_0438",
+      "health_ie_0441",
+      "health_ie_0442",
+      "health_ie_0444",
+      "health_ie_0446",
+      "health_ie_0447",
+      "health_ie_0448",
+      "health_ie_0450",
+      "health_ie_0452",
+      "health_ie_0453",
+      "health_ie_0454",
+      "health_ie_0456",
+      "health_ie_0457",
+      "health_ie_0458",
+      "health_ie_0459",
+      "health_ie_0460",
+      "health_ie_0461",
+      "health_ie_0462",
+      "health_ie_0464",
+      "health_ie_0465",
+      "health_ie_0467",
+      "health_ie_0469",
+      "health_ie_0470",
+      "health_ie_0471",
+      "health_ie_0472",
+      "health_ie_0473",
+      "health_ie_0474",
+      "health_ie_0475",
+      "health_ie_0476",
+      "health_ie_0478",
+      "health_ie_0479",
+      "health_ie_0480",
+      "health_ie_0482",
+      "health_ie_0483",
+      "health_ie_0484",
+      "health_ie_0485",
+      "health_ie_0487",
+      "health_ie_0489",
+      "health_ie_0491",
+      "health_ie_0495",
+      "health_ie_0498",
+      "health_ie_0499",
+      "health_ie_0501",
+      "health_ie_0502",
+      "health_ie_0503",
+      "health_ie_0505",
+      "health_ie_0506",
+      "health_ie_0507",
+      "health_ie_0509",
+      "health_ie_0510",
+      "health_ie_0512",
+      "health_ie_0513",
+      "health_ie_0514",
+      "health_ie_0515",
+      "health_ie_0516",
+      "health_ie_0517",
+      "health_ie_0518",
+      "health_ie_0519",
+      "health_ie_0520",
+      "health_ie_0522",
+      "health_ie_0523",
+      "health_ie_0524",
+      "health_ie_0526",
+      "health_ie_0527",
+      "health_ie_0530",
+      "health_ie_0531",
+      "health_ie_0532",
+      "health_ie_0533",
+      "health_ie_0534",
+      "health_ie_0539",
+      "health_ie_0540",
+      "health_ie_0541",
+      "health_ie_0543",
+      "health_ie_0544",
+      "health_ie_0546",
+      "health_ie_0548",
+      "health_ie_0549",
+      "health_ie_0551",
+      "health_ie_0552",
+      "health_ie_0553",
+      "health_ie_0556",
+      "health_ie_0558",
+      "health_ie_0559",
+      "health_ie_0560",
+      "health_ie_0562",
+      "health_ie_0563",
+      "health_ie_0564",
+      "health_ie_0565",
+      "health_ie_0566",
+      "health_ie_0567",
+      "health_ie_0568",
+      "health_ie_0571",
+      "health_ie_0572",
+      "health_ie_0575",
+      "health_ie_0576",
+      "health_ie_0577",
+      "health_ie_0578",
+      "health_ie_0580",
+      "health_ie_0581",
+      "health_ie_0582",
+      "health_ie_0583",
+      "health_ie_0584",
+      "health_ie_0585",
+      "health_ie_0586",
+      "health_ie_0587",
+      "health_ie_0588",
+      "health_ie_0589",
+      "health_ie_0590",
+      "health_ie_0591",
+      "health_ie_0592",
+      "health_ie_0594",
+      "health_ie_0596",
+      "health_ie_0599",
+      "health_ie_0604",
+      "health_ie_0605",
+      "health_ie_0606",
+      "health_ie_0608",
+      "health_ie_0610",
+      "health_ie_0611",
+      "health_ie_0612",
+      "health_ie_0614",
+      "health_ie_0615",
+      "health_ie_0616",
+      "health_ie_0619",
+      "health_ie_0620",
+      "health_ie_0621",
+      "health_ie_0622",
+      "health_ie_0623",
+      "health_ie_0624",
+      "health_ie_0625",
+      "health_ie_0626",
+      "health_ie_0627",
+      "health_ie_0629",
+      "health_ie_0630",
+      "health_ie_0631",
+      "health_ie_0632",
+      "health_ie_0634",
+      "health_ie_0636",
+      "health_ie_0637",
+      "health_ie_0638",
+      "health_ie_0639",
+      "health_ie_0641",
+      "health_ie_0644",
+      "health_ie_0645",
+      "health_ie_0646",
+      "health_ie_0647",
+      "health_ie_0648",
+      "health_ie_0649",
+      "health_ie_0651",
+      "health_ie_0653",
+      "health_ie_0654",
+      "health_ie_0656",
+      "health_ie_0658",
+      "health_ie_0662",
+      "health_ie_0663",
+      "health_ie_0666",
+      "health_ie_0667",
+      "health_ie_0669",
+      "health_ie_0671",
+      "health_ie_0672",
+      "health_ie_0673",
+      "health_ie_0674",
+      "health_ie_0675",
+      "health_ie_0676",
+      "health_ie_0677",
+      "health_ie_0678",
+      "health_ie_0679",
+      "health_ie_0680",
+      "health_ie_0681",
+      "health_ie_0682",
+      "health_ie_0683",
+      "health_ie_0684",
+      "health_ie_0685",
+      "health_ie_0686",
+      "health_ie_0689",
+      "health_ie_0690",
+      "health_ie_0691",
+      "health_ie_0692",
+      "health_ie_0693",
+      "health_ie_0695",
+      "health_ie_0696",
+      "health_ie_0697",
+      "health_ie_0701",
+      "health_ie_0702",
+      "health_ie_0703",
+      "health_ie_0704",
+      "health_ie_0705",
+      "health_ie_0706",
+      "health_ie_0709",
+      "health_ie_0710",
+      "health_ie_0712",
+      "health_ie_0713",
+      "health_ie_0714",
+      "health_ie_0716",
+      "health_ie_0717",
+      "health_ie_0718",
+      "health_ie_0720",
+      "health_ie_0722",
+      "health_ie_0723",
+      "health_ie_0725",
+      "health_ie_0726",
+      "health_ie_0728",
+      "health_ie_0729",
+      "health_ie_0730",
+      "health_ie_0731",
+      "health_ie_0732",
+      "health_ie_0733",
+      "health_ie_0734",
+      "health_ie_0735",
+      "health_ie_0738",
+      "health_ie_0739",
+      "health_ie_0740",
+      "health_ie_0742",
+      "health_ie_0743",
+      "health_ie_0744",
+      "health_ie_0745",
+      "health_ie_0746",
+      "health_ie_0748",
+      "health_ie_0749",
+      "health_ie_0751",
+      "health_ie_0752",
+      "health_ie_0754",
+      "health_ie_0755",
+      "health_ie_0757",
+      "health_ie_0758",
+      "health_ie_0760",
+      "health_ie_0761",
+      "health_ie_0762",
+      "health_ie_0763",
+      "health_ie_0764",
+      "health_ie_0765",
+      "health_ie_0766",
+      "health_ie_0768",
+      "health_ie_0769",
+      "health_ie_0770",
+      "health_ie_0771",
+      "health_ie_0773",
+      "health_ie_0774",
+      "health_ie_0775",
+      "health_ie_0778",
+      "health_ie_0779",
+      "health_ie_0780",
+      "health_ie_0784",
+      "health_ie_0786",
+      "health_ie_0787",
+      "health_ie_0788",
+      "health_ie_0789",
+      "health_ie_0792",
+      "health_ie_0793",
+      "health_ie_0794",
+      "health_ie_0795",
+      "health_ie_0797",
+      "health_ie_0798",
+      "health_ie_0799",
+      "health_ie_0800",
+      "health_ie_0801",
+      "health_ie_0802",
+      "health_ie_0803",
+      "health_ie_0804",
+      "health_ie_0805",
+      "health_ie_0806",
+      "health_ie_0807",
+      "health_ie_0808",
+      "health_ie_0810",
+      "health_ie_0811",
+      "health_ie_0812",
+      "health_ie_0813",
+      "health_ie_0815",
+      "health_ie_0816",
+      "health_ie_0817",
+      "health_ie_0818",
+      "health_ie_0820",
+      "health_ie_0821",
+      "health_ie_0823",
+      "health_ie_0825",
+      "health_ie_0830",
+      "health_ie_0831",
+      "health_ie_0832",
+      "health_ie_0835",
+      "health_ie_0836",
+      "health_ie_0837",
+      "health_ie_0839",
+      "health_ie_0843",
+      "health_ie_0844",
+      "health_ie_0845",
+      "health_ie_0846",
+      "health_ie_0847",
+      "health_ie_0848",
+      "health_ie_0849",
+      "health_ie_0850",
+      "health_ie_0851",
+      "health_ie_0853",
+      "health_ie_0854",
+      "health_ie_0859",
+      "health_ie_0861",
+      "health_ie_0862",
+      "health_ie_0863",
+      "health_ie_0864",
+      "health_ie_0865",
+      "health_ie_0867",
+      "health_ie_0868",
+      "health_ie_0869",
+      "health_ie_0871",
+      "health_ie_0872",
+      "health_ie_0873",
+      "health_ie_0874",
+      "health_ie_0875",
+      "health_ie_0876",
+      "health_ie_0878",
+      "health_ie_0879",
+      "health_ie_0880",
+      "health_ie_0882",
+      "health_ie_0884",
+      "health_ie_0885",
+      "health_ie_0888",
+      "health_ie_0889",
+      "health_ie_0891",
+      "health_ie_0892",
+      "health_ie_0893",
+      "health_ie_0894",
+      "health_ie_0898",
+      "health_ie_0899",
+      "health_ie_0903",
+      "health_ie_0904",
+      "health_ie_0905",
+      "health_ie_0907",
+      "health_ie_0908",
+      "health_ie_0913",
+      "health_ie_0914",
+      "health_ie_0916",
+      "health_ie_0917",
+      "health_ie_0918",
+      "health_ie_0919",
+      "health_ie_0922",
+      "health_ie_0926",
+      "health_ie_0927",
+      "health_ie_0928",
+      "health_ie_0929",
+      "health_ie_0930",
+      "health_ie_0931",
+      "health_ie_0933",
+      "health_ie_0934",
+      "health_ie_0935",
+      "health_ie_0936",
+      "health_ie_0937",
+      "health_ie_0938",
+      "health_ie_0939",
+      "health_ie_0941",
+      "health_ie_0943",
+      "health_ie_0948",
+      "health_ie_0949",
+      "health_ie_0950",
+      "health_ie_0951",
+      "health_ie_0952",
+      "health_ie_0953",
+      "health_ie_0954",
+      "health_ie_0955",
+      "health_ie_0957",
+      "health_ie_0958",
+      "health_ie_0961",
+      "health_ie_0964",
+      "health_ie_0965",
+      "health_ie_0969",
+      "health_ie_0970",
+      "health_ie_0971",
+      "health_ie_0972",
+      "health_ie_0973",
+      "health_ie_0974",
+      "health_ie_0975",
+      "health_ie_0976",
+      "health_ie_0977",
+      "health_ie_0978",
+      "health_ie_0979",
+      "health_ie_0980",
+      "health_ie_0982",
+      "health_ie_0983",
+      "health_ie_0984",
+      "health_ie_0985",
+      "health_ie_0986",
+      "health_ie_0988",
+      "health_ie_0989",
+      "health_ie_0991",
+      "health_ie_0992",
+      "health_ie_0995",
+      "health_ie_0996",
+      "health_ie_0997",
+      "health_ie_0999",
+      "health_ie_1001",
+      "health_ie_1003",
+      "health_ie_1004",
+      "health_ie_1005",
+      "health_ie_1006",
+      "health_ie_1007",
+      "health_ie_1008",
+      "health_ie_1011",
+      "health_ie_1012",
+      "health_ie_1013",
+      "health_ie_1014",
+      "health_ie_1015",
+      "health_ie_1018",
+      "health_ie_1019",
+      "health_ie_1022",
+      "health_ie_1023",
+      "health_ie_1024",
+      "health_ie_1025",
+      "health_ie_1027",
+      "health_ie_1029",
+      "health_ie_1031",
+      "health_ie_1032",
+      "health_ie_1033",
+      "health_ie_1034",
+      "health_ie_1035",
+      "health_ie_1038",
+      "health_ie_1039",
+      "health_ie_1041",
+      "health_ie_1042",
+      "health_ie_1043",
+      "health_ie_1046",
+      "health_ie_1047",
+      "health_ie_1048",
+      "health_ie_1050",
+      "health_ie_1051",
+      "health_ie_1053",
+      "health_ie_1054",
+      "health_ie_1056",
+      "health_ie_1057",
+      "health_ie_1058",
+      "health_ie_1059",
+      "health_ie_1061",
+      "health_ie_1062",
+      "health_ie_1063",
+      "health_ie_1064",
+      "health_ie_1066",
+      "health_ie_1069",
+      "health_ie_1070",
+      "health_ie_1071",
+      "health_ie_1073",
+      "health_ie_1075",
+      "health_ie_1079",
+      "health_ie_1080",
+      "health_ie_1082",
+      "health_ie_1083",
+      "health_ie_1084",
+      "health_ie_1085",
+      "health_ie_1086",
+      "health_ie_1090",
+      "health_ie_1091",
+      "health_ie_1093",
+      "health_ie_1095",
+      "health_ie_1099",
+      "health_ie_1102",
+      "health_ie_1103",
+      "health_ie_1106",
+      "health_ie_1107",
+      "health_ie_1108",
+      "health_ie_1110",
+      "health_ie_1113",
+      "health_ie_1114",
+      "health_ie_1118",
+      "health_ie_1119",
+      "health_ie_1120",
+      "health_ie_1121",
+      "health_ie_1123",
+      "health_ie_1125",
+      "health_ie_1126",
+      "health_ie_1128",
+      "health_ie_1129",
+      "health_ie_1130",
+      "health_ie_1132",
+      "health_ie_1133",
+      "health_ie_1134",
+      "health_ie_1135",
+      "health_ie_1136",
+      "health_ie_1137",
+      "health_ie_1138",
+      "health_ie_1140",
+      "health_ie_1141",
+      "health_ie_1142",
+      "health_ie_1143",
+      "health_ie_1145",
+      "health_ie_1147",
+      "health_ie_1148",
+      "health_ie_1149",
+      "health_ie_1150",
+      "health_ie_1151",
+      "health_ie_1152",
+      "health_ie_1154",
+      "health_ie_1155",
+      "health_ie_1157",
+      "health_ie_1158",
+      "health_ie_1159",
+      "health_ie_1160",
+      "health_ie_1161",
+      "health_ie_1162",
+      "health_ie_1166",
+      "health_ie_1167",
+      "health_ie_1168",
+      "health_ie_1169",
+      "health_ie_1171",
+      "health_ie_1172",
+      "health_ie_1173",
+      "health_ie_1178",
+      "health_ie_1179",
+      "health_ie_1181",
+      "health_ie_1182",
+      "health_ie_1185",
+      "health_ie_1187",
+      "health_ie_1188",
+      "health_ie_1189",
+      "health_ie_1190",
+      "health_ie_1192",
+      "health_ie_1193",
+      "health_ie_1194",
+      "health_ie_1195",
+      "health_ie_1196",
+      "health_ie_1199"
+    ],
+    "training_text_sha256": "d8f4dc33b4cafb877f07d367f47eed51b89241eb18dd33969eba6b550c028c30",
+    "versions": {
+      "python": "3.14.5",
+      "sklearn": "1.9.1",
+      "numpy": "2.5.3",
+      "scipy": "1.18.1",
+      "joblib": "1.6.0"
+    },
+    "preprocessing": {
+      "single": {
+        "vocabulary_entries": 2261,
+        "idf_bytes": 18088
+      }
+    },
+    "classifier_parameters": 29406,
+    "preprocessing_serialized_bytes": 77668,
+    "artifact_bytes": 94552,
+    "artifact_sha256": "8372d7ae43b27da88593ab8ea501e475481d8b5e2ac7ef0698705e9b2cdcecf4",
+    "reproducibility": {
+      "selected_refit_probabilities_identical": true,
+      "prediction_sha256": "4a537bf8c9e5d344cf26d515e870497d319c2932e9dd0d9dc27070c4e07a036d",
+      "train_only_vocabulary_and_idf_verified": true
+    }
+  }
+}

@@ -11,10 +11,23 @@ from fastapi import Body, Depends, FastAPI, Form, HTTPException, Request
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import Response
 
+from .classify import Classifier, ClassifierUnavailableError, load_classifier
+from .extract import ExtractorUnavailableError, IntakeExtractor, load_extractor
 from .llm import LLMError, make_provider
 from .ml import ModelUnavailableError, PredictionError, PredictionInputError, Predictor, load_model_service
 from .prompts import PACK_PROMPTS
-from .schemas import AnalyzeRequest, Assessment, ChatRequest, ChatResponse, PredictRequest, PredictResponse
+from .schemas import (
+    AnalyzeRequest,
+    Assessment,
+    ChatRequest,
+    ChatResponse,
+    ClassifyRequest,
+    ClassifyResponse,
+    ExtractRequest,
+    Extraction,
+    PredictRequest,
+    PredictResponse,
+)
 
 logging.basicConfig(level=os.getenv("LOG_LEVEL", "INFO"))
 log = logging.getLogger("api")
@@ -29,10 +42,26 @@ async def lifespan(app: FastAPI):
     except ModelUnavailableError as exc:
         app.state.model_error = str(exc)
         log.warning("Prediction endpoint unavailable: %s", exc)
+    app.state.extractor = None
+    app.state.extractor_error = "Extraction model is unavailable"
+    try:
+        app.state.extractor = load_extractor(os.getenv("EXTRACT_MODEL_PATH"), os.getenv("EXTRACT_CODE_PATH"))
+    except ExtractorUnavailableError as exc:
+        app.state.extractor_error = str(exc)
+        log.warning("Extract endpoint unavailable: %s", exc)
+    app.state.classifier = None
+    app.state.classifier_error = "Classification model is unavailable"
+    try:
+        app.state.classifier = load_classifier(os.getenv("CLASSIFY_MODEL_PATH"))
+    except ClassifierUnavailableError as exc:
+        app.state.classifier_error = str(exc)
+        log.warning("Classify endpoint unavailable: %s", exc)
     try:
         yield
     finally:
         app.state.model_service = None
+        app.state.extractor = None
+        app.state.classifier = None
 
 
 app = FastAPI(title="NUSRangers backend", version="0.1.0", lifespan=lifespan)
@@ -130,3 +159,41 @@ def predict(req: PredictRequest, service: Predictor = Depends(get_model_service)
     except PredictionError as exc:
         log.exception("Local model inference failed")
         raise HTTPException(status_code=500, detail=str(exc)) from exc
+
+
+def get_extractor(request: Request) -> IntakeExtractor:
+    extractor = getattr(request.app.state, "extractor", None)
+    if extractor is None:
+        # The app falls back to its on-phone rules on any non-200.
+        detail = getattr(request.app.state, "extractor_error", "Extraction model is unavailable")
+        raise HTTPException(status_code=503, detail=detail)
+    return extractor
+
+
+@app.post("/extract", response_model=Extraction, response_model_exclude_none=True)
+def extract(req: ExtractRequest, extractor: IntakeExtractor = Depends(get_extractor)):
+    # Never log the answers: they are patient data.
+    try:
+        return extractor.extract(req)
+    except Exception as exc:
+        log.exception("Extraction failed")
+        raise HTTPException(status_code=500, detail="Extraction failed") from exc
+
+
+def get_classifier(request: Request) -> Classifier:
+    classifier = getattr(request.app.state, "classifier", None)
+    if classifier is None:
+        # The app keeps its on-phone triage on any non-200.
+        detail = getattr(request.app.state, "classifier_error", "Classification model is unavailable")
+        raise HTTPException(status_code=503, detail=detail)
+    return classifier
+
+
+@app.post("/classify", response_model=ClassifyResponse, response_model_exclude_none=True)
+def classify(req: ClassifyRequest, classifier: Classifier = Depends(get_classifier)):
+    # Never log the note: it is patient data.
+    try:
+        return classifier.classify(req)
+    except Exception as exc:
+        log.exception("Classification failed")
+        raise HTTPException(status_code=500, detail="Classification failed") from exc

@@ -1,0 +1,620 @@
+{
+  "provenance": "Assistant-authored fictional development cases. Never training data. Not blinded, independent, native-language-reviewed or clinical validation. Unlike original document-level multi-person symptom targets, unresolved multiple subjects expect abstention here. Targeted case explicitly supplies husband.",
+  "cases": [
+    {
+      "id": "expanded_001",
+      "language": "en",
+      "category": "negation",
+      "text": "No fever, not vomiting, without bleeding.",
+      "expected": {
+        "patientType": null,
+        "durationDays": null,
+        "hydrationIssue": null,
+        "reportedSigns": [],
+        "symptoms": []
+      }
+    },
+    {
+      "id": "expanded_002",
+      "language": "sw",
+      "category": "negation",
+      "text": "Sina homa. Sitapiki. Hakuna damu inayotoka.",
+      "expected": {
+        "patientType": null,
+        "durationDays": null,
+        "hydrationIssue": null,
+        "reportedSigns": [],
+        "symptoms": []
+      }
+    },
+    {
+      "id": "expanded_003",
+      "language": "sw",
+      "category": "negation",
+      "text": "Mtoto wangu hana homa lakini anakohoa.",
+      "expected": {
+        "patientType": "child",
+        "durationDays": null,
+        "hydrationIssue": null,
+        "reportedSigns": [],
+        "symptoms": [
+          "cough"
+        ]
+      }
+    },
+    {
+      "id": "expanded_004",
+      "language": "en",
+      "category": "hydration",
+      "text": "The child has fever.",
+      "expected": {
+        "patientType": "child",
+        "durationDays": null,
+        "hydrationIssue": null,
+        "reportedSigns": [],
+        "symptoms": [
+          "fever"
+        ]
+      }
+    },
+    {
+      "id": "expanded_005",
+      "language": "en",
+      "category": "explicit_negative",
+      "text": "The child is drinking well.",
+      "expected": {
+        "patientType": "child",
+        "durationDays": null,
+        "hydrationIssue": false,
+        "reportedSigns": [],
+        "symptoms": []
+      }
+    },
+    {
+      "id": "expanded_006",
+      "language": "sw",
+      "category": "explicit_negative",
+      "text": "Mtoto wangu anakunywa vizuri.",
+      "expected": {
+        "patientType": "child",
+        "durationDays": null,
+        "hydrationIssue": false,
+        "reportedSigns": [],
+        "symptoms": []
+      }
+    },
+    {
+      "id": "expanded_007",
+      "language": "en",
+      "category": "multiple_subjects",
+      "text": "My husband has fever but I feel fine.",
+      "expected": {
+        "patientType": null,
+        "durationDays": null,
+        "hydrationIssue": null,
+        "reportedSigns": [],
+        "symptoms": []
+      }
+    },
+    {
+      "id": "expanded_008",
+      "language": "en",
+      "category": "multiple_subjects",
+      "text": "My child is vomiting and my wife has a headache.",
+      "expected": {
+        "patientType": null,
+        "durationDays": null,
+        "hydrationIssue": null,
+        "reportedSigns": [],
+        "symptoms": []
+      }
+    },
+    {
+      "id": "expanded_009",
+      "language": "sw",
+      "category": "multiple_subjects",
+      "text": "Mume wangu ana homa lakini mimi sina homa.",
+      "expected": {
+        "patientType": null,
+        "durationDays": null,
+        "hydrationIssue": null,
+        "reportedSigns": [],
+        "symptoms": []
+      }
+    },
+    {
+      "id": "expanded_010",
+      "language": "en",
+      "category": "subject_target",
+      "text": "My husband has fever but I feel fine.",
+      "expected": {
+        "patientType": null,
+        "durationDays": null,
+        "hydrationIssue": null,
+        "reportedSigns": [],
+        "symptoms": [
+          "fever"
+        ]
+      },
+      "target_subject": "husband"
+    },
+    {
+      "id": "expanded_011",
+      "language": "en",
+      "category": "duration",
+      "text": "Fever for three days and not drinking much.",
+      "expected": {
+        "patientType": null,
+        "durationDays": 3,
+        "hydrationIssue": true,
+        "reportedSigns": [],
+        "symptoms": [
+          "fever"
+        ]
+      }
+    },
+    {
+      "id": "expanded_012",
+      "language": "en",
+      "category": "duration",
+      "text": "Cough three days.",
+      "expected": {
+        "patientType": null,
+        "durationDays": 3,
+        "hydrationIssue": null,
+        "reportedSigns": [],
+        "symptoms": [
+          "cough"
+        ]
+      }
+    },
+    {
+      "id": "expanded_013",
+      "language": "en",
+      "category": "relative_duration",
+      "text": "I have been vomiting since yesterday.",
+      "expected": {
+        "patientType": null,
+        "durationDays": null,
+        "hydrationIssue": null,
+        "reportedSigns": [],
+        "symptoms": [
+          "vomiting"
+        ]
+      }
+    },
+    {
+      "id": "expanded_014",
+      "language": "en",
+      "category": "weekday_duration",
+      "text": "My child has fever since Monday.",
+      "expected": {
+        "patientType": "child",
+        "durationDays": null,
+        "hydrationIssue": null,
+        "reportedSigns": [],
+        "symptoms": [
+          "fever"
+        ]
+      }
+    },
+    {
+      "id": "expanded_015",
+      "language": "sw",
+      "category": "weekday_duration",
+      "text": "Mtoto wangu ana homa tangu Jumatatu.",
+      "expected": {
+        "patientType": "child",
+        "durationDays": null,
+        "hydrationIssue": null,
+        "reportedSigns": [],
+        "symptoms": [
+          "fever"
+        ]
+      }
+    },
+    {
+      "id": "expanded_016",
+      "language": "en",
+      "category": "approximate_duration",
+      "text": "My child has had fever for a few days.",
+      "expected": {
+        "patientType": "child",
+        "durationDays": null,
+        "hydrationIssue": null,
+        "reportedSigns": [],
+        "symptoms": [
+          "fever"
+        ]
+      }
+    },
+    {
+      "id": "expanded_017",
+      "language": "sw",
+      "category": "approximate_duration",
+      "text": "Nina homa kwa siku chache.",
+      "expected": {
+        "patientType": null,
+        "durationDays": null,
+        "hydrationIssue": null,
+        "reportedSigns": [],
+        "symptoms": [
+          "fever"
+        ]
+      }
+    },
+    {
+      "id": "expanded_018",
+      "language": "en",
+      "category": "ambiguous_duration",
+      "text": "Fever for three days but vomiting for one day.",
+      "expected": {
+        "patientType": null,
+        "durationDays": null,
+        "hydrationIssue": null,
+        "reportedSigns": [],
+        "symptoms": [
+          "fever",
+          "vomiting"
+        ]
+      }
+    },
+    {
+      "id": "expanded_019",
+      "language": "en",
+      "category": "multiple_symptoms",
+      "text": "Fever and cough and vomiting.",
+      "expected": {
+        "patientType": null,
+        "durationDays": null,
+        "hydrationIssue": null,
+        "reportedSigns": [],
+        "symptoms": [
+          "fever",
+          "cough",
+          "vomiting"
+        ]
+      }
+    },
+    {
+      "id": "expanded_020",
+      "language": "sw",
+      "category": "multiple_symptoms",
+      "text": "Nina homa na kikohozi na ninatapika.",
+      "expected": {
+        "patientType": null,
+        "durationDays": null,
+        "hydrationIssue": null,
+        "reportedSigns": [],
+        "symptoms": [
+          "fever",
+          "cough",
+          "vomiting"
+        ]
+      }
+    },
+    {
+      "id": "expanded_021",
+      "language": "mixed",
+      "category": "multiple_symptoms",
+      "text": "Nina homa and a cough for three days.",
+      "expected": {
+        "patientType": null,
+        "durationDays": 3,
+        "hydrationIssue": null,
+        "reportedSigns": [],
+        "symptoms": [
+          "fever",
+          "cough"
+        ]
+      }
+    },
+    {
+      "id": "expanded_022",
+      "language": "mixed",
+      "category": "negation",
+      "text": "Sina homa but I am vomiting.",
+      "expected": {
+        "patientType": null,
+        "durationDays": null,
+        "hydrationIssue": null,
+        "reportedSigns": [],
+        "symptoms": [
+          "vomiting"
+        ]
+      }
+    },
+    {
+      "id": "expanded_023",
+      "language": "en",
+      "category": "short",
+      "text": "Vomiting.",
+      "expected": {
+        "patientType": null,
+        "durationDays": null,
+        "hydrationIssue": null,
+        "reportedSigns": [],
+        "symptoms": [
+          "vomiting"
+        ]
+      }
+    },
+    {
+      "id": "expanded_024",
+      "language": "sw",
+      "category": "short",
+      "text": "Homa.",
+      "expected": {
+        "patientType": null,
+        "durationDays": null,
+        "hydrationIssue": null,
+        "reportedSigns": [],
+        "symptoms": [
+          "fever"
+        ]
+      }
+    },
+    {
+      "id": "expanded_025",
+      "language": "en",
+      "category": "spelling",
+      "text": "fevr and vomitting for 2 days",
+      "expected": {
+        "patientType": null,
+        "durationDays": 2,
+        "hydrationIssue": null,
+        "reportedSigns": [],
+        "symptoms": [
+          "fever",
+          "vomiting"
+        ]
+      }
+    },
+    {
+      "id": "expanded_026",
+      "language": "sw",
+      "category": "spelling",
+      "text": "nina hma na kikohzi",
+      "expected": {
+        "patientType": null,
+        "durationDays": null,
+        "hydrationIssue": null,
+        "reportedSigns": [],
+        "symptoms": [
+          "fever",
+          "cough"
+        ]
+      }
+    },
+    {
+      "id": "expanded_027",
+      "language": "en",
+      "category": "asr",
+      "text": "um no fever but cough cough for three days",
+      "expected": {
+        "patientType": null,
+        "durationDays": 3,
+        "hydrationIssue": null,
+        "reportedSigns": [],
+        "symptoms": [
+          "cough"
+        ]
+      }
+    },
+    {
+      "id": "expanded_028",
+      "language": "sw",
+      "category": "asr",
+      "text": "mtoto wangu hana homa lakini kikohozi siku tatu",
+      "expected": {
+        "patientType": "child",
+        "durationDays": 3,
+        "hydrationIssue": null,
+        "reportedSigns": [],
+        "symptoms": [
+          "cough"
+        ]
+      }
+    },
+    {
+      "id": "expanded_029",
+      "language": "mixed",
+      "category": "asr",
+      "text": "no homa lakini vomiting for two days",
+      "expected": {
+        "patientType": null,
+        "durationDays": 2,
+        "hydrationIssue": null,
+        "reportedSigns": [],
+        "symptoms": [
+          "vomiting"
+        ]
+      }
+    },
+    {
+      "id": "expanded_030",
+      "language": "en",
+      "category": "reduced_drinking",
+      "text": "My child is drinking less.",
+      "expected": {
+        "patientType": "child",
+        "durationDays": null,
+        "hydrationIssue": true,
+        "reportedSigns": [],
+        "symptoms": []
+      }
+    },
+    {
+      "id": "expanded_031",
+      "language": "en",
+      "category": "sign_affirmed",
+      "text": "The child cannot drink.",
+      "expected": {
+        "patientType": "child",
+        "durationDays": null,
+        "hydrationIssue": true,
+        "reportedSigns": [
+          "cannot_drink"
+        ],
+        "symptoms": []
+      }
+    },
+    {
+      "id": "expanded_032",
+      "language": "en",
+      "category": "sign_negated",
+      "text": "The child has no convulsions.",
+      "expected": {
+        "patientType": "child",
+        "durationDays": null,
+        "hydrationIssue": null,
+        "reportedSigns": [],
+        "symptoms": []
+      }
+    },
+    {
+      "id": "expanded_033",
+      "language": "sw",
+      "category": "sign_negated",
+      "text": "Mtoto wangu hana degedege.",
+      "expected": {
+        "patientType": "child",
+        "durationDays": null,
+        "hydrationIssue": null,
+        "reportedSigns": [],
+        "symptoms": []
+      }
+    },
+    {
+      "id": "expanded_034",
+      "language": "en",
+      "category": "sign_uncertain",
+      "text": "The child may have had a seizure.",
+      "expected": {
+        "patientType": "child",
+        "durationDays": null,
+        "hydrationIssue": null,
+        "reportedSigns": [],
+        "symptoms": []
+      }
+    },
+    {
+      "id": "expanded_035",
+      "language": "en",
+      "category": "sign_uncertain",
+      "text": "Maybe there is bleeding.",
+      "expected": {
+        "patientType": null,
+        "durationDays": null,
+        "hydrationIssue": null,
+        "reportedSigns": [],
+        "symptoms": []
+      }
+    },
+    {
+      "id": "expanded_036",
+      "language": "en",
+      "category": "sign_affirmed",
+      "text": "I am bleeding.",
+      "expected": {
+        "patientType": null,
+        "durationDays": null,
+        "hydrationIssue": null,
+        "reportedSigns": [
+          "bleeding"
+        ],
+        "symptoms": [
+          "bleeding"
+        ]
+      }
+    },
+    {
+      "id": "expanded_037",
+      "language": "sw",
+      "category": "sign_affirmed",
+      "text": "Ninatokwa na damu.",
+      "expected": {
+        "patientType": null,
+        "durationDays": null,
+        "hydrationIssue": null,
+        "reportedSigns": [
+          "bleeding"
+        ],
+        "symptoms": [
+          "bleeding"
+        ]
+      }
+    },
+    {
+      "id": "expanded_038",
+      "language": "en",
+      "category": "missing",
+      "text": "Can you help me?",
+      "expected": {
+        "patientType": null,
+        "durationDays": null,
+        "hydrationIssue": null,
+        "reportedSigns": [],
+        "symptoms": []
+      }
+    },
+    {
+      "id": "expanded_039",
+      "language": "sw",
+      "category": "missing",
+      "text": "Naomba msaada.",
+      "expected": {
+        "patientType": null,
+        "durationDays": null,
+        "hydrationIssue": null,
+        "reportedSigns": [],
+        "symptoms": []
+      }
+    },
+    {
+      "id": "expanded_040",
+      "language": "en",
+      "category": "context",
+      "text": "No fever but I feel very weak.",
+      "expected": {
+        "patientType": null,
+        "durationDays": null,
+        "hydrationIssue": null,
+        "reportedSigns": [],
+        "symptoms": [
+          "weakness"
+        ]
+      }
+    },
+    {
+      "id": "expanded_041",
+      "language": "en",
+      "category": "scope_limit",
+      "text": "My child is not pregnant but has a cough.",
+      "expected": {
+        "patientType": "child",
+        "durationDays": null,
+        "hydrationIssue": null,
+        "reportedSigns": [],
+        "symptoms": [
+          "cough"
+        ]
+      }
+    },
+    {
+      "id": "expanded_042",
+      "language": "en",
+      "category": "uncertainty_scope",
+      "text": "I might have a fever but I am definitely vomiting.",
+      "expected": {
+        "patientType": null,
+        "durationDays": null,
+        "hydrationIssue": null,
+        "reportedSigns": [],
+        "symptoms": [
+          "vomiting"
+        ]
+      }
+    }
+  ]
+}

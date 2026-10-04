@@ -1,0 +1,707 @@
+{
+  "provenance": "Assistant-authored fictional cases frozen before this tuning pass. Inspired by required categories, not synthetic sentence templates. Not independently blinded, native-Swahili-reviewed or clinically validated. Used only for final accept/reject, never threshold/model selection.",
+  "cases": [
+    {
+      "id": "acceptance_v1_001",
+      "language": "en",
+      "category": "negation",
+      "text": "No fever, only a cough that keeps me awake.",
+      "expected": {
+        "patientType": null,
+        "durationDays": null,
+        "hydrationIssue": null,
+        "reportedSigns": [],
+        "symptoms": [
+          "cough"
+        ]
+      }
+    },
+    {
+      "id": "acceptance_v1_002",
+      "language": "en",
+      "category": "negation",
+      "text": "I do not have a fever but I am coughing.",
+      "expected": {
+        "patientType": null,
+        "durationDays": null,
+        "hydrationIssue": null,
+        "reportedSigns": [],
+        "symptoms": [
+          "cough"
+        ]
+      }
+    },
+    {
+      "id": "acceptance_v1_003",
+      "language": "sw",
+      "category": "child",
+      "text": "Mtoto ana homa kwa siku tatu na anatapika.",
+      "expected": {
+        "patientType": "child",
+        "durationDays": 3,
+        "hydrationIssue": null,
+        "reportedSigns": [],
+        "symptoms": [
+          "fever",
+          "vomiting"
+        ]
+      }
+    },
+    {
+      "id": "acceptance_v1_004",
+      "language": "sw",
+      "category": "negation",
+      "text": "Mtoto hana homa lakini anakohoa.",
+      "expected": {
+        "patientType": "child",
+        "durationDays": null,
+        "hydrationIssue": null,
+        "reportedSigns": [],
+        "symptoms": [
+          "cough"
+        ]
+      }
+    },
+    {
+      "id": "acceptance_v1_005",
+      "language": "en",
+      "category": "spelling",
+      "text": "fevr caugh vomitingg",
+      "expected": {
+        "patientType": null,
+        "durationDays": null,
+        "hydrationIssue": null,
+        "reportedSigns": [],
+        "symptoms": [
+          "fever",
+          "cough",
+          "vomiting"
+        ]
+      }
+    },
+    {
+      "id": "acceptance_v1_006",
+      "language": "en",
+      "category": "asr",
+      "text": "um fevar for tree days and vomitting",
+      "expected": {
+        "patientType": null,
+        "durationDays": 3,
+        "hydrationIssue": null,
+        "reportedSigns": [],
+        "symptoms": [
+          "fever",
+          "vomiting"
+        ]
+      }
+    },
+    {
+      "id": "acceptance_v1_007",
+      "language": "mixed",
+      "category": "asr",
+      "text": "Mtoto ana homa and caugh kwa siku mbili.",
+      "expected": {
+        "patientType": "child",
+        "durationDays": 2,
+        "hydrationIssue": null,
+        "reportedSigns": [],
+        "symptoms": [
+          "fever",
+          "cough"
+        ]
+      }
+    },
+    {
+      "id": "acceptance_v1_008",
+      "language": "sw",
+      "category": "hydration",
+      "text": "Mtoto anakunywa maji kidogo.",
+      "expected": {
+        "patientType": "child",
+        "durationDays": null,
+        "hydrationIssue": true,
+        "reportedSigns": [],
+        "symptoms": []
+      }
+    },
+    {
+      "id": "acceptance_v1_009",
+      "language": "sw",
+      "category": "hydration_negative",
+      "text": "Mtoto anakunywa maji kama kawaida.",
+      "expected": {
+        "patientType": "child",
+        "durationDays": null,
+        "hydrationIssue": false,
+        "reportedSigns": [],
+        "symptoms": []
+      }
+    },
+    {
+      "id": "acceptance_v1_010",
+      "language": "sw",
+      "category": "sign",
+      "text": "Mtoto hawezi kunywa kabisa.",
+      "expected": {
+        "patientType": "child",
+        "durationDays": null,
+        "hydrationIssue": true,
+        "reportedSigns": [
+          "cannot_drink"
+        ],
+        "symptoms": []
+      }
+    },
+    {
+      "id": "acceptance_v1_011",
+      "language": "sw",
+      "category": "sign_negation",
+      "text": "Mtoto hana degedege.",
+      "expected": {
+        "patientType": "child",
+        "durationDays": null,
+        "hydrationIssue": null,
+        "reportedSigns": [],
+        "symptoms": []
+      }
+    },
+    {
+      "id": "acceptance_v1_012",
+      "language": "sw",
+      "category": "sign",
+      "text": "Mtoto amepata degedege.",
+      "expected": {
+        "patientType": "child",
+        "durationDays": null,
+        "hydrationIssue": null,
+        "reportedSigns": [
+          "convulsions"
+        ],
+        "symptoms": []
+      }
+    },
+    {
+      "id": "acceptance_v1_013",
+      "language": "en",
+      "category": "subjects",
+      "text": "My husband has a fever but I have a cough.",
+      "expected": {
+        "patientType": null,
+        "durationDays": null,
+        "hydrationIssue": null,
+        "reportedSigns": [],
+        "symptoms": []
+      }
+    },
+    {
+      "id": "acceptance_v1_014",
+      "language": "en",
+      "category": "target",
+      "text": "My husband has a fever but I have a cough.",
+      "expected": {
+        "patientType": null,
+        "durationDays": null,
+        "hydrationIssue": null,
+        "reportedSigns": [],
+        "symptoms": [
+          "fever"
+        ]
+      },
+      "target_subject": "husband"
+    },
+    {
+      "id": "acceptance_v1_015",
+      "language": "sw",
+      "category": "subjects",
+      "text": "Mtoto ana homa lakini mimi ninatapika.",
+      "expected": {
+        "patientType": null,
+        "durationDays": null,
+        "hydrationIssue": null,
+        "reportedSigns": [],
+        "symptoms": []
+      }
+    },
+    {
+      "id": "acceptance_v1_016",
+      "language": "en",
+      "category": "missing",
+      "text": "I came to ask about my appointment.",
+      "expected": {
+        "patientType": null,
+        "durationDays": null,
+        "hydrationIssue": null,
+        "reportedSigns": [],
+        "symptoms": []
+      }
+    },
+    {
+      "id": "acceptance_v1_017",
+      "language": "sw",
+      "category": "missing",
+      "text": "Naomba kuzungumza na mhudumu.",
+      "expected": {
+        "patientType": null,
+        "durationDays": null,
+        "hydrationIssue": null,
+        "reportedSigns": [],
+        "symptoms": []
+      }
+    },
+    {
+      "id": "acceptance_v1_018",
+      "language": "en",
+      "category": "relative",
+      "text": "Been coughing since Monday, cannot remember the time.",
+      "expected": {
+        "patientType": null,
+        "durationDays": null,
+        "hydrationIssue": null,
+        "reportedSigns": [],
+        "symptoms": [
+          "cough"
+        ]
+      }
+    },
+    {
+      "id": "acceptance_v1_019",
+      "language": "sw",
+      "category": "approximate",
+      "text": "Mtoto ana homa kwa siku chache.",
+      "expected": {
+        "patientType": "child",
+        "durationDays": null,
+        "hydrationIssue": null,
+        "reportedSigns": [],
+        "symptoms": [
+          "fever"
+        ]
+      }
+    },
+    {
+      "id": "acceptance_v1_020",
+      "language": "en",
+      "category": "ambiguous",
+      "text": "Vomiting for two days, fever for five days.",
+      "expected": {
+        "patientType": null,
+        "durationDays": null,
+        "hydrationIssue": null,
+        "reportedSigns": [],
+        "symptoms": [
+          "vomiting",
+          "fever"
+        ]
+      }
+    },
+    {
+      "id": "acceptance_v1_021",
+      "language": "en",
+      "category": "short",
+      "text": "Stomach ache. Weak.",
+      "expected": {
+        "patientType": null,
+        "durationDays": null,
+        "hydrationIssue": null,
+        "reportedSigns": [],
+        "symptoms": [
+          "abdominal_pain",
+          "weakness"
+        ]
+      }
+    },
+    {
+      "id": "acceptance_v1_022",
+      "language": "sw",
+      "category": "short",
+      "text": "Kichwa kinauma.",
+      "expected": {
+        "patientType": null,
+        "durationDays": null,
+        "hydrationIssue": null,
+        "reportedSigns": [],
+        "symptoms": [
+          "headache"
+        ]
+      }
+    },
+    {
+      "id": "acceptance_v1_023",
+      "language": "en",
+      "category": "uncertain",
+      "text": "Not sure whether this is a fever.",
+      "expected": {
+        "patientType": null,
+        "durationDays": null,
+        "hydrationIssue": null,
+        "reportedSigns": [],
+        "symptoms": []
+      }
+    },
+    {
+      "id": "acceptance_v1_024",
+      "language": "sw",
+      "category": "uncertain",
+      "text": "Labda nina homa lakini ninakohoa.",
+      "expected": {
+        "patientType": null,
+        "durationDays": null,
+        "hydrationIssue": null,
+        "reportedSigns": [],
+        "symptoms": [
+          "cough"
+        ]
+      }
+    },
+    {
+      "id": "acceptance_v1_025",
+      "language": "en",
+      "category": "negation_list",
+      "text": "No fever or vomiting. Just a cough.",
+      "expected": {
+        "patientType": null,
+        "durationDays": null,
+        "hydrationIssue": null,
+        "reportedSigns": [],
+        "symptoms": [
+          "cough"
+        ]
+      }
+    },
+    {
+      "id": "acceptance_v1_026",
+      "language": "mixed",
+      "category": "negation",
+      "text": "Sina homa but I keep throwing up.",
+      "expected": {
+        "patientType": null,
+        "durationDays": null,
+        "hydrationIssue": null,
+        "reportedSigns": [],
+        "symptoms": [
+          "vomiting"
+        ]
+      }
+    },
+    {
+      "id": "acceptance_v1_027",
+      "language": "en",
+      "category": "hydration",
+      "text": "Drinking less than usual, no other details.",
+      "expected": {
+        "patientType": null,
+        "durationDays": null,
+        "hydrationIssue": true,
+        "reportedSigns": [],
+        "symptoms": []
+      }
+    },
+    {
+      "id": "acceptance_v1_028",
+      "language": "en",
+      "category": "hydration_negative",
+      "text": "I have no trouble drinking.",
+      "expected": {
+        "patientType": null,
+        "durationDays": null,
+        "hydrationIssue": false,
+        "reportedSigns": [],
+        "symptoms": []
+      }
+    },
+    {
+      "id": "acceptance_v1_029",
+      "language": "en",
+      "category": "negation",
+      "text": "No bleeding, no convulsions, not vomiting.",
+      "expected": {
+        "patientType": null,
+        "durationDays": null,
+        "hydrationIssue": null,
+        "reportedSigns": [],
+        "symptoms": []
+      }
+    },
+    {
+      "id": "acceptance_v1_030",
+      "language": "sw",
+      "category": "negation",
+      "text": "Sina homa wala kikohozi.",
+      "expected": {
+        "patientType": null,
+        "durationDays": null,
+        "hydrationIssue": null,
+        "reportedSigns": [],
+        "symptoms": []
+      }
+    },
+    {
+      "id": "acceptance_v1_031",
+      "language": "en",
+      "category": "spelling_negation",
+      "text": "No fevr and not vomitting.",
+      "expected": {
+        "patientType": null,
+        "durationDays": null,
+        "hydrationIssue": null,
+        "reportedSigns": [],
+        "symptoms": []
+      }
+    },
+    {
+      "id": "acceptance_v1_032",
+      "language": "sw",
+      "category": "duration",
+      "text": "Mtoto anakohoa kwa muda wa siku nne.",
+      "expected": {
+        "patientType": "child",
+        "durationDays": 4,
+        "hydrationIssue": null,
+        "reportedSigns": [],
+        "symptoms": [
+          "cough"
+        ]
+      }
+    },
+    {
+      "id": "acceptance_v1_033",
+      "language": "en",
+      "category": "multi",
+      "text": "Fever, cough, headache and vomiting.",
+      "expected": {
+        "patientType": null,
+        "durationDays": null,
+        "hydrationIssue": null,
+        "reportedSigns": [],
+        "symptoms": [
+          "fever",
+          "cough",
+          "headache",
+          "vomiting"
+        ]
+      }
+    },
+    {
+      "id": "acceptance_v1_034",
+      "language": "sw",
+      "category": "multi",
+      "text": "Nina homa, maumivu ya kichwa na ninatapika.",
+      "expected": {
+        "patientType": null,
+        "durationDays": null,
+        "hydrationIssue": null,
+        "reportedSigns": [],
+        "symptoms": [
+          "fever",
+          "headache",
+          "vomiting"
+        ]
+      }
+    },
+    {
+      "id": "acceptance_v1_035",
+      "language": "mixed",
+      "category": "short",
+      "text": "Homa and vomiting.",
+      "expected": {
+        "patientType": null,
+        "durationDays": null,
+        "hydrationIssue": null,
+        "reportedSigns": [],
+        "symptoms": [
+          "fever",
+          "vomiting"
+        ]
+      }
+    },
+    {
+      "id": "acceptance_v1_036",
+      "language": "en",
+      "category": "synonym",
+      "text": "Loose stools and my stomach hurts.",
+      "expected": {
+        "patientType": null,
+        "durationDays": null,
+        "hydrationIssue": null,
+        "reportedSigns": [],
+        "symptoms": [
+          "diarrhoea",
+          "abdominal_pain"
+        ]
+      }
+    },
+    {
+      "id": "acceptance_v1_037",
+      "language": "sw",
+      "category": "synonym",
+      "text": "Nina choo cha maji na tumbo linauma.",
+      "expected": {
+        "patientType": null,
+        "durationDays": null,
+        "hydrationIssue": null,
+        "reportedSigns": [],
+        "symptoms": [
+          "diarrhoea",
+          "abdominal_pain"
+        ]
+      }
+    },
+    {
+      "id": "acceptance_v1_038",
+      "language": "en",
+      "category": "historical",
+      "text": "I used to have headaches last year. Not now.",
+      "expected": {
+        "patientType": null,
+        "durationDays": null,
+        "hydrationIssue": null,
+        "reportedSigns": [],
+        "symptoms": []
+      }
+    },
+    {
+      "id": "acceptance_v1_039",
+      "language": "en",
+      "category": "unknown",
+      "text": "My child feels unwell.",
+      "expected": {
+        "patientType": "child",
+        "durationDays": null,
+        "hydrationIssue": null,
+        "reportedSigns": [],
+        "symptoms": []
+      }
+    },
+    {
+      "id": "acceptance_v1_040",
+      "language": "sw",
+      "category": "unknown",
+      "text": "Mtoto hajisikii vizuri.",
+      "expected": {
+        "patientType": "child",
+        "durationDays": null,
+        "hydrationIssue": null,
+        "reportedSigns": [],
+        "symptoms": []
+      }
+    },
+    {
+      "id": "acceptance_v1_041",
+      "language": "en",
+      "category": "rare",
+      "text": "I feel exhausted.",
+      "expected": {
+        "patientType": null,
+        "durationDays": null,
+        "hydrationIssue": null,
+        "reportedSigns": [],
+        "symptoms": [
+          "fatigue"
+        ]
+      }
+    },
+    {
+      "id": "acceptance_v1_042",
+      "language": "en",
+      "category": "rare",
+      "text": "My vision is blurred.",
+      "expected": {
+        "patientType": null,
+        "durationDays": null,
+        "hydrationIssue": null,
+        "reportedSigns": [],
+        "symptoms": [
+          "blurred_vision"
+        ]
+      }
+    },
+    {
+      "id": "acceptance_v1_043",
+      "language": "en",
+      "category": "rare",
+      "text": "I am pregnant and the baby is moving less.",
+      "expected": {
+        "patientType": "pregnant",
+        "durationDays": null,
+        "hydrationIssue": null,
+        "reportedSigns": [],
+        "symptoms": [
+          "reduced_fetal_movement"
+        ]
+      }
+    },
+    {
+      "id": "acceptance_v1_044",
+      "language": "en",
+      "category": "rare",
+      "text": "I am pregnant and my water has broken.",
+      "expected": {
+        "patientType": "pregnant",
+        "durationDays": null,
+        "hydrationIssue": null,
+        "reportedSigns": [],
+        "symptoms": [
+          "fluid_loss"
+        ]
+      }
+    },
+    {
+      "id": "acceptance_v1_045",
+      "language": "en",
+      "category": "breathing",
+      "text": "I am short of breath.",
+      "expected": {
+        "patientType": null,
+        "durationDays": null,
+        "hydrationIssue": null,
+        "reportedSigns": [],
+        "symptoms": [
+          "breathing_difficulty"
+        ]
+      }
+    },
+    {
+      "id": "acceptance_v1_046",
+      "language": "sw",
+      "category": "breathing",
+      "text": "Ninapata shida ya kupumua.",
+      "expected": {
+        "patientType": null,
+        "durationDays": null,
+        "hydrationIssue": null,
+        "reportedSigns": [],
+        "symptoms": [
+          "breathing_difficulty"
+        ]
+      }
+    },
+    {
+      "id": "acceptance_v1_047",
+      "language": "en",
+      "category": "spelling_negative",
+      "text": "Not vomitingg, just tired.",
+      "expected": {
+        "patientType": null,
+        "durationDays": null,
+        "hydrationIssue": null,
+        "reportedSigns": [],
+        "symptoms": [
+          "fatigue"
+        ]
+      }
+    },
+    {
+      "id": "acceptance_v1_048",
+      "language": "en",
+      "category": "tree_literal",
+      "text": "There is a tree outside.",
+      "expected": {
+        "patientType": null,
+        "durationDays": null,
+        "hydrationIssue": null,
+        "reportedSigns": [],
+        "symptoms": []
+      }
+    }
+  ]
+}

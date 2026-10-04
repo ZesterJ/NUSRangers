@@ -1,0 +1,19 @@
+{
+  "source": "User-supplied root files; all records declare synthetic_team_generated",
+  "generator": "Not supplied",
+  "license": "Not supplied; verify before redistribution",
+  "files": [
+    {
+      "original_path": "health_triage_ie_synthetic_v1.csv",
+      "path": "ml/data/raw/health_triage_ie_synthetic_v1.csv",
+      "bytes": 251863,
+      "sha256": "9c1da62be418e4c0203bcd7739fac2a5f0a2ff77f49a625b56b88e0a38b96ef3"
+    },
+    {
+      "original_path": "health_triage_ie_synthetic_v1.jsonl",
+      "path": "ml/data/raw/health_triage_ie_synthetic_v1.jsonl",
+      "bytes": 456502,
+      "sha256": "f5bae376cd8e333530b03d28afe49e2b7ca2d127d68d1d931cc1486d8660c07d"
+    }
+  ]
+}

@@ -4,3 +4,7 @@ uvicorn[standard]>=0.30,<1
 pydantic>=2.7,<3
 python-multipart>=0.0.9
 joblib>=1.4,<2
+# Must match the versions the extraction model was trained with (ml/requirements.txt).
+scikit-learn==1.9.1
+numpy==2.5.3
+scipy==1.18.1

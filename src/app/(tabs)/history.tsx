@@ -7,6 +7,7 @@ import QRCode from 'react-native-qrcode-svg';
 import { flushOutbox, useSyncStore } from '@/ai/sync';
 import { AssessmentCard } from '@/components/AssessmentCard';
 import { IntakeSummary, LEVEL_ICON } from '@/components/IntakeSummary';
+import { topGroups } from '@/intake/classification';
 import { OfflineBanner } from '@/components/OfflineBanner';
 import { Button, Card, SectionTitle } from '@/components/ui';
 import { listIntakes, listReports, type StoredReport } from '@/db';
@@ -77,7 +78,7 @@ export default function History() {
             </Pressable>
             {open?.id === rec.id && (
               <>
-                <IntakeSummary intake={rec.intake} triage={rec.triage} />
+                <IntakeSummary intake={rec.intake} triage={rec.triage} groups={topGroups(rec.classification)} />
                 {rec.transcript.length > 0 && (
                   <Card>
                     <Text style={{ color: theme.textMuted, fontWeight: '700' }}>{t('intake.transcript')}</Text>
