@@ -7,7 +7,8 @@
     "settings": "Mipangilio",
     "intake": "Mahojiano",
     "scan": "Kliniki",
-    "records": "Kumbukumbu"
+    "records": "Kumbukumbu",
+    "guidance": "Miongozo"
   },
   "common": {
     "online": "Mtandaoni",
@@ -223,7 +224,9 @@
     "intro": "Vimelinganishwa na taarifa ya mgonjwa kutoka kwenye rejista ya miongozo. Kwa ajili ya mhudumu; uamuzi wa kitabibu ni wako.",
     "source": "Chanzo",
     "draft": "Rasimu: bado haijapitiwa na mtaalamu wa afya.",
-    "footer": "Rejista toleo {{version}}, imesasishwa {{updated}}. Ni vikumbusho tu: fuata mwongozo wa kitaifa wa sasa."
+    "footer": "Rejista toleo {{version}}, imesasishwa {{updated}}. Ni vikumbusho tu: fuata mwongozo wa kitaifa wa sasa.",
+    "tabTitle": "Miongozo ya WHO kwa kila hali",
+    "tabIntro": "Marejeo kwa wafanyakazi wa kliniki. Gusa hali ili kusoma vikumbusho na kufungua chanzo."
   },
   "clinic": {
     "queueTitle": "Foleni ya kliniki",

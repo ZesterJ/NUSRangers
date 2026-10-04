@@ -7,7 +7,8 @@
     "settings": "Settings",
     "intake": "Intake",
     "scan": "Clinic",
-    "records": "Records"
+    "records": "Records",
+    "guidance": "Guidance"
   },
   "common": {
     "online": "Online",
@@ -223,7 +224,9 @@
     "intro": "Matched to the visit note from the guidance registry. For the clinician; the clinical decision stays with you.",
     "source": "Source",
     "draft": "Draft: not yet clinically reviewed.",
-    "footer": "Registry version {{version}}, updated {{updated}}. Reminders only: follow the current national guideline."
+    "footer": "Registry version {{version}}, updated {{updated}}. Reminders only: follow the current national guideline.",
+    "tabTitle": "WHO guidance by condition",
+    "tabIntro": "Reference for clinic staff. Tap a condition to read the reminders and open the source."
   },
   "clinic": {
     "queueTitle": "Clinic queue",

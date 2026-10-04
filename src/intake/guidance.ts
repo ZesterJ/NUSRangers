@@ -10,6 +10,8 @@ import type { ConfirmedIntake, DangerSign, PatientGroup, Symptom } from './types
 export type GuidanceSource = { title: string; publisher: string; year: number; url: string };
 export type GuidanceEntry = {
   id: string;
+  /** The condition the entry belongs to, e.g. "Malaria and fever"; groups the Guidance tab. */
+  topic?: string;
   title: string;
   sourceId: string;
   /** Patient groups the entry applies to; omitted = all. */
@@ -39,4 +41,16 @@ export function guidanceFor(intake: ConfirmedIntake, registry: GuidanceRegistry 
       (e.any.dangerSigns ?? []).some((d) => intake.dangerSigns.includes(d))
     );
   });
+}
+
+/** The whole registry grouped by condition, for browsing. Entries keep their registry order. */
+export function guidanceByTopic(registry: GuidanceRegistry = BUNDLED_REGISTRY): { topic: string; entries: GuidanceEntry[] }[] {
+  const groups: { topic: string; entries: GuidanceEntry[] }[] = [];
+  for (const entry of registry.entries) {
+    const topic = entry.topic ?? 'Other';
+    const group = groups.find((g) => g.topic === topic);
+    if (group) group.entries.push(entry);
+    else groups.push({ topic, entries: [entry] });
+  }
+  return groups.sort((a, b) => a.topic.localeCompare(b.topic));
 }

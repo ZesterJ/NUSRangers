@@ -31,15 +31,20 @@ export default function TabsLayout() {
         headerTitle: `${pack.emoji} ${pack.appName}`,
       }}>
       <Tabs.Screen name="index" options={{ title: t('tabs.home'), tabBarIcon: icon('🏠') }} />
-      {/* Until someone signs in on Home, only Home and Settings are reachable. */}
+      {/* Until someone signs in on Home, only Home and Settings are reachable. The Intake tab is the
+          patient's; clinic staff reach the same screen from the walk-in card on Home. */}
       <Tabs.Screen
         name="intake"
-        options={{ title: t('tabs.intake'), tabBarIcon: icon('📝'), ...(role ? {} : { href: null }) }}
+        options={{ title: t('tabs.intake'), tabBarIcon: icon('📝'), ...(role === 'patient' ? {} : { href: null }) }}
       />
       {/* The clinic screens are for clinic staff only. */}
       <Tabs.Screen
         name="scan"
         options={{ title: t('tabs.scan'), tabBarIcon: icon('🏥'), ...(role === 'clinic' ? {} : { href: null }) }}
+      />
+      <Tabs.Screen
+        name="guidance"
+        options={{ title: t('tabs.guidance'), tabBarIcon: icon('📖'), ...(role === 'clinic' ? {} : { href: null }) }}
       />
       <Tabs.Screen
         name="history"
