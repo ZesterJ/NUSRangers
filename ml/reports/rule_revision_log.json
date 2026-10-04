@@ -1,0 +1,105 @@
+{
+  "from": "rules-v1",
+  "to": "rules-v1.1",
+  "trigger": "Initial development diagnostic/error review; no raw labels changed",
+  "change": "Do not split clauses on and/na: this incorrectly discarded uncertainty scope and broke Swahili natokwa na damu phrases.",
+  "examples": [
+    "diagnostic_012: Maybe I am pregnant and bleeding.",
+    "health_ie_0598: Ninatokwa na damu."
+  ],
+  "before_rules_diagnostics": {
+    "patientType": {
+      "examples": 48,
+      "exact_agreement": 1.0,
+      "non_null_predictions": 20,
+      "coverage": 0.4166666666666667,
+      "missing_expected": 28,
+      "unknown_handling_accuracy": 1.0,
+      "confusion": {
+        "'adult' -> 'adult'": 2,
+        "'child' -> 'child'": 16,
+        "'pregnant' -> 'pregnant'": 2,
+        "None -> None": 28
+      },
+      "unsupported_assertions_vs_diagnostic_expectation": 0,
+      "unsupported_assertion_rate_among_assertions": 0.0
+    },
+    "durationDays": {
+      "examples": 48,
+      "exact_agreement": 0.9791666666666666,
+      "non_null_predictions": 3,
+      "coverage": 0.0625,
+      "missing_expected": 44,
+      "unknown_handling_accuracy": 1.0,
+      "confusion": {
+        "2 -> 2.0": 1,
+        "3 -> 3": 2,
+        "3 -> None": 1,
+        "None -> None": 44
+      },
+      "unsupported_assertions_vs_diagnostic_expectation": 0,
+      "unsupported_assertion_rate_among_assertions": 0.0
+    },
+    "hydrationIssue": {
+      "examples": 48,
+      "exact_agreement": 1.0,
+      "non_null_predictions": 10,
+      "coverage": 0.20833333333333334,
+      "missing_expected": 38,
+      "unknown_handling_accuracy": 1.0,
+      "confusion": {
+        "False -> False": 2,
+        "None -> None": 38,
+        "True -> True": 8
+      },
+      "unsupported_assertions_vs_diagnostic_expectation": 0,
+      "unsupported_assertion_rate_among_assertions": 0.0
+    },
+    "reportedSigns": {
+      "examples": 48,
+      "micro_precision": 0.8333333333333334,
+      "micro_recall": 1.0,
+      "micro_f1": 0.9090909090909091,
+      "macro_f1_all_labels_zero_undefined": 0.8888888888888888,
+      "macro_f1_supported_labels": 0.8888888888888888,
+      "exact_set_match": 0.9791666666666666,
+      "per_label": {
+        "cannot_drink": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "support": 3,
+          "predicted_positive": 3,
+          "false_positives": 0,
+          "false_negatives": 0
+        },
+        "convulsions": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "support": 1,
+          "predicted_positive": 1,
+          "false_positives": 0,
+          "false_negatives": 0
+        },
+        "bleeding": {
+          "precision": 0.5,
+          "recall": 1.0,
+          "f1": 0.6666666666666666,
+          "support": 1,
+          "predicted_positive": 2,
+          "false_positives": 1,
+          "false_negatives": 0
+        }
+      },
+      "unsupported_assertion_rate_among_assertions": 0.16666666666666666
+    },
+    "all_field_assertions": {
+      "count": 39,
+      "unsupported": 1,
+      "rate": 0.02564102564102564
+    }
+  },
+  "remaining_limit": "Whole-text duration negation guard conservatively abstains when an unrelated hydration clause contains not. Documented rather than silently relabeling diagnostic_046.",
+  "evaluation_status": "These diagnostics are development/regression cases, not fresh held-out acceptance data."
+}

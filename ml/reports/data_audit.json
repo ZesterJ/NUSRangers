@@ -1,0 +1,611 @@
+{
+  "rows": 1200,
+  "csv_rows": 1200,
+  "exports_equal": true,
+  "jsonl_keys": [
+    "id",
+    "language",
+    "text",
+    "labels",
+    "split",
+    "data_source"
+  ],
+  "csv_columns": [
+    "id",
+    "language",
+    "text",
+    "patient_type",
+    "symptoms",
+    "duration_days",
+    "hydration_issue",
+    "danger_signs",
+    "notes",
+    "data_source",
+    "split"
+  ],
+  "duplicate_ids": 0,
+  "languages": {
+    "en": 774,
+    "sw": 426
+  },
+  "sources": {
+    "synthetic_team_generated": 1200
+  },
+  "splits": {
+    "train": 840,
+    "validation": 180,
+    "test": 180
+  },
+  "split_language_counts": {
+    "train": {
+      "en": 550,
+      "sw": 290
+    },
+    "validation": {
+      "en": 112,
+      "sw": 68
+    },
+    "test": {
+      "en": 112,
+      "sw": 68
+    }
+  },
+  "label_distributions": {
+    "patient_type": {
+      "\"adult\"": 426,
+      "\"child\"": 464,
+      "\"pregnant\"": 310
+    },
+    "symptoms": {
+      "\"abdominal_pain\"": 119,
+      "\"bleeding\"": 74,
+      "\"blurred_vision\"": 84,
+      "\"breathing_difficulty\"": 90,
+      "\"cough\"": 211,
+      "\"diarrhoea\"": 163,
+      "\"fatigue\"": 38,
+      "\"fever\"": 469,
+      "\"fluid_loss\"": 39,
+      "\"headache\"": 118,
+      "\"reduced_fetal_movement\"": 39,
+      "\"vomiting\"": 185,
+      "\"weakness\"": 183
+    },
+    "duration_days": {
+      "1": 457,
+      "2": 326,
+      "3": 178,
+      "4": 120,
+      "5": 119
+    },
+    "hydration_issue": {
+      "false": 863,
+      "true": 337
+    },
+    "danger_signs": {
+      "\"bleeding\"": 74,
+      "\"blurred_vision\"": 39,
+      "\"breathing_difficulty\"": 90,
+      "\"cannot_drink\"": 117,
+      "\"convulsions\"": 36,
+      "\"fever\"": 49,
+      "\"reduced_fetal_movement\"": 39,
+      "\"severe_abdominal_pain\"": 28,
+      "\"severe_headache\"": 45,
+      "\"water_breaking_early\"": 39
+    },
+    "notes": {
+      "\"had a seizure\"": 36,
+      "\"loose stools\"": 86,
+      "\"not drinking well\"": 28,
+      "\"very sleepy\"": 36,
+      "\"very weak\"": 74,
+      "\"vomiting repeatedly\"": 43,
+      "null": 897
+    }
+  },
+  "labels_by_split": {
+    "train": {
+      "patient_type": {
+        "\"adult\"": 293,
+        "\"child\"": 324,
+        "\"pregnant\"": 223
+      },
+      "symptoms": {
+        "\"abdominal_pain\"": 79,
+        "\"bleeding\"": 59,
+        "\"blurred_vision\"": 52,
+        "\"breathing_difficulty\"": 60,
+        "\"cough\"": 144,
+        "\"diarrhoea\"": 110,
+        "\"fatigue\"": 23,
+        "\"fever\"": 337,
+        "\"fluid_loss\"": 29,
+        "\"headache\"": 76,
+        "\"reduced_fetal_movement\"": 30,
+        "\"vomiting\"": 131,
+        "\"weakness\"": 124
+      },
+      "duration_days": {
+        "1": 321,
+        "2": 235,
+        "3": 119,
+        "4": 87,
+        "5": 78
+      },
+      "hydration_issue": {
+        "false": 604,
+        "true": 236
+      },
+      "danger_signs": {
+        "\"bleeding\"": 59,
+        "\"blurred_vision\"": 18,
+        "\"breathing_difficulty\"": 60,
+        "\"cannot_drink\"": 86,
+        "\"convulsions\"": 29,
+        "\"fever\"": 35,
+        "\"reduced_fetal_movement\"": 30,
+        "\"severe_abdominal_pain\"": 18,
+        "\"severe_headache\"": 34,
+        "\"water_breaking_early\"": 29
+      },
+      "notes": {
+        "\"had a seizure\"": 29,
+        "\"loose stools\"": 54,
+        "\"not drinking well\"": 22,
+        "\"very sleepy\"": 23,
+        "\"very weak\"": 50,
+        "\"vomiting repeatedly\"": 36,
+        "null": 626
+      }
+    },
+    "validation": {
+      "patient_type": {
+        "\"adult\"": 63,
+        "\"child\"": 66,
+        "\"pregnant\"": 51
+      },
+      "symptoms": {
+        "\"abdominal_pain\"": 24,
+        "\"bleeding\"": 7,
+        "\"blurred_vision\"": 13,
+        "\"breathing_difficulty\"": 8,
+        "\"cough\"": 26,
+        "\"diarrhoea\"": 24,
+        "\"fatigue\"": 7,
+        "\"fever\"": 69,
+        "\"fluid_loss\"": 8,
+        "\"headache\"": 21,
+        "\"reduced_fetal_movement\"": 5,
+        "\"vomiting\"": 26,
+        "\"weakness\"": 31
+      },
+      "duration_days": {
+        "1": 65,
+        "2": 49,
+        "3": 25,
+        "4": 18,
+        "5": 23
+      },
+      "hydration_issue": {
+        "false": 130,
+        "true": 50
+      },
+      "danger_signs": {
+        "\"bleeding\"": 7,
+        "\"blurred_vision\"": 9,
+        "\"breathing_difficulty\"": 8,
+        "\"cannot_drink\"": 12,
+        "\"convulsions\"": 5,
+        "\"fever\"": 11,
+        "\"reduced_fetal_movement\"": 5,
+        "\"severe_abdominal_pain\"": 6,
+        "\"severe_headache\"": 4,
+        "\"water_breaking_early\"": 8
+      },
+      "notes": {
+        "\"had a seizure\"": 5,
+        "\"loose stools\"": 15,
+        "\"not drinking well\"": 5,
+        "\"very sleepy\"": 4,
+        "\"very weak\"": 8,
+        "\"vomiting repeatedly\"": 4,
+        "null": 139
+      }
+    },
+    "test": {
+      "patient_type": {
+        "\"adult\"": 70,
+        "\"child\"": 74,
+        "\"pregnant\"": 36
+      },
+      "symptoms": {
+        "\"abdominal_pain\"": 16,
+        "\"bleeding\"": 8,
+        "\"blurred_vision\"": 19,
+        "\"breathing_difficulty\"": 22,
+        "\"cough\"": 41,
+        "\"diarrhoea\"": 29,
+        "\"fatigue\"": 8,
+        "\"fever\"": 63,
+        "\"fluid_loss\"": 2,
+        "\"headache\"": 21,
+        "\"reduced_fetal_movement\"": 4,
+        "\"vomiting\"": 28,
+        "\"weakness\"": 28
+      },
+      "duration_days": {
+        "1": 71,
+        "2": 42,
+        "3": 34,
+        "4": 15,
+        "5": 18
+      },
+      "hydration_issue": {
+        "false": 129,
+        "true": 51
+      },
+      "danger_signs": {
+        "\"bleeding\"": 8,
+        "\"blurred_vision\"": 12,
+        "\"breathing_difficulty\"": 22,
+        "\"cannot_drink\"": 19,
+        "\"convulsions\"": 2,
+        "\"fever\"": 3,
+        "\"reduced_fetal_movement\"": 4,
+        "\"severe_abdominal_pain\"": 4,
+        "\"severe_headache\"": 7,
+        "\"water_breaking_early\"": 2
+      },
+      "notes": {
+        "\"had a seizure\"": 2,
+        "\"loose stools\"": 17,
+        "\"not drinking well\"": 1,
+        "\"very sleepy\"": 9,
+        "\"very weak\"": 16,
+        "\"vomiting repeatedly\"": 3,
+        "null": 132
+      }
+    }
+  },
+  "labels_by_language": {
+    "en": {
+      "patient_type": {
+        "\"adult\"": 283,
+        "\"child\"": 282,
+        "\"pregnant\"": 209
+      },
+      "symptoms": {
+        "\"abdominal_pain\"": 81,
+        "\"bleeding\"": 57,
+        "\"blurred_vision\"": 49,
+        "\"breathing_difficulty\"": 54,
+        "\"cough\"": 118,
+        "\"diarrhoea\"": 106,
+        "\"fatigue\"": 28,
+        "\"fever\"": 301,
+        "\"fluid_loss\"": 26,
+        "\"headache\"": 67,
+        "\"reduced_fetal_movement\"": 26,
+        "\"vomiting\"": 127,
+        "\"weakness\"": 122
+      },
+      "duration_days": {
+        "1": 290,
+        "2": 225,
+        "3": 115,
+        "4": 69,
+        "5": 75
+      },
+      "hydration_issue": {
+        "false": 558,
+        "true": 216
+      },
+      "danger_signs": {
+        "\"bleeding\"": 57,
+        "\"blurred_vision\"": 24,
+        "\"breathing_difficulty\"": 54,
+        "\"cannot_drink\"": 82,
+        "\"convulsions\"": 28,
+        "\"fever\"": 33,
+        "\"reduced_fetal_movement\"": 26,
+        "\"severe_abdominal_pain\"": 23,
+        "\"severe_headache\"": 25,
+        "\"water_breaking_early\"": 26
+      },
+      "notes": {
+        "\"had a seizure\"": 28,
+        "\"loose stools\"": 49,
+        "\"not drinking well\"": 13,
+        "\"very sleepy\"": 27,
+        "\"very weak\"": 52,
+        "\"vomiting repeatedly\"": 30,
+        "null": 575
+      }
+    },
+    "sw": {
+      "patient_type": {
+        "\"adult\"": 143,
+        "\"child\"": 182,
+        "\"pregnant\"": 101
+      },
+      "symptoms": {
+        "\"abdominal_pain\"": 38,
+        "\"bleeding\"": 17,
+        "\"blurred_vision\"": 35,
+        "\"breathing_difficulty\"": 36,
+        "\"cough\"": 93,
+        "\"diarrhoea\"": 57,
+        "\"fatigue\"": 10,
+        "\"fever\"": 168,
+        "\"fluid_loss\"": 13,
+        "\"headache\"": 51,
+        "\"reduced_fetal_movement\"": 13,
+        "\"vomiting\"": 58,
+        "\"weakness\"": 61
+      },
+      "duration_days": {
+        "1": 167,
+        "2": 101,
+        "3": 63,
+        "4": 51,
+        "5": 44
+      },
+      "hydration_issue": {
+        "false": 305,
+        "true": 121
+      },
+      "danger_signs": {
+        "\"bleeding\"": 17,
+        "\"blurred_vision\"": 15,
+        "\"breathing_difficulty\"": 36,
+        "\"cannot_drink\"": 35,
+        "\"convulsions\"": 8,
+        "\"fever\"": 16,
+        "\"reduced_fetal_movement\"": 13,
+        "\"severe_abdominal_pain\"": 5,
+        "\"severe_headache\"": 20,
+        "\"water_breaking_early\"": 13
+      },
+      "notes": {
+        "\"had a seizure\"": 8,
+        "\"loose stools\"": 37,
+        "\"not drinking well\"": 15,
+        "\"very sleepy\"": 9,
+        "\"very weak\"": 22,
+        "\"vomiting repeatedly\"": 13,
+        "null": 322
+      }
+    }
+  },
+  "missing_top_level": {
+    "id": 0,
+    "language": 0,
+    "text": 0,
+    "labels": 0,
+    "split": 0,
+    "data_source": 0
+  },
+  "null_labels": {
+    "patient_type": 0,
+    "symptoms": 0,
+    "duration_days": 0,
+    "hydration_issue": 0,
+    "danger_signs": 0,
+    "notes": 897
+  },
+  "empty_label_arrays": {
+    "symptoms": 0,
+    "danger_signs": 644
+  },
+  "overlap": {
+    "exact_text": {
+      "unique_groups": 996,
+      "duplicate_excess_rows": 204,
+      "cross_split_groups": 73,
+      "rows_in_cross_split_groups": 198,
+      "heldout_rows_also_in_train": {
+        "validation": 45,
+        "test": 42
+      },
+      "conflicting_label_groups": 0,
+      "cross_split_examples": [
+        [
+          {
+            "id": "health_ie_0544",
+            "split": "train",
+            "text": "The child feels hot and has a fever. This has been going on for one day."
+          },
+          {
+            "id": "health_ie_0568",
+            "split": "train",
+            "text": "The child feels hot and has a fever. This has been going on for one day."
+          },
+          {
+            "id": "health_ie_0705",
+            "split": "validation",
+            "text": "The child feels hot and has a fever. This has been going on for one day."
+          }
+        ],
+        [
+          {
+            "id": "health_ie_0958",
+            "split": "train",
+            "text": "This has been going on for two days. I have a fever."
+          },
+          {
+            "id": "health_ie_0808",
+            "split": "train",
+            "text": "This has been going on for two days. I have a fever."
+          },
+          {
+            "id": "health_ie_1099",
+            "split": "train",
+            "text": "This has been going on for two days. I have a fever."
+          },
+          {
+            "id": "health_ie_0030",
+            "split": "test",
+            "text": "This has been going on for two days. I have a fever."
+          }
+        ],
+        [
+          {
+            "id": "health_ie_0830",
+            "split": "train",
+            "text": "Mimi ni mjamzito na nimechoka sana. Hali hii imeendelea kwa karibu siku tano."
+          },
+          {
+            "id": "health_ie_0592",
+            "split": "validation",
+            "text": "Mimi ni mjamzito na nimechoka sana. Hali hii imeendelea kwa karibu siku tano."
+          }
+        ]
+      ]
+    },
+    "sentence_bag": {
+      "unique_groups": 646,
+      "duplicate_excess_rows": 554,
+      "cross_split_groups": 157,
+      "rows_in_cross_split_groups": 546,
+      "heldout_rows_also_in_train": {
+        "validation": 107,
+        "test": 103
+      },
+      "conflicting_label_groups": 0,
+      "cross_split_examples": [
+        [
+          {
+            "id": "health_ie_0544",
+            "split": "train",
+            "text": "The child feels hot and has a fever. This has been going on for one day."
+          },
+          {
+            "id": "health_ie_0568",
+            "split": "train",
+            "text": "The child feels hot and has a fever. This has been going on for one day."
+          },
+          {
+            "id": "health_ie_1118",
+            "split": "train",
+            "text": "This has been going on for one day. The child feels hot and has a fever."
+          },
+          {
+            "id": "health_ie_0705",
+            "split": "validation",
+            "text": "The child feels hot and has a fever. This has been going on for one day."
+          }
+        ],
+        [
+          {
+            "id": "health_ie_0958",
+            "split": "train",
+            "text": "This has been going on for two days. I have a fever."
+          },
+          {
+            "id": "health_ie_0808",
+            "split": "train",
+            "text": "This has been going on for two days. I have a fever."
+          },
+          {
+            "id": "health_ie_1099",
+            "split": "train",
+            "text": "This has been going on for two days. I have a fever."
+          },
+          {
+            "id": "health_ie_1113",
+            "split": "train",
+            "text": "I have a fever. This has been going on for two days."
+          },
+          {
+            "id": "health_ie_0163",
+            "split": "train",
+            "text": "I have a fever. This has been going on for two days."
+          },
+          {
+            "id": "health_ie_0527",
+            "split": "train",
+            "text": "I have a fever. This has been going on for two days."
+          },
+          {
+            "id": "health_ie_0501",
+            "split": "validation",
+            "text": "I have a fever. This has been going on for two days."
+          },
+          {
+            "id": "health_ie_0435",
+            "split": "test",
+            "text": "I have a fever. This has been going on for two days."
+          },
+          {
+            "id": "health_ie_0030",
+            "split": "test",
+            "text": "This has been going on for two days. I have a fever."
+          },
+          {
+            "id": "health_ie_0690",
+            "split": "test",
+            "text": "I have a fever. This has been going on for two days."
+          }
+        ],
+        [
+          {
+            "id": "health_ie_0830",
+            "split": "train",
+            "text": "Mimi ni mjamzito na nimechoka sana. Hali hii imeendelea kwa karibu siku tano."
+          },
+          {
+            "id": "health_ie_0592",
+            "split": "validation",
+            "text": "Mimi ni mjamzito na nimechoka sana. Hali hii imeendelea kwa karibu siku tano."
+          },
+          {
+            "id": "health_ie_0035",
+            "split": "validation",
+            "text": "Hali hii imeendelea kwa karibu siku tano. Mimi ni mjamzito na nimechoka sana."
+          }
+        ]
+      ]
+    }
+  },
+  "unique_sentence_fragments": 184,
+  "heldout_all_sentences_seen_in_train": {
+    "validation": 179,
+    "test": 178
+  },
+  "symptom_combinations": {
+    "cough|fever": 82,
+    "fever": 139,
+    "breathing_difficulty|cough": 90,
+    "fatigue": 38,
+    "cough": 39,
+    "bleeding": 74,
+    "weakness": 42,
+    "reduced_fetal_movement": 39,
+    "vomiting": 34,
+    "vomiting|weakness": 33,
+    "fever|weakness": 72,
+    "diarrhoea|vomiting": 39,
+    "blurred_vision|headache": 84,
+    "diarrhoea|fever": 48,
+    "headache": 34,
+    "fever|vomiting": 43,
+    "diarrhoea": 76,
+    "abdominal_pain": 70,
+    "abdominal_pain|fever": 49,
+    "fever|vomiting|weakness": 36,
+    "fluid_loss": 39
+  },
+  "sw_rows_with_english_note_verbatim": 104,
+  "yesterday_mentions_by_duration_label": {
+    "3": 25,
+    "2": 30,
+    "4": 11,
+    "1": 8
+  },
+  "text_length_characters": {
+    "min": 44,
+    "max": 218,
+    "mean": 102.16
+  }
+}

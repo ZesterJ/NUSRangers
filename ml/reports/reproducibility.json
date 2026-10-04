@@ -1,0 +1,11 @@
+{
+  "full_training_rerun_matches": true,
+  "checks": [
+    "derived_split",
+    "all_configuration_validation_metrics",
+    "selected_configuration_and_threshold",
+    "selected_model_probabilities_sha256"
+  ],
+  "prediction_sha256": "4a537bf8c9e5d344cf26d515e870497d319c2932e9dd0d9dc27070c4e07a036d",
+  "excluded_from_equality": "Wall-clock latency and load measurements"
+}
