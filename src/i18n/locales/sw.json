@@ -16,7 +16,7 @@
     "cancel": "Ghairi",
     "retry": "Jaribu tena"
   },
-  "offlineBanner": "Uko nje ya mtandao. Majibu yanatoka kwenye simu; mengine yatatumwa ukiunganishwa.",
+  "offlineBanner": "Uko nje ya mtandao. Programu inafanya kazi kama kawaida, na taarifa zako zitatumwa utakapounganishwa tena.",
   "source": {
     "offline": "Maarifa ya simu",
     "cache": "Jibu lililohifadhiwa",

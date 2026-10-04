@@ -16,7 +16,7 @@
     "cancel": "Cancel",
     "retry": "Retry"
   },
-  "offlineBanner": "You are offline. Answers come from the phone; anything else is sent when you reconnect.",
+  "offlineBanner": "You are offline. The app works as normal, and your visit notes will be sent when you reconnect.",
   "source": {
     "offline": "On-phone knowledge",
     "cache": "Saved answer",
