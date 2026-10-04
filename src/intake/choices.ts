@@ -61,7 +61,8 @@ export function applyChoices(ex: Extraction, c: Choices): Extraction {
     dangerSigns: {
       ...ex.dangerSigns,
       value: dangerSigns,
-      confidence: c.dangerSigns.length || c.noDanger ? 'high' : ex.dangerSigns.confidence,
+      // "None of these" tapped while the typed text names a danger sign is a contradiction: the sign stays, but ask for a check.
+      confidence: c.dangerSigns.length ? 'high' : c.noDanger ? (dangerSigns.length ? 'low' : 'high') : ex.dangerSigns.confidence,
     },
   };
 }
