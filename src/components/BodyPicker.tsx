@@ -3,7 +3,6 @@ import { useTranslation } from 'react-i18next';
 import { Pressable, StyleSheet, View } from 'react-native';
 
 import { BODY_PART_OPTIONS, BODY_PARTS, type BodyPart, type BodyPicks } from '@/intake/bodyParts';
-import { useBilingual } from '@/i18n/bilingual';
 import { spacing, usePackContext } from '@/theme';
 
 import { Chip, SectionTitle } from './ui';
@@ -28,7 +27,6 @@ const SHAPES: { part: BodyPart; style: object }[] = [
 export function BodyPicker({ picks, onChange }: Props) {
   const { theme } = usePackContext();
   const { t } = useTranslation();
-  const bi = useBilingual();
   const [active, setActive] = useState<BodyPart | null>(null);
 
   // First tap selects a part and shows its common problems; tapping the part being shown again cancels it.
@@ -80,7 +78,7 @@ export function BodyPicker({ picks, onChange }: Props) {
       {/* The same parts as labelled buttons: clearer than the figure alone, and the only way to pick "skin". */}
       <View style={styles.chips}>
         {BODY_PARTS.map((part) => (
-          <Chip key={part} label={bi(`intake.part.${part}`)} selected={picks.parts.includes(part)} onPress={() => tapPart(part)} />
+          <Chip key={part} label={t(`intake.part.${part}`)} selected={picks.parts.includes(part)} onPress={() => tapPart(part)} />
         ))}
       </View>
 
@@ -91,7 +89,7 @@ export function BodyPicker({ picks, onChange }: Props) {
             {options.symptoms.map((s) => (
               <Chip
                 key={s}
-                label={bi(`intake.sym.${s}`)}
+                label={t(`intake.sym.${s}`)}
                 selected={picks.symptoms.includes(s)}
                 onPress={() => onChange({ ...picks, symptoms: toggle(picks.symptoms, s) })}
               />
@@ -99,7 +97,7 @@ export function BodyPicker({ picks, onChange }: Props) {
             {options.dangerSigns.map((d) => (
               <Chip
                 key={d}
-                label={`⚠ ${bi(`intake.ds.${d}`)}`}
+                label={`⚠ ${t(`intake.ds.${d}`)}`}
                 selected={picks.dangerSigns.includes(d)}
                 onPress={() => onChange({ ...picks, dangerSigns: toggle(picks.dangerSigns, d) })}
               />

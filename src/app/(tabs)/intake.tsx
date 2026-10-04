@@ -187,7 +187,7 @@ function IntakeFlow({ onRestart }: { onRestart: () => void }) {
             <SectionTitle>{t('intake.samples')}</SectionTitle>
             <View style={styles.chips}>
               {q.samples.map((s) => (
-                <Chip key={s.sw} label={locale === 'sw' ? s.sw : `${s.sw} (${s.en})`} onPress={() => setAnswer(s.sw)} />
+                <Chip key={s.sw} label={locale === 'sw' ? s.sw : s.en} onPress={() => setAnswer(locale === 'sw' ? s.sw : s.en)} />
               ))}
             </View>
 

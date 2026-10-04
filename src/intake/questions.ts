@@ -3,7 +3,7 @@ import type { Localized } from '@/packs/types';
 /**
  * Fixed guided questions (no free-form chat): each answer is short and on one topic,
  * which keeps extraction reliable.
- * `samples` are suggested answers the user can tap instead of speaking or typing.
+ * `samples` are suggested answers the user can tap instead of typing, shown in the app's language.
  * Swahili text needs review by a native speaker.
  */
 export type GuidedQuestion = {
