@@ -49,6 +49,18 @@
           "photosPermission": "Used to attach photos to reports.",
           "cameraPermission": "Used to take photos for reports."
         }
+      ],
+      [
+        "expo-camera",
+        {
+          "cameraPermission": "Used to scan patient handoff codes at the clinic."
+        }
+      ],
+      [
+        "expo-audio",
+        {
+          "microphonePermission": "Used to record the patient's spoken answers."
+        }
       ]
     ],
     "experiments": {

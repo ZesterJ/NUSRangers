@@ -1,6 +1,21 @@
 {
-  "tabs": { "home": "Home", "chat": "Ask", "capture": "Report", "history": "History", "settings": "Settings" },
-  "common": { "online": "Online", "offline": "Offline", "save": "Save", "cancel": "Cancel", "retry": "Retry" },
+  "tabs": {
+    "home": "Home",
+    "chat": "Ask",
+    "capture": "Report",
+    "history": "History",
+    "settings": "Settings",
+    "intake": "Intake",
+    "scan": "Clinic",
+    "records": "Records"
+  },
+  "common": {
+    "online": "Online",
+    "offline": "Offline",
+    "save": "Save",
+    "cancel": "Cancel",
+    "retry": "Retry"
+  },
   "offlineBanner": "You are offline. Answers come from the phone; anything else is sent when you reconnect.",
   "source": {
     "offline": "On-phone knowledge",
@@ -27,7 +42,11 @@
     "required": "Please fill in: {{field}}",
     "result": "Result",
     "queued": "Saved offline. Showing the on-phone assessment; the cloud check runs when you reconnect.",
-    "risk": { "low": "Low risk", "med": "Medium risk", "high": "High risk" },
+    "risk": {
+      "low": "Low risk",
+      "med": "Medium risk",
+      "high": "High risk"
+    },
     "newReport": "New report"
   },
   "history": {
@@ -36,17 +55,116 @@
     "syncNow": "Sync now",
     "syncing": "Syncing…",
     "empty": "No reports yet.",
-    "noResult": "Waiting for result"
+    "noResult": "Waiting for result",
+    "intakes": "Patient intakes"
   },
   "settings": {
     "language": "Language",
     "aiMode": "AI mode",
-    "aiModes": { "auto": "Auto", "offline": "Offline only", "cloud": "Cloud only" },
+    "aiModes": {
+      "auto": "Auto",
+      "offline": "Offline only",
+      "cloud": "Cloud only"
+    },
     "forceOffline": "Simulate no signal",
     "developer": "Developer",
     "pack": "Domain pack",
     "useMock": "Use mock backend",
     "apiUrl": "Backend URL"
   },
-  "onboarding": { "welcome": "Welcome", "chooseLanguage": "Choose your language", "start": "Start" }
+  "onboarding": {
+    "welcome": "Welcome",
+    "chooseLanguage": "Choose your language",
+    "start": "Start"
+  },
+  "intake": {
+    "step": "Question {{n}} of {{total}}",
+    "speak": "Speak",
+    "stop": "Stop",
+    "listening": "Listening…",
+    "transcribing": "Turning speech into text…",
+    "voiceUnavailable": "Voice needs a connection right now. Type the answer or tap a demo answer.",
+    "typeHere": "Type the answer",
+    "samples": "Demo answers",
+    "next": "Next",
+    "back": "Back",
+    "finish": "Check answers",
+    "extracting": "Reading the answers…",
+    "reviewTitle": "Here is what we understood",
+    "reviewHint": "This is how your answers were interpreted. Look closely at anything marked \"please check\", and change what is wrong.",
+    "edit": "Change something",
+    "pleaseCheck": "Please check",
+    "who": "Who is sick",
+    "symptoms": "Problems",
+    "duration": "Days sick",
+    "danger": "Danger signs",
+    "none": "None",
+    "notes": "Anything else",
+    "source": {
+      "rules": "Read on this phone",
+      "model": "Read by the AI model"
+    },
+    "confirm": "Confirm answers",
+    "resultTitle": "Suggested next step",
+    "level": {
+      "refer_now": "Go to a clinic now",
+      "refer_24h": "Visit a clinic within 24 hours",
+      "home_care": "Home care, check again in 2 days",
+      "unsure": "Not sure. Ask a health worker"
+    },
+    "humanDecides": "This is support, not a diagnosis. A health worker makes the final decision.",
+    "clinics": "Suggested clinics",
+    "noClinic": "No suitable clinic in range. Call the sub-county referral line or ask a health worker.",
+    "callAhead": "Staffing not confirmed today. Call ahead:",
+    "choose": "Choose",
+    "chosen": "Chosen",
+    "sampleData": "Sample clinic data",
+    "handoff": "Create clinic handoff",
+    "qrTitle": "Show this at the clinic",
+    "qrHint": "The clinic scans this code to receive the answers without asking again.",
+    "saved": "Saved on this phone. It will sync when there is signal.",
+    "newIntake": "Start a new intake",
+    "transcript": "What was said",
+    "group": {
+      "child_u5": "Child under 5",
+      "pregnant": "Pregnant woman",
+      "adult": "Adult"
+    },
+    "sym": {
+      "fever": "Fever",
+      "cough": "Cough",
+      "difficulty_breathing": "Difficulty breathing",
+      "diarrhoea": "Diarrhoea",
+      "vomiting": "Vomiting",
+      "headache": "Headache",
+      "abdominal_pain": "Stomach pain",
+      "rash": "Rash",
+      "weakness": "Weakness"
+    },
+    "ds": {
+      "unable_to_drink": "Cannot drink",
+      "vomits_everything": "Vomits everything",
+      "convulsions": "Fits / convulsions",
+      "lethargic": "Very sleepy / hard to wake",
+      "chest_indrawing": "Chest pulls in",
+      "vaginal_bleeding": "Bleeding (pregnancy)",
+      "severe_headache_blurred_vision": "Severe headache, blurred vision",
+      "reduced_fetal_movement": "Baby moving less",
+      "blood_in_stool": "Blood in stool"
+    }
+  },
+  "scan": {
+    "title": "Clinic: receive a patient",
+    "hint": "Point the camera at the patient's handoff code.",
+    "permission": "The camera is needed to scan handoff codes.",
+    "grant": "Allow camera",
+    "verified": "Verified handoff",
+    "tampered": "This code was changed or damaged. Ask the patient again in person.",
+    "not_ours": "This is not a handoff code from this app.",
+    "unreadable": "The code could not be read. Try again.",
+    "markReceived": "Mark as received",
+    "received": "Received",
+    "scanAgain": "Scan another",
+    "checkInPerson": "Confirm the patient's identity in person."
+  }
 }

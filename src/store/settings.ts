@@ -3,7 +3,7 @@ import { create } from 'zustand';
 import { createJSONStorage, persist } from 'zustand/middleware';
 
 import { config } from '@/config';
-import { getPack } from '@/packs';
+import { PACKS, getPack } from '@/packs';
 
 /**
  * auto    — offline knowledge first, then cloud, then on-device LLM, then SMS.
@@ -42,7 +42,15 @@ export const useSettings = create<SettingsState>()(
       name: 'settings',
       storage: createJSONStorage(() => AsyncStorage),
       partialize: ({ hydrated, set, ...rest }) => rest,
-      onRehydrateStorage: () => () => useSettings.setState({ hydrated: true }),
+      onRehydrateStorage: () => () => {
+        const { packId, locale } = useSettings.getState();
+        // A pack saved on this phone may no longer exist (agri/tourism were removed): switch to the current one.
+        const pack = getPack(packId);
+        const patch: Partial<SettingsState> = { hydrated: true };
+        if (!PACKS[packId]) patch.packId = pack.id;
+        if (!pack.locales.some((l) => l.code === locale)) patch.locale = pack.defaultLocale;
+        useSettings.setState(patch);
+      },
     },
   ),
 );

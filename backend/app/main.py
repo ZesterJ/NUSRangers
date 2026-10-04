@@ -4,9 +4,10 @@ import logging
 import os
 import re
 from contextlib import asynccontextmanager
+from typing import Any
 from xml.sax.saxutils import escape
 
-from fastapi import Depends, FastAPI, Form, HTTPException, Request
+from fastapi import Body, Depends, FastAPI, Form, HTTPException, Request
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import Response
 
@@ -39,7 +40,7 @@ app = FastAPI(title="NUSRangers backend", version="0.1.0", lifespan=lifespan)
 app.add_middleware(CORSMiddleware, allow_origins=["*"], allow_methods=["*"], allow_headers=["*"])
 
 provider = make_provider()
-DEFAULT_PACK = os.getenv("DEFAULT_PACK", "agri")
+DEFAULT_PACK = os.getenv("DEFAULT_PACK", "health")
 
 
 def _raise(e: LLMError):
@@ -66,6 +67,21 @@ async def analyze(req: AnalyzeRequest):
         return await provider.analyze(req)
     except LLMError as e:
         _raise(e)
+
+
+# Store-and-forward target for confirmed intake records. In-memory for the hackathon; map to DHIS2
+# (tracked entity + event) for a real deployment. Never log the record contents: it is patient data.
+RECORDS: dict[str, dict[str, Any]] = {}
+
+
+@app.post("/records")
+async def save_record(record: dict[str, Any] = Body(...)):
+    rec_id = str(record.get("id", ""))
+    if not rec_id:
+        raise HTTPException(status_code=422, detail="record.id is required")
+    RECORDS[rec_id] = record
+    log.info("Stored intake record %s (%d total)", rec_id, len(RECORDS))
+    return {"ok": True}
 
 
 SMS_PREFIX = re.compile(r"^\s*([A-Za-z]+)\s*:\s*(.*)$", re.S)

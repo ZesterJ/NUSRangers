@@ -1,6 +1,7 @@
 import * as SQLite from 'expo-sqlite';
 
 import type { AiSource } from '@/ai/types';
+import type { IntakeRecord } from '@/intake/types';
 import type { Assessment, FormValues } from '@/packs/types';
 
 let dbPromise: Promise<SQLite.SQLiteDatabase> | null = null;
@@ -35,6 +36,12 @@ export function getDb() {
           question TEXT NOT NULL,
           answer TEXT NOT NULL,
           PRIMARY KEY (pack_id, locale, question)
+        );
+        CREATE TABLE IF NOT EXISTS intakes (
+          id TEXT PRIMARY KEY,
+          created_at INTEGER NOT NULL,
+          record TEXT NOT NULL,
+          status TEXT NOT NULL
         );
         CREATE TABLE IF NOT EXISTS outbox (
           id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -199,9 +206,37 @@ export async function getReportImage(id: number) {
   return row?.image_base64 ?? undefined;
 }
 
+// ---------- intake records (patient journey: speech → triage → referral → QR) ----------
+
+export async function saveIntake(rec: IntakeRecord) {
+  const db = await getDb();
+  await db.runAsync(
+    'INSERT OR REPLACE INTO intakes (id, created_at, record, status) VALUES (?, ?, ?, ?)',
+    rec.id,
+    rec.createdAt,
+    JSON.stringify(rec),
+    rec.status,
+  );
+}
+
+export async function listIntakes(): Promise<IntakeRecord[]> {
+  const db = await getDb();
+  const rows = await db.getAllAsync<{ record: string }>('SELECT record FROM intakes ORDER BY created_at DESC');
+  return rows.map((r) => JSON.parse(r.record));
+}
+
+export async function markIntakeReceived(id: string) {
+  const db = await getDb();
+  const row = await db.getFirstAsync<{ record: string }>('SELECT record FROM intakes WHERE id = ?', id);
+  if (!row) return false;
+  const rec: IntakeRecord = { ...JSON.parse(row.record), status: 'received' };
+  await saveIntake(rec);
+  return true;
+}
+
 // ---------- outbox (work to retry once back online) ----------
 
-export type OutboxKind = 'chat' | 'report';
+export type OutboxKind = 'chat' | 'report' | 'intake';
 export type OutboxItem = { id: number; kind: OutboxKind; refId: number; payload: string };
 
 export async function enqueue(kind: OutboxKind, refId: number, payload: unknown) {
