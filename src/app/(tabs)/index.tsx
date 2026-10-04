@@ -1,10 +1,8 @@
-import { router } from 'expo-router';
 import { useTranslation } from 'react-i18next';
 import { ScrollView, StyleSheet, Text, View } from 'react-native';
 
 import { HomeCardView } from '@/components/HomeCardView';
 import { OfflineBanner } from '@/components/OfflineBanner';
-import { Button } from '@/components/ui';
 import { tr } from '@/packs/types';
 import { useIsOnline } from '@/store/connectivity';
 import { spacing, usePackContext } from '@/theme';
@@ -28,8 +26,6 @@ export default function Home() {
         {pack.homeCards.map((card) => (
           <HomeCardView key={card.id} card={card} />
         ))}
-
-        <Button label={`💬 ${t('tabs.chat')}`} onPress={() => router.push('/chat')} />
       </ScrollView>
     </View>
   );
