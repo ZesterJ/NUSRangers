@@ -1,0 +1,39 @@
+{
+  "dataset": "Kilifi Health_WFL1 / Kilfi_Health_Facilities (layer 0)",
+  "accessDate": "2026-10-04",
+  "manifestCreatedAt": "2026-10-04T06:53:05.302029+00:00",
+  "retrieval": "Public read-only REST GET via curl; responses preserved byte-for-byte",
+  "licence": "Not specified; public access does not establish redistribution permission",
+  "files": {
+    "service.json": {
+      "url": "https://services3.arcgis.com/kUatCIwPzByJQvIx/ArcGIS/rest/services/Kilifi_Health_WFL1/FeatureServer?f=pjson",
+      "sha256": "9f5b66968034a9534983dec07f2d97799ece4ee5bb899f3bc9e1b214edb1e1a7",
+      "bytes": 6679
+    },
+    "layer.json": {
+      "url": "https://services3.arcgis.com/kUatCIwPzByJQvIx/ArcGIS/rest/services/Kilifi_Health_WFL1/FeatureServer/0?f=pjson",
+      "sha256": "7f5dbeced7d3c46d66f56ffd70aac3d69f5977e33c4c6aeb1a7bc0ab6875c9d1",
+      "bytes": 16947
+    },
+    "item.json": {
+      "url": "https://www.arcgis.com/sharing/rest/content/items/f5876f6990e141198c92847f2c780afe?f=pjson",
+      "sha256": "127f009b51f06a66bddd369ec6faaa29f7c75c80e702229e0815a99693a18907",
+      "bytes": 1588
+    },
+    "count.json": {
+      "url": "https://services3.arcgis.com/kUatCIwPzByJQvIx/ArcGIS/rest/services/Kilifi_Health_WFL1/FeatureServer/0/query?where=1%3D1&returnCountOnly=true&f=pjson",
+      "sha256": "b31c914b161f9d5c182c0a286c82880d8652b0a358df010000efec61b4a46ced",
+      "bytes": 69
+    },
+    "ids.json": {
+      "url": "https://services3.arcgis.com/kUatCIwPzByJQvIx/ArcGIS/rest/services/Kilifi_Health_WFL1/FeatureServer/0/query?where=1%3D1&returnIdsOnly=true&f=pjson",
+      "sha256": "89f6d9346f550a920085f6ccc6d1b4541a92fb8669fac48f207682f1fcc70d72",
+      "bytes": 2341
+    },
+    "records.json": {
+      "url": "https://services3.arcgis.com/kUatCIwPzByJQvIx/ArcGIS/rest/services/Kilifi_Health_WFL1/FeatureServer/0/query?where=1%3D1&outFields=*&returnGeometry=true&outSR=4326&orderByFields=OBJECTID&resultRecordCount=2000&f=pjson",
+      "sha256": "46755f8e50622a3454e02cba3538311df42b4f119d3da47f59875112b5368240",
+      "bytes": 205766
+    }
+  }
+}

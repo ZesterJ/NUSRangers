@@ -1,0 +1,83 @@
+{
+  "outpatient_study": {
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6081997/",
+    "date": "2018",
+    "period": "2016",
+    "kind": "published_research_indexed",
+    "summary": "Methods identify nine public outpatient sites in the Kilifi surveillance area, including the six matched rural facilities. Routine clinic care was used for recruitment.",
+    "accessDate": "2026-10-04",
+    "evidenceForm": "Concise paraphrase of retrieved public page/search-index content; not an archived full-page snapshot"
+  },
+  "child_study": {
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7889702/",
+    "date": "2021",
+    "period": "2014-03/2018-10",
+    "kind": "published_research_indexed",
+    "summary": "Methods describe children under sixteen presenting with fever at Ngerenya and Pingilikani dispensaries. This establishes historical child assessment, not current age eligibility.",
+    "accessDate": "2026-10-04",
+    "evidenceForm": "Concise paraphrase of retrieved public page/search-index content; not an archived full-page snapshot"
+  },
+  "anc_study": {
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7059845/",
+    "date": "2020",
+    "period": "2014-08/2014-10",
+    "kind": "published_research_indexed",
+    "summary": "Results document antenatal clinic visits at Matsangoni and Pingilikani during the 2014 study.",
+    "accessDate": "2026-10-04",
+    "evidenceForm": "Concise paraphrase of retrieved public page/search-index content; not an archived full-page snapshot"
+  },
+  "kilifi_registry": {
+    "url": "https://kmhfr.health.go.ke/public/facilities/09d5776f-81a0-4bf0-bbbb-77d607803976",
+    "date": null,
+    "period": "unknown; search index crawl approximately two months before access",
+    "kind": "production_registry_indexed",
+    "summary": "Record 11474 explicitly lists general outpatient, paediatric outpatient and focused antenatal care. It lists level 4, primary care hospital and operational status; these are undated registry claims.",
+    "accessDate": "2026-10-04",
+    "evidenceForm": "Concise paraphrase of retrieved public page/search-index content; not an archived full-page snapshot"
+  },
+  "takaungu_registry": {
+    "url": "https://kmhfr.health.go.ke/public/facilities/505bfafc-1eb3-4daf-8a68-30418b76b9ba",
+    "date": null,
+    "period": "unknown; search index crawl approximately two months before access",
+    "kind": "production_registry_indexed",
+    "summary": "Record 11836 lists general outpatient and focused antenatal care; child immunization alone is insufficient for the assessment-oriented childHealth label. Level 2, dispensary, operational are registry claims.",
+    "accessDate": "2026-10-04",
+    "evidenceForm": "Concise paraphrase of retrieved public page/search-index content; not an archived full-page snapshot"
+  },
+  "malindi_council": {
+    "url": "https://www.maarifa.cog.go.ke/county-initiatives/kilifi-county-strengthens-maternal-and-referral-care-modern-maternity-wing",
+    "date": null,
+    "period": "undated article; exact commissioning date not verified",
+    "kind": "council_of_governors_indexed",
+    "summary": "County initiative describes completed maternity-wing commissioning and upgrades to outpatient services at Malindi Sub-County Hospital. Proposed future construction is not used.",
+    "accessDate": "2026-10-04",
+    "evidenceForm": "Concise paraphrase of retrieved public page/search-index content; not an archived full-page snapshot"
+  },
+  "tawfiq_official": {
+    "url": "https://tawfiqmy.org/the-hospital/",
+    "date": null,
+    "period": "undated service listing",
+    "kind": "official_operator_indexed",
+    "summary": "The hospital operator lists outpatient care, maternity and antenatal care, and a child welfare clinic. Child-health scope is limited to the documented clinic; no general paediatric suitability is implied.",
+    "accessDate": "2026-10-04",
+    "evidenceForm": "Concise paraphrase of retrieved public page/search-index content; not an archived full-page snapshot"
+  },
+  "wananchi_official": {
+    "url": "https://wananchihospital.org/services/",
+    "date": null,
+    "period": "undated service listing",
+    "kind": "official_facility_page",
+    "summary": "Service page lists outpatient, maternity and maternal/child care. Mapping to the old ArcGIS nursing-home versus medical-clinic records is unresolved; no capability is transferred.",
+    "accessDate": "2026-10-04",
+    "evidenceForm": "Concise paraphrase of retrieved public page/search-index content; not an archived full-page snapshot"
+  },
+  "mtwapa_test": {
+    "url": "https://kmhfltest.health.go.ke/public/facilities/55585f1c-6f0d-4bd0-a357-824e392def89",
+    "date": null,
+    "period": "unknown; test host",
+    "kind": "registry_test_host_rejected",
+    "summary": "Indexed Mtwapa hospital record is about 3.3 km from the ArcGIS Mtwapa dispensary. A name-based match is rejected; no capabilities transferred.",
+    "accessDate": "2026-10-04",
+    "evidenceForm": "Concise paraphrase of retrieved public page/search-index content; not an archived full-page snapshot"
+  }
+}

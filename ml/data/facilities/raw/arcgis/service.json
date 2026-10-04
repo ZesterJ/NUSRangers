@@ -1,0 +1,248 @@
+{
+  "currentVersion" : 12, 
+  "serviceItemId" : "f5876f6990e141198c92847f2c780afe", 
+  "serviceDescription" : "", 
+  "hasVersionedData" : false, 
+  "supportsDisconnectedEditing" : false, 
+  "hasStaticData" : false, 
+  "hasSharedDomains" : false, 
+  "maxRecordCount" : 2000, 
+  "maxIdsCount" : 1000000, 
+  "supportedQueryFormats" : "JSON", 
+  "supportsVCSProjection" : false, 
+  "supportedExportFormats" : "csv,shapefile,sqlite,geoPackage,filegdb,featureCollection,geojson,kml,excel", 
+  "supportedConvertFileFormats" : "JSON,PBF", 
+  "supportedConvertContentFormats" : "LayerEditCollection", 
+  "supportedFullTextLocales" : [
+    "neutral", 
+    "ar-SA", 
+    "bg-BG", 
+    "bn-IN", 
+    "ca-ES", 
+    "cs-CZ", 
+    "da-DK", 
+    "de-DE", 
+    "el-GR", 
+    "en-GB", 
+    "en-US", 
+    "es-ES", 
+    "fr-FR", 
+    "gu-IN", 
+    "he-IL", 
+    "hi-IN", 
+    "hr-HR", 
+    "id-ID", 
+    "is-IS", 
+    "it-IT", 
+    "ja-JP", 
+    "kn-IN", 
+    "ko-KR", 
+    "lt-LT", 
+    "lv-LV", 
+    "ml-IN", 
+    "mr-IN", 
+    "ms-MY", 
+    "nb-NO", 
+    "nl-NL", 
+    "pa-IN", 
+    "pl-PL", 
+    "pt-BR", 
+    "pt-PT", 
+    "ro-RO", 
+    "ru-RU", 
+    "sk-SK", 
+    "sl-SI", 
+    "sr-Cyrl-CS", 
+    "sr-Latn-CS", 
+    "sv-SE", 
+    "ta-IN", 
+    "te-IN", 
+    "th-TH", 
+    "tr-TR", 
+    "uk-UA", 
+    "ur-PK", 
+    "vi-VN", 
+    "zh-CN", 
+    "zh-HK", 
+    "zh-MO", 
+    "zh-SG", 
+    "zh-TW"
+  ], 
+  "supportsSharedTemplates" : true, 
+  "hasSharedTemplates" : true, 
+  "capabilities" : "Create,Delete,Query,Update,Editing,Sync,ChangeTracking", 
+  "description" : "", 
+  "copyrightText" : "", 
+  "spatialReference" : {
+    "wkid" : 102100, 
+    "latestWkid" : 3857
+  }, 
+  "initialExtent" : {
+    "xmin" : 4291821.2251064423, 
+    "ymin" : -454472.076446176, 
+    "xmax" : 4539017.3605563473, 
+    "ymax" : -247721.07528613025, 
+    "spatialReference" : {
+      "wkid" : 102100, 
+      "latestWkid" : 3857
+    }
+  }, 
+  "fullExtent" : {
+    "xmin" : 4351166.7907627905, 
+    "ymin" : -445074.30366617389, 
+    "xmax" : 4479671.7949, 
+    "ymax" : -257118.84806613234, 
+    "spatialReference" : {
+      "wkid" : 102100, 
+      "latestWkid" : 3857
+    }
+  }, 
+  "allowGeometryUpdates" : true, 
+  "supportsTrueCurve" : true, 
+  "trueCurveSupportMode" : "OGC", 
+  "supportedCurveTypes" : [
+    "esriGeometryCircularArc"
+  ], 
+  "supportedTrueCurvePbfFeatureEncodings" : [
+    "esriCompressedShapeBuffer", 
+    "esriDefault"
+  ], 
+  "allowTrueCurvesUpdates" : true, 
+  "onlyAllowTrueCurveUpdatesByTrueCurveClients" : false, 
+  "units" : "esriMeters", 
+  "supportsAppend" : true, 
+  "supportedAppendCapabilities" : "Features", 
+  "supportsSharedDomains" : true, 
+  "supportsWebHooks" : true, 
+  "supportsTemporalLayers" : true, 
+  "layerOverridesEnabled" : true, 
+  "size" : 548864, 
+  "syncEnabled" : true, 
+  "syncCapabilities" : {
+    "supportsAsync" : true, 
+    "supportsRegisteringExistingData" : true, 
+    "supportsSyncDirectionControl" : true, 
+    "supportsPerLayerSync" : true, 
+    "supportsPerReplicaSync" : true, 
+    "supportsSyncModelNone" : true, 
+    "supportsRollbackOnFailure" : true, 
+    "supportsAttachmentsSyncDirection" : true, 
+    "supportsBiDirectionalSyncForServer" : true, 
+    "supportedSyncDataOptions" : 33028
+  }, 
+  "extractChangesCapabilities" : {
+    "supportsReturnIdsOnly" : true, 
+    "supportsReturnExtentOnly" : true, 
+    "supportsReturnAttachments" : true, 
+    "supportsLayerQueries" : true, 
+    "supportsGeometry" : true, 
+    "supportsFeatureReturn" : true, 
+    "supportsReturnHasGeometryUpdates" : false, 
+    "supportsReturnDeletedFeatures" : true, 
+    "supportsServerGens" : true, 
+    "supportsFieldsToCompare" : true
+  }, 
+  "supportsApplyEditsWithGlobalIds" : true, 
+  "supportsReturnDeleteResults" : true, 
+  "supportsLayerOverrides" : true, 
+  "supportsTilesAndBasicQueriesMode" : true, 
+  "supportsQueryContingentValues" : true, 
+  "supportedContingentValuesFormats" : "JSON, PBF", 
+  "supportsContingentValuesJson" : 2, 
+  "advancedEditingCapabilities" : {
+    "supportsSplit" : false, 
+    "supportsReturnServiceEditsInSourceSR" : false, 
+    "supportsAsyncApplyEdits" : true, 
+    "supportsReturnEditResults" : true, 
+    "supportsApplyEditsbyUploadID" : true, 
+    "supportedApplyEditsUploadIDFormats" : "JSON,PBF"
+  }, 
+  "editorTrackingInfo" : {
+    "enableEditorTracking" : true, 
+    "enableOwnershipAccessControl" : false, 
+    "allowOthersToQuery" : true, 
+    "allowOthersToUpdate" : true, 
+    "allowOthersToDelete" : true, 
+    "allowAnonymousToQuery" : true, 
+    "allowAnonymousToUpdate" : true, 
+    "allowAnonymousToDelete" : true
+  }, 
+  "changeTrackingInfo" : 
+  {
+    "lastSyncDate" : 1762502762514, 
+    "layerServerGens" : [
+      {
+        "id" : 0, 
+        "minServerGen" : 846179, 
+        "serverGen" : 846179
+      }, 
+      {
+        "id" : 1, 
+        "minServerGen" : 846179, 
+        "serverGen" : 846179
+      }, 
+      {
+        "id" : 2, 
+        "minServerGen" : 846179, 
+        "serverGen" : 846179
+      }, 
+      {
+        "id" : 3, 
+        "minServerGen" : 846179, 
+        "serverGen" : 846179
+      }
+    ]
+  }, 
+  "xssPreventionInfo" : {
+    "xssPreventionEnabled" : true, 
+    "xssPreventionRule" : "InputOnly", 
+    "xssInputRule" : "rejectInvalid"
+  }, 
+  "layers" : [
+    {
+      "id" : 0, 
+      "name" : "Kilfi_Health_Facilities", 
+      "parentLayerId" : -1, 
+      "defaultVisibility" : true, 
+      "subLayerIds" : null, 
+      "minScale" : 0, 
+      "maxScale" : 0, 
+      "type" : "Feature Layer", 
+      "geometryType" : "esriGeometryPoint"
+    }, 
+    {
+      "id" : 1, 
+      "name" : "Kilifi_SubCounty", 
+      "parentLayerId" : -1, 
+      "defaultVisibility" : true, 
+      "subLayerIds" : null, 
+      "minScale" : 0, 
+      "maxScale" : 0, 
+      "type" : "Feature Layer", 
+      "geometryType" : "esriGeometryPolygon"
+    }, 
+    {
+      "id" : 2, 
+      "name" : "ken_admbnda_adm1_iebc_20191031_selection", 
+      "parentLayerId" : -1, 
+      "defaultVisibility" : false, 
+      "subLayerIds" : null, 
+      "minScale" : 0, 
+      "maxScale" : 0, 
+      "type" : "Feature Layer", 
+      "geometryType" : "esriGeometryPolygon"
+    }, 
+    {
+      "id" : 3, 
+      "name" : "Kilifi", 
+      "parentLayerId" : -1, 
+      "defaultVisibility" : true, 
+      "subLayerIds" : null, 
+      "minScale" : 0, 
+      "maxScale" : 0, 
+      "type" : "Feature Layer", 
+      "geometryType" : "esriGeometryPolygon"
+    }
+  ], 
+  "tables" : []
+}

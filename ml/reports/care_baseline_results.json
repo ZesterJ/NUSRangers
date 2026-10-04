@@ -1,0 +1,1109 @@
+{
+  "dataSha256": "9144f8495f8c6c0a4df5ff65e4b99db5bb9cf4c1f8e88eb06fb717f023ea081c",
+  "guideVersion": "care-policy-v1",
+  "limitations": [
+    "Assistant-authored synthetic policy imitation; not clinical validation",
+    "Rules and annotations implement the same policy; perfect rules scores are expected",
+    "No real extractor-output or human-reviewed test set",
+    "Facility capabilities remain unknown"
+  ],
+  "distribution": {
+    "train": {
+      "cases": 240,
+      "families": 30,
+      "annotationStatus": {
+        "positive": 168,
+        "negative": 16,
+        "unknown": 56
+      },
+      "services": {
+        "generalOutpatient": 168,
+        "childHealth": 42,
+        "maternal": 42
+      }
+    },
+    "validation": {
+      "cases": 80,
+      "families": 10,
+      "annotationStatus": {
+        "positive": 64,
+        "unknown": 8,
+        "negative": 8
+      },
+      "services": {
+        "generalOutpatient": 64,
+        "childHealth": 16,
+        "maternal": 16
+      }
+    },
+    "test": {
+      "cases": 80,
+      "families": 10,
+      "annotationStatus": {
+        "positive": 56,
+        "negative": 8,
+        "unknown": 16
+      },
+      "services": {
+        "generalOutpatient": 56,
+        "childHealth": 14,
+        "maternal": 14
+      }
+    }
+  },
+  "supervisedTrainCases": 184,
+  "threshold": 0.5,
+  "thresholdSelection": "validation only: minimum unsupported count, maximum micro-F1, highest threshold",
+  "validationTrials": [
+    {
+      "threshold": 0.5,
+      "cases": 80,
+      "microF1": 0.9621621621621622,
+      "macroF1": 0.9807162534435262,
+      "exactServiceSetMatch": 0.9125,
+      "abstentionRate": 0.2375,
+      "positiveCaseCoverage": 0.953125,
+      "unsupportedAssertions": 0,
+      "totalAssertions": 89,
+      "unsupportedServiceAssertionRate": 0.0,
+      "perService": {
+        "generalOutpatient": {
+          "precision": 1.0,
+          "recall": 0.890625,
+          "f1": 0.9421487603305785,
+          "support": 64
+        },
+        "childHealth": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "support": 16
+        },
+        "maternal": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "support": 16
+        }
+      }
+    },
+    {
+      "threshold": 0.6,
+      "cases": 80,
+      "microF1": 0.9392265193370166,
+      "macroF1": 0.9686609686609686,
+      "exactServiceSetMatch": 0.8625,
+      "abstentionRate": 0.2875,
+      "positiveCaseCoverage": 0.890625,
+      "unsupportedAssertions": 0,
+      "totalAssertions": 85,
+      "unsupportedServiceAssertionRate": 0.0,
+      "perService": {
+        "generalOutpatient": {
+          "precision": 1.0,
+          "recall": 0.828125,
+          "f1": 0.905982905982906,
+          "support": 64
+        },
+        "childHealth": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "support": 16
+        },
+        "maternal": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "support": 16
+        }
+      }
+    },
+    {
+      "threshold": 0.7,
+      "cases": 80,
+      "microF1": 0.9028571428571428,
+      "macroF1": 0.948948948948949,
+      "exactServiceSetMatch": 0.7875,
+      "abstentionRate": 0.3125,
+      "positiveCaseCoverage": 0.859375,
+      "unsupportedAssertions": 0,
+      "totalAssertions": 79,
+      "unsupportedServiceAssertionRate": 0.0,
+      "perService": {
+        "generalOutpatient": {
+          "precision": 1.0,
+          "recall": 0.734375,
+          "f1": 0.8468468468468469,
+          "support": 64
+        },
+        "childHealth": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "support": 16
+        },
+        "maternal": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "support": 16
+        }
+      }
+    },
+    {
+      "threshold": 0.8,
+      "cases": 80,
+      "microF1": 0.8837209302325582,
+      "macroF1": 0.9382716049382717,
+      "exactServiceSetMatch": 0.75,
+      "abstentionRate": 0.3375,
+      "positiveCaseCoverage": 0.828125,
+      "unsupportedAssertions": 0,
+      "totalAssertions": 76,
+      "unsupportedServiceAssertionRate": 0.0,
+      "perService": {
+        "generalOutpatient": {
+          "precision": 1.0,
+          "recall": 0.6875,
+          "f1": 0.8148148148148148,
+          "support": 64
+        },
+        "childHealth": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "support": 16
+        },
+        "maternal": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "support": 16
+        }
+      }
+    },
+    {
+      "threshold": 0.9,
+      "cases": 80,
+      "microF1": 0.8074534161490683,
+      "macroF1": 0.8872064955014264,
+      "exactServiceSetMatch": 0.625,
+      "abstentionRate": 0.4125,
+      "positiveCaseCoverage": 0.734375,
+      "unsupportedAssertions": 0,
+      "totalAssertions": 65,
+      "unsupportedServiceAssertionRate": 0.0,
+      "perService": {
+        "generalOutpatient": {
+          "precision": 1.0,
+          "recall": 0.53125,
+          "f1": 0.6938775510204082,
+          "support": 64
+        },
+        "childHealth": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "support": 16
+        },
+        "maternal": {
+          "precision": 1.0,
+          "recall": 0.9375,
+          "f1": 0.967741935483871,
+          "support": 16
+        }
+      }
+    }
+  ],
+  "test": {
+    "rules": {
+      "allCases": {
+        "cases": 80,
+        "microF1": 1.0,
+        "macroF1": 1.0,
+        "exactServiceSetMatch": 1.0,
+        "abstentionRate": 0.3,
+        "positiveCaseCoverage": 1.0,
+        "unsupportedAssertions": 0,
+        "totalAssertions": 84,
+        "unsupportedServiceAssertionRate": 0.0,
+        "perService": {
+          "generalOutpatient": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "support": 56
+          },
+          "childHealth": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "support": 14
+          },
+          "maternal": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "support": 14
+          }
+        }
+      },
+      "determinateCases": {
+        "cases": 64,
+        "microF1": 1.0,
+        "macroF1": 1.0,
+        "exactServiceSetMatch": 1.0,
+        "abstentionRate": 0.125,
+        "positiveCaseCoverage": 1.0,
+        "unsupportedAssertions": 0,
+        "totalAssertions": 84,
+        "unsupportedServiceAssertionRate": 0.0,
+        "perService": {
+          "generalOutpatient": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "support": 56
+          },
+          "childHealth": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "support": 14
+          },
+          "maternal": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "support": 14
+          }
+        }
+      }
+    },
+    "logisticGated": {
+      "allCases": {
+        "cases": 80,
+        "microF1": 0.9818181818181818,
+        "macroF1": 0.9908256880733944,
+        "exactServiceSetMatch": 0.9625,
+        "abstentionRate": 0.325,
+        "positiveCaseCoverage": 0.9642857142857143,
+        "unsupportedAssertions": 0,
+        "totalAssertions": 81,
+        "unsupportedServiceAssertionRate": 0.0,
+        "perService": {
+          "generalOutpatient": {
+            "precision": 1.0,
+            "recall": 0.9464285714285714,
+            "f1": 0.9724770642201835,
+            "support": 56
+          },
+          "childHealth": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "support": 14
+          },
+          "maternal": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "support": 14
+          }
+        }
+      },
+      "determinateCases": {
+        "cases": 64,
+        "microF1": 0.9818181818181818,
+        "macroF1": 0.9908256880733944,
+        "exactServiceSetMatch": 0.953125,
+        "abstentionRate": 0.15625,
+        "positiveCaseCoverage": 0.9642857142857143,
+        "unsupportedAssertions": 0,
+        "totalAssertions": 81,
+        "unsupportedServiceAssertionRate": 0.0,
+        "perService": {
+          "generalOutpatient": {
+            "precision": 1.0,
+            "recall": 0.9464285714285714,
+            "f1": 0.9724770642201835,
+            "support": 56
+          },
+          "childHealth": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "support": 14
+          },
+          "maternal": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "support": 14
+          }
+        }
+      }
+    },
+    "logisticRaw": {
+      "allCases": {
+        "cases": 80,
+        "microF1": 0.8756756756756757,
+        "macroF1": 0.8510139098374392,
+        "exactServiceSetMatch": 0.7625,
+        "abstentionRate": 0.125,
+        "positiveCaseCoverage": 0.9642857142857143,
+        "unsupportedAssertions": 20,
+        "totalAssertions": 101,
+        "unsupportedServiceAssertionRate": 0.19801980198019803,
+        "perService": {
+          "generalOutpatient": {
+            "precision": 0.8688524590163934,
+            "recall": 0.9464285714285714,
+            "f1": 0.905982905982906,
+            "support": 56
+          },
+          "childHealth": {
+            "precision": 0.7,
+            "recall": 1.0,
+            "f1": 0.8235294117647058,
+            "support": 14
+          },
+          "maternal": {
+            "precision": 0.7,
+            "recall": 1.0,
+            "f1": 0.8235294117647058,
+            "support": 14
+          }
+        }
+      },
+      "determinateCases": {
+        "cases": 64,
+        "microF1": 0.9152542372881356,
+        "macroF1": 0.9242165242165242,
+        "exactServiceSetMatch": 0.828125,
+        "abstentionRate": 0.03125,
+        "positiveCaseCoverage": 0.9642857142857143,
+        "unsupportedAssertions": 12,
+        "totalAssertions": 93,
+        "unsupportedServiceAssertionRate": 0.12903225806451613,
+        "perService": {
+          "generalOutpatient": {
+            "precision": 0.8688524590163934,
+            "recall": 0.9464285714285714,
+            "f1": 0.905982905982906,
+            "support": 56
+          },
+          "childHealth": {
+            "precision": 0.875,
+            "recall": 1.0,
+            "f1": 0.9333333333333333,
+            "support": 14
+          },
+          "maternal": {
+            "precision": 0.875,
+            "recall": 1.0,
+            "f1": 0.9333333333333333,
+            "support": 14
+          }
+        }
+      }
+    }
+  },
+  "testErrors": [
+    {
+      "method": "logisticGated",
+      "id": "care_03_0",
+      "patient": {
+        "patientType": "adult",
+        "symptoms": [
+          "vomiting"
+        ],
+        "durationDays": null,
+        "hydrationIssue": null,
+        "reportedSigns": [],
+        "reportedSignStates": {
+          "cannot_drink": {
+            "state": "not_mentioned"
+          },
+          "convulsions": {
+            "state": "not_mentioned"
+          },
+          "bleeding": {
+            "state": "not_mentioned"
+          }
+        },
+        "subject": {
+          "status": "unspecified"
+        },
+        "abstentions": []
+      },
+      "expected": [
+        "generalOutpatient"
+      ],
+      "predicted": []
+    },
+    {
+      "method": "logisticGated",
+      "id": "care_03_3",
+      "patient": {
+        "patientType": null,
+        "symptoms": [
+          "vomiting"
+        ],
+        "durationDays": 3,
+        "hydrationIssue": null,
+        "reportedSigns": [],
+        "reportedSignStates": {
+          "cannot_drink": {
+            "state": "not_mentioned"
+          },
+          "convulsions": {
+            "state": "not_mentioned"
+          },
+          "bleeding": {
+            "state": "not_mentioned"
+          }
+        },
+        "subject": {
+          "status": "resolved"
+        },
+        "abstentions": []
+      },
+      "expected": [
+        "generalOutpatient"
+      ],
+      "predicted": []
+    },
+    {
+      "method": "logisticGated",
+      "id": "care_03_6",
+      "patient": {
+        "patientType": "pregnant",
+        "symptoms": [
+          "vomiting"
+        ],
+        "durationDays": 10,
+        "hydrationIssue": null,
+        "reportedSigns": [],
+        "reportedSignStates": {
+          "cannot_drink": {
+            "state": "not_mentioned"
+          },
+          "convulsions": {
+            "state": "not_mentioned"
+          },
+          "bleeding": {
+            "state": "not_mentioned"
+          }
+        },
+        "subject": {
+          "status": "unspecified"
+        },
+        "abstentions": []
+      },
+      "expected": [
+        "generalOutpatient",
+        "maternal"
+      ],
+      "predicted": [
+        "maternal"
+      ]
+    },
+    {
+      "method": "logisticRaw",
+      "id": "care_03_0",
+      "patient": {
+        "patientType": "adult",
+        "symptoms": [
+          "vomiting"
+        ],
+        "durationDays": null,
+        "hydrationIssue": null,
+        "reportedSigns": [],
+        "reportedSignStates": {
+          "cannot_drink": {
+            "state": "not_mentioned"
+          },
+          "convulsions": {
+            "state": "not_mentioned"
+          },
+          "bleeding": {
+            "state": "not_mentioned"
+          }
+        },
+        "subject": {
+          "status": "unspecified"
+        },
+        "abstentions": []
+      },
+      "expected": [
+        "generalOutpatient"
+      ],
+      "predicted": []
+    },
+    {
+      "method": "logisticRaw",
+      "id": "care_03_3",
+      "patient": {
+        "patientType": null,
+        "symptoms": [
+          "vomiting"
+        ],
+        "durationDays": 3,
+        "hydrationIssue": null,
+        "reportedSigns": [],
+        "reportedSignStates": {
+          "cannot_drink": {
+            "state": "not_mentioned"
+          },
+          "convulsions": {
+            "state": "not_mentioned"
+          },
+          "bleeding": {
+            "state": "not_mentioned"
+          }
+        },
+        "subject": {
+          "status": "resolved"
+        },
+        "abstentions": []
+      },
+      "expected": [
+        "generalOutpatient"
+      ],
+      "predicted": []
+    },
+    {
+      "method": "logisticRaw",
+      "id": "care_03_6",
+      "patient": {
+        "patientType": "pregnant",
+        "symptoms": [
+          "vomiting"
+        ],
+        "durationDays": 10,
+        "hydrationIssue": null,
+        "reportedSigns": [],
+        "reportedSignStates": {
+          "cannot_drink": {
+            "state": "not_mentioned"
+          },
+          "convulsions": {
+            "state": "not_mentioned"
+          },
+          "bleeding": {
+            "state": "not_mentioned"
+          }
+        },
+        "subject": {
+          "status": "unspecified"
+        },
+        "abstentions": []
+      },
+      "expected": [
+        "generalOutpatient",
+        "maternal"
+      ],
+      "predicted": [
+        "maternal"
+      ]
+    },
+    {
+      "method": "logisticRaw",
+      "id": "care_36_0",
+      "patient": {
+        "patientType": "adult",
+        "symptoms": [],
+        "durationDays": null,
+        "hydrationIssue": false,
+        "reportedSigns": [],
+        "reportedSignStates": {
+          "cannot_drink": {
+            "state": "not_mentioned"
+          },
+          "convulsions": {
+            "state": "not_mentioned"
+          },
+          "bleeding": {
+            "state": "not_mentioned"
+          }
+        },
+        "subject": {
+          "status": "unspecified"
+        },
+        "abstentions": []
+      },
+      "expected": [],
+      "predicted": [
+        "generalOutpatient"
+      ]
+    },
+    {
+      "method": "logisticRaw",
+      "id": "care_36_1",
+      "patient": {
+        "patientType": "child",
+        "symptoms": [],
+        "durationDays": 1,
+        "hydrationIssue": false,
+        "reportedSigns": [],
+        "reportedSignStates": {
+          "cannot_drink": {
+            "state": "not_mentioned"
+          },
+          "convulsions": {
+            "state": "not_mentioned"
+          },
+          "bleeding": {
+            "state": "not_mentioned"
+          }
+        },
+        "subject": {
+          "status": "resolved"
+        },
+        "abstentions": []
+      },
+      "expected": [],
+      "predicted": [
+        "generalOutpatient",
+        "childHealth"
+      ]
+    },
+    {
+      "method": "logisticRaw",
+      "id": "care_36_2",
+      "patient": {
+        "patientType": "pregnant",
+        "symptoms": [],
+        "durationDays": 2,
+        "hydrationIssue": false,
+        "reportedSigns": [],
+        "reportedSignStates": {
+          "cannot_drink": {
+            "state": "not_mentioned"
+          },
+          "convulsions": {
+            "state": "not_mentioned"
+          },
+          "bleeding": {
+            "state": "not_mentioned"
+          }
+        },
+        "subject": {
+          "status": "unspecified"
+        },
+        "abstentions": []
+      },
+      "expected": [],
+      "predicted": [
+        "generalOutpatient",
+        "maternal"
+      ]
+    },
+    {
+      "method": "logisticRaw",
+      "id": "care_36_3",
+      "patient": {
+        "patientType": null,
+        "symptoms": [],
+        "durationDays": 3,
+        "hydrationIssue": false,
+        "reportedSigns": [],
+        "reportedSignStates": {
+          "cannot_drink": {
+            "state": "not_mentioned"
+          },
+          "convulsions": {
+            "state": "not_mentioned"
+          },
+          "bleeding": {
+            "state": "not_mentioned"
+          }
+        },
+        "subject": {
+          "status": "resolved"
+        },
+        "abstentions": []
+      },
+      "expected": [],
+      "predicted": [
+        "generalOutpatient"
+      ]
+    },
+    {
+      "method": "logisticRaw",
+      "id": "care_36_4",
+      "patient": {
+        "patientType": "adult",
+        "symptoms": [],
+        "durationDays": 5,
+        "hydrationIssue": false,
+        "reportedSigns": [],
+        "reportedSignStates": {
+          "cannot_drink": {
+            "state": "not_mentioned"
+          },
+          "convulsions": {
+            "state": "not_mentioned"
+          },
+          "bleeding": {
+            "state": "not_mentioned"
+          }
+        },
+        "subject": {
+          "status": "unspecified"
+        },
+        "abstentions": []
+      },
+      "expected": [],
+      "predicted": [
+        "generalOutpatient"
+      ]
+    },
+    {
+      "method": "logisticRaw",
+      "id": "care_36_5",
+      "patient": {
+        "patientType": "child",
+        "symptoms": [],
+        "durationDays": 7,
+        "hydrationIssue": false,
+        "reportedSigns": [],
+        "reportedSignStates": {
+          "cannot_drink": {
+            "state": "not_mentioned"
+          },
+          "convulsions": {
+            "state": "not_mentioned"
+          },
+          "bleeding": {
+            "state": "not_mentioned"
+          }
+        },
+        "subject": {
+          "status": "resolved"
+        },
+        "abstentions": []
+      },
+      "expected": [],
+      "predicted": [
+        "generalOutpatient",
+        "childHealth"
+      ]
+    },
+    {
+      "method": "logisticRaw",
+      "id": "care_36_6",
+      "patient": {
+        "patientType": "pregnant",
+        "symptoms": [],
+        "durationDays": 10,
+        "hydrationIssue": false,
+        "reportedSigns": [],
+        "reportedSignStates": {
+          "cannot_drink": {
+            "state": "not_mentioned"
+          },
+          "convulsions": {
+            "state": "not_mentioned"
+          },
+          "bleeding": {
+            "state": "not_mentioned"
+          }
+        },
+        "subject": {
+          "status": "unspecified"
+        },
+        "abstentions": []
+      },
+      "expected": [],
+      "predicted": [
+        "generalOutpatient",
+        "maternal"
+      ]
+    },
+    {
+      "method": "logisticRaw",
+      "id": "care_36_7",
+      "patient": {
+        "patientType": null,
+        "symptoms": [],
+        "durationDays": 14,
+        "hydrationIssue": false,
+        "reportedSigns": [],
+        "reportedSignStates": {
+          "cannot_drink": {
+            "state": "not_mentioned"
+          },
+          "convulsions": {
+            "state": "not_mentioned"
+          },
+          "bleeding": {
+            "state": "not_mentioned"
+          }
+        },
+        "subject": {
+          "status": "resolved"
+        },
+        "abstentions": []
+      },
+      "expected": [],
+      "predicted": [
+        "generalOutpatient"
+      ]
+    },
+    {
+      "method": "logisticRaw",
+      "id": "care_38_1",
+      "patient": {
+        "patientType": "child",
+        "symptoms": [],
+        "durationDays": 1,
+        "hydrationIssue": null,
+        "reportedSigns": [],
+        "reportedSignStates": {
+          "cannot_drink": {
+            "state": "uncertain"
+          },
+          "convulsions": {
+            "state": "not_mentioned"
+          },
+          "bleeding": {
+            "state": "not_mentioned"
+          }
+        },
+        "subject": {
+          "status": "resolved"
+        },
+        "abstentions": []
+      },
+      "expected": [],
+      "predicted": [
+        "childHealth"
+      ]
+    },
+    {
+      "method": "logisticRaw",
+      "id": "care_38_2",
+      "patient": {
+        "patientType": "pregnant",
+        "symptoms": [],
+        "durationDays": 2,
+        "hydrationIssue": null,
+        "reportedSigns": [],
+        "reportedSignStates": {
+          "cannot_drink": {
+            "state": "uncertain"
+          },
+          "convulsions": {
+            "state": "not_mentioned"
+          },
+          "bleeding": {
+            "state": "not_mentioned"
+          }
+        },
+        "subject": {
+          "status": "unspecified"
+        },
+        "abstentions": []
+      },
+      "expected": [],
+      "predicted": [
+        "maternal"
+      ]
+    },
+    {
+      "method": "logisticRaw",
+      "id": "care_38_5",
+      "patient": {
+        "patientType": "child",
+        "symptoms": [],
+        "durationDays": 7,
+        "hydrationIssue": null,
+        "reportedSigns": [],
+        "reportedSignStates": {
+          "cannot_drink": {
+            "state": "uncertain"
+          },
+          "convulsions": {
+            "state": "not_mentioned"
+          },
+          "bleeding": {
+            "state": "not_mentioned"
+          }
+        },
+        "subject": {
+          "status": "resolved"
+        },
+        "abstentions": []
+      },
+      "expected": [],
+      "predicted": [
+        "childHealth"
+      ]
+    },
+    {
+      "method": "logisticRaw",
+      "id": "care_38_6",
+      "patient": {
+        "patientType": "pregnant",
+        "symptoms": [],
+        "durationDays": 10,
+        "hydrationIssue": null,
+        "reportedSigns": [],
+        "reportedSignStates": {
+          "cannot_drink": {
+            "state": "uncertain"
+          },
+          "convulsions": {
+            "state": "not_mentioned"
+          },
+          "bleeding": {
+            "state": "not_mentioned"
+          }
+        },
+        "subject": {
+          "status": "unspecified"
+        },
+        "abstentions": []
+      },
+      "expected": [],
+      "predicted": [
+        "maternal"
+      ]
+    },
+    {
+      "method": "logisticRaw",
+      "id": "care_45_1",
+      "patient": {
+        "patientType": "child",
+        "symptoms": [
+          "blurred_vision",
+          "cough"
+        ],
+        "durationDays": 1,
+        "hydrationIssue": null,
+        "reportedSigns": [],
+        "reportedSignStates": {
+          "cannot_drink": {
+            "state": "not_mentioned"
+          },
+          "convulsions": {
+            "state": "not_mentioned"
+          },
+          "bleeding": {
+            "state": "not_mentioned"
+          }
+        },
+        "subject": {
+          "status": "resolved"
+        },
+        "abstentions": []
+      },
+      "expected": [],
+      "predicted": [
+        "childHealth"
+      ]
+    },
+    {
+      "method": "logisticRaw",
+      "id": "care_45_2",
+      "patient": {
+        "patientType": "pregnant",
+        "symptoms": [
+          "blurred_vision",
+          "vomiting"
+        ],
+        "durationDays": 2,
+        "hydrationIssue": null,
+        "reportedSigns": [],
+        "reportedSignStates": {
+          "cannot_drink": {
+            "state": "not_mentioned"
+          },
+          "convulsions": {
+            "state": "not_mentioned"
+          },
+          "bleeding": {
+            "state": "not_mentioned"
+          }
+        },
+        "subject": {
+          "status": "unspecified"
+        },
+        "abstentions": []
+      },
+      "expected": [],
+      "predicted": [
+        "maternal"
+      ]
+    },
+    {
+      "method": "logisticRaw",
+      "id": "care_45_5",
+      "patient": {
+        "patientType": "child",
+        "symptoms": [
+          "blurred_vision",
+          "weakness"
+        ],
+        "durationDays": 7,
+        "hydrationIssue": null,
+        "reportedSigns": [],
+        "reportedSignStates": {
+          "cannot_drink": {
+            "state": "not_mentioned"
+          },
+          "convulsions": {
+            "state": "not_mentioned"
+          },
+          "bleeding": {
+            "state": "not_mentioned"
+          }
+        },
+        "subject": {
+          "status": "resolved"
+        },
+        "abstentions": []
+      },
+      "expected": [],
+      "predicted": [
+        "childHealth"
+      ]
+    },
+    {
+      "method": "logisticRaw",
+      "id": "care_45_6",
+      "patient": {
+        "patientType": "pregnant",
+        "symptoms": [
+          "blurred_vision",
+          "headache"
+        ],
+        "durationDays": 10,
+        "hydrationIssue": null,
+        "reportedSigns": [],
+        "reportedSignStates": {
+          "cannot_drink": {
+            "state": "not_mentioned"
+          },
+          "convulsions": {
+            "state": "not_mentioned"
+          },
+          "bleeding": {
+            "state": "not_mentioned"
+          }
+        },
+        "subject": {
+          "status": "unspecified"
+        },
+        "abstentions": []
+      },
+      "expected": [],
+      "predicted": [
+        "maternal"
+      ]
+    }
+  ]
+}
