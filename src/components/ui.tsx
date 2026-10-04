@@ -1,7 +1,32 @@
 import type { ReactNode } from 'react';
-import { ActivityIndicator, Pressable, StyleSheet, Text, View, type ViewStyle } from 'react-native';
+import {
+  ActivityIndicator,
+  Pressable,
+  ScrollView,
+  StyleSheet,
+  Text,
+  View,
+  type ScrollViewProps,
+  type ViewStyle,
+} from 'react-native';
 
 import { radius, spacing, usePackContext } from '@/theme';
+
+/**
+ * A scrolling screen whose text inputs stay visible when the keyboard opens: on iOS the scroll view
+ * makes room for the keyboard and brings the focused input into view; on Android the window pans
+ * (`softwareKeyboardLayoutMode` in app.json). Taps on buttons work while the keyboard is up.
+ */
+export function KeyboardScrollView(props: ScrollViewProps) {
+  return (
+    <ScrollView
+      automaticallyAdjustKeyboardInsets
+      keyboardShouldPersistTaps="handled"
+      keyboardDismissMode="on-drag"
+      {...props}
+    />
+  );
+}
 
 export function Button({
   label,

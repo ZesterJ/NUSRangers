@@ -2,14 +2,14 @@ import { CameraView, useCameraPermissions } from 'expo-camera';
 import { router, useFocusEffect, useIsFocused, useLocalSearchParams } from 'expo-router';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
+import { Pressable, StyleSheet, Text, View } from 'react-native';
 
 import { NoteRows } from '@/components/clinic/NoteRows';
 import { TriageForm } from '@/components/clinic/TriageForm';
 import { TriageReport } from '@/components/clinic/TriageReport';
 import { GuidanceCard } from '@/components/GuidanceCard';
 import { IntakeSummary } from '@/components/IntakeSummary';
-import { Button, Card, SectionTitle } from '@/components/ui';
+import { Button, Card, KeyboardScrollView, SectionTitle } from '@/components/ui';
 import { listClinicVisits, markIntakeReceived, saveClinicVisit } from '@/db';
 import { sortQueue, type ClinicVisit } from '@/intake/clinic';
 import { decodeClinicCode, visitFromHandoff, type DecodedClinicCode } from '@/intake/handoff';
@@ -81,7 +81,7 @@ export default function Clinic() {
   if (view.kind === 'visit' && visit) {
     const showForm = !visit.triage || view.editing;
     return (
-      <ScrollView style={{ backgroundColor: theme.background }} contentContainerStyle={styles.content} keyboardShouldPersistTaps="handled">
+      <KeyboardScrollView style={{ backgroundColor: theme.background }} contentContainerStyle={styles.content}>
         <Text style={[styles.title, { color: theme.text }]}>{visit.note.patientName || `#${visit.id}`}</Text>
         <Text style={{ color: theme.textMuted }}>
           #{visit.id} · {t(`clinic.status.${visit.status}`)}
@@ -134,7 +134,7 @@ export default function Clinic() {
           </>
         )}
         <Button label={t('clinic.back')} variant="outline" onPress={() => setView({ kind: 'queue' })} />
-      </ScrollView>
+      </KeyboardScrollView>
     );
   }
 
@@ -155,7 +155,7 @@ export default function Clinic() {
       const p = scanned.payload;
       const received = visitFromHandoff(p);
       return (
-        <ScrollView style={{ backgroundColor: theme.background }} contentContainerStyle={styles.content}>
+        <KeyboardScrollView style={{ backgroundColor: theme.background }} contentContainerStyle={styles.content}>
           <Text style={[styles.title, { color: theme.success }]}>✓ {t('scan.verified')}</Text>
           <Text style={{ color: theme.textMuted }}>
             #{p.id} · {new Date(p.t * 1000).toLocaleString()}
@@ -175,7 +175,7 @@ export default function Clinic() {
             }}
           />
           <Button label={t('scan.scanAgain')} variant="outline" onPress={openScanner} />
-        </ScrollView>
+        </KeyboardScrollView>
       );
     }
 
@@ -210,7 +210,7 @@ export default function Clinic() {
   const reportsOnly = view.kind === 'queue' && view.reportsOnly;
   const shown = sortQueue(visits).filter((v) => !reportsOnly || v.triage);
   return (
-    <ScrollView style={{ backgroundColor: theme.background }} contentContainerStyle={styles.content}>
+    <KeyboardScrollView style={{ backgroundColor: theme.background }} contentContainerStyle={styles.content}>
       <Text style={[styles.title, { color: theme.text }]}>{t(reportsOnly ? 'clinic.reportsTitle' : 'clinic.queueTitle')}</Text>
       {reportsOnly ? (
         <Button label={t('clinic.showAll')} variant="outline" onPress={() => setView({ kind: 'queue' })} />
@@ -242,7 +242,7 @@ export default function Clinic() {
           </Pressable>
         );
       })}
-    </ScrollView>
+    </KeyboardScrollView>
   );
 }
 

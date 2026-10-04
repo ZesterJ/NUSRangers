@@ -2,7 +2,7 @@ import * as Crypto from 'expo-crypto';
 import * as Speech from 'expo-speech';
 import { useState, type ReactNode } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Pressable, ScrollView, StyleSheet, Text, TextInput, View } from 'react-native';
+import { Pressable, StyleSheet, Text, TextInput, View } from 'react-native';
 import QRCode from 'react-native-qrcode-svg';
 
 import { flushOutbox, refreshPending } from '@/ai/sync';
@@ -10,7 +10,7 @@ import { BodyPicker } from '@/components/BodyPicker';
 import { IntakeSummary } from '@/components/IntakeSummary';
 import { OfflineBanner } from '@/components/OfflineBanner';
 import { DangerOptions, DurationOptions, WhoOptions } from '@/components/QuestionOptions';
-import { Button, Card, Chip, SectionTitle } from '@/components/ui';
+import { Button, Card, Chip, KeyboardScrollView, SectionTitle } from '@/components/ui';
 import { enqueue, saveIntake } from '@/db';
 import { applyBodyPicks, NO_PICKS, type BodyPicks } from '@/intake/bodyParts';
 import { assessCareOnPhone } from '@/intake/careRouting';
@@ -140,7 +140,7 @@ function IntakeFlow({ onRestart }: { onRestart: () => void }) {
   return (
     <View style={{ flex: 1, backgroundColor: theme.background }}>
       <OfflineBanner />
-      <ScrollView contentContainerStyle={styles.content} keyboardShouldPersistTaps="handled">
+      <KeyboardScrollView contentContainerStyle={styles.content}>
         {step === 'ask' && (
           <>
             <Text style={[styles.step, { color: theme.textMuted }]}>
@@ -255,7 +255,7 @@ function IntakeFlow({ onRestart }: { onRestart: () => void }) {
             <Button label={t('intake.newIntake')} variant="outline" onPress={onRestart} />
           </>
         )}
-      </ScrollView>
+      </KeyboardScrollView>
     </View>
   );
 }

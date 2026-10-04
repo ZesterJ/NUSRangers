@@ -1,11 +1,11 @@
 import { Image } from 'expo-image';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { ScrollView, StyleSheet, Text, TextInput, View } from 'react-native';
+import { StyleSheet, Text, TextInput, View } from 'react-native';
 
 import { HomeCardView } from '@/components/HomeCardView';
 import { OfflineBanner } from '@/components/OfflineBanner';
-import { Button, Card } from '@/components/ui';
+import { Button, Card, KeyboardScrollView } from '@/components/ui';
 import { config } from '@/config';
 import { useIsOnline } from '@/store/connectivity';
 import { useSettings } from '@/store/settings';
@@ -33,7 +33,7 @@ export default function Home() {
   return (
     <View style={{ flex: 1, backgroundColor: theme.background }}>
       <OfflineBanner />
-      <ScrollView contentContainerStyle={styles.content} keyboardShouldPersistTaps="handled">
+      <KeyboardScrollView contentContainerStyle={styles.content}>
         {/* The logo has a white background, so it sits on a white panel in dark mode too. */}
         <View style={styles.logoBox}>
           <Image
@@ -95,7 +95,7 @@ export default function Home() {
             </View>
           </>
         )}
-      </ScrollView>
+      </KeyboardScrollView>
     </View>
   );
 }

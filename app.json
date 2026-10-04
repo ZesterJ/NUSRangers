@@ -17,7 +17,8 @@
         "foregroundImage": "./assets/images/android-icon-foreground.png"
       },
       "predictiveBackGestureEnabled": false,
-      "package": "org.nusrangers.app"
+      "package": "org.nusrangers.app",
+      "softwareKeyboardLayoutMode": "pan"
     },
     "web": {
       "output": "single",

@@ -1,7 +1,7 @@
 import { useTranslation } from 'react-i18next';
-import { ScrollView, StyleSheet, Switch, Text, TextInput, View } from 'react-native';
+import { StyleSheet, Switch, Text, TextInput, View } from 'react-native';
 
-import { Chip, SectionTitle } from '@/components/ui';
+import { Chip, KeyboardScrollView, SectionTitle } from '@/components/ui';
 import { PACKS, getPack } from '@/packs';
 import { useConnectivityStore } from '@/store/connectivity';
 import { useSettings, type AiMode } from '@/store/settings';
@@ -26,7 +26,7 @@ export default function Settings() {
   const deviceOnline = useConnectivityStore((c) => c.deviceOnline);
 
   return (
-    <ScrollView style={{ backgroundColor: theme.background }} contentContainerStyle={styles.content}>
+    <KeyboardScrollView style={{ backgroundColor: theme.background }} contentContainerStyle={styles.content}>
       <SectionTitle>{t('settings.language')}</SectionTitle>
       <View style={styles.chips}>
         {pack.locales.map((l) => (
@@ -75,7 +75,7 @@ export default function Settings() {
         autoCorrect={false}
         keyboardType="url"
       />
-    </ScrollView>
+    </KeyboardScrollView>
   );
 }
 
