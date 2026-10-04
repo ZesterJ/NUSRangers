@@ -3,9 +3,10 @@
 import logging
 import os
 import re
+from typing import Any
 from xml.sax.saxutils import escape
 
-from fastapi import FastAPI, Form, HTTPException
+from fastapi import Body, FastAPI, Form, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import Response
 
@@ -48,6 +49,21 @@ async def analyze(req: AnalyzeRequest):
         return await provider.analyze(req)
     except LLMError as e:
         _raise(e)
+
+
+# Store-and-forward target for confirmed intake records. In-memory for the hackathon; map to DHIS2
+# (tracked entity + event) for a real deployment. Never log the record contents: it is patient data.
+RECORDS: dict[str, dict[str, Any]] = {}
+
+
+@app.post("/records")
+async def save_record(record: dict[str, Any] = Body(...)):
+    rec_id = str(record.get("id", ""))
+    if not rec_id:
+        raise HTTPException(status_code=422, detail="record.id is required")
+    RECORDS[rec_id] = record
+    log.info("Stored intake record %s (%d total)", rec_id, len(RECORDS))
+    return {"ok": True}
 
 
 SMS_PREFIX = re.compile(r"^\s*([A-Za-z]+)\s*:\s*(.*)$", re.S)

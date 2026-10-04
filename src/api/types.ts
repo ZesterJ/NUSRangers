@@ -29,3 +29,6 @@ export type AnalyzeRequest = {
 };
 
 export type AnalyzeResponse = Assessment;
+
+/** Store-and-forward upload of a confirmed intake record (DHIS2-shaped on the server side). */
+export type SaveRecordResponse = { ok: true };

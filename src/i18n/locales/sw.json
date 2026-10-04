@@ -1,6 +1,21 @@
 {
-  "tabs": { "home": "Nyumbani", "chat": "Uliza", "capture": "Ripoti", "history": "Historia", "settings": "Mipangilio" },
-  "common": { "online": "Mtandaoni", "offline": "Nje ya mtandao", "save": "Hifadhi", "cancel": "Ghairi", "retry": "Jaribu tena" },
+  "tabs": {
+    "home": "Nyumbani",
+    "chat": "Uliza",
+    "capture": "Ripoti",
+    "history": "Historia",
+    "settings": "Mipangilio",
+    "intake": "Mahojiano",
+    "scan": "Kliniki",
+    "records": "Kumbukumbu"
+  },
+  "common": {
+    "online": "Mtandaoni",
+    "offline": "Nje ya mtandao",
+    "save": "Hifadhi",
+    "cancel": "Ghairi",
+    "retry": "Jaribu tena"
+  },
   "offlineBanner": "Uko nje ya mtandao. Majibu yanatoka kwenye simu; mengine yatatumwa ukiunganishwa.",
   "source": {
     "offline": "Maarifa ya simu",
@@ -27,7 +42,11 @@
     "required": "Tafadhali jaza: {{field}}",
     "result": "Matokeo",
     "queued": "Imehifadhiwa bila mtandao. Tathmini ya simu inaonyeshwa; ukaguzi wa mtandao utafanyika ukiunganishwa.",
-    "risk": { "low": "Hatari ndogo", "med": "Hatari ya kati", "high": "Hatari kubwa" },
+    "risk": {
+      "low": "Hatari ndogo",
+      "med": "Hatari ya kati",
+      "high": "Hatari kubwa"
+    },
     "newReport": "Ripoti mpya"
   },
   "history": {
@@ -36,17 +55,115 @@
     "syncNow": "Tuma sasa",
     "syncing": "Inatuma…",
     "empty": "Hakuna ripoti bado.",
-    "noResult": "Inasubiri matokeo"
+    "noResult": "Inasubiri matokeo",
+    "intakes": "Mahojiano ya wagonjwa"
   },
   "settings": {
     "language": "Lugha",
     "aiMode": "Hali ya AI",
-    "aiModes": { "auto": "Otomatiki", "offline": "Bila mtandao tu", "cloud": "Mtandao tu" },
+    "aiModes": {
+      "auto": "Otomatiki",
+      "offline": "Bila mtandao tu",
+      "cloud": "Mtandao tu"
+    },
     "forceOffline": "Iga kukosa mtandao",
     "developer": "Msanidi",
     "pack": "Kifurushi",
     "useMock": "Tumia seva bandia",
     "apiUrl": "Anwani ya seva"
   },
-  "onboarding": { "welcome": "Karibu", "chooseLanguage": "Chagua lugha yako", "start": "Anza" }
+  "onboarding": {
+    "welcome": "Karibu",
+    "chooseLanguage": "Chagua lugha yako",
+    "start": "Anza"
+  },
+  "intake": {
+    "step": "Swali {{n}} kati ya {{total}}",
+    "speak": "Ongea",
+    "stop": "Simama",
+    "listening": "Inasikiliza…",
+    "transcribing": "Inageuza sauti kuwa maandishi…",
+    "voiceUnavailable": "Sauti inahitaji mtandao sasa. Andika jibu au gusa jibu la mfano.",
+    "typeHere": "Andika jibu",
+    "samples": "Majibu ya mfano",
+    "next": "Endelea",
+    "back": "Rudi",
+    "finish": "Kagua majibu",
+    "extracting": "Inasoma majibu…",
+    "reviewTitle": "Kagua majibu",
+    "reviewHint": "Vitu vilivyoandikwa \"tafadhali kagua\" ni makisio. Sahihisha kilichokosewa.",
+    "pleaseCheck": "Tafadhali kagua",
+    "who": "Nani anaumwa",
+    "symptoms": "Matatizo",
+    "duration": "Siku za ugonjwa",
+    "danger": "Dalili hatari",
+    "none": "Hakuna",
+    "notes": "Jambo lingine",
+    "source": {
+      "rules": "Imesomwa kwenye simu",
+      "model": "Imesomwa na modeli ya AI"
+    },
+    "confirm": "Thibitisha majibu",
+    "resultTitle": "Hatua inayopendekezwa",
+    "level": {
+      "refer_now": "Nenda kliniki sasa",
+      "refer_24h": "Tembelea kliniki ndani ya saa 24",
+      "home_care": "Huduma ya nyumbani, kagua tena baada ya siku 2",
+      "unsure": "Sina uhakika. Muulize mhudumu wa afya"
+    },
+    "humanDecides": "Huu ni msaada, si utambuzi. Mhudumu wa afya anafanya uamuzi wa mwisho.",
+    "clinics": "Kliniki zinazopendekezwa",
+    "noClinic": "Hakuna kliniki inayofaa karibu. Piga simu ya rufaa ya kaunti ndogo au muulize mhudumu wa afya.",
+    "callAhead": "Wafanyakazi hawajathibitishwa leo. Piga simu kwanza:",
+    "choose": "Chagua",
+    "chosen": "Imechaguliwa",
+    "sampleData": "Data ya mfano ya kliniki",
+    "handoff": "Tengeneza makabidhiano ya kliniki",
+    "qrTitle": "Onyesha hii kliniki",
+    "qrHint": "Kliniki inaskani msimbo huu kupata majibu bila kuuliza tena.",
+    "saved": "Imehifadhiwa kwenye simu. Itatumwa kukiwa na mtandao.",
+    "newIntake": "Anza mahojiano mapya",
+    "transcript": "Kilichosemwa",
+    "group": {
+      "child_u5": "Mtoto chini ya miaka 5",
+      "pregnant": "Mama mjamzito",
+      "adult": "Mtu mzima"
+    },
+    "sym": {
+      "fever": "Homa",
+      "cough": "Kikohozi",
+      "difficulty_breathing": "Shida ya kupumua",
+      "diarrhoea": "Kuhara",
+      "vomiting": "Kutapika",
+      "headache": "Maumivu ya kichwa",
+      "abdominal_pain": "Maumivu ya tumbo",
+      "rash": "Upele",
+      "weakness": "Udhaifu"
+    },
+    "ds": {
+      "unable_to_drink": "Hawezi kunywa",
+      "vomits_everything": "Anatapika kila kitu",
+      "convulsions": "Degedege",
+      "lethargic": "Usingizi mzito",
+      "chest_indrawing": "Kifua kinavutika ndani",
+      "vaginal_bleeding": "Kutoka damu (ujauzito)",
+      "severe_headache_blurred_vision": "Kichwa kikali, kuona ukungu",
+      "reduced_fetal_movement": "Mtoto anacheza kidogo",
+      "blood_in_stool": "Damu kwenye choo"
+    }
+  },
+  "scan": {
+    "title": "Kliniki: pokea mgonjwa",
+    "hint": "Elekeza kamera kwenye msimbo wa makabidhiano wa mgonjwa.",
+    "permission": "Kamera inahitajika kuskani misimbo.",
+    "grant": "Ruhusu kamera",
+    "verified": "Makabidhiano yamethibitishwa",
+    "tampered": "Msimbo huu umebadilishwa au umeharibika. Muulize mgonjwa tena ana kwa ana.",
+    "not_ours": "Huu si msimbo wa makabidhiano wa programu hii.",
+    "unreadable": "Msimbo haukusomeka. Jaribu tena.",
+    "markReceived": "Weka kama imepokelewa",
+    "received": "Imepokelewa",
+    "scanAgain": "Skani mwingine",
+    "checkInPerson": "Thibitisha utambulisho wa mgonjwa ana kwa ana."
+  }
 }

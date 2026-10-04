@@ -17,6 +17,8 @@ export function HomeCardView({ card }: { card: HomeCard }) {
     if (!a) return;
     if (a.type === 'chat') router.push({ pathname: '/chat', params: { q: tr(a.prompt, locale) } });
     else if (a.type === 'capture') router.push('/capture');
+    else if (a.type === 'intake') router.push('/intake');
+    else if (a.type === 'scan') router.push('/scan');
     else Linking.openURL(a.url);
   };
 
