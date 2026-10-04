@@ -178,6 +178,7 @@ Response (`Extraction`). Only use the listed codes, and mark guesses `"low"`:
 - `patientGroup`: `child_u5 | pregnant | adult | null` (the app also has `child_5plus`, set only from its tap-to-answer options)
 - `symptoms`: `fever, cough, difficulty_breathing, diarrhoea, vomiting, headache, abdominal_pain, rash, weakness, sore_throat, chest_pain, limb_pain` (the last three are set by the on-phone rules and the body diagram; the model does not emit them)
 - `dangerSigns`: `unable_to_drink, vomits_everything, convulsions, lethargic, chest_indrawing, vaginal_bleeding, severe_headache_blurred_vision, reduced_fetal_movement, blood_in_stool`
+- `negatedSymptoms` (optional): symptoms the patient explicitly denied; the app removes them from what its keyword rules found.
 - `dangerSigns` with an empty list must be `"low"` unless the patient clearly said there were none. The app treats low-confidence "no danger signs" as **unsure → ask a health worker**.
 - Anything you can't map goes in `unmapped` (shown to the clinician, never used for triage).
 

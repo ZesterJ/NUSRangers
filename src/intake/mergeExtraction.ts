@@ -21,9 +21,12 @@ export function mergeExtractions(model: Extraction, rules: Extraction): Extracti
   else if (!sure(model.patientGroup) && rules.patientGroup.value && rules.patientGroup.value !== model.patientGroup.value)
     patientGroup = { ...rules.patientGroup, confidence: 'low' };
 
+  // The keyword rules cannot tell "fever" from "no fever"; the model can, so its denials win.
+  const denied = model.negatedSymptoms ?? [];
+  const fromRules = rules.symptoms.value.filter((s) => !denied.includes(s));
   const symptoms = sure(model.symptoms)
-    ? union(model.symptoms.value, rules.symptoms.value.filter((s) => RULES_ONLY_SYMPTOMS.includes(s)))
-    : union(model.symptoms.value, rules.symptoms.value);
+    ? union(model.symptoms.value, fromRules.filter((s) => RULES_ONLY_SYMPTOMS.includes(s)))
+    : union(model.symptoms.value, fromRules);
 
   const dangerSigns = sure(model.dangerSigns)
     ? union(model.dangerSigns.value, rules.dangerSigns.value.filter((d) => RULES_ONLY_SIGNS.includes(d)))

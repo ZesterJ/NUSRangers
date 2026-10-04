@@ -93,6 +93,8 @@ class Extraction(BaseModel):
     durationDays: ExtractionField
     dangerSigns: ExtractionField
     unmapped: list[str]
+    # Symptoms the patient explicitly denied ("no fever"), so the app's keyword rules do not add them back.
+    negatedSymptoms: list[str] = Field(default_factory=list)
     source: Literal["rules", "model"]
 
 

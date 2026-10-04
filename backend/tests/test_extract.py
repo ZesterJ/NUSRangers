@@ -115,3 +115,9 @@ def test_real_model_on_scripted_patient():
     assert {"fever", "cough"} <= set(out.symptoms.value)
     assert out.durationDays.value == 3
     assert "unable_to_drink" in out.dangerSigns.value
+
+
+def test_denied_symptoms_are_reported_so_the_app_does_not_add_them_back():
+    decisions = {"fever": {"state": "negated"}, "cough": {"state": "affirmed"}, "headache": {"state": "not_mentioned"}}
+    out = run({"c": result(symptoms=["cough"], symptomDecisions=decisions)}, complaint="c")
+    assert out.negatedSymptoms == ["fever"]

@@ -48,6 +48,8 @@ export type Extraction = {
   dangerSigns: Field<DangerSign[]>;
   /** Free-text the extractor could not map to a field. Shown to the clinician, never used for triage. */
   unmapped: string[];
+  /** From the model only: symptoms the patient explicitly denied ("no fever"). */
+  negatedSymptoms?: Symptom[];
   source: 'rules' | 'model';
 };
 
