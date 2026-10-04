@@ -38,8 +38,8 @@ const COUNTRY = (map.country as Shape[]).map((c) => ({ name: c.name, d: pathOf(c
 const INSET_WIDTH = 78;
 
 const PALETTE = {
-  light: { sea: '#D6EAF8', land: '#F3EFE6', border: '#D9D2C2', county: '#DFF2E3', countyEdge: '#3E9B57', label: '#5B6770', seaLabel: '#7FA6C4', other: '#8795A1', confirmed: '#1E7B3A', you: '#1E88E5', ring: '#11181C' },
-  dark: { sea: '#12222F', land: '#26292D', border: '#3A3F45', county: '#1F3A28', countyEdge: '#5FBF7A', label: '#A8B0B7', seaLabel: '#4F6F88', other: '#7C8791', confirmed: '#6FD08A', you: '#64B5F6', ring: '#ECEDEE' },
+  light: { sea: '#D6EAF8', land: '#F3EFE6', border: '#D9D2C2', county: '#DFF2E3', countyEdge: '#3E9B57', label: '#5B6770', seaLabel: '#7FA6C4', other: '#8795A1', confirmed: '#1E7B3A', you: '#1E88E5', picked: '#F57C00', ring: '#11181C' },
+  dark: { sea: '#12222F', land: '#26292D', border: '#3A3F45', county: '#1F3A28', countyEdge: '#5FBF7A', label: '#A8B0B7', seaLabel: '#4F6F88', other: '#7C8791', confirmed: '#6FD08A', you: '#64B5F6', picked: '#FFA726', ring: '#ECEDEE' },
 };
 
 type Props = {
@@ -136,7 +136,7 @@ export function ClinicMap({ selected, onSelect, from, fromIsUser }: Props) {
             {picked && (
               <G>
                 <Circle cx={px(picked.longitude)} cy={py(picked.latitude)} r={11 * u} fill="none" stroke={c.ring} strokeWidth={2.5 * u} />
-                <Circle cx={px(picked.longitude)} cy={py(picked.latitude)} r={6 * u} fill={theme.primary} stroke="#FFFFFF" strokeWidth={2 * u} />
+                <Circle cx={px(picked.longitude)} cy={py(picked.latitude)} r={6 * u} fill={c.picked} stroke="#FFFFFF" strokeWidth={2 * u} />
               </G>
             )}
 

@@ -13,7 +13,8 @@ export const healthPack: DomainPack = {
     en: 'Your visit note, ready before you reach the clinic',
     sw: 'Taarifa yako ya matibabu, tayari kabla ya kufika kliniki',
   },
-  theme: { primary: '#C62828', primaryText: '#FFFFFF' },
+  // The logo's blue, darkened so white text on it stays readable. Red is kept for danger and emergency only.
+  theme: { primary: '#1B6CA8', primaryText: '#FFFFFF' },
   locales: [
     { code: 'en', label: 'English' },
     { code: 'sw', label: 'Kiswahili' },
