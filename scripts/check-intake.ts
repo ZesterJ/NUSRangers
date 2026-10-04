@@ -4,6 +4,7 @@
  * `npm run check:intake`
  */
 import { extractWithRules } from '@/intake/extractRules';
+import { guidanceFor } from '@/intake/guidance';
 import { mergeExtractions } from '@/intake/mergeExtraction';
 import { assessCareOnPhone } from '@/intake/careRouting';
 import { triage } from '@/intake/triage';
@@ -81,6 +82,7 @@ for (const c of RUNS) {
   console.log(`   extracted: ${intake.patientGroup} | ${intake.symptoms.join(',') || '-'} | ${intake.durationDays ?? '?'}d | danger: ${intake.dangerSigns.join(',') || 'none'}`);
   console.log(`   triage: ${t.level} (expected ${c.expect}) — ${t.reasons.join('; ')}`);
   console.log(`   care: ${care.requiredServices.join(',') || 'none'} (${care.assessmentStatus}) → ${care.candidates.map((c) => `${c.facilityName} [${c.distanceKm} km]`).join(' > ') || 'no facility'}`);
+  console.log(`   guidance: ${guidanceFor(intake).map((e) => e.id).join(', ') || 'none'}`);
 }
 if (failed) {
   console.log(`\n${failed} case(s) failed`);

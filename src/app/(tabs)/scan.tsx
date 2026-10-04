@@ -4,11 +4,12 @@ import { useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { ScrollView, StyleSheet, Text, View } from 'react-native';
 
+import { GuidanceCard } from '@/components/GuidanceCard';
 import { IntakeSummary } from '@/components/IntakeSummary';
 import { Button, Card } from '@/components/ui';
 import { markIntakeReceived } from '@/db';
 import { decodeHandoff, type DecodedHandoff } from '@/intake/handoff';
-import type { DangerSign, Symptom } from '@/intake/types';
+import type { ConfirmedIntake, DangerSign, Symptom } from '@/intake/types';
 import { radius, spacing, usePackContext } from '@/theme';
 
 /** Step 9: the clinic scans the patient's handoff QR and verifies it was not changed. */
@@ -47,6 +48,15 @@ export default function Scan() {
   if (result?.ok) {
     const p = result.payload;
     const facilityName = p.fn;
+    const intake: ConfirmedIntake = {
+      patientName: p.nm,
+      sex: p.sx,
+      patientGroup: p.g,
+      symptoms: p.s as Symptom[],
+      durationDays: p.d,
+      dangerSigns: p.ds as DangerSign[],
+      notes: p.n,
+    };
     return (
       <ScrollView style={{ backgroundColor: theme.background }} contentContainerStyle={styles.content}>
         <Text style={[styles.title, { color: theme.success }]}>✓ {t('scan.verified')}</Text>
@@ -54,19 +64,8 @@ export default function Scan() {
           #{p.id} · {new Date(p.t * 1000).toLocaleString()}
           {facilityName ? ` · ${facilityName}` : ''}
         </Text>
-        <IntakeSummary
-          intake={{
-            patientName: p.nm,
-            sex: p.sx,
-            patientGroup: p.g,
-            symptoms: p.s as Symptom[],
-            durationDays: p.d,
-            dangerSigns: p.ds as DangerSign[],
-            notes: p.n,
-          }}
-          triage={{ level: p.tl, reasons: p.r, needs: [] }}
-          services={p.sv}
-        />
+        <IntakeSummary intake={intake} triage={{ level: p.tl, reasons: p.r, needs: [] }} services={p.sv} />
+        <GuidanceCard intake={intake} />
         <Text style={{ color: theme.warning }}>{t('scan.checkInPerson')}</Text>
         {received ? (
           <Text style={[styles.title, { color: theme.success }]}>✓ {t('scan.received')}</Text>

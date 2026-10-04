@@ -211,5 +211,12 @@
     "received": "Received",
     "scanAgain": "Scan another",
     "checkInPerson": "Confirm the patient's identity in person."
+  },
+  "guidance": {
+    "title": "Guidance reminders for this patient",
+    "intro": "Matched to the visit note from the guidance registry. For the clinician; the clinical decision stays with you.",
+    "source": "Source",
+    "draft": "Draft: not yet clinically reviewed.",
+    "footer": "Registry version {{version}}, updated {{updated}}. Reminders only: follow the current national guideline."
   }
 }

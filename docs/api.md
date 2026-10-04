@@ -225,5 +225,15 @@ Response:
   lists facilities by patient group (general outpatient, plus child health or maternal care).
 - Urgency ("go now", "within 24 hours", …) is not decided here; it stays with the app's on-phone triage rules.
 
+## `GET /guidance` (clinician guidance registry)
+Returns the guidance registry JSON (`src/intake/guidanceRegistry.json` by default, or `GUIDANCE_PATH`).
+The app ships with a copy and matches entries to the visit note on the phone (`src/intake/guidance.ts`),
+so the reminders work offline. When online it calls this endpoint and keeps the result if `version` is
+higher than its own. To publish new guidance: edit the registry, raise `version` and `updated`, redeploy.
+
+Each entry cites a source in `sources` and is matched by fixed rules (`groups`, `any.symptoms`,
+`any.dangerSigns`, `minDurationDays`); nothing is generated. `reviewStatus` must be set to
+`clinically_reviewed` only after a clinician has checked the points against the sources.
+
 ## `POST /records` (store-and-forward)
 Body: the full `IntakeRecord` JSON. Response `{ "ok": true }`. Sent from the outbox when signal returns. Map it to DHIS2 on the server.

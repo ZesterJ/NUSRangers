@@ -1,0 +1,130 @@
+{
+  "version": 1,
+  "updated": "2026-10-04",
+  "reviewStatus": "draft_not_clinically_reviewed",
+  "note": "Reminders for the clinician, matched to the visit note by fixed rules. Each entry cites its WHO source. The wording of the points has not been checked line by line against the source documents or the Kenyan national guidelines: a clinician must review it before real use.",
+  "sources": {
+    "imci_2014": {
+      "title": "Integrated Management of Childhood Illness (IMCI) set of distance learning modules, including the chart booklet",
+      "publisher": "World Health Organization",
+      "year": 2014,
+      "url": "https://www.who.int/publications/i/item/9789241506823"
+    },
+    "malaria_guidelines": {
+      "title": "WHO guidelines for malaria (living guideline)",
+      "publisher": "World Health Organization",
+      "year": 2026,
+      "url": "https://www.who.int/publications/i/item/guidelines-for-malaria"
+    },
+    "pcpnc_2015": {
+      "title": "Pregnancy, childbirth, postpartum and newborn care: A guide for essential practice (3rd edition)",
+      "publisher": "World Health Organization",
+      "year": 2015,
+      "url": "https://www.who.int/publications/i/item/9789241549356"
+    },
+    "anc_2016": {
+      "title": "WHO recommendations on antenatal care for a positive pregnancy experience",
+      "publisher": "World Health Organization",
+      "year": 2016,
+      "url": "https://www.who.int/publications/i/item/9789241549912"
+    },
+    "tb_screening_2021": {
+      "title": "WHO consolidated guidelines on tuberculosis: module 2: screening: systematic screening for tuberculosis disease",
+      "publisher": "World Health Organization",
+      "year": 2021,
+      "url": "https://www.who.int/publications/i/item/9789240022676"
+    }
+  },
+  "entries": [
+    {
+      "id": "imci-danger-signs",
+      "title": "Child under 5 with a general danger sign",
+      "sourceId": "imci_2014",
+      "groups": ["child_u5"],
+      "any": { "dangerSigns": ["unable_to_drink", "vomits_everything", "convulsions", "lethargic"] },
+      "points": [
+        "General danger signs: unable to drink or breastfeed, vomits everything, convulsions, lethargic or unconscious.",
+        "A child with any general danger sign needs urgent attention: complete the assessment, give pre-referral treatment, and refer urgently."
+      ]
+    },
+    {
+      "id": "imci-cough",
+      "title": "Child under 5 with cough or difficult breathing",
+      "sourceId": "imci_2014",
+      "groups": ["child_u5"],
+      "any": { "symptoms": ["cough", "difficulty_breathing"], "dangerSigns": ["chest_indrawing"] },
+      "points": [
+        "Count the breaths for one full minute. Fast breathing is 50 or more per minute at 2 to 12 months, and 40 or more per minute at 12 months to 5 years.",
+        "Look for chest indrawing and listen for stridor while the child is calm.",
+        "Fast breathing or chest indrawing is classified as pneumonia. With a general danger sign, or stridor in a calm child, refer urgently.",
+        "Cough for 14 days or more: refer for assessment for tuberculosis or asthma."
+      ]
+    },
+    {
+      "id": "imci-diarrhoea",
+      "title": "Child under 5 with diarrhoea",
+      "sourceId": "imci_2014",
+      "groups": ["child_u5"],
+      "any": { "symptoms": ["diarrhoea"], "dangerSigns": ["blood_in_stool"] },
+      "points": [
+        "Assess dehydration: general condition, sunken eyes, whether the child drinks eagerly or poorly, and the skin pinch.",
+        "Give oral rehydration solution and zinc, and advise the caregiver to continue feeding.",
+        "Diarrhoea for 14 days or more is persistent diarrhoea. Blood in the stool is dysentery."
+      ]
+    },
+    {
+      "id": "imci-fever",
+      "title": "Child under 5 with fever",
+      "sourceId": "imci_2014",
+      "groups": ["child_u5"],
+      "any": { "symptoms": ["fever"] },
+      "points": [
+        "In a malaria-risk area, test for malaria (rapid test or microscopy) before giving an antimalarial.",
+        "Check for a stiff neck and for signs of measles.",
+        "Fever every day for 7 days or more: refer for assessment."
+      ]
+    },
+    {
+      "id": "malaria-test-before-treatment",
+      "title": "Fever: confirm malaria before treating",
+      "sourceId": "malaria_guidelines",
+      "groups": ["child_5plus", "adult", "pregnant"],
+      "any": { "symptoms": ["fever"] },
+      "points": [
+        "Confirm suspected malaria with a parasitological test (rapid diagnostic test or microscopy) before starting treatment."
+      ]
+    },
+    {
+      "id": "pregnancy-danger-signs",
+      "title": "Pregnancy: danger signs",
+      "sourceId": "pcpnc_2015",
+      "groups": ["pregnant"],
+      "any": {
+        "symptoms": ["headache", "fever", "abdominal_pain", "difficulty_breathing"],
+        "dangerSigns": ["vaginal_bleeding", "severe_headache_blurred_vision", "convulsions", "reduced_fetal_movement"]
+      },
+      "points": [
+        "Danger signs in pregnancy include vaginal bleeding, convulsions, severe headache with blurred vision, fever, severe abdominal pain, and fast or difficult breathing.",
+        "With severe headache or blurred vision, measure blood pressure and test urine for protein to assess for pre-eclampsia."
+      ]
+    },
+    {
+      "id": "anc-contacts",
+      "title": "Pregnancy: antenatal care contacts",
+      "sourceId": "anc_2016",
+      "groups": ["pregnant"],
+      "points": [
+        "WHO recommends at least eight antenatal care contacts during pregnancy. Check when the last contact was and book the next one."
+      ]
+    },
+    {
+      "id": "tb-prolonged-cough",
+      "title": "Cough for two weeks or more",
+      "sourceId": "tb_screening_2021",
+      "groups": ["child_5plus", "adult", "pregnant"],
+      "any": { "symptoms": ["cough"] },
+      "minDurationDays": 14,
+      "points": ["A cough lasting two weeks or more: screen for tuberculosis."]
+    }
+  ]
+}

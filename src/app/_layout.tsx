@@ -6,6 +6,7 @@ import { useEffect } from 'react';
 import { flushOutbox, refreshPending } from '@/ai/sync';
 import { getDb } from '@/db';
 import i18n from '@/i18n';
+import { refreshGuidance } from '@/intake/guidanceStore';
 import { startConnectivityWatcher, useIsOnline } from '@/store/connectivity';
 import { useSettings } from '@/store/settings';
 
@@ -26,9 +27,12 @@ export default function RootLayout() {
     i18n.changeLanguage(locale);
   }, [locale]);
 
-  // Whenever we (re)gain connectivity, retry everything queued offline.
+  // Whenever we (re)gain connectivity, retry everything queued offline and look for newer guidance.
   useEffect(() => {
-    if (online && hydrated) flushOutbox();
+    if (online && hydrated) {
+      flushOutbox();
+      refreshGuidance();
+    }
   }, [online, hydrated]);
 
   useEffect(() => {

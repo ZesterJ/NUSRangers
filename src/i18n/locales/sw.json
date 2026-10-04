@@ -211,5 +211,12 @@
     "received": "Imepokelewa",
     "scanAgain": "Skani mwingine",
     "checkInPerson": "Thibitisha utambulisho wa mgonjwa ana kwa ana."
+  },
+  "guidance": {
+    "title": "Vikumbusho vya miongozo kwa mgonjwa huyu",
+    "intro": "Vimelinganishwa na taarifa ya mgonjwa kutoka kwenye rejista ya miongozo. Kwa ajili ya mhudumu; uamuzi wa kitabibu ni wako.",
+    "source": "Chanzo",
+    "draft": "Rasimu: bado haijapitiwa na mtaalamu wa afya.",
+    "footer": "Rejista toleo {{version}}, imesasishwa {{updated}}. Ni vikumbusho tu: fuata mwongozo wa kitaifa wa sasa."
   }
 }
