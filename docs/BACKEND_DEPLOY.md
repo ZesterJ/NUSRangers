@@ -122,6 +122,10 @@ does these steps, or they grant Render's GitHub app access to the repo for your 
 When the deploy log shows `Uvicorn running`, copy the URL (e.g. `https://njia-ya-afya-backend.onrender.com`)
 and check `$URL/health`, then `$URL/guidance`.
 
+**Current deployment:** `https://njia-ya-afya-nus-rangers.onrender.com` (from `main`, added by public repository
+URL, so it does not redeploy on its own: use **Manual Deploy** after merging). Installed builds use this address
+through the `env` block in `eas.json`.
+
 Every push to the deployed branch redeploys automatically.
 
 ⚠️ **Free tier sleeps after about 15 minutes idle**, and the first request then takes 30–60s. The intake gives up on the backend after 8 seconds and uses the on-phone rules instead. **Open `$URL/health` a minute before any demo or judging slot.** Stored visit records are kept in memory only and are lost when the service sleeps or redeploys.
