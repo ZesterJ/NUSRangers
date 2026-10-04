@@ -1,14 +1,14 @@
 import { useFocusEffect } from 'expo-router';
 import { useCallback, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
+import { Alert, Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import QRCode from 'react-native-qrcode-svg';
 
-import { flushOutbox, useSyncStore } from '@/ai/sync';
+import { flushOutbox, refreshPending, useSyncStore } from '@/ai/sync';
 import { AssessmentCard } from '@/components/AssessmentCard';
 import { IntakeSummary, LEVEL_ICON } from '@/components/IntakeSummary';
 import { Button, Card, SectionTitle } from '@/components/ui';
-import { listIntakes, listReports, type StoredReport } from '@/db';
+import { deleteIntakes, KEEP_INTAKES_DAYS, listIntakes, listReports, type StoredReport } from '@/db';
 import { encodeHandoff } from '@/intake/handoff';
 import type { IntakeRecord } from '@/intake/types';
 import { useIsOnline } from '@/store/connectivity';
@@ -35,6 +35,21 @@ export default function History() {
   useFocusEffect(load);
   // Reload after a background sync finishes.
   useEffect(load, [load, version]);
+
+  const confirmDelete = () =>
+    Alert.alert(t('history.deleteAll'), t('history.deleteConfirm'), [
+      { text: t('common.cancel'), style: 'cancel' },
+      {
+        text: t('history.deleteYes'),
+        style: 'destructive',
+        onPress: async () => {
+          await deleteIntakes(role ?? 'patient');
+          await refreshPending();
+          setOpen(null);
+          load();
+        },
+      },
+    ]);
 
   const toggle = async (rec: IntakeRecord) => {
     if (open?.id === rec.id) return setOpen(null);
@@ -80,7 +95,12 @@ export default function History() {
             </Pressable>
             {open?.id === rec.id && (
               <>
-                <IntakeSummary intake={rec.intake} triage={rec.triage} services={rec.services} />
+                <IntakeSummary intake={rec.intake} triage={rec.triage} services={rec.services} madeAt={rec.createdAt} />
+                {rec.completedInSec !== undefined && (
+                  <Text style={{ color: theme.textMuted, fontSize: 13 }}>
+                    ⏱ {t('history.completedIn', { minutes: Math.floor(rec.completedInSec / 60), seconds: rec.completedInSec % 60 })}
+                  </Text>
+                )}
                 {rec.transcript.length > 0 && (
                   <Card>
                     <Text style={{ color: theme.textMuted, fontWeight: '700' }}>{t('intake.transcript')}</Text>
@@ -98,6 +118,14 @@ export default function History() {
             )}
           </View>
         ))}
+
+        {/* Privacy: the notes can be removed from the phone at any time, e.g. before lending or selling it. */}
+        <Text style={{ color: theme.textMuted, fontSize: 13 }}>{t('history.keptFor', { days: KEEP_INTAKES_DAYS })}</Text>
+        {intakes.length > 0 && (
+          <Pressable accessibilityRole="button" onPress={confirmDelete} style={[styles.delete, { borderColor: theme.danger }]}>
+            <Text style={{ color: theme.danger, fontWeight: '700', fontSize: 16 }}>🗑 {t('history.deleteAll')}</Text>
+          </Pressable>
+        )}
 
         {reports.length > 0 && (
           <>
@@ -122,6 +150,7 @@ export default function History() {
 }
 
 const styles = StyleSheet.create({
+  delete: { minHeight: 48, borderWidth: 1.5, borderRadius: radius.md, alignItems: 'center', justifyContent: 'center' },
   content: { padding: spacing.lg, gap: spacing.md, paddingBottom: spacing.xl * 2 },
   row: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', gap: spacing.sm },
   rowTitle: { fontSize: 16, fontWeight: '700', flexShrink: 1 },

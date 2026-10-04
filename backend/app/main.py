@@ -184,7 +184,8 @@ def get_extractor(request: Request) -> IntakeExtractor:
     return extractor
 
 
-@app.post("/extract", response_model=Extraction, response_model_exclude_none=True)
+# Null values are sent explicitly ("value": null): the app tells "not found" apart from a missing field.
+@app.post("/extract", response_model=Extraction)
 def extract(req: ExtractRequest, extractor: IntakeExtractor = Depends(get_extractor)):
     # Never log the answers: they are patient data.
     try:

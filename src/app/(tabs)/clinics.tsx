@@ -1,4 +1,3 @@
-import * as Location from 'expo-location';
 import { useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Linking, Platform, Pressable, StyleSheet, Text, TextInput } from 'react-native';
@@ -7,6 +6,7 @@ import { ClinicMap } from '@/components/ClinicMap';
 import { Button, Card, KeyboardScrollView } from '@/components/ui';
 import { distanceKm, origin, type Coordinates } from '@/intake/careRouting';
 import directory from '@/intake/kilifiDirectory.json';
+import { currentCoordinates } from '@/intake/location';
 import { radius, spacing, usePackContext } from '@/theme';
 
 type Facility = (typeof directory.facilities)[number];
@@ -47,17 +47,9 @@ export default function Clinics() {
   const locate = async () => {
     setLocating(true);
     try {
-      const perm = await Location.requestForegroundPermissionsAsync();
-      setDenied(!perm.granted);
-      if (!perm.granted) return;
-      // Last known position works without a data connection; fall back to a fresh GPS fix.
-      const pos =
-        (await Location.getLastKnownPositionAsync()) ??
-        (await Location.getCurrentPositionAsync({ accuracy: Location.Accuracy.Balanced }));
-      setMine({ latitude: pos.coords.latitude, longitude: pos.coords.longitude });
-    } catch (e) {
-      console.warn('[clinics] could not get a location', e);
-      setDenied(true);
+      const coords = await currentCoordinates(true);
+      setDenied(!coords);
+      if (coords) setMine(coords);
     } finally {
       setLocating(false);
     }

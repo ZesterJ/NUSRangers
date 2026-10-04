@@ -231,6 +231,27 @@ export async function listIntakes(): Promise<IntakeRecord[]> {
   return rows.map((r) => JSON.parse(r.record));
 }
 
+/** Removes visit notes made in one view from this phone, including any still waiting to upload. */
+export async function deleteIntakes(owner: 'patient' | 'clinic') {
+  const db = await getDb();
+  const ids = (await listIntakes()).filter((rec) => (rec.owner ?? 'patient') === owner).map((rec) => rec.id);
+  for (const id of ids) await db.runAsync('DELETE FROM intakes WHERE id = ?', id);
+  for (const item of await listOutbox()) {
+    if (item.kind === 'intake' && ids.includes((JSON.parse(item.payload) as IntakeRecord).id)) await removeOutbox(item.id);
+  }
+  return ids.length;
+}
+
+/** Visit notes are not kept on the phone for ever: older ones are removed, unless they have not been uploaded yet. */
+export const KEEP_INTAKES_DAYS = 30;
+export async function purgeOldIntakes() {
+  const db = await getDb();
+  const cutoff = Date.now() - KEEP_INTAKES_DAYS * 24 * 60 * 60 * 1000;
+  const waiting = (await listOutbox()).filter((i) => i.kind === 'intake').map((i) => (JSON.parse(i.payload) as IntakeRecord).id);
+  const old = await db.getAllAsync<{ id: string }>('SELECT id FROM intakes WHERE created_at < ?', cutoff);
+  for (const { id } of old) if (!waiting.includes(id)) await db.runAsync('DELETE FROM intakes WHERE id = ?', id);
+}
+
 export async function markIntakeReceived(id: string) {
   const db = await getDb();
   const row = await db.getFirstAsync<{ record: string }>('SELECT record FROM intakes WHERE id = ?', id);

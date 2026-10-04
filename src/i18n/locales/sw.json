@@ -57,7 +57,12 @@
     "syncing": "Inatuma…",
     "empty": "Hakuna taarifa bado.",
     "noResult": "Inasubiri matokeo",
-    "intakes": "Taarifa za wagonjwa"
+    "intakes": "Taarifa za wagonjwa",
+    "deleteAll": "Futa taarifa zangu",
+    "deleteConfirm": "Hii itaondoa kila taarifa kwenye orodha hii kutoka kwenye simu hii. Haiwezi kurudishwa. Taarifa ambazo tayari zimetolewa kwa kliniki zitabaki kwa kliniki.",
+    "deleteYes": "Futa",
+    "keptFor": "Taarifa huondolewa kwenye simu hii zenyewe baada ya siku {{days}}.",
+    "completedIn": "Imekamilika kwa dakika {{minutes}} sekunde {{seconds}}"
   },
   "settings": {
     "language": "Lugha",
@@ -204,7 +209,8 @@
       "reduced_fetal_movement": "Mtoto anacheza kidogo",
       "blood_in_stool": "Damu kwenye choo"
     },
-    "nameHint": "Andika jina kamili kama lilivyo kwenye kitambulisho cha taifa (au cheti cha kuzaliwa kwa mtoto). Kliniki italikagua wakati wa usajili."
+    "nameHint": "Andika jina kamili kama lilivyo kwenye kitambulisho cha taifa (au cheti cha kuzaliwa kwa mtoto). Kliniki italikagua wakati wa usajili.",
+    "followUp": "Usipopata nafuu, kagua tena tarehe {{date}}."
   },
   "scan": {
     "title": "Kliniki: pokea mgonjwa",
@@ -327,7 +333,7 @@
     "notDiagnosis": "Programu hii haitambui magonjwa wala haitoi ushauri wa kitabibu.",
     "guidance": "Inakusaidia tu kupata huduma: inaandaa taarifa ya mgonjwa kwa ajili ya kliniki na kupendekeza mahali pa kwenda. Mhudumu wa afya ndiye anayefanya kila uamuzi wa kitabibu.",
     "emergency": "Wakati wa dharura, nenda mara moja kwenye kliniki au hospitali iliyo karibu. Usisubiri programu.",
-    "stored": "Majibu yako, pamoja na jina la mgonjwa, yanahifadhiwa kwenye simu hii. Yeyote anayetumia programu kwenye simu hii anaweza kuyaona.",
+    "stored": "Majibu yako, pamoja na jina la mgonjwa, yanahifadhiwa kwenye simu hii. Yeyote anayetumia programu kwenye simu hii anaweza kuyaona. Unaweza kuyafuta wakati wowote, na huondolewa yenyewe baada ya siku 30.",
     "shared": "Taarifa yako inashirikiwa na kliniki unapoonyesha msimbo wako. Simu ikipata mtandao, nakala pia hutumwa kwenye mfumo wa kumbukumbu wa kliniki.",
     "location": "Mahali ulipo panatumika kwenye simu hii tu, kuonyesha kliniki zilizo karibu nawe, na ikiwa tu utaruhusu.",
     "agreeNote": "Kwa kuendelea, unathibitisha kuwa umesoma haya na unakubali taarifa zako zitumike kwa njia hii.",

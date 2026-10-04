@@ -13,10 +13,11 @@ import { DangerOptions, DurationOptions, WhoOptions } from '@/components/Questio
 import { Button, Card, Chip, KeyboardScrollView, SectionTitle } from '@/components/ui';
 import { enqueue, saveIntake } from '@/db';
 import { applyBodyPicks, NO_PICKS, type BodyPicks } from '@/intake/bodyParts';
-import { assessCareOnPhone } from '@/intake/careRouting';
+import { assessCareOnPhone, type Coordinates } from '@/intake/careRouting';
 import { applyChoices, NO_CHOICES, type Choices } from '@/intake/choices';
 import { encodeHandoff } from '@/intake/handoff';
 import { QUESTIONS } from '@/intake/questions';
+import { currentCoordinates } from '@/intake/location';
 import { extract } from '@/intake/services';
 import { triage } from '@/intake/triage';
 import {
@@ -54,6 +55,8 @@ function IntakeFlow({ onRestart }: { onRestart: () => void }) {
   const big = { fontSize: 22 * scale, lineHeight: 28 * scale };
   const body = { fontSize: 15 * scale };
 
+  // For the record: how long the visit note took, from opening it to creating the clinic code.
+  const [startedAt] = useState(() => Date.now());
   const [step, setStep] = useState<Step>('ask');
   const [qi, setQi] = useState(0);
   const [answers, setAnswers] = useState<Partial<Record<QuestionId, string>>>({});
@@ -61,7 +64,7 @@ function IntakeFlow({ onRestart }: { onRestart: () => void }) {
   const [choices, setChoices] = useState<Choices>(NO_CHOICES);
   const [extraction, setExtraction] = useState<Extraction | null>(null);
   const [form, setForm] = useState<ConfirmedIntake | null>(null);
-  const [result, setResult] = useState<{ triage: Triage; clinics: ClinicOption[]; care: CareRouting } | null>(null);
+  const [result, setResult] = useState<{ triage: Triage; clinics: ClinicOption[]; care: CareRouting; madeAt: number } | null>(null);
   const [chosen, setChosen] = useState<string | null>(null);
   const [qr, setQr] = useState<string | null>(null);
 
@@ -99,12 +102,8 @@ function IntakeFlow({ onRestart }: { onRestart: () => void }) {
   };
 
   // ---------- Steps 6–7: triage and clinic suggestions ----------
-  const confirm = () => {
-    if (!form) return;
-    // Everything here runs on the phone, so it works with no signal: urgency from the triage rules,
-    // then care services and Kilifi facilities from the care policy.
-    const tri = triage(form, extraction ?? undefined);
-    const care = assessCareOnPhone(form);
+  const route = (note: ConfirmedIntake, coords: Coordinates | null) => {
+    const care = assessCareOnPhone(note, coords ?? undefined);
     const clinics: ClinicOption[] = care.candidates.map((c) => ({
       id: c.facilityId,
       name: c.facilityName,
@@ -114,9 +113,29 @@ function IntakeFlow({ onRestart }: { onRestart: () => void }) {
         t('intake.availabilityUnknown'),
       ],
     }));
-    setResult({ triage: tri, clinics, care });
+    return { care, clinics };
+  };
+
+  const confirm = async () => {
+    if (!form) return;
+    // Everything here runs on the phone, so it works with no signal: urgency from the triage rules,
+    // then care services and Kilifi facilities from the care policy, nearest to the phone's GPS position
+    // when location is already allowed (no prompt here).
+    const tri = triage(form, extraction ?? undefined);
+    const { care, clinics } = route(form, await currentCoordinates(false));
+    setResult({ triage: tri, clinics, care, madeAt: Date.now() });
     setChosen(clinics[0]?.id ?? null);
     setStep('result');
+  };
+
+  /** Result screen: the patient chose to share their location, so re-rank the clinics from where they are. */
+  const useMyLocation = async () => {
+    if (!form || !result) return;
+    const coords = await currentCoordinates(true);
+    if (!coords) return;
+    const { care, clinics } = route(form, coords);
+    setResult({ ...result, care, clinics });
+    setChosen(clinics[0]?.id ?? null);
   };
 
   // ---------- Steps 8 & 10: save locally, queue sync, show QR ----------
@@ -125,7 +144,8 @@ function IntakeFlow({ onRestart }: { onRestart: () => void }) {
     const rec: IntakeRecord = {
       id: Crypto.randomUUID().slice(0, 8),
       owner: role ?? 'patient',
-      createdAt: Date.now(),
+      completedInSec: Math.round((Date.now() - startedAt) / 1000),
+      createdAt: result.madeAt,
       locale,
       transcript: QUESTIONS.map((qq) => answers[qq.id] ?? '').filter(Boolean),
       intake: form,
@@ -211,7 +231,7 @@ function IntakeFlow({ onRestart }: { onRestart: () => void }) {
         {step === 'result' && form && result && (
           <>
             <Text style={[styles.question, big, { color: theme.text }]}>{t('intake.resultTitle')}</Text>
-            <IntakeSummary intake={form} triage={result.triage} services={result.care.requiredServices} />
+            <IntakeSummary intake={form} triage={result.triage} services={result.care.requiredServices} madeAt={result.madeAt} />
 
             {result.triage.level !== 'home_care' && (
               <>
@@ -222,6 +242,9 @@ function IntakeFlow({ onRestart }: { onRestart: () => void }) {
                   {t('intake.routingNote')}
                   {result.care.origin === 'demo_anchor' ? ` ${t('intake.demoOrigin')}` : ''}
                 </Text>
+                {result.care.origin === 'demo_anchor' && !qr && (
+                  <Button label={`📍 ${t('clinics.locate')}`} variant="outline" onPress={useMyLocation} />
+                )}
                 {result.clinics.length === 0 && <Text style={{ color: theme.warning }}>{t('intake.noClinic')}</Text>}
                 {result.clinics.map((c) => {
                   const selected = chosen === c.id;

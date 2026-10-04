@@ -4,7 +4,7 @@ import { StatusBar } from 'expo-status-bar';
 import { useEffect } from 'react';
 
 import { flushOutbox, refreshPending } from '@/ai/sync';
-import { getDb } from '@/db';
+import { getDb, purgeOldIntakes } from '@/db';
 import i18n from '@/i18n';
 import { refreshGuidance } from '@/intake/guidanceStore';
 import { startConnectivityWatcher, useIsOnline } from '@/store/connectivity';
@@ -20,7 +20,10 @@ export default function RootLayout() {
   useEffect(() => startConnectivityWatcher(), []);
 
   useEffect(() => {
-    getDb().then(refreshPending).catch((e) => console.warn('[db] init failed', e));
+    getDb()
+      .then(purgeOldIntakes)
+      .then(refreshPending)
+      .catch((e) => console.warn('[db] init failed', e));
   }, []);
 
   useEffect(() => {

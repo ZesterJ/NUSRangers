@@ -121,3 +121,14 @@ def test_denied_symptoms_are_reported_so_the_app_does_not_add_them_back():
     decisions = {"fever": {"state": "negated"}, "cough": {"state": "affirmed"}, "headache": {"state": "not_mentioned"}}
     out = run({"c": result(symptoms=["cough"], symptomDecisions=decisions)}, complaint="c")
     assert out.negatedSymptoms == ["fever"]
+
+
+def test_endpoint_sends_null_for_a_value_it_could_not_find():
+    main.app.dependency_overrides[main.get_extractor] = lambda: ex.IntakeExtractor(StubPipeline({}))
+    try:
+        with TestClient(main.app) as client:
+            body = client.post("/extract", json={"locale": "en", "answers": {"duration": "abc"}}).json()
+    finally:
+        main.app.dependency_overrides.clear()
+    assert body["durationDays"]["value"] is None
+    assert "value" in body["patientGroup"]

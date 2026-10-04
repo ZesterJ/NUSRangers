@@ -57,7 +57,12 @@
     "syncing": "Syncing…",
     "empty": "No visit notes yet.",
     "noResult": "Waiting for result",
-    "intakes": "Visit notes"
+    "intakes": "Visit notes",
+    "deleteAll": "Delete my visit notes",
+    "deleteConfirm": "This removes every visit note in this list from this phone. It cannot be undone. Notes already given to a clinic stay with the clinic.",
+    "deleteYes": "Delete",
+    "keptFor": "Visit notes are removed from this phone automatically after {{days}} days.",
+    "completedIn": "Completed in {{minutes}} min {{seconds}} s"
   },
   "settings": {
     "language": "Language",
@@ -204,7 +209,8 @@
       "reduced_fetal_movement": "Reduced fetal movement",
       "blood_in_stool": "Blood in stool"
     },
-    "nameHint": "Write the full name as on the ID card (or birth certificate for a child). The clinic will check it."
+    "nameHint": "Write the full name as on the ID card (or birth certificate for a child). The clinic will check it.",
+    "followUp": "If not better, check again on {{date}}."
   },
   "scan": {
     "title": "Clinic: receive a patient",
@@ -327,7 +333,7 @@
     "notDiagnosis": "This app does not diagnose illness and does not give medical advice.",
     "guidance": "It only helps you get care: it prepares a visit note for the clinic and suggests where to go. A health worker makes every medical decision.",
     "emergency": "In an emergency, go to the nearest clinic or hospital straight away. Do not wait for the app.",
-    "stored": "Your answers, including the patient's name, are saved on this phone. Anyone who uses the app on this phone can see them.",
+    "stored": "Your answers, including the patient's name, are saved on this phone. Anyone who uses the app on this phone can see them. You can delete them at any time, and they are removed automatically after 30 days.",
     "shared": "Your visit note is shared with the clinic when you show your code. When the phone has signal, a copy is also sent to the clinic's record system.",
     "location": "Your location is used only on this phone, to show clinics near you, and only if you allow it.",
     "agreeNote": "By continuing, you confirm that you have read this and agree to your information being used in this way.",

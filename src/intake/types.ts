@@ -109,5 +109,7 @@ export type IntakeRecord = {
   services?: string[];
   facilityId: string | null;
   facilityName?: string;
+  /** Seconds from opening the visit note to creating the clinic code. */
+  completedInSec?: number;
   status: 'handed_off' | 'received';
 };
