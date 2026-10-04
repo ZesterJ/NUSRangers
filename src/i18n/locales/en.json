@@ -142,9 +142,16 @@
     "name": "Patient's name",
     "namePlaceholder": "Enter the name (optional)",
     "sex": "Sex",
-    "sexOpt": { "female": "Female", "male": "Male" },
+    "sexOpt": {
+      "female": "Female",
+      "male": "Male"
+    },
     "pregnantQ": "Is the patient pregnant?",
-    "pregnantOpt": { "yes": "Yes", "no": "No", "unsure": "Not sure" },
+    "pregnantOpt": {
+      "yes": "Yes",
+      "no": "No",
+      "unsure": "Not sure"
+    },
     "dur": {
       "d1": "1 day",
       "d2": "2 days",
@@ -254,7 +261,7 @@
     },
     "suggested": "Suggested from the visit note and vital signs: {{priority}}. The nurse decides.",
     "nurseNotes": "Nurse's notes",
-    "saveReport": "Save triage report",
+    "saveReport": "Confirm and save triage report",
     "reportTitle": "Triage report",
     "triagedAt": "Triaged at {{time}}",
     "noVitals": "No vital signs recorded.",
@@ -264,6 +271,12 @@
     "qrHint": "The doctor scans this code on the Clinic tab to open the triage report.",
     "markSeen": "Mark as seen by doctor",
     "editTriage": "Edit triage",
-    "back": "Back to queue"
+    "back": "Back to queue",
+    "noteTitle": "Visit note",
+    "noteHint": "Check the patient's answers and correct anything that differs from your assessment.",
+    "confirmedNote": "Visit note confirmed by the nurse",
+    "editedNote": "Visit note corrected and confirmed by the nurse",
+    "confirmedTitle": "Visit note (confirmed by the nurse)",
+    "originalTitle": "Originally reported by the patient"
   }
 }

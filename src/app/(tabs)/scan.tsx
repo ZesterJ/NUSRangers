@@ -4,6 +4,7 @@ import { useCallback, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 
+import { NoteRows } from '@/components/clinic/NoteRows';
 import { TriageForm } from '@/components/clinic/TriageForm';
 import { TriageReport } from '@/components/clinic/TriageReport';
 import { GuidanceCard } from '@/components/GuidanceCard';
@@ -75,15 +76,40 @@ export default function Clinic() {
         {showForm && (
           <TriageForm
             visit={visit}
-            onSave={async (triage) => {
-              await save({ ...visit, triage, status: 'triaged' });
+            onSave={async (triage, note) => {
+              // Keep the patient's own answers when the nurse corrected them.
+              const patientNote = triage.noteEdited ? (visit.patientNote ?? visit.note) : undefined;
+              await save({ ...visit, note, patientNote, triage, status: 'triaged' });
               setView({ kind: 'visit', id: visit.id });
             }}
           />
         )}
 
-        <SectionTitle>{t('clinic.patientReported')}</SectionTitle>
-        <IntakeSummary intake={visit.note} triage={{ ...visit.selfTriage, needs: [] }} services={visit.services} />
+        {showForm ? (
+          <>
+            <SectionTitle>{t('clinic.patientReported')}</SectionTitle>
+            <IntakeSummary
+              intake={visit.patientNote ?? visit.note}
+              triage={{ ...visit.selfTriage, needs: [] }}
+              services={visit.services}
+            />
+          </>
+        ) : (
+          <>
+            <SectionTitle>{t('clinic.confirmedTitle')}</SectionTitle>
+            <Card>
+              <NoteRows note={visit.note} />
+            </Card>
+            {visit.patientNote && (
+              <>
+                <SectionTitle>{t('clinic.originalTitle')}</SectionTitle>
+                <Card>
+                  <NoteRows note={visit.patientNote} />
+                </Card>
+              </>
+            )}
+          </>
+        )}
         <GuidanceCard intake={visit.note} />
 
         {visit.status === 'triaged' && !view.editing && (

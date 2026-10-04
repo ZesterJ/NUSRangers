@@ -13,11 +13,13 @@ import {
   type VitalKey,
   type Vitals,
 } from '@/intake/clinic';
+import type { ConfirmedIntake } from '@/intake/types';
 import { radius, spacing, usePackContext } from '@/theme';
 
 import { Button, Card, Chip, SectionTitle } from '../ui';
+import { NoteEditor } from './NoteEditor';
 
-type Props = { visit: ClinicVisit; onSave: (triage: NurseTriage) => void };
+type Props = { visit: ClinicVisit; onSave: (triage: NurseTriage, note: ConfirmedIntake) => void };
 
 const toText = (v: Vitals): Partial<Record<VitalKey, string>> =>
   Object.fromEntries(Object.entries(v).map(([k, n]) => [k, String(n)]));
@@ -31,22 +33,29 @@ const toVitals = (text: Partial<Record<VitalKey, string>>): Vitals => {
   return vitals;
 };
 
-/** Nurse step: record vital signs, set the triage priority, add notes. */
+/** Nurse step: check and correct the visit note, record vital signs, set the triage priority, add notes. */
 export function TriageForm({ visit, onSave }: Props) {
   const { theme } = usePackContext();
   const { t } = useTranslation();
   const [text, setText] = useState(toText(visit.triage?.vitals ?? {}));
   const [priority, setPriority] = useState<NursePriority | null>(visit.triage?.priority ?? null);
   const [notes, setNotes] = useState(visit.triage?.notes ?? '');
+  const [note, setNote] = useState<ConfirmedIntake>(visit.note);
+  // Compared with what the patient gave, so re-editing a triage keeps the "corrected" mark.
+  const noteEdited = JSON.stringify(note) !== JSON.stringify(visit.patientNote ?? visit.note);
 
   const vitals = toVitals(text);
-  const flags = vitalFlags(visit.note, vitals);
-  const suggested = suggestedPriority(visit, vitals);
+  const flags = vitalFlags(note, vitals);
+  const suggested = suggestedPriority({ note, selfTriage: visit.selfTriage }, vitals);
   const input = [styles.input, { color: theme.text, borderColor: theme.border, backgroundColor: theme.background }];
 
   return (
     <Card>
       <Text style={[styles.heading, { color: theme.text }]}>🩺 {t('clinic.nurseTitle')}</Text>
+
+      <SectionTitle>{t('clinic.noteTitle')}</SectionTitle>
+      <Text style={{ color: theme.textMuted }}>{t('clinic.noteHint')}</Text>
+      <NoteEditor note={note} onChange={setNote} />
 
       <SectionTitle>{t('clinic.vitals')}</SectionTitle>
       {VITAL_KEYS.map((key) => (
@@ -82,7 +91,7 @@ export function TriageForm({ visit, onSave }: Props) {
       <Button
         label={t('clinic.saveReport')}
         disabled={!priority}
-        onPress={() => priority && onSave({ vitals, priority, notes: notes.trim(), triagedAt: Date.now() })}
+        onPress={() => priority && onSave({ vitals, priority, notes: notes.trim(), triagedAt: Date.now(), noteEdited }, note)}
       />
     </Card>
   );

@@ -142,9 +142,16 @@
     "name": "Jina la mgonjwa",
     "namePlaceholder": "Andika jina (si lazima)",
     "sex": "Jinsia",
-    "sexOpt": { "female": "Mwanamke", "male": "Mwanamume" },
+    "sexOpt": {
+      "female": "Mwanamke",
+      "male": "Mwanamume"
+    },
     "pregnantQ": "Je, mgonjwa ni mjamzito?",
-    "pregnantOpt": { "yes": "Ndiyo", "no": "Hapana", "unsure": "Sina uhakika" },
+    "pregnantOpt": {
+      "yes": "Ndiyo",
+      "no": "Hapana",
+      "unsure": "Sina uhakika"
+    },
     "dur": {
       "d1": "Siku 1",
       "d2": "Siku 2",
@@ -254,7 +261,7 @@
     },
     "suggested": "Pendekezo kutokana na taarifa na vipimo: {{priority}}. Muuguzi ndiye anayeamua.",
     "nurseNotes": "Maelezo ya muuguzi",
-    "saveReport": "Hifadhi ripoti ya upimaji",
+    "saveReport": "Thibitisha na uhifadhi ripoti ya upimaji",
     "reportTitle": "Ripoti ya upimaji",
     "triagedAt": "Amepimwa saa {{time}}",
     "noVitals": "Hakuna vipimo vilivyorekodiwa.",
@@ -264,6 +271,12 @@
     "qrHint": "Daktari anaskani msimbo huu kwenye kichupo cha Kliniki ili kufungua ripoti ya upimaji.",
     "markSeen": "Weka alama: ameonwa na daktari",
     "editTriage": "Rekebisha upimaji",
-    "back": "Rudi kwenye foleni"
+    "back": "Rudi kwenye foleni",
+    "noteTitle": "Taarifa ya mgonjwa",
+    "noteHint": "Kagua majibu ya mgonjwa na urekebishe chochote kinachotofautiana na tathmini yako.",
+    "confirmedNote": "Taarifa imethibitishwa na muuguzi",
+    "editedNote": "Taarifa imerekebishwa na kuthibitishwa na muuguzi",
+    "confirmedTitle": "Taarifa ya mgonjwa (imethibitishwa na muuguzi)",
+    "originalTitle": "Alichoripoti mgonjwa mwanzoni"
   }
 }

@@ -48,6 +48,9 @@ export function TriageReport({ visit, triage }: { visit: ClinicVisit; triage: Nu
           <Text style={{ color: theme.text }}>{triage.notes}</Text>
         </View>
       )}
+      <Text style={{ color: theme.success, fontWeight: '700', marginTop: spacing.md }}>
+        ✓ {t(triage.noteEdited ? 'clinic.editedNote' : 'clinic.confirmedNote')}
+      </Text>
       <Text style={[styles.note, { color: theme.textMuted }]}>{t('clinic.flagsNote')}</Text>
 
       {qr ? (

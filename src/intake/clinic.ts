@@ -12,13 +12,23 @@ export type Vitals = Partial<Record<VitalKey, number>>;
 export const PRIORITIES = ['emergency', 'priority', 'routine'] as const;
 export type NursePriority = (typeof PRIORITIES)[number];
 
-export type NurseTriage = { vitals: Vitals; priority: NursePriority; notes: string; triagedAt: number };
+export type NurseTriage = {
+  vitals: Vitals;
+  priority: NursePriority;
+  notes: string;
+  triagedAt: number;
+  /** The nurse changed the visit note before confirming it. */
+  noteEdited: boolean;
+};
 
 export type ClinicVisit = {
   /** Same id as the patient's visit note. */
   id: string;
   receivedAt: number;
+  /** The visit note in force: as the patient gave it until the nurse confirms it, then as the nurse confirmed it. */
   note: ConfirmedIntake;
+  /** The patient's own answers, kept when the nurse corrected the note. */
+  patientNote?: ConfirmedIntake;
   /** What the patient's phone suggested before arrival. */
   selfTriage: { level: TriageLevel; reasons: string[] };
   services?: string[];
