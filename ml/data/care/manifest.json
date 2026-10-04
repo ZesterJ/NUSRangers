@@ -1,0 +1,9 @@
+{
+  "schemaVersion": "care-policy-v1",
+  "count": 400,
+  "sha256": "9144f8495f8c6c0a4df5ff65e4b99db5bb9cf4c1f8e88eb06fb717f023ea081c",
+  "source": "assistant-authored synthetic; not human-reviewed",
+  "seed": 20261004,
+  "extractionEvaluationDataUsed": false,
+  "facilityDataUsed": false
+}
