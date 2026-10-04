@@ -277,6 +277,17 @@
     "confirmedNote": "Visit note confirmed by the nurse",
     "editedNote": "Visit note corrected and confirmed by the nurse",
     "confirmedTitle": "Visit note (confirmed by the nurse)",
-    "originalTitle": "Originally reported by the patient"
+    "originalTitle": "Originally reported by the patient",
+    "reportsTitle": "Triage reports",
+    "showAll": "Show the whole queue",
+    "noReports": "No triage reports yet. The nurse creates one from the queue."
+  },
+  "home": {
+    "welcome": "Welcome! What would you like to do today?",
+    "rolePatient": "Patient or caregiver",
+    "roleClinic": "Clinic staff",
+    "pinPrompt": "Enter the clinic PIN",
+    "pinWrong": "That PIN is not correct.",
+    "unlock": "Open the clinic view"
   }
 }

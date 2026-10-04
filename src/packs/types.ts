@@ -21,11 +21,19 @@ export type HomeCardAction =
   | { type: 'capture' }
   | { type: 'intake' }
   | { type: 'scan' }
+  /** Clinic tab, opening the scanner or the triage reports straight away. */
+  | { type: 'scanCode' }
+  | { type: 'reports' }
+  | { type: 'records' }
   | { type: 'url'; url: string };
 
 export type HomeCard = {
   id: string;
   kind: 'tip' | 'alert' | 'metric' | 'action';
+  /** Emoji shown before the title; defaults to the icon for `kind`. */
+  icon?: string;
+  /** Who sees the card on Home; omitted = everyone. */
+  roles?: ('patient' | 'clinic')[];
   title: Localized;
   body?: Localized;
   /** For `metric` cards, e.g. "KES 42/kg". */

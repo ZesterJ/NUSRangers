@@ -19,6 +19,9 @@ export function HomeCardView({ card }: { card: HomeCard }) {
     else if (a.type === 'capture') router.push('/capture');
     else if (a.type === 'intake') router.push('/intake');
     else if (a.type === 'scan') router.push('/scan');
+    else if (a.type === 'scanCode') router.push({ pathname: '/scan', params: { mode: 'scan' } });
+    else if (a.type === 'reports') router.push({ pathname: '/scan', params: { mode: 'reports' } });
+    else if (a.type === 'records') router.push('/history');
     else Linking.openURL(a.url);
   };
 
@@ -26,7 +29,7 @@ export function HomeCardView({ card }: { card: HomeCard }) {
     <Pressable onPress={onPress} disabled={!card.action}>
       <Card style={card.kind === 'alert' ? { borderColor: theme.warning, borderWidth: 1 } : undefined}>
         <Text style={[styles.title, { color: theme.text }]}>
-          {KIND_ICON[card.kind]} {tr(card.title, locale)}
+          {card.icon ?? KIND_ICON[card.kind]} {tr(card.title, locale)}
         </Text>
         {card.value && <Text style={[styles.value, { color: theme.primary }]}>{card.value}</Text>}
         {card.body && <Text style={{ color: theme.textMuted, fontSize: 15 }}>{tr(card.body, locale)}</Text>}

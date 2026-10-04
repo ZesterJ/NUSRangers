@@ -1,6 +1,6 @@
 import { CameraView, useCameraPermissions } from 'expo-camera';
-import { useFocusEffect, useIsFocused } from 'expo-router';
-import { useCallback, useRef, useState } from 'react';
+import { router, useFocusEffect, useIsFocused, useLocalSearchParams } from 'expo-router';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 
@@ -15,7 +15,7 @@ import { sortQueue, type ClinicVisit } from '@/intake/clinic';
 import { decodeClinicCode, visitFromHandoff, type DecodedClinicCode } from '@/intake/handoff';
 import { radius, spacing, usePackContext } from '@/theme';
 
-type View_ = { kind: 'queue' } | { kind: 'scan' } | { kind: 'visit'; id: string; editing?: boolean };
+type View_ = { kind: 'queue'; reportsOnly?: boolean } | { kind: 'scan' } | { kind: 'visit'; id: string; editing?: boolean };
 
 /**
  * Clinic tab. Reception scans the patient's visit note into the queue (step 9), the nurse adds vital
@@ -60,6 +60,21 @@ export default function Clinic() {
     setScanned(null);
     setView({ kind: 'scan' });
   };
+
+  // A Home card can ask for the scanner or the triage reports directly. The request is applied once
+  // during render, then cleared from the route so that tapping the tab later shows the queue again.
+  const { mode } = useLocalSearchParams<{ mode?: 'scan' | 'reports' }>();
+  const [appliedMode, setAppliedMode] = useState<string | undefined>(undefined);
+  if (mode !== appliedMode) {
+    setAppliedMode(mode);
+    if (mode) {
+      setScanned(null);
+      setView(mode === 'scan' ? { kind: 'scan' } : { kind: 'queue', reportsOnly: true });
+    }
+  }
+  useEffect(() => {
+    if (mode) router.setParams({ mode: undefined });
+  }, [mode]);
 
   // ---------- A patient: nurse triage, then the triage report ----------
   const visit = view.kind === 'visit' ? visits.find((v) => v.id === view.id) : undefined;
@@ -192,12 +207,18 @@ export default function Clinic() {
   }
 
   // ---------- The queue ----------
+  const reportsOnly = view.kind === 'queue' && view.reportsOnly;
+  const shown = sortQueue(visits).filter((v) => !reportsOnly || v.triage);
   return (
     <ScrollView style={{ backgroundColor: theme.background }} contentContainerStyle={styles.content}>
-      <Text style={[styles.title, { color: theme.text }]}>{t('clinic.queueTitle')}</Text>
-      <Button label={`▦ ${t('clinic.scanButton')}`} onPress={openScanner} />
-      {visits.length === 0 && <Text style={{ color: theme.textMuted }}>{t('clinic.empty')}</Text>}
-      {sortQueue(visits).map((v) => {
+      <Text style={[styles.title, { color: theme.text }]}>{t(reportsOnly ? 'clinic.reportsTitle' : 'clinic.queueTitle')}</Text>
+      {reportsOnly ? (
+        <Button label={t('clinic.showAll')} variant="outline" onPress={() => setView({ kind: 'queue' })} />
+      ) : (
+        <Button label={`📷 ${t('clinic.scanButton')}`} onPress={openScanner} />
+      )}
+      {shown.length === 0 && <Text style={{ color: theme.textMuted }}>{t(reportsOnly ? 'clinic.noReports' : 'clinic.empty')}</Text>}
+      {shown.map((v) => {
         const color =
           v.status !== 'triaged' || !v.triage
             ? theme.textMuted

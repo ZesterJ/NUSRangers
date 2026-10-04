@@ -277,6 +277,17 @@
     "confirmedNote": "Taarifa imethibitishwa na muuguzi",
     "editedNote": "Taarifa imerekebishwa na kuthibitishwa na muuguzi",
     "confirmedTitle": "Taarifa ya mgonjwa (imethibitishwa na muuguzi)",
-    "originalTitle": "Alichoripoti mgonjwa mwanzoni"
+    "originalTitle": "Alichoripoti mgonjwa mwanzoni",
+    "reportsTitle": "Ripoti za upimaji",
+    "showAll": "Onyesha foleni yote",
+    "noReports": "Hakuna ripoti za upimaji bado. Muuguzi hutengeneza moja kutoka kwenye foleni."
+  },
+  "home": {
+    "welcome": "Karibu! Ungependa kufanya nini leo?",
+    "rolePatient": "Mgonjwa au mlezi",
+    "roleClinic": "Wafanyakazi wa kliniki",
+    "pinPrompt": "Weka PIN ya kliniki",
+    "pinWrong": "PIN hiyo si sahihi.",
+    "unlock": "Fungua mwonekano wa kliniki"
   }
 }

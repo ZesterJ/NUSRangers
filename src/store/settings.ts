@@ -12,9 +12,13 @@ import { PACKS, getPack } from '@/packs';
  */
 export type AiMode = 'auto' | 'offline' | 'cloud';
 
+/** Who is using this phone: a patient or caregiver, or clinic staff (reception, nurse, doctor). */
+export type Role = 'patient' | 'clinic';
+
 type SettingsState = {
   hydrated: boolean;
   onboarded: boolean;
+  role: Role;
   packId: string;
   locale: string;
   aiMode: AiMode;
@@ -30,6 +34,7 @@ export const useSettings = create<SettingsState>()(
     (set) => ({
       hydrated: false,
       onboarded: false,
+      role: 'patient',
       packId: config.defaultPack,
       locale: getPack(config.defaultPack).defaultLocale,
       aiMode: 'auto',
