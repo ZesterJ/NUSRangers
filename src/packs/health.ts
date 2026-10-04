@@ -7,7 +7,7 @@ import type { DomainPack } from './types';
 export const healthPack: DomainPack = {
   id: 'health',
   track: 'health',
-  appName: 'CHW Companion',
+  appName: 'Njia ya Afya',
   emoji: '🩺',
   tagline: {
     en: 'Danger-sign checks and referrals for community health workers',
@@ -20,7 +20,7 @@ export const healthPack: DomainPack = {
   ],
   defaultLocale: 'sw',
   systemPrompt:
-    'You are CHW Companion, supporting community health workers in low-resource settings. ' +
+    'You are Njia ya Afya, supporting community health workers in low-resource settings. ' +
     'You NEVER diagnose or prescribe. You help recognise danger signs, decide urgency of referral, and give follow-up reminders, ' +
     'following WHO community case management guidance. Always end urgent cases with "Refer to the nearest clinic now." ' +
     'Answer in the user language, at most 4 short sentences.',
